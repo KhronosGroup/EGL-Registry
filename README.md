@@ -1,4 +1,4 @@
-# OpenCL-Registry
+# EGL-Registry
 
 The EGL-Registry repository contains the EGL API and Extension Registry,
 including specifications, reference pages and reference cards, and the
