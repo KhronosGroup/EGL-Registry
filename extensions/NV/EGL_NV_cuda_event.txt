@@ -1,0 +1,185 @@
+Name
+
+    NV_cuda_event
+
+Name Strings
+
+    EGL_NV_cuda_event
+
+Contributors
+
+    Debalina Bhattacharjee
+    Michael Chock
+    James Jones
+
+Contact
+
+    Michael Chock (mchock 'at' nvidia.com)
+
+Status
+
+    Complete
+
+Version
+
+    Version 1, June 20, 2014
+
+Number
+
+    EGL Extension #75
+
+Extension Type
+
+    EGL display extension
+
+Dependencies
+
+    This extension is written against the language of EGL 1.5.
+
+    Either EGL_KHR_fence_sync and the EGLAttrib type or EGL 1.5 are
+    required.
+
+    This extension interacts with EGL_NV_device_cuda.
+
+Overview
+
+    This extension allows creating an EGL sync object linked to a CUDA
+    event object, potentially improving efficiency of sharing images and
+    compute results between the two APIs.
+
+IP Status
+
+    No known claims.
+
+New Types
+
+    A pointer to type cudaEvent_t, defined in the CUDA header files, may
+    be included in the attribute list passed to eglCreateSync.
+
+New Procedures and Functions
+
+    None.
+
+New Tokens
+
+    Accepted as attribute names in the <attrib_list> argument
+    of eglCreateSync:
+
+        EGL_CUDA_EVENT_HANDLE_NV        0x323B
+
+    Returned in <values> for eglGetSyncAttrib <attribute>
+    EGL_SYNC_TYPE:
+
+        EGL_SYNC_CUDA_EVENT_NV          0x323C
+
+    Returned in <values> for eglGetSyncAttrib <attribute>
+    EGL_SYNC_CONDITION:
+
+        EGL_SYNC_CUDA_EVENT_COMPLETE_NV 0x323D
+
+Changes to Chapter 3 of the EGL 1.5 Specification (EGL Functions and
+Errors)
+
+    In section 3.8.1 (Sync Objects) Replace the sixth paragraph:
+
+   "A <OpenCL event sync object> reflects the status of a corresponding
+    OpenCL object to which the sync object is linked. Likewise, a <CUDA
+    event sync object> reflects the status of a corresponding CUDA
+    object. These provide another method of sharing images or compute
+    results between EGL and the CUDA and OpenCL client APIs (see
+    Chapter 9 of the OpenCL Specification and the cl_khr_egl_image
+    extension for a second method of synchronization with OpenCL).
+    Waiting on either type of sync object is equivalent to waiting for
+    completion of the corresponding linked CUDA or OpenCL event object."
+
+    Add a new section following section 3.8.1.2 (Creating OpenCL Event
+    Sync Objects):
+
+   "Section 3.8.1.X Creating CUDA Event Sync Objects
+
+    If <type> is EGL_SYNC_CUDA_EVENT_NV, a CUDA event sync object is
+    created. In this case <attrib_list> must contain the attribute
+    EGL_CUDA_EVENT_HANDLE_NV, set to a pointer to a cudaEvent_t object.
+    The object must be properly initialized and recorded by the CUDA API
+    (using cudaCreateEvent and cudaEventRecord), and the CUDA device
+    used to create the event must correspond to <dpy>[fn1]. Note that
+    EGL_CUDA_EVENT_HANDLE_NV is not a queryable property of a sync
+    object.
+
+    [fn1] If EGL_NV_device_cuda is supported, it is sufficient that the
+          CUDA device used to create the CUDA event matches the
+          EGL_CUDA_DEVICE_NV attribute of <dpy>'s underlying EGL
+          device.
+
+    Attributes of the CUDA event sync object are set as follows:
+
+        Attribute Name          Initial Attribute Value(s)
+        -------------           --------------------------
+        EGL_SYNC_TYPE           EGL_SYNC_CUDA_EVENT_NV
+        EGL_SYNC_STATUS         Depends on status of <event>
+        EGL_SYNC_CONDITION      EGL_SYNC_CUDA_EVENT_COMPLETE_NV
+
+    The status of such a sync object depends on the state of <event> at
+    the time eglCreateSync was called. If all device work preceding the
+    most recent call to cudaEventRecord on the event has not yet
+    completed, the status of the linked sync object will be
+    EGL_UNSIGNALED. If all such work has completed, the status of the
+    linked sync object will be EGL_SIGNALED. Calling cudaEventRecord has
+    no effect on a previously created sync object.
+
+    The only condition supported for CUDA event sync objects is
+    EGL_SYNC_CUDA_EVENT_COMPLETE_NV. It is satisfied when all device
+    work prior to the most recent call to cudaEventRecord at sync
+    creation time has completed."
+
+    Add to the list of errors following 3.8.1.X:
+
+   "If <type> is EGL_SYNC_CUDA_EVENT_NV and EGL_CUDA_EVENT_HANDLE_NV is
+    not specified in <attrib_list>, then an EGL_BAD_ATTRIBUTE error is
+    generated. If its attribute value is not a valid CUDA event pointer
+    or has not been initialized as described above, then
+    EGL_BAD_ATTRIBUTE may be generated, but the results are undefined
+    and may include program termination."
+
+    Modify the third paragraph of section 3.8.1.4 (Querying Sync Object
+    Attributes):
+
+   "If any eglClientWaitSync or eglWaitSync commands are blocking on
+    <sync> when eglDestroySync is called, <sync> is flagged for deletion
+    and will be deleted when the associated fence command, OpenCL event
+    object, or CUDA event object has completed, and <sync> is no longer
+    blocking any such egl*WaitSync command. Otherwise, the sync object
+    is destroyed immediately.
+
+    Replace the EGL_SYNC_CONDITION row of table 3.9 with:
+
+   "Attribute              Description                Supported Sync Objects
+    -----------------      -----------------------    ----------------------
+    EGL_SYNC_CONDITION     Signaling condition        EGL_SYNC_FENCE,
+                                                      EGL_SYNC_CL_EVENT, or
+                                                      EGL_SYNC_CUDA_EVENT_NV
+
+    Table 3.9  Attributes Accepted by eglGetSyncAttrib"
+
+
+Interactions with EGL versions prior to 1.5
+
+    This extension may be used with earlier versions of EGL, provided
+    that the EGL_KHR_fence_sync extension is supported. In this case,
+    replace all references to sync functions and tokens with
+    corresponding KHR-suffixed versions (e.g., replace eglCreateSync
+    with eglCreateSyncKHR).
+
+    Additionally, this extension may be used with the 64-bit types and
+    functions added to EGL_KHR_fence_sync introduced by
+    EGL_KHR_cl_event2 (EGLAttribKHR and eglCreateSync64KHR). Support
+    for OpenCL events is not required.
+
+Issues
+
+    None
+
+Revision History
+
+    Version 1, 2014/06/20 (Michael Chock)
+        - initial version.
