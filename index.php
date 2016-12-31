@@ -70,7 +70,7 @@ include_once("../../assets/static_pages/khr_page_top.php");
     processing scripts shared with the OpenGL and OpenGL ES registries. If
     you need to generate modified headers or modify egl.xml, clone the <a
     href="https://github.com/KhronosGroup/EGL-Registry"> EGL-Registry </a>
-    git repository and see the <a href="api/README.md"> api/README.md </a>
+    git repository and see the <a href="README.md"> README.md </a>
     file to get started. </p>
 
 
