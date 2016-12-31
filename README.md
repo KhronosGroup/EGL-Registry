@@ -1,4 +1,4 @@
-# OpenCL-Registry
+# EGL-Registry
 
 The EGL-Registry repository contains the EGL API and Extension Registry,
 including specifications, reference pages and reference cards, and the
@@ -45,26 +45,28 @@ that point you can use values from your assigned range for API extensions.
 
 Extension specification documents can be added by proposing a pull request
 to master, adding the specification .txt file and related changes under
-extensions/<vendor>/filename.txt . Your pull request must also:
+extensions/\<vendor\>/filename.txt. Your pull request must also:
 
 * Allocate an extension number in registry.tcl (follow the existing
-  <extension> examples, search for "Next free extension number", and use the
-  lowest available extension number).
+  ```<extension>``` examples, search for "Next free extension number", and use
+  the lowest available extension number).
 * Include that extension number in the extension specification document.
 * Define the interfaces introduced by this extension in api/egl.xml,
   following the examples of existing extensions. If you have difficulty
   doing this, consult the registry schema documentation in the GL registry
-  at www.khronos.org/registry/gl/ ; you may also create Issues in the
+  at www.khronos.org/registry/gl/; you may also create Issues in the
   EGL-Registry repository to request help.
 * Verify that the EGL headers regenerate properly after applying your XML
-  changes. In the api/ directory, you must be able to:
+  changes. In the api/ directory, you must be able to do the following without
+  errors:
+```
     # Validate XML changes
     make validate
     # Verify headers build and are legal C
     make clobber
     make
     make tests
-  without errors.
+```
 * Finally, add a link from the extensions section of index.php to the
   extension document, using the specified extension number, so it shows up
   in the web view (this could in principle be generated automatically from
