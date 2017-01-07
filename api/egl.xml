@@ -185,25 +185,25 @@
     </enums>
 
     <enums namespace="EGL" group="SpecialNumbers" vendor="ARB" comment="Tokens whose numeric value is intrinsically meaningful">
-        <enum value="((EGLint)-1)" name="EGL_DONT_CARE"/>
-        <enum value="((EGLint)-1)" name="EGL_UNKNOWN"/>
+        <enum value="EGL_CAST(EGLint,-1)" name="EGL_DONT_CARE"/>
+        <enum value="EGL_CAST(EGLint,-1)" name="EGL_UNKNOWN"/>
         <enum value="-1" name="EGL_NO_NATIVE_FENCE_FD_ANDROID"/>
         <enum value="0" name="EGL_DEPTH_ENCODING_NONE_NV"/>
-        <enum value="((EGLContext)0)" name="EGL_NO_CONTEXT"/>
-        <enum value="((EGLDeviceEXT)(0))" name="EGL_NO_DEVICE_EXT"/>
-        <enum value="((EGLDisplay)0)" name="EGL_NO_DISPLAY"/>
-        <enum value="((EGLImage)0)" name="EGL_NO_IMAGE"/>
-        <enum value="((EGLImageKHR)0)" name="EGL_NO_IMAGE_KHR"/>
-        <enum value="((EGLNativeDisplayType)0)" name="EGL_DEFAULT_DISPLAY"/>
-        <enum value="((EGLNativeFileDescriptorKHR)(-1))" name="EGL_NO_FILE_DESCRIPTOR_KHR"/>
-        <enum value="((EGLOutputLayerEXT)0)" name="EGL_NO_OUTPUT_LAYER_EXT"/>
-        <enum value="((EGLOutputPortEXT)0)" name="EGL_NO_OUTPUT_PORT_EXT"/>
-        <enum value="((EGLStreamKHR)0)" name="EGL_NO_STREAM_KHR"/>
-        <enum value="((EGLSurface)0)" name="EGL_NO_SURFACE"/>
-        <enum value="((EGLSync)0)" name="EGL_NO_SYNC"/>
-        <enum value="((EGLSyncKHR)0)" name="EGL_NO_SYNC_KHR" alias="EGL_NO_SYNC"/>
-        <enum value="((EGLSyncNV)0)" name="EGL_NO_SYNC_NV" alias="EGL_NO_SYNC"/>
-        <enum value="((EGLConfig)0)" name="EGL_NO_CONFIG_KHR"/>
+        <enum value="EGL_CAST(EGLContext,0)" name="EGL_NO_CONTEXT"/>
+        <enum value="EGL_CAST(EGLDeviceEXT,0)" name="EGL_NO_DEVICE_EXT"/>
+        <enum value="EGL_CAST(EGLDisplay,0)" name="EGL_NO_DISPLAY"/>
+        <enum value="EGL_CAST(EGLImage,0)" name="EGL_NO_IMAGE"/>
+        <enum value="EGL_CAST(EGLImageKHR,0)" name="EGL_NO_IMAGE_KHR"/>
+        <enum value="EGL_CAST(EGLNativeDisplayType,0)" name="EGL_DEFAULT_DISPLAY"/>
+        <enum value="EGL_CAST(EGLNativeFileDescriptorKHR,-1)" name="EGL_NO_FILE_DESCRIPTOR_KHR"/>
+        <enum value="EGL_CAST(EGLOutputLayerEXT,0)" name="EGL_NO_OUTPUT_LAYER_EXT"/>
+        <enum value="EGL_CAST(EGLOutputPortEXT,0)" name="EGL_NO_OUTPUT_PORT_EXT"/>
+        <enum value="EGL_CAST(EGLStreamKHR,0)" name="EGL_NO_STREAM_KHR"/>
+        <enum value="EGL_CAST(EGLSurface,0)" name="EGL_NO_SURFACE"/>
+        <enum value="EGL_CAST(EGLSync,0)" name="EGL_NO_SYNC"/>
+        <enum value="EGL_CAST(EGLSyncKHR,0)" name="EGL_NO_SYNC_KHR" alias="EGL_NO_SYNC"/>
+        <enum value="EGL_CAST(EGLSyncNV,0)" name="EGL_NO_SYNC_NV" alias="EGL_NO_SYNC"/>
+        <enum value="EGL_CAST(EGLConfig,0)" name="EGL_NO_CONFIG_KHR"/>
         <enum value="10000" name="EGL_DISPLAY_SCALING"/>
         <enum value="0xFFFFFFFFFFFFFFFF" name="EGL_FOREVER" type="ull"/>
         <enum value="0xFFFFFFFFFFFFFFFF" name="EGL_FOREVER_KHR" type="ull" alias="EGL_FOREVER"/>

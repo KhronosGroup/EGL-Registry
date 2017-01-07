@@ -1,6 +1,6 @@
 #!/usr/bin/python -i
 #
-# Copyright (c) 2013-2016 The Khronos Group Inc.
+# Copyright (c) 2013-2017 The Khronos Group Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -134,7 +134,7 @@ glx13andLaterPat  = '1\.[3-9]'
 # Copyright text prefixing all headers (list of strings).
 prefixStrings = [
     '/*',
-    '** Copyright (c) 2013-2016 The Khronos Group Inc.',
+    '** Copyright (c) 2013-2017 The Khronos Group Inc.',
     '**',
     '** Permission is hereby granted, free of charge, to any person obtaining a',
     '** copy of this software and/or associated documentation files (the',
@@ -159,7 +159,7 @@ prefixStrings = [
     '** This header is generated from the Khronos OpenGL / OpenGL ES XML',
     '** API Registry. The current version of the Registry, generator scripts',
     '** used to make the header, and the header can be found at',
-    '**   http://www.opengl.org/registry/',
+    '**   http://www.khronos.org/registry/egl',
     '**',
     '** Khronos $' + 'Revision$ on $' + 'Date$',
     '*/',
