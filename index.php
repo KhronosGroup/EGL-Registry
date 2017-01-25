@@ -270,7 +270,7 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=101> <a href="extensions/KHR/EGL_KHR_no_config_context.txt">EGL_KHR_no_config_context</a>
 </li>
-<li value=102> <a href="../gl/extensions/KHR/context_flush_control.txt">EGL_KHR_context_flush_control</a>
+<li value=102> <a href="https://www.khronos.org/registry/OpenGL/extensions/KHR/KHR_context_flush_control.txt">EGL_KHR_context_flush_control</a>
 </li>
 <li value=103> <a href="extensions/ARM/EGL_ARM_implicit_external_sync.txt">EGL_ARM_implicit_external_sync</a>
 </li>
