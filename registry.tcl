@@ -524,7 +524,7 @@ extension EGL_KHR_no_config_context {
 extension EGL_KHR_context_flush_control {
     number      102
     flags       public
-    filename    ../gl/extensions/KHR/context_flush_control.txt
+    filename    ../OpenGL/extensions/KHR/KHR_context_flush_control.txt
 }
 extension EGL_ARM_implicit_external_sync {
     number      103
