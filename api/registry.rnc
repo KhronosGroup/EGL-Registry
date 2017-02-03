@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2016 The Khronos Group Inc.
+# Copyright (c) 2013-2017 The Khronos Group Inc.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and/or associated documentation files (the
@@ -20,9 +20,9 @@
 # MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 # Relax NG schema for Khronos Registry XML
-# See http://www.opengl.org/registry/
+# See https://www.github.com/KhronosGroup/EGL-Registry
 #
-# Last modified 2013/06/14
+# Last modified 2017/02/03
 # This definition is subject to change (mostly in the form of additions)
 
 namespace xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
