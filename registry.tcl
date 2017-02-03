@@ -599,4 +599,9 @@ extension EGL_NV_stream_socket {
     alias       EGL_NV_stream_socket_unix
     alias       EGL_NV_stream_socket_inet
 }
-# Next free extension number: 116
+extension EGL_EXT_compositor {
+    number      116
+    flags       public
+    filename    extensions/EXT/EGL_EXT_compositor.txt
+}
+# Next free extension number: 117

@@ -31,14 +31,14 @@ extern "C" {
 ** This header is generated from the Khronos OpenGL / OpenGL ES XML
 ** API Registry. The current version of the Registry, generator scripts
 ** used to make the header, and the header can be found at
-**   http://www.opengl.org/registry/egl
+**   http://www.khronos.org/registry/egl
 **
 ** Khronos $Revision$ on $Date$
 */
 
 #include <EGL/eglplatform.h>
 
-/* Generated on date 20161230 */
+/* Generated on date 20170203 */
 
 /* Generated C header for:
  * API: egl
