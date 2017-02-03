@@ -306,6 +306,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
      <br> <a href="extensions/NV/EGL_NV_stream_socket.txt">EGL_NV_stream_socket_unix</a>
      <br> <a href="extensions/NV/EGL_NV_stream_socket.txt">EGL_NV_stream_socket_inet</a>
 </li>
+<li value=116> <a href="extensions/EXT/EGL_EXT_compositor.txt">EGL_EXT_compositor</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
