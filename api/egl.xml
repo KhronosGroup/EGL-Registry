@@ -843,6 +843,14 @@
     <enums namespace="EGL" start="0x3450" end="0x345F" vendor="ANGLE" comment="Reserved for Shannon Woods (Bug 16106)">
             <unused start="0x3450" end="0x345F"/>
     </enums>
+    
+    <enums namespace="EGL" start="0x3460" end="0x346F" vendor="COREAVI" comment="Reserved for Daniel Herring (Bug 16162)">
+        <enum value="0x3460" name="EGL_PRIMARY_COMPOSITOR_CONTEXT_EXT"/>
+        <enum value="0x3461" name="EGL_EXTERNAL_REF_ID_EXT"/>
+        <enum value="0x3462" name="EGL_COMPOSITOR_DROP_NEWEST_FRAME_EXT"/>
+        <enum value="0x3463" name="EGL_COMPOSITOR_KEEP_NEWEST_FRAME_EXT"/>
+        <unused start="0x3464" end="0x346F"/>
+    </enums>
 
 <!-- Please remember that new enumerant allocations must be obtained by
      request to the Khronos API registrar (see comments at the top of this
@@ -853,8 +861,8 @@
 
 <!-- Reservable for future use. To generate a new range, allocate multiples
      of 16 starting at the lowest available point in this block. -->
-    <enums namespace="EGL" start="0x3460" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
-            <unused start="0x3460" end="0x3FFF"/>
+    <enums namespace="EGL" start="0x3470" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
+            <unused start="0x3470" end="0x3FFF"/>
     </enums>
 
     <enums namespace="EGL" start="0x8F70" end="0x8F7F" vendor="HI" comment="For Mark Callow, Khronos bug 4055. Shared with GL.">
@@ -1631,6 +1639,44 @@
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param><ptype>EGLSyncKHR</ptype> <name>sync</name></param>
             <param><ptype>EGLint</ptype> <name>flags</name></param>
+        </command>
+        <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglCompositorSetContextListEXT</name></proto>
+            <param>const <ptype>EGLint</ptype> *<name>external_ref_ids</name></param>
+            <param><ptype>EGLint</ptype> <name>num_entries</name></param>
+        </command>
+        <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglCompositorSetContextAttributesEXT</name></proto>
+            <param><ptype>EGLint</ptype> <name>external_ref_id</name></param>
+            <param>const <ptype>EGLint</ptype> *<name>context_attributes</name></param>
+            <param><ptype>EGLint</ptype> <name>num_entries</name></param>
+        </command>
+        <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglCompositorSetWindowListEXT</name></proto>
+            <param><ptype>EGLint</ptype> <name>external_ref_id</name></param>
+            <param>const <ptype>EGLint</ptype> *<name>external_win_ids</name></param>
+            <param><ptype>EGLint</ptype> <name>num_entries</name></param>
+        </command>
+        <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglCompositorSetWindowAttributesEXT</name></proto>
+            <param><ptype>EGLint</ptype> <name>external_win_id</name></param>
+            <param>const <ptype>EGLint</ptype> *<name>window_attributes</name></param>
+            <param><ptype>EGLint</ptype> <name>num_entries</name></param>
+        </command>
+        <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglCompositorBindTexWindowEXT</name></proto>
+            <param><ptype>EGLint</ptype> <name>external_win_id</name></param>
+        </command>
+        <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglCompositorSetSizeEXT</name></proto>
+            <param><ptype>EGLint</ptype> <name>external_win_id</name></param>
+            <param><ptype>EGLint</ptype> <name>width</name></param>
+            <param><ptype>EGLint</ptype> <name>height</name></param>
+        </command>
+        <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglCompositorSwapPolicyEXT</name></proto>
+            <param><ptype>EGLint</ptype> <name>external_win_id</name></param>
+            <param><ptype>EGLint</ptype> <name>policy</name></param>
         </command>
     </commands>
 
@@ -2850,6 +2896,22 @@
         <extension name="EGL_TIZEN_image_native_surface" supported="egl">
             <require>
                 <enum name="EGL_NATIVE_SURFACE_TIZEN"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_compositor" supported="egl">
+            <require>                
+                <enum name="EGL_PRIMARY_COMPOSITOR_CONTEXT_EXT"/>
+                <enum name="EGL_EXTERNAL_REF_ID_EXT"/>
+                <enum name="EGL_COMPOSITOR_DROP_NEWEST_FRAME_EXT"/>
+                <enum name="EGL_COMPOSITOR_KEEP_NEWEST_FRAME_EXT"/>
+
+                <command name="eglCompositorSetContextListEXT"/>
+                <command name="eglCompositorSetContextAttributesEXT"/>
+                <command name="eglCompositorSetWindowListEXT"/>
+                <command name="eglCompositorSetWindowAttributesEXT"/>
+                <command name="eglCompositorBindTexWindowEXT"/>
+                <command name="eglCompositorSetSizeEXT"/>
+                <command name="eglCompositorSwapPolicyEXT"/>                                              
             </require>
         </extension>
     </extensions>

@@ -524,7 +524,7 @@ extension EGL_KHR_no_config_context {
 extension EGL_KHR_context_flush_control {
     number      102
     flags       public
-    filename    ../gl/extensions/KHR/context_flush_control.txt
+    filename    ../OpenGL/extensions/KHR/KHR_context_flush_control.txt
 }
 extension EGL_ARM_implicit_external_sync {
     number      103
@@ -599,4 +599,9 @@ extension EGL_NV_stream_socket {
     alias       EGL_NV_stream_socket_unix
     alias       EGL_NV_stream_socket_inet
 }
-# Next free extension number: 116
+extension EGL_EXT_compositor {
+    number      116
+    flags       public
+    filename    extensions/EXT/EGL_EXT_compositor.txt
+}
+# Next free extension number: 117
