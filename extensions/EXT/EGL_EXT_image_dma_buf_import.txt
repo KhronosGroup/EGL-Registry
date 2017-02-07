@@ -23,7 +23,7 @@ Status
 
 Version
 
-    Version 6, December 05, 2013
+    Version 7, December 13, 2013
 
 Number
 
@@ -94,7 +94,7 @@ New Tokens
 
         EGL_YUV_CHROMA_SITING_0_EXT    0x3284
         EGL_YUV_CHROMA_SITING_0_5_EXT  0x3285
-        
+
 
 Additions to Chapter 2 of the EGL 1.2 Specification (EGL Operation)
 
@@ -131,17 +131,20 @@ Additions to Chapter 2 of the EGL 1.2 Specification (EGL Operation)
 
         * EGL_DMA_BUF_PLANE0_OFFSET_EXT: The offset from the start of the
           dma_buf of the first sample in plane 0, in bytes.
- 
+
         * EGL_DMA_BUF_PLANE0_PITCH_EXT: The number of bytes between the start of
           subsequent rows of samples in plane 0. May have special meaning for
           non-linear formats.
 
     For images in an RGB color-space or those using a single-plane YUV format,
     only the first plane's file descriptor, offset & pitch should be specified.
-    For semi-planar YUV formats, the chroma samples are stored in plane 1 and
-    for fully planar formats, U-samples are stored in plane 1 and V-samples are
-    stored in plane 2. Planes 1 & 2 are specified by the following attributes,
-    which have the same meanings as defined above for plane 0:
+    For semi-planar YUV formats, that first plane (plane 0) holds only the luma
+    samples and chroma samples are stored interleaved in a second plane (plane
+    1). For fully planar YUV formats, the first plane (plane 0) continues to
+    hold the luma samples however the chroma samples are stored seperately in
+    two additional planes (plane 1 & plane 2). If present, planes 1 & 2 are
+    specified by the following attributes, which have the same meanings as
+    defined above for plane 0:
 
         * EGL_DMA_BUF_PLANE1_FD_EXT
         * EGL_DMA_BUF_PLANE1_OFFSET_EXT
@@ -149,6 +152,20 @@ Additions to Chapter 2 of the EGL 1.2 Specification (EGL Operation)
         * EGL_DMA_BUF_PLANE2_FD_EXT
         * EGL_DMA_BUF_PLANE2_OFFSET_EXT
         * EGL_DMA_BUF_PLANE2_PITCH_EXT
+
+    The ordering of samples within a plane is taken from the drm_fourcc
+    pixel_format specified for EGL_LINUX_DRM_FOURCC_EXT. For example, if
+    EGL_LINUX_DRM_FOURCC_EXT is set to DRM_FORMAT_NV12, the chroma plane
+    specified by EGL_DMA_BUF_PLANE1* contains samples in the order V, U,
+    whereas if EGL_LINUX_DRM_FOURCC_EXT is DRM_FORMAT_NV21, the order is U,
+    V. Similarly, the ordering of planes for fully-planar formats is also taken
+    from the pixel_format specified as EGL_LINUX_DRM_FOURCC_EXT. For example,
+    if EGL_LINUX_DRM_FOURCC_EXT is set to DRM_FORMAT_YUV410, the luma plane is
+    specified by EGL_DMA_BUF_PLANE0*, the plane containing U-samples is
+    specified by EGL_DMA_BUF_PLANE1* and the plane containing the V-samples is
+    specified by EGL_DMA_BUF_PLANE2*, whereas if EGL_LINUX_DRM_FOURCC_EXT is
+    set to DRM_FORMAT_YVU410, plane 1 contains the V-samples and plane 2
+    contains the U-samples.
 
     In addition to the above required attributes, the application may also
     provide hints as to how the data should be interpreted by the GL. If any of
@@ -177,7 +194,7 @@ Additions to Chapter 2 of the EGL 1.2 Specification (EGL Operation)
                 +   +   +   +     +   +   +   +     *   +   *   +
                   x       x       x       x
                 +   +   +   +     +   +   +   +     +   +   +   +
-                   
+
                 +   +   +   +     +   +   +   +     *   +   *   +
                   x       x       x       x
                 +   +   +   +     +   +   +   +     +   +   +   +
@@ -204,7 +221,7 @@ Additions to Chapter 2 of the EGL 1.2 Specification (EGL Operation)
 
       "* If <target> is EGL_LINUX_DMA_BUF_EXT and <buffer> is not NULL, the
          error EGL_BAD_PARAMETER is generated.
-         
+
        * If <target> is EGL_LINUX_DMA_BUF_EXT, and the list of attributes is
          incomplete, EGL_BAD_PARAMETER is generated.
 
@@ -217,18 +234,18 @@ Additions to Chapter 2 of the EGL 1.2 Specification (EGL Operation)
          generated if any of the EGL_DMA_BUF_PLANE1_* or EGL_DMA_BUF_PLANE2_*
          attributes are specified.
 
-       * If <target> is EGL_LINUX_DMA_BUF_EXT and the value specified for 
+       * If <target> is EGL_LINUX_DMA_BUF_EXT and the value specified for
          EGL_YUV_COLOR_SPACE_HINT_EXT is not EGL_ITU_REC601_EXT,
          EGL_ITU_REC709_EXT or EGL_ITU_REC2020_EXT, EGL_BAD_ATTRIBUTE is
          generated.
 
-       * If <target> is EGL_LINUX_DMA_BUF_EXT and the value specified for 
+       * If <target> is EGL_LINUX_DMA_BUF_EXT and the value specified for
          EGL_SAMPLE_RANGE_HINT_EXT is not EGL_YUV_FULL_RANGE_EXT or
          EGL_YUV_NARROW_RANGE_EXT, EGL_BAD_ATTRIBUTE is generated.
 
-       * If <target> is EGL_LINUX_DMA_BUF_EXT and the value specified for 
+       * If <target> is EGL_LINUX_DMA_BUF_EXT and the value specified for
          EGL_YUV_CHROMA_HORIZONTAL_SITING_HINT_EXT or
-         EGL_YUV_CHROMA_VERTICAL_SITING_HINT_EXT is not 
+         EGL_YUV_CHROMA_VERTICAL_SITING_HINT_EXT is not
          EGL_YUV_CHROMA_SITING_0_EXT or EGL_YUV_CHROMA_SITING_0_5_EXT,
          EGL_BAD_ATTRIBUTE is generated.
 
@@ -267,7 +284,7 @@ Issues
     application to specify which color space the data is in to allow the GL to
     choose an appropriate set of co-efficients if it needs to convert that data
     to RGB for example.
-    
+
     5. What chroma-siting is used for sub-sampled YUV formats?
 
     ANSWER: The chroma siting is not specified by either the v4l2 or DRM APIs.
@@ -276,7 +293,7 @@ Issues
     to know the siting in order to filter the image correctly. While the visual
     impact of getting the siting wrong is minor, provision should be made to
     allow an application to specify the siting if desired. Added additional
-    EGL_YUV_CHROMA_HORIZONTAL_SITING_HINT_EXT & 
+    EGL_YUV_CHROMA_HORIZONTAL_SITING_HINT_EXT &
     EGL_YUV_CHROMA_VERTICAL_SITING_HINT_EXT attributes to allow the siting to
     be specified using a set of pre-defined values (0 or 0.5).
 
@@ -372,6 +389,10 @@ Issues
 
 
 Revision History
+
+#7 (Kristian H. Kristensen, December 13, 2017)
+   - Clarify plane ordering to match Linux FOURCC conventions (Bug 16017).
+
 #6 (David Garbett, December 05, 2013)
    - Application now retains ownership of dma_buf file descriptors.
 
@@ -381,7 +402,7 @@ Revision History
 
 #4 (Tom Cooksey, October 04, 2012)
    - Fixed issue numbering!
-   - Added issues 8 - 15. 
+   - Added issues 8 - 15.
    - Promoted proposal for Issue 3 to be the answer.
    - Added an additional attribute to allow an application to specify the color
      space as a hint which should address issue 4.
