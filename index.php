@@ -308,6 +308,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=116> <a href="extensions/EXT/EGL_EXT_compositor.txt">EGL_EXT_compositor</a>
 </li>
+<li value=117> <a href="extensions/EXT/EGL_EXT_surface_CTA861_3_metadata.txt">EGL_EXT_surface_CTA861_3_metadata</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
