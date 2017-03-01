@@ -609,4 +609,4 @@ extension EGL_EXT_surface_CTA861_3_metadta {
     flags       public
     filename    extensions/EXT/EGL_EXT_surface_CTA861_3_metadata.txt
 }
-# Next free extension number: 117
+# Next free extension number: 118
