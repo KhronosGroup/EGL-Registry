@@ -38,7 +38,7 @@ extern "C" {
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20170203
+#define EGL_EGLEXT_VERSION 20170301
 
 /* Generated C header for:
  * API: egl
@@ -793,6 +793,12 @@ EGLAPI EGLBoolean EGLAPIENTRY eglStreamConsumerOutputEXT (EGLDisplay dpy, EGLStr
 #endif
 #endif /* EGL_EXT_stream_consumer_egloutput */
 
+#ifndef EGL_EXT_surface_CTA861_3_metadata
+#define EGL_EXT_surface_CTA861_3_metadata 1
+#define EGL_CTA861_3_MAX_CONTENT_LIGHT_LEVEL_EXT 0x3360
+#define EGL_CTA861_3_MAX_FRAME_AVERAGE_LEVEL_EXT 0x3361
+#endif /* EGL_EXT_surface_CTA861_3_metadata */
+
 #ifndef EGL_EXT_surface_SMPTE2086_metadata
 #define EGL_EXT_surface_SMPTE2086_metadata 1
 #define EGL_SMPTE2086_DISPLAY_PRIMARY_RX_EXT 0x3341
@@ -805,6 +811,7 @@ EGLAPI EGLBoolean EGLAPIENTRY eglStreamConsumerOutputEXT (EGLDisplay dpy, EGLStr
 #define EGL_SMPTE2086_WHITE_POINT_Y_EXT   0x3348
 #define EGL_SMPTE2086_MAX_LUMINANCE_EXT   0x3349
 #define EGL_SMPTE2086_MIN_LUMINANCE_EXT   0x334A
+#define EGL_METADATA_SCALING_EXT          50000
 #endif /* EGL_EXT_surface_SMPTE2086_metadata */
 
 #ifndef EGL_EXT_swap_buffers_with_damage
