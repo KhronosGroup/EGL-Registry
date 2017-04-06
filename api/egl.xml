@@ -788,7 +788,9 @@
         <enum value="0x334E" name="EGL_STREAM_CROSS_DISPLAY_NV"/>
         <enum value="0x334F" name="EGL_STREAM_CROSS_SYSTEM_NV"/>
         <enum value="0x3350" name="EGL_GL_COLORSPACE_SCRGB_LINEAR_EXT"/>
-            <unused start="0x3351" end="0x335F"/>
+            <unused start="0x3351"/>
+        <enum value="0x3352" name="EGL_TRACK_REFERENCES_KHR"/>
+            <unused start="0x3353" end="0x335F"/>
         <enum value="0x3360" name="EGL_CTA861_3_MAX_CONTENT_LIGHT_LEVEL_EXT"/>
         <enum value="0x3361" name="EGL_CTA861_3_MAX_FRAME_AVERAGE_LEVEL_EXT"/>
             <unused start="0x3362" end="0x339F"/>
@@ -847,7 +849,7 @@
     <enums namespace="EGL" start="0x3450" end="0x345F" vendor="ANGLE" comment="Reserved for Shannon Woods (Bug 16106)">
             <unused start="0x3450" end="0x345F"/>
     </enums>
-    
+
     <enums namespace="EGL" start="0x3460" end="0x346F" vendor="COREAVI" comment="Reserved for Daniel Herring (Bug 16162)">
         <enum value="0x3460" name="EGL_PRIMARY_COMPOSITOR_CONTEXT_EXT"/>
         <enum value="0x3461" name="EGL_EXTERNAL_REF_ID_EXT"/>
@@ -1337,13 +1339,20 @@
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param><ptype>EGLint</ptype> <name>attribute</name></param>
             <param><ptype>EGLAttrib</ptype> *<name>value</name></param>
+            <alias name="eglQueryDisplayAttribKHR"/>
+        </command>
+        <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglQueryDisplayAttribKHR</name></proto>
+            <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+            <param><ptype>EGLint</ptype> <name>name</name></param>
+            <param><ptype>EGLAttrib</ptype> *<name>value</name></param>
         </command>
         <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglQueryDisplayAttribNV</name></proto>
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param><ptype>EGLint</ptype> <name>attribute</name></param>
             <param><ptype>EGLAttrib</ptype> *<name>value</name></param>
-            <alias name="eglQueryDisplayAttribEXT"/>
+            <alias name="eglQueryDisplayAttribKHR"/>
         </command>
         <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglQueryDmaBufFormatsEXT</name></proto>
@@ -2375,6 +2384,12 @@
                 <command name="eglLabelObjectKHR"/>
             </require>
         </extension>
+        <extension name="EGL_KHR_display_reference" supported="egl">
+            <require>
+                <enum name="EGL_TRACK_REFERENCES_KHR"/>
+                <command name="eglQueryDisplayAttribKHR"/>
+            </require>
+        </extension>
         <extension name="EGL_KHR_fence_sync" protect="KHRONOS_SUPPORT_INT64" supported="egl">
             <require>
                 <!-- Most interfaces also defined by EGL_KHR_reusable sync -->
@@ -2904,7 +2919,7 @@
             </require>
         </extension>
         <extension name="EGL_EXT_compositor" supported="egl">
-            <require>                
+            <require>
                 <enum name="EGL_PRIMARY_COMPOSITOR_CONTEXT_EXT"/>
                 <enum name="EGL_EXTERNAL_REF_ID_EXT"/>
                 <enum name="EGL_COMPOSITOR_DROP_NEWEST_FRAME_EXT"/>
@@ -2916,7 +2931,7 @@
                 <command name="eglCompositorSetWindowAttributesEXT"/>
                 <command name="eglCompositorBindTexWindowEXT"/>
                 <command name="eglCompositorSetSizeEXT"/>
-                <command name="eglCompositorSwapPolicyEXT"/>                                              
+                <command name="eglCompositorSwapPolicyEXT"/>
             </require>
         </extension>
         <extension name="EGL_EXT_surface_CTA861_3_metadata" supported="egl">
