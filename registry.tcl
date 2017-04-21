@@ -604,7 +604,7 @@ extension EGL_EXT_compositor {
     flags       public
     filename    extensions/EXT/EGL_EXT_compositor.txt
 }
-extension EGL_EXT_surface_CTA861_3_metadta {
+extension EGL_EXT_surface_CTA861_3_metadata {
     number      117
     flags       public
     filename    extensions/EXT/EGL_EXT_surface_CTA861_3_metadata.txt
