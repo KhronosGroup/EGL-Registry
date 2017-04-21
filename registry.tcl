@@ -614,4 +614,9 @@ extension EGL_KHR_display_reference {
     flags       public
     filename    extensions/KHR/EGL_KHR_display_reference.txt
 }
+extension EGL_EXT_gl_colorspace_display_p3 {
+    number      118
+    flags       public
+    filename    extensions/EXT/EGL_EXT_colorspace_display_p3.txt
+}
 # Next free extension number: 119
