@@ -604,7 +604,7 @@ extension EGL_EXT_compositor {
     flags       public
     filename    extensions/EXT/EGL_EXT_compositor.txt
 }
-extension EGL_EXT_surface_CTA861_3_metadta {
+extension EGL_EXT_surface_CTA861_3_metadata {
     number      117
     flags       public
     filename    extensions/EXT/EGL_EXT_surface_CTA861_3_metadata.txt
@@ -613,5 +613,10 @@ extension EGL_KHR_display_reference {
     number      118
     flags       public
     filename    extensions/KHR/EGL_KHR_display_reference.txt
+}
+extension EGL_EXT_gl_colorspace_display_p3 {
+    number      118
+    flags       public
+    filename    extensions/EXT/EGL_EXT_colorspace_display_p3.txt
 }
 # Next free extension number: 119
