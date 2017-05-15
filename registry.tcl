@@ -624,4 +624,9 @@ extension EGL_EXT_gl_colorspace_scrgb {
     flags       public
     filename    extensions/EXT/EGL_EXT_gl_colorspace_scrgb.txt
 }
-# Next free extension number: 119
+extension EGL_EXT_image_implicit_sync_control {
+    number      120
+    flags       public
+    filename    extensions/EXT/EGL_EXT_image_implicit_sync_control.txt
+}
+# Next free extension number: 121

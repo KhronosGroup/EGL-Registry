@@ -38,7 +38,7 @@ extern "C" {
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20170621
+#define EGL_EGLEXT_VERSION 20170622
 
 /* Generated C header for:
  * API: egl
@@ -717,6 +717,13 @@ EGLAPI EGLBoolean EGLAPIENTRY eglQueryDmaBufFormatsEXT (EGLDisplay dpy, EGLint m
 EGLAPI EGLBoolean EGLAPIENTRY eglQueryDmaBufModifiersEXT (EGLDisplay dpy, EGLint format, EGLint max_modifiers, EGLuint64KHR *modifiers, EGLBoolean *external_only, EGLint *num_modifiers);
 #endif
 #endif /* EGL_EXT_image_dma_buf_import_modifiers */
+
+#ifndef EGL_EXT_image_implicit_sync_control
+#define EGL_EXT_image_implicit_sync_control 1
+#define EGL_IMPORT_SYNC_TYPE_EXT          0x3470
+#define EGL_IMPORT_IMPLICIT_SYNC_EXT      0x3471
+#define EGL_IMPORT_EXPLICIT_SYNC_EXT      0x3472
+#endif /* EGL_EXT_image_implicit_sync_control */
 
 #ifndef EGL_EXT_multiview_window
 #define EGL_EXT_multiview_window 1
