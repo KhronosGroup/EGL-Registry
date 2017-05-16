@@ -1360,17 +1360,17 @@
             <proto><ptype>EGLBoolean</ptype> <name>eglQueryDmaBufFormatsEXT</name></proto>
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param><ptype>EGLint</ptype> <name>max_formats</name></param>
-            <param><ptype>EGLint</ptype> <name>*formats</name></param>
-            <param><ptype>EGLint</ptype> <name>*num_formats</name></param>
+            <param><ptype>EGLint</ptype> *<name>formats</name></param>
+            <param><ptype>EGLint</ptype> *<name>num_formats</name></param>
         </command>
         <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglQueryDmaBufModifiersEXT</name></proto>
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param><ptype>EGLint</ptype> <name>format</name></param>
             <param><ptype>EGLint</ptype> <name>max_modifiers</name></param>
-            <param><ptype>EGLuint64KHR</ptype> <name>*modifiers</name></param>
-            <param><ptype>EGLBoolean</ptype> <name>*external_only</name></param>
-            <param><ptype>EGLint</ptype> <name>*num_modifiers</name></param>
+            <param><ptype>EGLuint64KHR</ptype> *<name>modifiers</name></param>
+            <param><ptype>EGLBoolean</ptype> *<name>external_only</name></param>
+            <param><ptype>EGLint</ptype> *<name>num_modifiers</name></param>
         </command>
         <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglQueryNativeDisplayNV</name></proto>
