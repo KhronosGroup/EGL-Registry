@@ -14,6 +14,7 @@ Contributors
     Mohan Maiya
     Amit Bansal
     Tom Longo
+    Eric Engestrom
 
 Contacts
 
@@ -26,11 +27,11 @@ Notice
 
 Status
 
-    Draft
+    Complete
 
 Version
 
-    Version 8, October 24th, 2014
+    Version 9, May 4th, 2017
 
 Number
 
@@ -211,8 +212,7 @@ to:
 
         EGL_YUV_PLANE_BPP_EXT describes the bit depth for the different
     planes of a YUV surface. The available options are EGL_YUV_PLANE_BPP_0_-
-    EXT,EGL_YUV_PLANE_BPP_8_EXT and EGL_YUV_PLANE_BPP_10_EXT. By
-    default, a YUV surface will have EGL_YUV_PLANE_BPP_8_EXT. If EGL_YUV_-
+    EXT, EGL_YUV_PLANE_BPP_8_EXT and EGL_YUV_PLANE_BPP_10_EXT. If EGL_YUV_-
     PLANE_BPP_0_EXT is specified, no color buffer will be created for the
     surface.
         EGL_YUV_DEPTH_RANGE_EXT describes the range of the pixel value and is
@@ -224,8 +224,6 @@ to:
         EGL_YUV_PLANE_BPP_8_EXT or   Y: 16 to 235, UV: 16 to 240       Y: 0 to 255,  UV: 0 to 255
         EGL_YUV_PLANE_BPP_10_EXT     Y: 64 to 940, UV: 64 to 960       Y: 0 to 1023, UV: 0 to 1023
 
-    If the EGL_YUV_DEPTH_RANGE_EXT attribute is not specified then the range
-    shall default to EGL_YUV_DEPTH_RANGE_LIMITED_EXT.
         If OpenGL or OpenGL ES rendering is supported for a luminance color
     buffer (as described by the value of the EGL_RENDERABLE_TYPE attribute,
     described below), it is treated as RGB rendering with the value of
@@ -252,8 +250,7 @@ to:
     standard chosen is EGL_YUV_CSC_STANDARD_709_EXT, then the color conversion
     follows the ITU-R BT.709 standard. If EGL_YUV_CSC_STANDARD_EXT is set to
     EGL_YUV_CSC_2020_EXT, then the color conversion will be processed based on
-    ITU-R BT.2020. The default value, EGL_YUV_CSC_STANDARD_601_EXT, will follow
-    the ITU-R BT.601 standard.
+    ITU-R BT.2020.
 
 
 Change option 2 in the section marked as 3.4.1.2 Sorting of EGLConfigs to:
@@ -308,12 +305,12 @@ New State
     Attribute                       Default                           Selection  Sort     Sort
                                                                       Criteria   Order    Priority
     -------------------------       --------------------------------  ---------  -------  --------
-    EGL_YUV_ORDER_EXT               EGL_YUV_ORDER_YUV_EXT             Exact      Special  10
-    EGL_YUV_NUMBER_OF_PLANES_EXT    2                                 Exact      None
-    EGL_YUV_SUBSAMPLE_EXT           EGL_YUV_SUBSAMPLE_4_2_0_EXT       Exact      None
-    EGL_YUV_DEPTH_RANGE_EXT         EGL_YUV_DEPTH_RANGE_LIMITED_EXT   Exact      None
-    EGL_YUV_CSC_STANDARD_EXT        EGL_YUV_CSC_STANDARD_601_EXT      Exact      None
-    EGL_YUV_PLANE_BPP_EXT           EGL_YUV_PLANE_BPP_8_EXT           Exact      None
+    EGL_YUV_ORDER_EXT               EGL_DONT_CARE                     Exact      Special  10
+    EGL_YUV_NUMBER_OF_PLANES_EXT    0                                 At least   None
+    EGL_YUV_SUBSAMPLE_EXT           EGL_DONT_CARE                     Exact      None
+    EGL_YUV_DEPTH_RANGE_EXT         EGL_DONT_CARE                     Exact      None
+    EGL_YUV_CSC_STANDARD_EXT        EGL_DONT_CARE                     Exact      None
+    EGL_YUV_PLANE_BPP_EXT           EGL_DONT_CARE                     Exact      None
 
 Issues
     1.  How will a EGL surface created with a YUV config properly detect that
@@ -343,6 +340,14 @@ Issues
         any form of verification on the pixel data of the YUV surface, nor does
         it have to guarantee the pixel data, even with communicating the surface
         to other modules through a post or any other operation EGL performs.
+
+    2.  Should an EGL_COLOR_BUFFER_TYPE = EGL_DONT_CARE request enumerate all
+        YUV configs?
+
+        Resolved: Revision #9 changes the default values and selection criteria
+        to allow for full enumeration of all YUV configs. The default value of
+        EGL_COLOR_BUFFER_TYPE remains EGL_RGB_BUFFER, so this change only
+        affects explicit EGL_DONT_CARE requests.
 
 Example Configuration for NV12:
 
@@ -382,3 +387,7 @@ Revision History
                            Minor updates made (EXT_yuv_target)
 
 #8  October  24th, 2014    Updated for EXT and token values.
+
+#9  April    26th, 2017    Changed attributes default values and selection
+                           criteria (see issue #2).
+                           Changed status from Draft to Complete.
