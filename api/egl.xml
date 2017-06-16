@@ -788,7 +788,7 @@
         <enum value="0x334E" name="EGL_STREAM_CROSS_DISPLAY_NV"/>
         <enum value="0x334F" name="EGL_STREAM_CROSS_SYSTEM_NV"/>
         <enum value="0x3350" name="EGL_GL_COLORSPACE_SCRGB_LINEAR_EXT"/>
-            <unused start="0x3351"/>
+        <enum value="0x3351" name="EGL_GL_COLORSPACE_SCRGB_EXT"/>
         <enum value="0x3352" name="EGL_TRACK_REFERENCES_KHR"/>
             <unused start="0x3353" end="0x335F"/>
         <enum value="0x3360" name="EGL_CTA861_3_MAX_CONTENT_LIGHT_LEVEL_EXT"/>
@@ -2102,6 +2102,11 @@
         <extension name="EGL_EXT_gl_colorspace_bt2020_pq" supported="egl">
             <require>
                 <enum name="EGL_GL_COLORSPACE_BT2020_PQ_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_gl_colorspace_scrgb" supported="egl">
+            <require>
+                <enum name="EGL_GL_COLORSPACE_SCRGB_EXT"/>
             </require>
         </extension>
         <extension name="EGL_EXT_gl_colorspace_scrgb_linear" supported="egl">
