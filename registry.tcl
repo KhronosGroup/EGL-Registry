@@ -619,4 +619,9 @@ extension EGL_EXT_gl_colorspace_display_p3 {
     flags       public
     filename    extensions/EXT/EGL_EXT_colorspace_display_p3.txt
 }
+extension EGL_EXT_gl_colorspace_scrgb {
+    number      119
+    flags       public
+    filename    extensions/EXT/EGL_EXT_gl_colorspace_scrgb.txt
+}
 # Next free extension number: 119

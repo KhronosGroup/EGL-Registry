@@ -314,6 +314,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=118> <a href="extensions/EXT/EGL_EXT_gl_colorspace_display_p3.txt">EGL_EXT_gl_colorspace_display_p3_linear</a>
 </li>
+<li value=119> <a href="extensions/EXT/EGL_EXT_gl_colorspace_scrgb.txt">EGL_EXT_gl_colorspace_scrgb (non-linear)</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
