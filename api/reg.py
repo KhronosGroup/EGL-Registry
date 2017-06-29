@@ -16,6 +16,7 @@
 
 import io,os,re,string,sys
 from lxml import etree
+import subprocess
 
 def write(*args, **kwargs):
     file = kwargs.pop('file', sys.stdout)
@@ -524,7 +525,15 @@ class COutputGenerator(OutputGenerator):
         #
         # User-supplied prefix text, if any (list of strings)
         if (genOpts.prefixText):
+            try:
+                git_rev = subprocess.check_output(['git', 'rev-parse', '--short=10', 'HEAD']).decode('utf-8').strip()
+                git_date = subprocess.check_output(['git', 'log', '-1', '--format=%ai']).decode('utf-8').strip()
+            except (OSError, subprocess.CalledProcessError):
+                git_rev = 'unknown'
+                git_date = 'unknown'
             for s in genOpts.prefixText:
+                s = s.replace('$Revision$', '$Git commit SHA1: ' + git_rev + ' $')
+                s = s.replace('$Date$', '$Git commit date: ' + git_date + ' $')
                 write(s, file=self.outFile)
         #
         # Some boilerplate describing what was generated - this
