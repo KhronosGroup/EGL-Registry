@@ -857,7 +857,8 @@
         <enum value="0x3461" name="EGL_EXTERNAL_REF_ID_EXT"/>
         <enum value="0x3462" name="EGL_COMPOSITOR_DROP_NEWEST_FRAME_EXT"/>
         <enum value="0x3463" name="EGL_COMPOSITOR_KEEP_NEWEST_FRAME_EXT"/>
-        <unused start="0x3464" end="0x346F"/>
+        <enum value="0x3464" name="EGL_FRONT_BUFFER_EXT"/>
+        <unused start="0x3465" end="0x346F"/>
     </enums>
 
     <enums namespace="EGL" start="0x3470" end="0x347F" vendor="EXT" comment="Reserved for Daniel Stone (PR 14)">
@@ -2970,5 +2971,10 @@
 		<enum name="EGL_IMPORT_EXPLICIT_SYNC_EXT"/>
 	    </require>
 	</extension>
+        <extension name="EGL_EXT_bind_to_front" supported="egl">
+            <require>
+                <enum name="EGL_FRONT_BUFFER_EXT"/>
+            </require>
+        </extension>
     </extensions>
 </registry>

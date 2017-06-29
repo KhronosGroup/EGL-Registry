@@ -38,7 +38,7 @@ extern "C" {
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20170622
+#define EGL_EGLEXT_VERSION 20170627
 
 /* Generated C header for:
  * API: egl
@@ -563,6 +563,11 @@ EGLAPI EGLBoolean EGLAPIENTRY eglQuerySurfacePointerANGLE (EGLDisplay dpy, EGLSu
 #define EGL_ARM_pixmap_multisample_discard 1
 #define EGL_DISCARD_SAMPLES_ARM           0x3286
 #endif /* EGL_ARM_pixmap_multisample_discard */
+
+#ifndef EGL_EXT_bind_to_front
+#define EGL_EXT_bind_to_front 1
+#define EGL_FRONT_BUFFER_EXT              0x3464
+#endif /* EGL_EXT_bind_to_front */
 
 #ifndef EGL_EXT_buffer_age
 #define EGL_EXT_buffer_age 1

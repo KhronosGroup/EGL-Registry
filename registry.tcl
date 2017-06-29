@@ -629,4 +629,9 @@ extension EGL_EXT_image_implicit_sync_control {
     flags       public
     filename    extensions/EXT/EGL_EXT_image_implicit_sync_control.txt
 }
-# Next free extension number: 121
+extension EGL_EXT_bind_to_front {
+    number      121
+    flags       public
+    filename    extensions/EXT/EGL_EXT_bind_to_front.txt
+}
+# Next free extension number: 122
