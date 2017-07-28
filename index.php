@@ -1,17 +1,8 @@
 <?php
 $static_title = 'Khronos EGL Registry';
-$static_breadcrumb = array(
-    '/registry/' => 'Registry',
-    'NOLINK' => 'EGL Registry'
-);
+
 include_once("../../assets/static_pages/khr_page_top.php");
 ?>
-
-<h1 class="pagetitle">Khronos EGL&trade; Registry</h1>
-<div id="mainformat">
-
-
-<h1 style="text-align:center"> Khronos EGL&trade; Registry </h1>
 
 <p> The EGL registry contains specifications of the core API; specifications
     of Khronos- and vendor-approved EGL extensions; header files
