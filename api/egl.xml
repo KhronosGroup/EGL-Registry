@@ -3523,5 +3523,10 @@
                 <enum name="EGL_DRM_RENDER_NODE_FILE_EXT"/>
             </require>
         </extension>
+        <extension name="EGL_EXT_explicit_device" supported="egl">
+            <require>
+                <enum name="EGL_DEVICE_EXT"/>
+            </require>
+        </extension>
     </extensions>
 </registry>
