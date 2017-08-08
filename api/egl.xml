@@ -2976,5 +2976,10 @@
                 <enum name="EGL_FRONT_BUFFER_EXT"/>
             </require>
         </extension>
+        <extension name="EGL_EXT_explicit_device" supported="egl">
+            <require>
+                <enum name="EGL_DEVICE_EXT"/>
+            </require>
+        </extension>
     </extensions>
 </registry>

@@ -33,12 +33,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: a732b061e7 $ on $Git commit date: 2017-06-17 23:27:53 +0100 $
+** Khronos $Git commit SHA1: 5e1f541a81 $ on $Git commit date: 2017-08-08 12:53:29 -0400 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20170627
+#define EGL_EGLEXT_VERSION 20170808
 
 /* Generated C header for:
  * API: egl
@@ -645,6 +645,10 @@ EGLAPI EGLBoolean EGLAPIENTRY eglQueryDisplayAttribEXT (EGLDisplay dpy, EGLint a
 #ifndef EGL_EXT_device_query
 #define EGL_EXT_device_query 1
 #endif /* EGL_EXT_device_query */
+
+#ifndef EGL_EXT_explicit_device
+#define EGL_EXT_explicit_device 1
+#endif /* EGL_EXT_explicit_device */
 
 #ifndef EGL_EXT_gl_colorspace_bt2020_linear
 #define EGL_EXT_gl_colorspace_bt2020_linear 1

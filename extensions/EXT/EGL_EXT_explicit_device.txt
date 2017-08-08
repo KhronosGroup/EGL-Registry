@@ -1,0 +1,101 @@
+Name
+
+    EXT_explicit_device
+
+Name Strings
+
+    EGL_EXT_explicit_device
+
+Contributors
+
+    Adam Jackson
+    Nicolai Haehnle
+    Daniel Stone
+
+Contacts
+
+    Adam Jackson <ajax@redhat.com>
+
+Status
+
+    Complete
+
+Version
+
+    Version 2, 2017-08-08
+
+Number
+
+    EGL Extension #122
+
+Extension Type
+
+    EGL device extension
+
+Dependencies
+
+    Requires EGL_EXT_platform_base and EGL_EXT_device_base.
+
+    EGL_EXT_platform_device trivially interacts with this extension.
+
+    This extension is written against the EGL 1.5 Specification.
+
+Overview
+
+    A system may support multiple devices and multiple window systems. For
+    example, a Wayland environment may drive multiple GPUs and support both
+    X11 and EGL clients. In order to realize this, the implementation must
+    allow the client to specify both device and platform explicitly.
+
+    The EGL_EXT_platform_device extension enables the client to create a
+    display from a device, but does so by overloading the native_display
+    argument to eglGetPlatformDisplay; the user passes the device as the
+    native display, and presumably the EGL picks a sensible default for the
+    window system.
+
+    EGL_EXT_explicit_device differs by passing the device as an attribute
+    to eglGetPlatformDisplay. This allows the client to name both the device
+    and the platform.
+
+New Types
+
+    None
+
+New Procedures and Functions
+
+    None
+
+New Tokens
+
+    None
+
+Additions to the EGL Specification
+
+    None
+
+New Behavior
+
+    If EGL_DEVICE_EXT is specified as an attribute for eglGetPlatformDisplay,
+    the value of the attribute is interpreted as an EGLDeviceEXT as returned
+    by eglQueryDevicesEXT. The platform will attempt to initialize using
+    exactly the specified device. If the attribute does not name a known
+    EGLDeviceEXT, EGL_BAD_DEVICE_EXT is generated. If the device and platform
+    are not compatible for any reason, EGL_BAD_MATCH is generated.
+
+    If EGL_EXT_platform_device is supported, passing EGL_DEVICE_EXT as an
+    attribute to eglGetPlatformDisplay(EGL_PLATFORM_DEVICE_EXT) generates
+    EGL_BAD_ATTRIBUTE.
+
+Issues
+
+    None
+
+Revision History
+
+    Version 2, 2017-08-08 (Adam Jackson)
+        - Renamed from MESA_platform_device to EXT_explicit_device
+        - Make it an error to use this new attribute in conjunction with
+          EGL_EXT_platform_device
+
+    Version 1, 2017-07-14 (Adam Jackson)
+        - Initial version

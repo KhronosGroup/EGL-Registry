@@ -634,4 +634,9 @@ extension EGL_EXT_bind_to_front {
     flags       public
     filename    extensions/EXT/EGL_EXT_bind_to_front.txt
 }
-# Next free extension number: 122
+extension EGL_EXT_explicit_device {
+    number      122
+    flags       public
+    filename    extensions/EXT/EGL_EXT_explicit_device.txt
+}
+# Next free extension number: 123
