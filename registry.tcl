@@ -634,4 +634,9 @@ extension EGL_EXT_bind_to_front {
     flags       public
     filename    extensions/EXT/EGL_EXT_bind_to_front.txt
 }
-# Next free extension number: 122
+extension EGL_ANDROID_get_frame_timestamps {
+    number      122
+    flags       public
+    filename    extensions/ANDROID/EGL_ANDROID_get_frame_timestamps.txt
+}
+# Next free extension number: 123
