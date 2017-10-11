@@ -47,6 +47,7 @@
         <type name="NativeDisplayType" requires="eglplatform"/>
         <type name="NativePixmapType" requires="eglplatform"/>
         <type name="NativeWindowType" requires="eglplatform"/>
+        <type>struct <name>AHardwareBuffer</name>;</type>
         <!-- Dummy placeholders for non-EGL types -->
         <type name="Bool"/>
             <!-- These are actual EGL types.  -->
@@ -1209,6 +1210,10 @@
             <proto><ptype>EGLint</ptype> <name>eglGetError</name></proto>
         </command>
         <command>
+            <proto><ptype>EGLClientBuffer</ptype> <name>eglGetNativeClientBufferANDROID</name></proto>
+            <param>const struct <ptype>AHardwareBuffer</ptype> *<name>buffer</name></param>
+        </command>
+        <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglGetOutputLayersEXT</name></proto>
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param>const <ptype>EGLAttrib</ptype> *<name>attrib_list</name></param>
@@ -2034,6 +2039,11 @@
         <extension name="EGL_ANDROID_framebuffer_target" supported="egl">
             <require>
                 <enum name="EGL_FRAMEBUFFER_TARGET_ANDROID"/>
+            </require>
+        </extension>
+        <extension name="EGL_ANDROID_get_native_client_buffer" supported="egl">
+            <require>
+                <command name="eglGetNativeClientBufferANDROID"/>
             </require>
         </extension>
         <extension name="EGL_ANDROID_front_buffer_auto_refresh" supported="egl">

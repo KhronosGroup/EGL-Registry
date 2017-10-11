@@ -639,4 +639,9 @@ extension EGL_ANDROID_get_frame_timestamps {
     flags       public
     filename    extensions/ANDROID/EGL_ANDROID_get_frame_timestamps.txt
 }
-# Next free extension number: 123
+extension EGL_ANDROID_get_native_client_buffer {
+    number      123
+    flags       public
+    filename    extensions/ANDROID/EGL_ANDROID_get_native_client_buffer.txt
+}
+# Next free extension number: 124

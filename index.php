@@ -311,6 +311,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=122> <a href="extensions/ANDROID/EGL_ANDROID_get_frame_timestamps.txt">EGL_ANDROID_get_frame_timestamps</a>
 </li>
+<li value=123> <a href="extensions/ANDROID/EGL_ANDROID_get_native_client_buffer.txt">EGL_ANDROID_get_native_client_buffer</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
