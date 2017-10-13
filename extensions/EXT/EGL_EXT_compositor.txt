@@ -22,6 +22,7 @@ Status
 
 Version
   Version 1.0, February 3, 2017
+  Version 1.1,
 
 Number
 
@@ -195,6 +196,13 @@ Modify the list of parameters supported by eglCreateWindowSurface in section 3.5
   do not match a pair set using eglCompositorSetWindowListEXT window creation shall
   fail.
 
+Add the paragraph to 3.2:
+  After eglTerminate is called any external window or context reference identifer
+  shall be marked as unused and be reusable by later calls to eglCreateContext or
+  eglCreateWindowSurface. This allows for reuse of the off-screen windows and provides
+  a mechanism to shutdown all rendering and restart graphical applications without 
+  using primary or secondary contexts.
+  
 Add the function: 
 
   EGLBoolean eglCompositorSetContextListEXT(const EGLint *external_ref_ids,
@@ -261,7 +269,7 @@ Add the function:
      external window identifier may be associated with multiple secondary contexts
      however only the first context which calls eglCreateWindowSurface shall
      successfully create a window surface for the given window.
-    num_entries shall specify the number of external_ref_ids.
+    num_entries shall specify the number of external_win_ids.
 
 Add the function:
 
@@ -304,6 +312,10 @@ Add the function:
     EGL_FALSE if binding fails, the context is not the primary context, or the
     external_win_id is not a valid external window reference as set using
     eglCompositorSetWindowListEXT.
+	This function shall also return EGL_FALSE while the secondary context has 
+	not created the window associated with external_win_id. Once the secondary
+	context has created the window then this function is able to return EGL_TRUE
+	if all other conditions are met.
 
 Add the function:
 
@@ -349,7 +361,7 @@ Add the function:
 
 Revision History
   Version 0.1, 30/08/2014 - first draft.
-  Version 0.2, 24/09/2014  second draft.
+  Version 0.2, 24/09/2014 - second draft.
   Version 0.3, 21/12/2016
      Khronos vendor extension clean-up.
   Version 0.4, 05/01/2016
@@ -357,6 +369,12 @@ Revision History
    - Added additional functions related to external window ids contexts.
   Version 1.0, 03/02/2017
    - Fixed misc issues related to parameter names and types. 
+  Version 1.1, 
+   - Fixed eglCompositorSetWindowListEXT num_entries description   
+   - Added clearification for eglCompositorBindTexWindowEXT when offscreen surface 
+      is not created.
+   - Added ability to reuse external context and window indentifiers after appplications
+      call eglTerminate.
 
 Question: How are external reference and window IDs assigned and managed? Are they
           reserved somehow within a new EGL C header file?
@@ -387,6 +405,25 @@ Answer:   No, the Z-order is applied by the compositor when doing the final on
           extension is applied to the attribute list of the window using
           eglCompositorSetWindowAttributesEXT
 
+Question: How is eglSwapBuffers involved in eglCompositorSetSizeEXT?
+Answer:   Assuming that the secondary context's applicaiton is well behaved and 
+		  queries the size of the surface at the begining of every frame rendering
+		  and it detects that the primary context has changed the window size. The
+		  last frame the secondary context's applicaiton drew is at the old resolution
+		  and the new frame it starts to draw is at the new resolution. Because the 
+		  surface size is not supposed to be changed but instead the viewport is changed
+		  then the primary context needs to use texture scaling to convert from the
+		  old resolution to the new resolution, using the original surface size 
+		  for its texture size. The new resolution would be applied to the texture 
+		  size only after the secondary context swaps the newly sized surface thus 
+		  making eglSwapBuffers the synchronization point between the 2 contexts.
+
+Question: What happens with eglCompositorBindTexWindowEXT if a secondary application
+          has not yet called eglCreateWindowSurface?
+Answer:   eglCompositorBindTexWindowEXT will return EGL_FALSE as there does not yet 
+          exist an EGLSurface to bind to.
+		  Note: definition of eglCompositorBindTexWindowEXT was updated to reflect this.
+		  
 Comments: 
 
 The driver should also have to have enough protection in it to prevent a random
