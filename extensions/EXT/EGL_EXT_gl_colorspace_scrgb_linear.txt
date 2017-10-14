@@ -80,7 +80,7 @@ Modifications to the EGL 1.5 Specification
     If its value is EGL_GL_COLORSPACE_SCRGB_LINEAR_EXT, then a linear scRGB
     color space is assumed, with a corresponding GL_FRAMEBUFFER_ATTACHMENT_-
     COLOR_ENCODING value of GL_LINEAR. As defined in IEC 61966-2-2:2003, scRGB
-    is a linear color space and has the same white point and color primaries as
+    is a color space that has the same white point and color primaries as
     those of sRGB.
 
     Add two paragraphs after the 4th paragraph above:
@@ -107,7 +107,7 @@ Modifications to the EGL 1.5 Specification
 
 Issues
 
-    No issues so far.
+    * Clarifications on the scRGB colorspace extensions
 
 Revision History
 
@@ -119,4 +119,7 @@ Revision History
 
     Version 3, 2016/11/22
     - Change status to complete
+
+    Version 4, 2017/0817
+    - Clarifications on the definition of scRGB colorspace
 

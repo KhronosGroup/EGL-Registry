@@ -62,9 +62,9 @@ Overview
     value per channel goes beyond 1.0 and up to 125.0, the corresponding
     luminance levels also increase linearly to a maximum of 10000 nits.
 
-    The application is responsible for applying the sRGB transfer function to
-    color values written to or read from a surface with a colorspace of
-    EGL_EXT_gl_colorspace_scrgb.
+    The application is responsible for applying the extended sRGB transfer
+    function to color values written to or read from a surface with a
+    colorspace of EGL_EXT_gl_colorspace_scrgb.
 
 New Procedures and Functions
 
@@ -88,9 +88,9 @@ Modifications to the EGL 1.5 Specification
     If its value is EGL_GL_COLORSPACE_SCRGB_EXT, then a non-linear scRGB
     color space is assumed. with a corresponding GL_FRAMEBUFFER_ATTACHMENT_-
     COLOR_ENCODING value of GL_SRGB. As defined in IEC 61966-2-2:2003, scRGB
-    is a non-linear color space and has the same white point and color primaries as
+    is a color space and has the same white point and color primaries as
     those of sRGB. The application is responsible for applying the appropriate
-    sRGB transfer function when reading or writing to this surface.
+    extended sRGB transfer function when reading or writing to this surface.
 
 
     Add two paragraphs after the 4th paragraph above:
@@ -100,8 +100,8 @@ Modifications to the EGL 1.5 Specification
     (1.0, 1.0, 1.0) correspond to a luminance range of 0 to 80 nits, which is
     the same luminance range for sRGB. To achieve a larger dynamic range of up
     to 10000 nits, the output values can go beyond 1.0 and to a range of
-    [0.0, 125.0] (approximately 7.83 after sRGB transfer function applied) for
-    each channel.
+    [0.0, 125.0] (approximately 7.83 after the extended sRGB transfer function
+    applied) for each channel.
 
     The effective color gamut and luminance range of the content that extend
     beyond those of sRGB may be described via EGL_EXT_surface_SMPTE2086_metadata.
@@ -118,10 +118,12 @@ Modifications to the EGL 1.5 Specification
 
 Issues
 
-    No issues so far.
+    * Clarifications on the scRGB colorspace extensions
 
 Revision History
 
     Version 1, 2017/06/21
     - Initial draft
 
+    Version 2, 2017/08/17
+    - Clarify definition of color space
