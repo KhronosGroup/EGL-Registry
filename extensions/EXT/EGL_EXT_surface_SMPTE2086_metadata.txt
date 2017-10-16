@@ -13,6 +13,7 @@ Contact
 Contributors
 
     Tom Cooksey
+    Courtney Goeltzenleuchter
     Mathias Heyer
     Lauri Hyvarinen
     James Jones
@@ -30,7 +31,7 @@ Status
 
 Version
 
-    Version 7 - Oct 13, 2017
+    Version 8 - Oct 16, 2017
 
 Number
 
@@ -128,7 +129,7 @@ Additions to Chapter "3.5.6 Surface Attributes" of the EGL 1.5 Specification
         EXT, EGL_SMPTE2086_WHITE_POINT_Y_EXT, EGL_SMPTE2086_MAX_LUMINANCE_EXT
         and EGL_SMPTE2086_MIN_LUMINANCE_EXT are EGL_DONT_CARE, which causes the
         hints to be ignored. If value is not in the implementation's supported
-        range for attribute, a EGL_FALSE error is generated, and some or
+        range for attribute, a EGL_BAD_PARAMETER error is generated, and some or
         all of the metadata fields are ignored.
 
     Add the following footnote at the end of page 43, and increment all the
@@ -213,7 +214,7 @@ Issues
        what the valid data ranges are for the metadata fields. It is
        implementation dependant, but related standards, such as SMPTE ST 2086,
        can be used as reference. As described in the body, implemetations may
-       generate a EGL_FALSE error to notify applications that the input
+       generate a EGL_BAD_PARAMTER error to notify applications that the input
        metadata values are invalid or not supported.
 
 Revision History
@@ -238,4 +239,9 @@ Revision History
 
     Version 7, 2017/10/13
       - Rename EGL_INVALID_VALUE (which doesn't exist) to EGL_FALSE
+
+    Version 8, 2017/10/16
+      - Fix v7 change to use EGL_BAD_PARAMETER as the error code
+	generated vs. EGL_FALSE which is the expected return value of
+	the function.
 
