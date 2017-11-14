@@ -12,6 +12,7 @@ Contributors
     Daniel Kartch
     Nikhil Mahale
     Daniel Koch
+    Jeff Gilbert
 
 Contacts
 
@@ -23,7 +24,7 @@ Status
 
 Version
 
-    Version 3 - August 19, 2015
+    Version 4 - November 14, 2017
 
 Number
 
@@ -66,9 +67,9 @@ New Types
 New Functions
 
     EGLBoolean eglStreamConsumerGLTextureExternalAttribsNV(
-                    EGLDisplay   dpy,
-                    EGLStreamKHR stream,
-                    EGLAttrib    *attrib_list)
+                    EGLDisplay       dpy,
+                    EGLStreamKHR     stream,
+                    const EGLAttrib *attrib_list)
 
 New Tokens
 
@@ -98,9 +99,9 @@ EGL_KHR_stream_consumer_gltexture extension.
     Call
 
         EGLBoolean eglStreamConsumerGLTextureExternalAttribsNV(
-                    EGLDisplay    dpy,
-                    EGLStreamKHR  stream,
-                    EGLAttrib    *attrib_list)
+                    EGLDisplay       dpy,
+                    EGLStreamKHR     stream,
+                    const EGLAttrib *attrib_list)
 
     to connect one or more texture objects in the OpenGL or OpenGL ES
     context current to the calling thread as the consumer(s) of
@@ -264,6 +265,9 @@ Issues
         there is a need to promote to EXT.
 
 Revision History
+
+    #4  (November 14, 2017) Mozilla Corporation
+        - Const-qualify attrib_list.
 
     #3  (August 19, 2015) NVIDIA Corporation
         - Added enum values.
