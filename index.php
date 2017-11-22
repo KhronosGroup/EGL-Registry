@@ -313,6 +313,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=123> <a href="extensions/ANDROID/EGL_ANDROID_get_native_client_buffer.txt">EGL_ANDROID_get_native_client_buffer</a>
 </li>
+<li value=124> <a href="extensions/NV/EGL_NV_context_priority_realtime.txt">EGL_NV_context_priority_realtime</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
