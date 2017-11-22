@@ -1,4 +1,4 @@
-#!/usr/bin/python -i
+#!/usr/bin/python2 -i
 #
 # Copyright (c) 2013-2017 The Khronos Group Inc.
 #
