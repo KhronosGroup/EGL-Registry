@@ -38,6 +38,7 @@
         <type name="khrplatform">#include &lt;KHR/khrplatform.h&gt;</type>
         <type name="eglplatform" requires="khrplatform">#include &lt;EGL/eglplatform.h&gt;</type>
         <type name="khronos_utime_nanoseconds_t" requires="khrplatform"/>
+        <type name="khronos_stime_nanoseconds_t" requires="khrplatform"/>
         <type name="khronos_uint64_t" requires="khrplatform"/>
         <type name="khronos_ssize_t" requires="khrplatform"/>
         <type name="EGLNativeDisplayType" requires="eglplatform"/>
@@ -880,9 +881,9 @@
     </enums>
 
     <enums namespace="EGL" start="0x3470" end="0x347F" vendor="EXT" comment="Reserved for Daniel Stone (PR 14)">
-	<enum value="0x3470" name="EGL_IMPORT_SYNC_TYPE_EXT"/>
-	<enum value="0x3471" name="EGL_IMPORT_IMPLICIT_SYNC_EXT"/>
-	<enum value="0x3472" name="EGL_IMPORT_EXPLICIT_SYNC_EXT"/>
+        <enum value="0x3470" name="EGL_IMPORT_SYNC_TYPE_EXT"/>
+        <enum value="0x3471" name="EGL_IMPORT_IMPLICIT_SYNC_EXT"/>
+        <enum value="0x3472" name="EGL_IMPORT_EXPLICIT_SYNC_EXT"/>
     </enums>
 
 <!-- Please remember that new enumerant allocations must be obtained by
@@ -3056,12 +3057,12 @@
             </require>
         </extension>
         <extension name="EGL_EXT_image_implicit_sync_control" supported="egl">
-	    <require>
-	        <enum name="EGL_IMPORT_SYNC_TYPE_EXT"/>
-		<enum name="EGL_IMPORT_IMPLICIT_SYNC_EXT"/>
-		<enum name="EGL_IMPORT_EXPLICIT_SYNC_EXT"/>
-	    </require>
-	</extension>
+            <require>
+                <enum name="EGL_IMPORT_SYNC_TYPE_EXT"/>
+                <enum name="EGL_IMPORT_IMPLICIT_SYNC_EXT"/>
+                <enum name="EGL_IMPORT_EXPLICIT_SYNC_EXT"/>
+            </require>
+        </extension>
         <extension name="EGL_EXT_bind_to_front" supported="egl">
             <require>
                 <enum name="EGL_FRONT_BUFFER_EXT"/>
