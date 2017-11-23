@@ -149,6 +149,7 @@
     <enums namespace="EGLDRMBufferUseMESAMask" type="bitmask" comment="EGL_DRM_BUFFER_USE_MESA bits">
         <enum value="0x00000001" name="EGL_DRM_BUFFER_USE_SCANOUT_MESA"/>
         <enum value="0x00000002" name="EGL_DRM_BUFFER_USE_SHARE_MESA"/>
+        <enum value="0x00000004" name="EGL_DRM_BUFFER_USE_CURSOR_MESA"/>
     </enums>
 
     <!-- Should be shared with GL, but aren't aren't since the
