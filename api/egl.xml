@@ -791,7 +791,9 @@
         <enum value="0x3350" name="EGL_GL_COLORSPACE_SCRGB_LINEAR_EXT"/>
         <enum value="0x3351" name="EGL_GL_COLORSPACE_SCRGB_EXT"/>
         <enum value="0x3352" name="EGL_TRACK_REFERENCES_KHR"/>
-            <unused start="0x3353" end="0x335F"/>
+            <unused start="0x3353" end="0x3356"/>
+        <enum value="0x3357" name="EGL_CONTEXT_PRIORITY_REALTIME_NV"/>
+            <unused start="0x3358" end="0x335F"/>
         <enum value="0x3360" name="EGL_CTA861_3_MAX_CONTENT_LIGHT_LEVEL_EXT"/>
         <enum value="0x3361" name="EGL_CTA861_3_MAX_FRAME_AVERAGE_LEVEL_EXT"/>
         <enum value="0x3362" name="EGL_GL_COLORSPACE_DISPLAY_P3_LINEAR_EXT"/>
@@ -2819,6 +2821,11 @@
             <require>
                 <enum name="EGL_COVERAGE_BUFFERS_NV"/>
                 <enum name="EGL_COVERAGE_SAMPLES_NV"/>
+            </require>
+        </extension>
+        <extension name="EGL_NV_context_priority_realtime" supported="egl">
+            <require>
+                <enum name="EGL_CONTEXT_PRIORITY_REALTIME_NV"/>
             </require>
         </extension>
         <extension name="EGL_NV_coverage_sample_resolve" supported="egl">

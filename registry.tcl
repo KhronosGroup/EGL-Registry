@@ -644,4 +644,9 @@ extension EGL_ANDROID_get_native_client_buffer {
     flags       public
     filename    extensions/ANDROID/EGL_ANDROID_get_native_client_buffer.txt
 }
-# Next free extension number: 124
+extension EGL_NV_context_priority_realtime {
+    number      124
+    flags       public
+    filename    extensions/NV/EGL_NV_context_priority_realtime.txt
+}
+# Next free extension number: 125
