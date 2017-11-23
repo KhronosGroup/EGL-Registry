@@ -2778,6 +2778,7 @@
                 <enum name="EGL_DRM_BUFFER_STRIDE_MESA"/>
                 <enum name="EGL_DRM_BUFFER_USE_SCANOUT_MESA"/>
                 <enum name="EGL_DRM_BUFFER_USE_SHARE_MESA"/>
+                <enum name="EGL_DRM_BUFFER_USE_CURSOR_MESA"/>
                 <command name="eglCreateDRMImageMESA"/>
                 <command name="eglExportDRMImageMESA"/>
             </require>
