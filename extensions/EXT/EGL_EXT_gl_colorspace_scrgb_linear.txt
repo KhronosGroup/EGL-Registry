@@ -8,6 +8,7 @@ Name Strings
 
 Contributors
 
+    Courtney Goeltzenleuchter
     Lauri Hyvarinen
     Weiwan Liu
     Arun Swain
@@ -26,7 +27,7 @@ Status
 
 Version
 
-     Version 3 - November 22, 2016
+     Version 4 - August 25, 2017
 
 Number
 
@@ -38,15 +39,17 @@ Dependencies
     (August 27, 2014).
 
     This extension requires EGL_KHR_gl_colorspace and EGL_EXT_pixel_format_-
-    float, and interacts with EGL_EXT_surface_SMPTE2086_metadata.
+    float, and interacts with EGL_EXT_surface_SMPTE2086_metadata. This extension
+    is closely related to the EGL_EXT_gl_colorspace_scrgb.
 
 Overview
 
-    This extension provides a new color space option, scRGB, for applications to
-    choose from when creating an EGLSurface. The scRGB color space defines a
-    linear display referred space. It has the same white point and color
-    primaries as sRGB, and thus is backward-compatible with sRGB. Refer to
-    the IEC 61966-2-2:2003 standard for details on scRGB color space.
+    This extension provides an extended sRGB (also called scRGB) color
+    space option for applications to choose from when creating an EGLSurface.
+    This extension defines the linear display referred scRGB color space.
+    It has the same white point and color primaries as sRGB, and thus is
+    backward-compatible with sRGB. Refer to the IEC 61966-2-2:2003 standard
+    for details on scRGB color space.
 
     This extension chooses to use floating-point formats for scRGB color space.
     For each color channel, the floating-point values of 0.0 and 1.0 still
@@ -79,9 +82,8 @@ Modifications to the EGL 1.5 Specification
 
     If its value is EGL_GL_COLORSPACE_SCRGB_LINEAR_EXT, then a linear scRGB
     color space is assumed, with a corresponding GL_FRAMEBUFFER_ATTACHMENT_-
-    COLOR_ENCODING value of GL_LINEAR. As defined in IEC 61966-2-2:2003, scRGB
-    is a color space that has the same white point and color primaries as
-    those of sRGB.
+    COLOR_ENCODING value of GL_LINEAR. scRGB is defined to use the same
+    primaries and white-point as sRGB. See IEC 61966-2-2:2003 for details.
 
     Add two paragraphs after the 4th paragraph above:
 
@@ -120,6 +122,6 @@ Revision History
     Version 3, 2016/11/22
     - Change status to complete
 
-    Version 4, 2017/0817
+    Version 4, 2017/08/25
     - Clarifications on the definition of scRGB colorspace
 
