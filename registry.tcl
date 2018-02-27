@@ -649,4 +649,9 @@ extension EGL_NV_context_priority_realtime {
     flags       public
     filename    extensions/NV/EGL_NV_context_priority_realtime.txt
 }
-# Next free extension number: 125
+extension EGL_EXT_image_gl_colorspace {
+    number      125
+    flags       public
+    filename    extensions/EXT/EGL_EXT_image_gl_colorspace.txt
+}
+# Next free extension number: 126
