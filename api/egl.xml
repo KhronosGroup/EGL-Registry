@@ -499,8 +499,9 @@
         <enum value="0x3146" name="EGL_SYNC_NATIVE_FENCE_SIGNALED_ANDROID"/>
         <enum value="0x3147" name="EGL_FRAMEBUFFER_TARGET_ANDROID"/>
             <unused start="0x3148" end="0x314B"/>
-        <enum value="0x314C"     name="EGL_FRONT_BUFFER_AUTO_REFRESH_ANDROID"/>
-            <unused start="0x314D" end="0x314F"/>
+        <enum value="0x314C" name="EGL_FRONT_BUFFER_AUTO_REFRESH_ANDROID"/>
+        <enum value="0x314D" name="EGL_GL_COLORSPACE_DEFAULT_EXT"/>
+            <unused start="0x314E" end="0x314F"/>
     </enums>
 
     <enums namespace="EGL" start="0x3150" end="0x315F" vendor="NOK" comment="Reserved for Robert Palmer (Khronos bug 5368)">
@@ -2260,6 +2261,12 @@
                 <enum name="EGL_DMA_BUF_PLANE3_MODIFIER_HI_EXT"/>
                 <command name="eglQueryDmaBufFormatsEXT"/>
                 <command name="eglQueryDmaBufModifiersEXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_image_gl_colorspace" supported="egl">
+            <require>
+                <enum name="EGL_GL_COLORSPACE"/>
+                <enum name="EGL_GL_COLORSPACE_DEFAULT_EXT"/>
             </require>
         </extension>
         <extension name="EGL_EXT_multiview_window" supported="egl">
