@@ -301,8 +301,6 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=117> <a href="extensions/EXT/EGL_EXT_surface_CTA861_3_metadata.txt">EGL_EXT_surface_CTA861_3_metadata</a>
 </li>
-<li value=118> <a href="extensions/KHR/EGL_KHR_display_reference.txt">EGL_KHR_display_reference</a>
-</li>
 <li value=118> <a href="extensions/EXT/EGL_EXT_gl_colorspace_display_p3.txt">EGL_EXT_gl_colorspace_display_p3</a>
 </li>
 <li value=118> <a href="extensions/EXT/EGL_EXT_gl_colorspace_display_p3.txt">EGL_EXT_gl_colorspace_display_p3_linear</a>
@@ -318,6 +316,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 <li value=124> <a href="extensions/NV/EGL_NV_context_priority_realtime.txt">EGL_NV_context_priority_realtime</a>
 </li>
 <li value=125> <a href="extensions/EXT/EGL_EXT_image_gl_colorspace.txt">EGL_EXT_image_gl_colorspace</a>
+</li>
+<li value=126> <a href="extensions/KHR/EGL_KHR_display_reference.txt">EGL_KHR_display_reference</a>
 </li>
 </ol>
 
