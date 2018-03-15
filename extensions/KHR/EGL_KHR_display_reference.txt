@@ -22,11 +22,11 @@ Status
 
 Version
 
-    Version 3 - January 12, 2017
+    Version 4 - March 15, 2018
 
 Number
 
-    EGL Extension #118
+    EGL Extension #126
 
 Extension Type
 
@@ -217,6 +217,11 @@ Issues
         that deviation.
 
 Revision History
+
+    #4 (March 15, 2018) Jon Leech
+
+        - Change extension number from 118 to 126 to avoid an accidental
+          collision.
 
     #3 (January 12, 2017) Daniel Kartch
 

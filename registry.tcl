@@ -609,11 +609,6 @@ extension EGL_EXT_surface_CTA861_3_metadata {
     flags       public
     filename    extensions/EXT/EGL_EXT_surface_CTA861_3_metadata.txt
 }
-extension EGL_KHR_display_reference {
-    number      118
-    flags       public
-    filename    extensions/KHR/EGL_KHR_display_reference.txt
-}
 extension EGL_EXT_gl_colorspace_display_p3 {
     number      118
     flags       public
@@ -654,4 +649,9 @@ extension EGL_EXT_image_gl_colorspace {
     flags       public
     filename    extensions/EXT/EGL_EXT_image_gl_colorspace.txt
 }
-# Next free extension number: 126
+extension EGL_KHR_display_reference {
+    number      126
+    flags       public
+    filename    extensions/KHR/EGL_KHR_display_reference.txt
+}
+# Next free extension number: 127
