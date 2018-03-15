@@ -30,8 +30,9 @@
                 <term><parameter>readdraw</parameter></term>
                 <listitem>
                     <para>
-                        Specifies whether the <acronym>EGL</acronym> read or draw surface
-                        is to be returned.
+                        Specifies whether to return the read surface
+                        (<constant>EGL_READ</constant>) or the draw surface
+                        (<constant>EGL_DRAW</constant>).
                     </para>
                 </listitem>
             </varlistentry>
