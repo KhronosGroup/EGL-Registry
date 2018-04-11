@@ -21,11 +21,11 @@ Status
 
 Version
 
-    Version 2 - April 2, 2018
+    Version 3 - April 11, 2018
 
 Number
 
-    TBD
+    127
 
 Extension Type
 
@@ -76,7 +76,7 @@ New types
 
 New Procedures and functions
 
-    EGLBoolean eglStreamFlush(
+    EGLBoolean eglStreamFlushNV(
         EGLDisplay       dpy,
         EGLStreamKHR     stream); 
 
@@ -89,7 +89,7 @@ Add a new subsection "3.10.x EGLStream flush" at the end of section
 
     The command
 
-        EGLBoolean eglStreamFlush(
+        EGLBoolean eglStreamFlushNV(
             EGLDisplay       dpy,
             EGLStreamKHR     stream);
 
@@ -115,11 +115,14 @@ Add a new subsection "3.10.x EGLStream flush" at the end of section
 Issues
 
     1.  When both producer and consumer are connected to a single 
-        EGLStream object, what happens when eglStreamFlush is called?
+        EGLStream object, what happens when eglStreamFlushNV is called?
 
         RESOLVED: The function returns without any blocking.
 
 Revision History
+
+    #3  (April 11, 2018) Jon Leech
+        - Add missing NV suffix to eglStreamFlushNV
 
     #2  (April 2, 2018) Santanu Thangaraj
         - Update based on comments from Daniel Kartch

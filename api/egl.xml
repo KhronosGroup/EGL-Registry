@@ -1647,6 +1647,11 @@
             <param>const <ptype>EGLAttrib</ptype> *<name>attrib_list</name></param>
         </command>
         <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglStreamFlushNV</name></proto>
+            <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+            <param><ptype>EGLStreamKHR</ptype> <name>stream</name></param>
+        </command>
+        <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglSurfaceAttrib</name></proto>
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param><ptype>EGLSurface</ptype> <name>surface</name></param>
@@ -2930,6 +2935,11 @@
         <extension name="EGL_NV_stream_fifo_synchronous" supported="egl">
             <require>
                 <enum name="EGL_STREAM_FIFO_SYNCHRONOUS_NV"/>
+            </require>
+        </extension>
+        <extension name="EGL_NV_stream_flush" supported="egl">
+            <require>
+                <command name="eglStreamFlushNV"/>
             </require>
         </extension>
         <extension name="EGL_NV_stream_frame_limits" supported="egl">

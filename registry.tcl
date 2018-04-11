@@ -654,4 +654,9 @@ extension EGL_KHR_display_reference {
     flags       public
     filename    extensions/KHR/EGL_KHR_display_reference.txt
 }
-# Next free extension number: 127
+extension EGL_NV_stream_flush {
+    number      127
+    flags       public
+    filename    extensions/NV/EGL_NV_stream_flush.txt
+}
+# Next free extension number: 128
