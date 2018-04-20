@@ -36,7 +36,7 @@ Dependencies
     Can be supported on EGL 1.4 provided that EGL_KHR_gl_colorspace is
     implemented, as well as either EGL_KHR_image or EGL_KHR_image_base.
 
-    Interacts with the OES_EGL_image_external specification.
+    Interacts with the GL_OES_EGL_image_external specification.
 
 Overview
 
@@ -97,7 +97,7 @@ Interaction with OES_EGL_image_external:
 
    "Sampling an external texture will return an RGBA vector in the same color
     space as the source image, unless the image's EGL_GL_COLORSPACE attribute
-    results in sRGB encoding as described in EGL_KHR_image_gl_colorspace."
+    results in sRGB encoding as described in EGL_EXT_image_gl_colorspace."
 
     The three parenthetical sentences in this same paragraph should be
     simplified since they partially conflict with existing language in the
@@ -133,3 +133,4 @@ Revision History
       7     1/2/18    philip    Tweaked the changes to OES_EGL_image_external.
       8     2/2/18    philip    Add value for EGL_GL_COLORSPACE_DEFAULT_EXT.
       9     2/26/18   krzysio   Update contact information, finalize.
+      9     4/20/18   krzysio   Fix stray reference to KHR.
