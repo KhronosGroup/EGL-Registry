@@ -801,7 +801,9 @@
         <enum value="0x3361" name="EGL_CTA861_3_MAX_FRAME_AVERAGE_LEVEL_EXT"/>
         <enum value="0x3362" name="EGL_GL_COLORSPACE_DISPLAY_P3_LINEAR_EXT"/>
         <enum value="0x3363" name="EGL_GL_COLORSPACE_DISPLAY_P3_EXT"/>
-            <unused start="0x3364" end="0x339F"/>
+        <enum value="0x3364" name="EGL_SYNC_CLIENT_EXT"/>
+        <enum value="0x3365" name="EGL_SYNC_CLIENT_SIGNAL_EXT"/>
+            <unused start="0x3366" end="0x339F"/>
     </enums>
 
     <enums namespace="EGL" start="0x33A0" end="0x33AF" vendor="ANGLE" comment="Reserved for Shannon Woods (Bug 13175)">
@@ -931,6 +933,12 @@
             <param><ptype>EGLConfig</ptype> *<name>configs</name></param>
             <param><ptype>EGLint</ptype> <name>config_size</name></param>
             <param><ptype>EGLint</ptype> *<name>num_config</name></param>
+        </command>
+        <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglClientSignalSyncEXT</name></proto>
+            <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+            <param><ptype>EGLSync</ptype> <name>sync</name></param>
+            <param>const <ptype>EGLAttrib</ptype> *<name>attrib_list</name></param>
         </command>
         <command>
             <proto><ptype>EGLint</ptype> <name>eglClientWaitSync</name></proto>
@@ -1709,6 +1717,12 @@
             <param><ptype>EGLSurface</ptype> <name>surface</name></param>
         </command>
         <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglUnsignalSyncEXT</name></proto>
+            <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+            <param><ptype>EGLSync</ptype> <name>sync</name></param>
+            <param>const <ptype>EGLAttrib</ptype> *<name>attrib_list</name></param>
+        </command>
+        <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglWaitClient</name></proto>
         </command>
         <command>
@@ -2154,6 +2168,13 @@
             </require>
         </extension>
         <extension name="EGL_EXT_client_extensions" supported="egl"/>
+        <extension name="EGL_EXT_client_sync" supported="egl">
+            <require>
+                <enum name="EGL_SYNC_CLIENT_EXT"/>
+                <enum name="EGL_SYNC_CLIENT_SIGNAL_EXT"/>
+                <command name="eglClientSignalSyncEXT"/>
+            </require>
+        </extension>
         <extension name="EGL_EXT_create_context_robustness" supported="egl">
             <require>
                 <enum name="EGL_CONTEXT_OPENGL_ROBUST_ACCESS_EXT"/>
@@ -2377,6 +2398,11 @@
         <extension name="EGL_EXT_swap_buffers_with_damage" supported="egl">
             <require>
                 <command name="eglSwapBuffersWithDamageEXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_sync_reuse" supported="egl">
+            <require>
+                <command name="eglUnsignalSyncEXT"/>
             </require>
         </extension>
         <extension name="EGL_EXT_yuv_surface" supported="egl">

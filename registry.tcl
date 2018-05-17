@@ -659,4 +659,14 @@ extension EGL_NV_stream_flush {
     flags       public
     filename    extensions/NV/EGL_NV_stream_flush.txt
 }
-# Next free extension number: 128
+extension EGL_EXT_sync_reuse {
+    number      128
+    flags       public
+    filename    extensions/EXT/EGL_EXT_sync_reuse.txt
+}
+extension EGL_EXT_client_sync {
+    number      129
+    flags       public
+    filename    extensions/EXT/EGL_EXT_client_sync.txt
+}
+# Next free extension number: 130
