@@ -319,6 +319,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=126> <a href="extensions/KHR/EGL_KHR_display_reference.txt">EGL_KHR_display_reference</a>
 </li>
+<li value=127> <a href="extensions/NV/EGL_NV_stream_flush.txt">EGL_NV_stream_flush</a>
+</li>
 <li value=128> <a href="extensions/EXT/EGL_EXT_sync_reuse.txt">EGL_EXT_sync_reuse</a>
 </li>
 <li value=129> <a href="extensions/EXT/EGL_EXT_client_sync.txt">EGL_EXT_client_sync</a>
