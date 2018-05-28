@@ -73,9 +73,8 @@ New Behavior
     To obtain an EGLDisplay from an GBM device, call eglGetPlatformDisplayEXT with
     <platform> set to EGL_PLATFORM_GBM_MESA. The <native_display> parameter
     specifies the GBM device to use and must either point to a `struct
-    gbm_device` or be EGL_DEFAULT_DISPLAY. If <native_display> is
-    EGL_DEFAULT_DISPLAY, then the resultant EGLDisplay will be backed by some
-    implementation-chosen GBM device.
+    gbm_device` or be NULL. If <native_display> is NULL, then the resultant
+    EGLDisplay will be backed by some implementation-chosen GBM device.
 
     For each EGLConfig that belongs to the GBM platform, the
     EGL_NATIVE_VISUAL_ID attribute is a GBM color format, such as
@@ -94,11 +93,10 @@ New Behavior
 
 Issues
 
-    1. Should this extension permit EGL_DEFAULT_DISPLAY as input to
-       eglGetPlatformDisplayEXT?
+    1. Should this extension permit NULL as input to eglGetPlatformDisplayEXT?
 
-       RESOLUTION: Yes. When given EGL_DEFAULT_DISPLAY, eglGetPlatformDisplayEXT
-       returns an EGLDisplay backed by an implementation-chosen GBM device.
+       RESOLUTION: Yes. When given NULL, eglGetPlatformDisplayEXT returns an
+       EGLDisplay backed by an implementation-chosen GBM device.
 
 Example Code
 
@@ -283,6 +281,12 @@ Example Code
     }
 
 Revision History
+
+    Version 8, 2018-05-25 (Krzysztof Kosiński)
+        - Corrected EGL_DEFAULT_DISPLAY to NULL. The second argument to
+          eglGetPlatformDisplayEXT has type void*, while EGL_DEFAULT_DISPLAY has
+          type EGLNativeDisplayType, which is not guaranteed to be convertible
+          to void* - it could be int, long or intptr_t.
 
     Version 7, 2016-01-04 (Jon Leech)
         - Free config memory allocated in sample code (Public Bug 1445).
