@@ -1,28 +1,29 @@
-<refentry xmlns="http://docbook.org/ns/docbook" version="5.0" xml:base="" xml:id="eglCreatePbufferSurface">
+<refentry xmlns="http://docbook.org/ns/docbook" version="5.0" xml:base="" xml:id="eglCreatePlatformWindowSurface">
     <info>
          <copyright>
-             <year>2003-2014</year>
+             <year>2003-2018</year>
              <holder>The Khronos Group Inc.</holder>
          </copyright>
     </info>
     <refmeta>
-        <refentrytitle>eglCreatePbufferSurface</refentrytitle>
+        <refentrytitle>eglCreatePlatformWindowSurface</refentrytitle>
         <manvolnum>3G</manvolnum>
     </refmeta>
     <refnamediv>
-        <refname>eglCreatePbufferSurface</refname>
+        <refname>eglCreatePlatformWindowSurface</refname>
         <refpurpose>
-            create a new <acronym>EGL</acronym> pixel buffer surface
+            create a new <acronym>EGL</acronym> on-screen rendering surface
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>C Specification</title>
         <funcsynopsis>
             <funcprototype>
-                <funcdef>EGLSurface <function>eglCreatePbufferSurface</function></funcdef>
+                <funcdef>EGLSurface <function>eglCreatePlatformWindowSurface</function></funcdef>
                 <paramdef>EGLDisplay <parameter>display</parameter></paramdef>
                 <paramdef>EGLConfig <parameter>config</parameter></paramdef>
-                <paramdef>EGLint const * <parameter>attrib_list</parameter></paramdef>
+                <paramdef>void * <parameter>native_window</parameter></paramdef>
+                <paramdef>EGLAttrib const * <parameter>attrib_list</parameter></paramdef>
             </funcprototype>
         </funcsynopsis>
     </refsynopsisdiv>
@@ -34,15 +35,19 @@
             </varlistentry>
             <varlistentry>
                 <term><parameter>config</parameter></term>
-                <listitem><para>
-                    Specifies the EGL frame buffer configuration that defines the
-                    frame buffer resource available to the surface.
-                </para></listitem>
+                <listitem>
+                    <para>Specifies the EGL frame buffer configuration that defines the
+                    frame buffer resource available to the surface.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><parameter>native_window</parameter></term>
+                <listitem><para>Specifies the native window.</para></listitem>
             </varlistentry>
             <varlistentry>
                 <term><parameter>attrib_list</parameter></term>
                 <listitem><para>
-                    Specifies pixel buffer surface attributes.
+                    Specifies a list of attributes for the window surface.
                     May be <constant>NULL</constant> or empty
                     (first attribute is <constant>EGL_NONE</constant>).
                 </para></listitem>
@@ -51,11 +56,24 @@
     </refsect1>
     <refsect1 xml:id="description"><title>Description</title>
         <para>
-            <function>eglCreatePbufferSurface</function> creates an
-            off-screen pixel buffer surface and returns its handle. If
-            <function>eglCreatePbufferSurface</function> fails to create
-            a pixel buffer surface, <constant>EGL_NO_SURFACE</constant>
-            is returned.
+            <function>eglCreatePlatformWindowSurface</function> creates an
+            on-screen EGL window surface and returns a handle to it. Any EGL
+            context created with a compatible <type>EGLConfig</type> can be
+            used to render into this surface.
+        </para>
+        <para>
+            If <function>eglCreatePlatformWindowSurface</function> fails to
+            create a window surface, <constant>EGL_NO_SURFACE</constant> is
+            returned.
+        </para>
+        <para>
+            <parameter>native_window</parameter> must belong to the same
+            platform as <parameter>display</parameter>, and EGL considers
+            the returned <type>EGLSurface</type> as belonging to that same
+            platform. The EGL extension that defines the platform to which
+            <parameter>display</parameter> belongs also defines the
+            requirements for the <parameter>native_window</parameter>
+            parameter.
         </para>
         <para>
             Surface attributes are specified as a list of
@@ -93,66 +111,24 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term><constant>EGL_HEIGHT</constant></term>
+                <term><constant>EGL_RENDER_BUFFER</constant></term>
                 <listitem>
                 <para>
-                    Specifies the required height of the pixel buffer
-                    surface. The default value is
-                    <constant>0</constant>.
+                    Specifies which buffer should be used for client API
+                    rendering to the window. If its value is
+                    <constant>EGL_SINGLE_BUFFER</constant>, then client
+                    APIs should render directly into the visible window.
+                    If its value is
+                    <constant>EGL_BACK_BUFFER</constant>, then client
+                    APIs should render into the back buffer. The default
+                    value of <constant>EGL_RENDER_BUFFER</constant> is
+                    <constant>EGL_BACK_BUFFER</constant>.
                 </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term><constant>EGL_LARGEST_PBUFFER</constant></term>
-                <listitem>
                 <para>
-                    Requests the largest available pixel buffer surface
-                    when the allocation would otherwise fail. Use
-                    <citerefentry><refentrytitle>eglQuerySurface</refentrytitle></citerefentry>
-                    to retrieve the dimensions of the allocated pixel
-                    buffer. The default value is
-                    <constant>EGL_FALSE</constant>.
-                </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term><constant>EGL_MIPMAP_TEXTURE</constant></term>
-                <listitem>
-                <para>
-                    Specifies whether storage for mipmaps should be
-                    allocated. Space for mipmaps will be set aside if
-                    the attribute value is <constant>EGL_TRUE</constant>
-                    and <constant>EGL_TEXTURE_FORMAT</constant> is not
-                    <constant>EGL_NO_TEXTURE</constant>. The default
-                    value is <constant>EGL_FALSE</constant>.
-                </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term><constant>EGL_TEXTURE_FORMAT</constant></term>
-                <listitem>
-                <para>
-                    Specifies the format of the texture that will be
-                    created when a pbuffer is bound to a texture map.
-                    Possible values are
-                    <constant>EGL_NO_TEXTURE</constant>,
-                    <constant>EGL_TEXTURE_RGB</constant>, and
-                    <constant>EGL_TEXTURE_RGBA</constant>. The default
-                    value is <constant>EGL_NO_TEXTURE</constant>.
-                </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term><constant>EGL_TEXTURE_TARGET</constant></term>
-                <listitem>
-                <para>
-                    Specifies the target for the texture that will be
-                    created when the pbuffer is created with a texture
-                    format of <constant>EGL_TEXTURE_RGB</constant> or
-                    <constant>EGL_TEXTURE_RGBA</constant>. Possible
-                    values are <constant>EGL_NO_TEXTURE</constant>, or
-                    <constant>EGL_TEXTURE_2D</constant>. The default
-                    value is <constant>EGL_NO_TEXTURE</constant>.
+                    Client APIs may not be able to respect the requested
+                    rendering buffer. To determine the actual buffer
+                    being rendered to by a context, call
+                    <citerefentry><refentrytitle>eglQueryContext</refentrytitle></citerefentry>.
                 </para>
                 </listitem>
             </varlistentry>
@@ -191,16 +167,6 @@
                 </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term><constant>EGL_WIDTH</constant></term>
-                <listitem>
-                <para>
-                    Specifies the required width of the pixel buffer
-                    surface. The default value is
-                    <constant>0</constant>.
-                </para>
-                </listitem>
-            </varlistentry>
         </variablelist>
         <para>
             Any EGL rendering context that was created with respect to
@@ -212,60 +178,47 @@
         <para>
             Use
             <citerefentry><refentrytitle>eglQuerySurface</refentrytitle></citerefentry>
-            to retrieve the dimensions of the allocated pixel buffer
-            surface or the ID of <parameter>config</parameter>.
+            to retrieve the ID of <parameter>config</parameter>.
         </para>
         <para>
-            Use <citerefentry><refentrytitle>eglDestroySurface</refentrytitle></citerefentry>
+            Use
+            <citerefentry><refentrytitle>eglDestroySurface</refentrytitle></citerefentry>
             to destroy the surface.
         </para>
     </refsect1>
     <refsect1 xml:id="notes"><title>Notes</title>
         <para>
-            Attribute <constant>EGL_GL_COLORSPACE</constant>, and the
-            <constant>EGL_OPENGL_ES3_BIT</constant> bit value for attribute
-            <constant>EGL_RENDERABLE_TYPE</constant>, are supported only if
-            the EGL version is 1.5 or greater.
+            Attribute <constant>EGL_GL_COLORSPACE</constant> is supported
+            only if the EGL version is 1.5 or greater.
         </para>
         <para>
-            Attributes
-            <constant>EGL_RENDERABLE_TYPE</constant>,
+            Attributes <constant>EGL_RENDER_BUFFER</constant>,
             <constant>EGL_VG_ALPHA_FORMAT</constant>, and
             <constant>EGL_VG_COLORSPACE</constant>, and the
             corresponding attribute values, are supported only if the
             EGL version is 1.2 or greater.
         </para>
+        <!-- Might want to mention aliasing of EGL_VG_* -> EGL_* that occurred in EGL 1.3 -->
         <para>
-            If the value of <parameter>config</parameter> attribute
-            <constant>EGL_TEXTURE_FORMAT</constant> is not
-            <constant>EGL_NO_TEXTURE</constant>, then the pbuffer width
-            and height specify the size of the level zero texture image
-        </para>
-        <para>
-            If <constant>EGL_LARGEST_PBUFFER</constant> is specified and
-            if the pbuffer will be used as a texture (i.e. the value of
-            <constant>EGL_TEXTURE_TARGET</constant> is
-            <constant>EGL_TEXTURE_2D</constant>, and the value of
-            <constant>EGL_TEXTURE FORMAT</constant> is
-            <constant>EGL_TEXTURE_RGB</constant> or
-            <constant>EGL_TEXTURE_RGBA</constant>), then the aspect
-            ratio will be preserved and the new width and height will be
-            valid sizes for the texture target (e.g. if the underlying
-            OpenGL ES implementation does not support non-power-of-two
-            textures, both the width and height will be a power of 2).
-        </para>
-        <para>
-            The contents of the depth and stencil buffers may not be
-            preserved when rendering a texture to the pbuffer and
-            switching which image of the texture is rendered to (e.g.,
-            switching from rendering one mipmap level to rendering
-            another).
+            The <constant>EGL_VG_ALPHA_FORMAT</constant> and
+            <constant>EGL_VG_COLORSPACE</constant> attributes are used only
+            by OpenVG and EGL itself. Refer to section 11.2 of the OpenVG
+            1.0 specification for more information. The platform's use and
+            interpretation of alpha values is outside the scope of EGL.
+            However, the preferred behavior is for platforms to ignore the
+            value of <constant>EGL_VG_ALPHA_FORMAT</constant> when
+            compositing window surfaces.
         </para>
     </refsect1>
     <refsect1 xml:id="errors"><title>Errors</title>
         <para>
+            If <parameter>display</parameter> and
+            <parameter>native_window</parameter> do not belong to the same
+            platform, then undefined behavior occurs.
+        </para>
+        <para>
             <constant>EGL_NO_SURFACE</constant> is returned if creation of
-            the context fails.
+            the surface fails.
         </para>
         <para>
             <constant>EGL_BAD_DISPLAY</constant> is generated if
@@ -277,58 +230,41 @@
         </para>
         <para>
             <constant>EGL_BAD_CONFIG</constant> is generated if
-            <parameter>config</parameter> is not an EGL frame buffer configuration.
+            <parameter>config</parameter> is not a valid EGL frame buffer
+            configuration.
+        </para>
+        <para>
+            <constant>EGL_BAD_NATIVE_WINDOW</constant> may be generated if
+            <parameter>native_window</parameter> is not a valid native
+            window for the same platform as <parameter>display</parameter>.
         </para>
         <para>
             <constant>EGL_BAD_ATTRIBUTE</constant> is generated if
-            <parameter>attrib_list</parameter> contains an invalid pixel
-            buffer attribute or if an attribute value is not recognized
-            or out of range.
+            <parameter>attrib_list</parameter> contains an invalid window attribute
+            or if an attribute value is not recognized or is out of range.
         </para>
         <para>
-            <constant>EGL_BAD_ATTRIBUTE</constant> is generated if
-            <parameter>attrib_list</parameter> contains any of the
-            attributes <constant>EGL_MIPMAP_TEXTURE</constant>,
-            <constant>EGL_TEXTURE_FORMAT</constant>, or
-            <constant>EGL_TEXTURE_TARGET</constant>, and
-            <parameter>config</parameter> does not support OpenGL ES
-            rendering (e.g. the EGL version is 1.2 or later, and the
-            <constant>EGL_RENDERABLE_TYPE</constant> attribute of
-            <parameter>config</parameter> does not include at least one
-            of <constant>EGL_OPENGL_ES_BIT</constant>,
-            <constant>EGL_OPENGL_ES2_BIT</constant>), or
-            <constant>EGL_OPENGL_ES3_BIT</constant>),
+            <constant>EGL_BAD_ALLOC</constant> is generated if there is
+            already an <type>EGLSurface</type> associated with
+            <parameter>native_window</parameter> (as a result of a previous
+            <function>eglCreatePlatformWindowSurface</function> call).
         </para>
         <para>
-            <constant>EGL_BAD_ALLOC</constant> is generated if there are not
-            enough resources to allocate the new surface.
+            <constant>EGL_BAD_ALLOC</constant> is generated if the
+            implementation cannot allocate resources for the new EGL window.
         </para>
         <para>
-            <constant>EGL_BAD_MATCH</constant> is generated if
-            <parameter>config</parameter> does not support rendering to pixel buffers
-            (the <constant>EGL_SURFACE_TYPE</constant> attribute does not contain
-            <constant>EGL_PBUFFER_BIT</constant>).
-        </para>
-        <para>
-            <constant>EGL_BAD_MATCH</constant> is generated if the
-            <constant>EGL_TEXTURE_FORMAT</constant> attribute is not
-            <constant>EGL_NO_TEXTURE</constant>, and
-            <constant>EGL_WIDTH</constant> and/or
-            <constant>EGL_HEIGHT</constant> specify an invalid size
-            (e.g., the texture size is not a power of 2, and the
-            underlying OpenGL ES implementation does not support
-            non-power-of-two textures).
+            <constant>EGL_BAD_MATCH</constant> is generated if the pixel
+            format of <parameter>native_window</parameter> does not
+            correspond to the format, type, and size of the color buffers
+            required by <parameter>config</parameter>.
+            <constant>EGL_BAD_MATCH</constant> is generated if the pixel
         </para>
         <para>
             <constant>EGL_BAD_MATCH</constant> is generated if
-            the <constant>EGL_TEXTURE_FORMAT</constant> attribute is
-            <constant>EGL_NO_TEXTURE</constant>, and
-            <constant>EGL_TEXTURE_TARGET</constant> is something other
-            than <constant>EGL_NO_TEXTURE</constant>; or,
-            <constant>EGL_TEXTURE_FORMAT</constant> is something other
-            than <constant>EGL_NO_TEXTURE</constant>, and
-            <constant>EGL_TEXTURE_TARGET</constant> is
-            <constant>EGL_NO_TEXTURE</constant>.
+            <parameter>config</parameter> does not support rendering to
+            windows (the <constant>EGL_SURFACE_TYPE</constant> attribute
+            does not contain <constant>EGL_WINDOW_BIT</constant>).
         </para>
         <para>
             <constant>EGL_BAD_MATCH</constant> is generated if
@@ -348,6 +284,7 @@
     </refsect1>
     <refsect1 xml:id="seealso"><title>See Also</title>
         <para>
+            <citerefentry><refentrytitle>eglCreateWindowSurface</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglDestroySurface</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglChooseConfig</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglGetConfigs</refentrytitle></citerefentry>,

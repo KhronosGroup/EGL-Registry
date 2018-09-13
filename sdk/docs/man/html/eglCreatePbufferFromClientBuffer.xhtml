@@ -3,7 +3,7 @@
   <head>
     <title xmlns:xlink="http://www.w3.org/1999/xlink">eglCreatePbufferFromClientBuffer - EGL Reference Pages</title>
     <link rel="stylesheet" type="text/css" href="khronos-man.css"/>
-    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
   </head>
   <body>
     <header/>
@@ -359,6 +359,11 @@
             section above.
         </p>
         <p>
+            <code class="constant">EGL_BAD_ACCESS</code> is generated if the buffers
+            contained in <em class="parameter"><code>buffer</code></em> consist of any
+            <span class="type">EGLImage</span> siblings.
+        </p>
+        <p>
             <code class="constant">EGL_BAD_ALLOC</code> is generated if there are not
             enough resources to allocate the new surface.
         </p>
@@ -383,8 +388,9 @@
         </p>
         <p>
             <code class="constant">EGL_BAD_MATCH</code> is generated if
-            <em class="parameter"><code>config</code></em> does not support rendering to pixel buffers
-            (the <code class="constant">EGL_SURFACE_TYPE</code> attribute does not contain
+            <em class="parameter"><code>config</code></em> does not support rendering to
+            pixel buffers (the <code class="constant">EGL_SURFACE_TYPE</code>
+            attribute does not contain
             <code class="constant">EGL_PBUFFER_BIT</code>).
         </p>
         <p>

@@ -31,6 +31,13 @@
             Initially, the error is set to <constant>EGL_SUCCESS</constant>.
         </para>
         <para>
+            When an EGL function could potentially generate several
+            different errors (for example, when passed both a bad attribute
+            name, and a bad attribute value for a legal attribute name), the
+            implementation may choose to generate any one of the applicable
+            errors.
+        </para>
+        <para>
             The following errors are currently defined:
         </para>
         <variablelist>
