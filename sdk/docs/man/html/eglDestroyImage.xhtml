@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title xmlns:xlink="http://www.w3.org/1999/xlink">eglDestroySurface - EGL Reference Pages</title>
+    <title xmlns:xlink="http://www.w3.org/1999/xlink">eglDestroyImage - EGL Reference Pages</title>
     <link rel="stylesheet" type="text/css" href="khronos-man.css"/>
     <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
   </head>
   <body>
     <header/>
-    <div class="refentry" id="eglDestroySurface">
+    <div class="refentry" id="eglDestroyImage">
       <div class="titlepage"/>
       <div class="refnamediv">
         <h2>Name</h2>
-        <p>eglDestroySurface — 
-            destroy an <abbr class="acronym">EGL</abbr> surface
+        <p>eglDestroyImage — 
+            Destroy an <span class="type">EGLImage</span> object
         </p>
       </div>
       <div class="refsynopsisdiv">
@@ -21,13 +21,13 @@
           <table style="border: 0; cellspacing: 0; cellpadding: 0;" class="funcprototype-table">
             <tr>
               <td>
-                <code class="funcdef">EGLBoolean <strong class="fsfunc">eglDestroySurface</strong>(</code>
+                <code class="funcdef">EGLBoolean <strong class="fsfunc">eglDestroyImage</strong>(</code>
               </td>
-              <td>EGLDisplay <var class="pdparam">display</var>, </td>
+              <td>(EGLDisplay <var class="pdparam">display</var>, </td>
             </tr>
             <tr>
               <td> </td>
-              <td>EGLSurface <var class="pdparam">surface</var><code>)</code>;</td>
+              <td>EGLImage <var class="pdparam">image</var><code>)</code>;</td>
             </tr>
           </table>
           <div class="funcprototype-spacer"> </div>
@@ -45,17 +45,20 @@
               </span>
             </dt>
             <dd>
-              <p>Specifies the EGL display connection.</p>
+              <p>
+                    Specifies the <abbr class="acronym">EGL</abbr> display connection.
+                </p>
             </dd>
             <dt>
               <span class="term">
                 <em class="parameter">
-                  <code>surface</code>
+                  <code>sync</code>
                 </em>
               </span>
             </dt>
             <dd>
-              <p>Specifies the EGL surface to be destroyed.
+              <p>
+                    Specifies the image to destroy.
                 </p>
             </dd>
           </dl>
@@ -64,40 +67,46 @@
       <div class="refsect1" id="description">
         <h2>Description</h2>
         <p>
-            If the EGL surface <em class="parameter"><code>surface</code></em> is not current to any
-            thread, <code class="function">eglDestroySurface</code> destroys it immediately.
-            Otherwise, <em class="parameter"><code>surface</code></em> is destroyed when it becomes
-            not current to any thread.
-            Furthermore, resources associated with a pbuffer surface are not released until
-            all color buffers of that pbuffer bound to a texture object have been released.
+            <code class="function">eglDestroyImage</code> is used to destroy the
+            specified <span class="type">EGLImage</span> object
+            <em class="parameter"><code>image</code></em>. Once destroyed,
+            <em class="parameter"><code>image</code></em> may not be used to create any
+            additional <span class="type">EGLImage</span> target resources within any
+            client API contexts, although existing <span class="type">EGLImage</span>
+            siblings may continue to be used. <code class="constant">EGL_TRUE</code>
+            is returned on success.
         </p>
       </div>
       <div class="refsect1" id="errors">
         <h2>Errors</h2>
         <p>
-            <code class="constant">EGL_FALSE</code> is returned if destruction of
-            the surface fails, <code class="constant">EGL_TRUE</code> otherwise.
+            On failure, <code class="function">eglDestroyImage</code> returns
+            <code class="constant">EGL_FALSE</code>
         </p>
         <p>
-            <code class="constant">EGL_BAD_DISPLAY</code> is generated if
-            <em class="parameter"><code>display</code></em> is not an EGL display connection.
+            If <em class="parameter"><code>display</code></em> is not the handle of a valid
+            <span class="type">EGLDisplay</span> object, the error
+            <code class="constant">EGL_BAD_DISPLAY</code> is generated.
         </p>
         <p>
-            <code class="constant">EGL_NOT_INITIALIZED</code> is generated if
-            <em class="parameter"><code>display</code></em> has not been initialized.
+            If <em class="parameter"><code>image</code></em> is not a valid
+            <span class="type">EGLImage</span> object created with respect to
+            <em class="parameter"><code>display</code></em>, the error
+            <code class="constant">EGL_BAD_PARAMETER</code> is generated.
         </p>
+      </div>
+      <div class="refsect1" id="notes">
+        <h2>Notes</h2>
         <p>
-            <code class="constant">EGL_BAD_SURFACE</code> is generated if
-            <em class="parameter"><code>surface</code></em> is not an EGL surface.
+            <code class="function">eglDestroyImage</code> is available only if the
+            EGL version is 1.5 or greater.
         </p>
       </div>
       <div class="refsect1" id="seealso">
         <h2>See Also</h2>
         <p>
-            <a class="citerefentry" href="eglCreatePbufferSurface.xhtml"><span class="citerefentry"><span class="refentrytitle">eglCreatePbufferSurface</span></span></a>,
-            <a class="citerefentry" href="eglCreatePixmapSurface.xhtml"><span class="citerefentry"><span class="refentrytitle">eglCreatePixmapSurface</span></span></a>,
-            <a class="citerefentry" href="eglCreateWindowSurface.xhtml"><span class="citerefentry"><span class="refentrytitle">eglCreateWindowSurface</span></span></a>,
-            <a class="citerefentry" href="eglMakeCurrent.xhtml"><span class="citerefentry"><span class="refentrytitle">eglMakeCurrent</span></span></a>    </p>
+            <a class="citerefentry" href="eglCreateImage.xhtml"><span class="citerefentry"><span class="refentrytitle">eglCreateImage</span></span></a>
+        </p>
       </div>
       <p>
     </p>

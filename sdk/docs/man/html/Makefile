@@ -16,14 +16,19 @@ EGLXML = \
     eglBindAPI.xhtml \
     eglBindTexImage.xhtml \
     eglChooseConfig.xhtml \
+    eglClientWaitSync.xhtml \
     eglCopyBuffers.xhtml \
     eglCreateContext.xhtml \
+    eglCreateImage.xhtml \
     eglCreatePbufferSurface.xhtml \
     eglCreatePbufferFromClientBuffer.xhtml \
     eglCreatePixmapSurface.xhtml \
+    eglCreateSync.xhtml \
     eglCreateWindowSurface.xhtml \
     eglDestroyContext.xhtml \
+    eglDestroyImage.xhtml \
     eglDestroySurface.xhtml \
+    eglDestroySync.xhtml \
     eglGetConfigAttrib.xhtml \
     eglGetConfigs.xhtml \
     eglGetCurrentContext.xhtml \
@@ -31,7 +36,9 @@ EGLXML = \
     eglGetCurrentSurface.xhtml \
     eglGetDisplay.xhtml \
     eglGetError.xhtml \
+    eglGetPlatformDisplay.xhtml \
     eglGetProcAddress.xhtml \
+    eglGetSyncAttrib.xhtml \
     eglInitialize.xhtml \
     eglIntro.xhtml \
     eglMakeCurrent.xhtml \
@@ -47,7 +54,8 @@ EGLXML = \
     eglTerminate.xhtml \
     eglWaitClient.xhtml \
     eglWaitGL.xhtml \
-    eglWaitNative.xhtml
+    eglWaitNative.xhtml \
+    eglWaitSync.xhtml
 
 XML    = $(EGLXML)
 

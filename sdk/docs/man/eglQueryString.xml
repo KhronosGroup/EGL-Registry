@@ -1,7 +1,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" version="5.0" xml:base="" xml:id="eglQueryString">
     <info>
          <copyright>
-             <year>2003-2014</year>
+             <year>2003-2018</year>
              <holder>The Khronos Group Inc.</holder>
          </copyright>
     </info>
@@ -12,7 +12,8 @@
     <refnamediv>
         <refname>eglQueryString</refname>
         <refpurpose>
-            return a string describing an <acronym>EGL</acronym> display connection
+            return a string describing properties of the EGL client or of an
+            <acronym>EGL</acronym> display connection
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -52,8 +53,9 @@
     <refsect1 xml:id="description"><title>Description</title>
         <para>
             <function>eglQueryString</function> returns a pointer to a
-            static string describing an EGL display connection.
-            <parameter>name</parameter> can be one of the following:
+            static, zero-terminated string describing properties of the EGL
+            client or of an EGL display connection.
+            <parameter>name</parameter> may be one of the following:
         </para>
         <variablelist>
             <varlistentry>
@@ -61,7 +63,7 @@
                 <listitem><para>
                     Returns a string describing which client rendering
                     APIs are supported. The string contains a
-                    space-separate list of API names. The list must
+                    space-separated list of API names. The list must
                     include at least one of <code>OpenGL</code>,
                     <code>OpenGL_ES</code>, or <code>OpenVG</code>.
                     These strings correspond respectively to values
@@ -75,27 +77,61 @@
             <varlistentry>
                 <term><constant>EGL_VENDOR</constant></term>
                 <listitem><para>
-                    Returns the company responsible for this EGL implementation. This
-                    name does not change from release to release.
+                    Returns the name of the vendor responsible for this EGL
+                    implementation. The format and contents of the string
+                    are implementation-dependent.
                 </para></listitem>
             </varlistentry>
             <varlistentry>
                 <term><constant>EGL_VERSION</constant></term>
-                <listitem><para>
-                    Returns a version or release number.
-                    The <constant>EGL_VERSION</constant> string is laid out as
-                    follows:</para>
-                <para>
-                    <replaceable>major_version</replaceable>.<replaceable>minor_version</replaceable>
-                    space
-                    <replaceable>vendor_specific_info</replaceable>
-                </para></listitem>
+                <listitem>
+                    <para>
+                        Returns a version or release number. The
+                        <constant>EGL_VERSION</constant> string is laid out
+                        as follows:
+                    </para>
+                    <para>
+                        <replaceable>major_version</replaceable>.<replaceable>minor_version</replaceable>
+                        space
+                        <replaceable>vendor_specific_info</replaceable>
+                    </para>
+                    <para>
+                        Both the major and minor portions of the version
+                        number are numeric. Their values must match the
+                        <parameter>major</parameter> and
+                        <parameter>minor</parameter> values returned by
+                        <citerefentry><refentrytitle>eglInitialize</refentrytitle></citerefentry>.
+                    </para>
+                    <para>
+                        The vendor-specific information is optional; if
+                        present, its format and contents are
+                        implementation-specific.
+                    </para>
+                </listitem>
             </varlistentry>
             <varlistentry>
                 <term><constant>EGL_EXTENSIONS</constant></term>
-                <listitem><para>
-                    Returns a space separated list of supported extensions to EGL.
-                </para></listitem>
+                <listitem>
+                    <para>
+                        Returns a space separated list of supported
+                        extensions to EGL. If there are no extensions, then
+                        the empty string is returned.
+                    </para>
+                    <para>
+                        If <parameter>display</parameter> is
+                        <constant>EGL_NO_DISPLAY</constant>, then the
+                        <constant>EGL_EXTENSIONS</constant> string describes
+                        the set of supported <firstterm>client
+                        extensions</firstterm>. If
+                        <parameter>display</parameter> is a valid,
+                        initialized display, then the
+                        <constant>EGL_EXTENSIONS</constant> string describes
+                        the set of <firstterm>display extensions</firstterm>
+                        supported by that display. The set of supported
+                        client extensions is disjoint from the set of
+                        extensions supported by any given display.
+                    </para>
+                </listitem>
             </varlistentry>
         </variablelist>
     </refsect1>
@@ -104,6 +140,11 @@
             <constant>EGL_CLIENT_APIS</constant> is supported only if
             the EGL version is 1.2 or greater.
         </para>
+        <para>
+            A <parameter>display</parameter> of
+            <constant>EGL_NO_DISPLAY</constant> is supported only if the EGL
+            version is 1.5 or greater.
+        </para>
     </refsect1>
     <refsect1 xml:id="errors"><title>Errors</title>
         <para>
@@ -111,11 +152,16 @@
         </para>
         <para>
             <constant>EGL_BAD_DISPLAY</constant> is generated if
-            <parameter>display</parameter> is not an EGL display connection.
+            <parameter>display</parameter> is not an EGL display connection,
+            unless <parameter>display</parameter> is
+            <constant>EGL_NO_DISPLAY</constant> and
+            <parameter>name</parameter> is
+            <constant>EGL_EXTENSIONS</constant>.
         </para>
         <para>
             <constant>EGL_NOT_INITIALIZED</constant> is generated if
-            <parameter>display</parameter> has not been initialized.
+            <parameter>display</parameter> is a valid but uninitialized
+            EGLDisplay.
         </para>
         <para>
             <constant>EGL_BAD_PARAMETER</constant> is generated if

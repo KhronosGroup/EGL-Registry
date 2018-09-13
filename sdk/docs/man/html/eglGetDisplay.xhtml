@@ -3,7 +3,7 @@
   <head>
     <title xmlns:xlink="http://www.w3.org/1999/xlink">eglGetDisplay - EGL Reference Pages</title>
     <link rel="stylesheet" type="text/css" href="khronos-man.css"/>
-    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
   </head>
   <body>
     <header/>
@@ -57,6 +57,26 @@
             display <em class="parameter"><code>native_display</code></em>.
         </p>
         <p>
+            The behavior of <code class="function">eglGetDisplay</code> is similar to
+            that of
+            <a class="citerefentry" href="eglGetPlatformDisplay.xhtml"><span class="citerefentry"><span class="refentrytitle">eglGetPlatformDisplay</span></span></a>,
+            but is specified in terms of implementation-specific behavior
+            rather than platform-specific extensions. As for
+            <a class="citerefentry" href="eglGetPlatformDisplay.xhtml"><span class="citerefentry"><span class="refentrytitle">eglGetPlatformDisplay</span></span></a>,
+            EGL considers the returned <span class="type">EGLDisplay</span> as belonging
+            to the same platform as <em class="parameter"><code>display_id</code></em>.
+            However, the set of platforms to which
+            <em class="parameter"><code>display_id</code></em> is permitted to belong, as
+            well as the actual type of <em class="parameter"><code>display_id</code></em>,
+            are implementation-specific. If
+            <em class="parameter"><code>display_id</code></em> is
+            <code class="constant">EGL_DEFAULT_DISPLAY</code>, a <em class="firstterm">default
+            display</em> is returned. Multiple calls made to
+            <code class="function">eglGetDisplay</code> with the same
+            <em class="parameter"><code>display_id</code></em> will return the same
+            <span class="type">EGLDisplay</span> handle.
+        </p>
+        <p>
             If <em class="parameter"><code>display_id</code></em> is
             <code class="constant">EGL_DEFAULT_DISPLAY</code>, a default display connection is returned.
         </p>
@@ -73,7 +93,8 @@
       <div class="refsect1" id="seealso">
         <h2>See Also</h2>
         <p>
-            <a class="citerefentry" href="eglInitialize.xhtml"><span class="citerefentry"><span class="refentrytitle">eglInitialize</span></span></a>
+            <a class="citerefentry" href="eglInitialize.xhtml"><span class="citerefentry"><span class="refentrytitle">eglInitialize</span></span></a>,
+            <a class="citerefentry" href="eglGetPlatformDisplay.xhtml"><span class="citerefentry"><span class="refentrytitle">eglGetPlatformDisplay</span></span></a>
         </p>
       </div>
       <p>

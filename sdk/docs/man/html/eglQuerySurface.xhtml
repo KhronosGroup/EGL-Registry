@@ -3,7 +3,7 @@
   <head>
     <title xmlns:xlink="http://www.w3.org/1999/xlink">eglQuerySurface - EGL Reference Pages</title>
     <link rel="stylesheet" type="text/css" href="khronos-man.css"/>
-    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
   </head>
   <body>
     <header/>
@@ -115,6 +115,19 @@
               <p>
                     Returns the ID of the EGL frame buffer configuration
                     with respect to which the surface was created.
+                </p>
+            </dd>
+            <dt>
+              <span class="term">
+                <code class="constant">EGL_GL_COLORSPACE</code>
+              </span>
+            </dt>
+            <dd>
+              <p>
+                    Returns the color space used by OpenGL and OpenGL ES
+                    when rendering to the surface, either
+                    <code class="constant">EGL_GL_COLORSPACE_SRGB</code> or
+                    <code class="constant">EGL_GL_COLORSPACE_LINEAR</code>.
                 </p>
             </dd>
             <dt>
@@ -283,6 +296,32 @@
             </dd>
             <dt>
               <span class="term">
+                <code class="constant">EGL_VG_ALPHA_FORMAT</code>
+              </span>
+            </dt>
+            <dd>
+              <p>
+                    Returns the interpretation of alpha values used by
+                    OpenVG when rendering to the surface, either
+                    <code class="constant">EGL_VG_ALPHA_FORMAT_NONPRE</code> or
+                    <code class="constant">EGL_VG_ALPHA_FORMAT_PRE</code>.
+                </p>
+            </dd>
+            <dt>
+              <span class="term">
+                <code class="constant">EGL_VG_COLORSPACE</code>
+              </span>
+            </dt>
+            <dd>
+              <p>
+                    Returns the color space used by OpenVG when rendering to
+                    the surface, either
+                    <code class="constant">EGL_VG_COLORSPACE_sRGB</code> or
+                    <code class="constant">EGL_VG_COLORSPACE_LINEAR</code>.
+                </p>
+            </dd>
+            <dt>
+              <span class="term">
                 <code class="constant">EGL_WIDTH</code>
               </span>
             </dt>
@@ -296,6 +335,10 @@
       </div>
       <div class="refsect1" id="notes">
         <h2>Notes</h2>
+        <p>
+            Attribute <code class="constant">EGL_GL_COLORSPACE</code> is supported
+            only if the EGL version is 1.5 or greater.
+        </p>
         <p>
             Attribute <code class="constant">EGL_MULTISAMPLE_RESOLVE</code> is
             supported only if the EGL version is 1.4 or greater.

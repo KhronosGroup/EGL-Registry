@@ -298,6 +298,11 @@
             section above.
         </para>
         <para>
+            <constant>EGL_BAD_ACCESS</constant> is generated if the buffers
+            contained in <parameter>buffer</parameter> consist of any
+            <type>EGLImage</type> siblings.
+        </para>
+        <para>
             <constant>EGL_BAD_ALLOC</constant> is generated if there are not
             enough resources to allocate the new surface.
         </para>
@@ -322,8 +327,9 @@
         </para>
         <para>
             <constant>EGL_BAD_MATCH</constant> is generated if
-            <parameter>config</parameter> does not support rendering to pixel buffers
-            (the <constant>EGL_SURFACE_TYPE</constant> attribute does not contain
+            <parameter>config</parameter> does not support rendering to
+            pixel buffers (the <constant>EGL_SURFACE_TYPE</constant>
+            attribute does not contain
             <constant>EGL_PBUFFER_BIT</constant>).
         </para>
         <para>
