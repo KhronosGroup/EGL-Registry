@@ -58,7 +58,7 @@
             <varlistentry>
                 <term><parameter>attrib_list</parameter></term>
                 <listitem><para>
-                    Specifies attributes used to select sub-sectins of the
+                    Specifies attributes used to select sub-sections of the
                     resource to be used as the image source.
                 </para></listitem>
             </varlistentry>

@@ -42,13 +42,13 @@
                 </para></listitem>
             </varlistentry>
             <varlistentry>
-                <term><parameter>flags</parameter></term>
+                <term><parameter>attribute</parameter></term>
                 <listitem><para>
                     Specifies the EGL sync object attribute to query.
                 </para></listitem>
             </varlistentry>
             <varlistentry>
-                <term><parameter>timeout</parameter></term>
+                <term><parameter>value</parameter></term>
                 <listitem><para>
                     Returns the requested attribute value.
                 </para></listitem>
