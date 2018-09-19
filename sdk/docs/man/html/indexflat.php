@@ -46,6 +46,7 @@
                 <li><a href="eglCreatePbufferFromClientBuffer.xhtml" target="pagedisplay">eglCreatePbufferFromClientBuffer</a></li>
                 <li><a href="eglCreatePbufferSurface.xhtml" target="pagedisplay">eglCreatePbufferSurface</a></li>
                 <li><a href="eglCreatePixmapSurface.xhtml" target="pagedisplay">eglCreatePixmapSurface</a></li>
+                <li><a href="eglCreatePlatformWindowSurface.xhtml" target="pagedisplay">eglCreatePlatformWindowSurface</a></li>
                 <li><a href="eglCreateSync.xhtml" target="pagedisplay">eglCreateSync</a></li>
                 <li><a href="eglCreateWindowSurface.xhtml" target="pagedisplay">eglCreateWindowSurface</a></li>
             </ul> <!-- End Level3 -->
