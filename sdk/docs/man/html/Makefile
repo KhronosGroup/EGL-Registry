@@ -23,6 +23,7 @@ EGLXML = \
     eglCreatePbufferSurface.xhtml \
     eglCreatePbufferFromClientBuffer.xhtml \
     eglCreatePixmapSurface.xhtml \
+    eglCreatePlatformWindowSurface.xhtml \
     eglCreateSync.xhtml \
     eglCreateWindowSurface.xhtml \
     eglDestroyContext.xhtml \
