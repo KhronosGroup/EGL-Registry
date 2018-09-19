@@ -34,7 +34,7 @@
                 </para></listitem>
             </varlistentry>
             <varlistentry>
-                <term><parameter>sync</parameter></term>
+                <term><parameter>image</parameter></term>
                 <listitem><para>
                     Specifies the image to destroy.
                 </para></listitem>
