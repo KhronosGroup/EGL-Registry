@@ -37,7 +37,7 @@
                 </para></listitem>
             </varlistentry>
             <varlistentry>
-                <term><parameter>sync</parameter></term>
+                <term><parameter>context</parameter></term>
                 <listitem><para>
                     Specifies the client API context for which the image is
                     created.
