@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2016 The Khronos Group Inc.
+# Copyright (c) 2013-2018 The Khronos Group Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 EGLHEADERS = EGL/egl.h EGL/eglext.h
 
 # Generation tools
-PYTHON = python
+PYTHON = python3
 PYFILES = genheaders.py reg.py
 REGISTRY = egl.xml
 GENOPTS =
