@@ -1,7 +1,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" version="5.0" xml:base="" xml:id="eglQuerySurface">
     <info>
          <copyright>
-             <year>2003-2014</year>
+             <year>2003-2018</year>
              <holder>The Khronos Group Inc.</holder>
          </copyright>
     </info>
@@ -76,6 +76,15 @@
                 <listitem><para>
                     Returns the ID of the EGL frame buffer configuration
                     with respect to which the surface was created.
+                </para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><constant>EGL_GL_COLORSPACE</constant></term>
+                <listitem><para>
+                    Returns the color space used by OpenGL and OpenGL ES
+                    when rendering to the surface, either
+                    <constant>EGL_GL_COLORSPACE_SRGB</constant> or
+                    <constant>EGL_GL_COLORSPACE_LINEAR</constant>.
                 </para></listitem>
             </varlistentry>
             <varlistentry>
@@ -197,6 +206,24 @@
                 </para></listitem>
             </varlistentry>
             <varlistentry>
+                <term><constant>EGL_VG_ALPHA_FORMAT</constant></term>
+                <listitem><para>
+                    Returns the interpretation of alpha values used by
+                    OpenVG when rendering to the surface, either
+                    <constant>EGL_VG_ALPHA_FORMAT_NONPRE</constant> or
+                    <constant>EGL_VG_ALPHA_FORMAT_PRE</constant>.
+                </para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><constant>EGL_VG_COLORSPACE</constant></term>
+                <listitem><para>
+                    Returns the color space used by OpenVG when rendering to
+                    the surface, either
+                    <constant>EGL_VG_COLORSPACE_sRGB</constant> or
+                    <constant>EGL_VG_COLORSPACE_LINEAR</constant>.
+                </para></listitem>
+            </varlistentry>
+            <varlistentry>
                 <term><constant>EGL_WIDTH</constant></term>
                 <listitem><para>
                     Returns the width of the surface in pixels.
@@ -205,6 +232,10 @@
         </variablelist>
     </refsect1>
     <refsect1 xml:id="notes"><title>Notes</title>
+        <para>
+            Attribute <constant>EGL_GL_COLORSPACE</constant> is supported
+            only if the EGL version is 1.5 or greater.
+        </para>
         <para>
             Attribute <constant>EGL_MULTISAMPLE_RESOLVE</constant> is
             supported only if the EGL version is 1.4 or greater.

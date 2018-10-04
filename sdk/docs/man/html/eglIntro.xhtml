@@ -3,7 +3,7 @@
   <head>
     <title xmlns:xlink="http://www.w3.org/1999/xlink">eglIntro - EGL Reference Pages</title>
     <link rel="stylesheet" type="text/css" href="khronos-man.css"/>
-    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
   </head>
   <body>
     <header/>
@@ -24,28 +24,39 @@
             using a <em class="firstterm">client API</em> such as OpenGL ES
             (a 3D renderer for embedded systems), OpenGL (a functional
             superset of OpenGL ES for desktop systems), and OpenVG (a 2D
-            vector graphics renderer) together with a native window
-            system, such as Microsoft Windows or the X Window System.
+            vector graphics renderer) together with a
+            <em class="firstterm">platform</em>, such as Microsoft Windows or
+            the X Window System.
         </p>
         <p>
             Depending on its implementation EGL might be more or less
-            tightly integrated into the native window system. Most EGL
+            tightly integrated into the platform. Most EGL
             functions require an EGL display connection, which can be
             obtained by calling
-            <a class="citerefentry" href="eglGetDisplay.xhtml"><span class="citerefentry"><span class="refentrytitle">eglGetDisplay</span></span></a>
-            and passing in a native display handle or
-            <code class="constant">EGL_DEFAULT_DISPLAY</code>. To initialize and
+            <a class="citerefentry" href="eglGetPlatformDisplay.xhtml"><span class="citerefentry"><span class="refentrytitle">eglGetPlatformDisplay</span></span></a>
+            or
+            <a class="citerefentry" href="eglGetDisplay.xhtml"><span class="citerefentry"><span class="refentrytitle">eglGetDisplay</span></span></a>.
+            To initialize and
             query what EGL version is supported on the display
             connection, call
             <a class="citerefentry" href="eglInitialize.xhtml"><span class="citerefentry"><span class="refentrytitle">eglInitialize</span></span></a>.
         </p>
         <p>
-            Native window systems supporting EGL make a subset of their
+            The EGL specification does not define the set of platforms that
+            may be supported by an EGL implementation, nor does it specify
+            behavior specific to any platform. The set of supported
+            platforms and their behavior is defined by platform-specific
+            extensions. To detect if a particular platform is supported,
+            clients should query the <code class="constant">EGL_EXTENSIONS</code>
+            string of <code class="constant">EGL_NO_DISPLAY</code> using
+            <a class="citerefentry" href="eglQueryString.xhtml"><span class="citerefentry"><span class="refentrytitle">eglQueryString</span></span></a>.
+        </p>
+        <p>
+            Platforms supporting EGL make a subset of their
             visuals (which may also referred to as pixel formats, frame
             buffer configurations, or other similar terms) available for
             client API rendering. Windows and pixmaps created with these
-            visuals may also be rendered into using the native window
-            system API.
+            visuals may also be rendered into using the platform APIs.
         </p>
         <p>
             An EGL <em class="firstterm">surface</em> extends a native
@@ -59,9 +70,9 @@
             EGL supports rendering into three types of surfaces:
             windows, pixmaps and pixel buffers (pbuffers). EGL window
             and pixmap surfaces are associated with corresponding
-            resources of the native window system. EGL pixel buffers are
-            EGL only resources, and do not accept rendering through the
-            native window system.
+            resources of the platform. EGL pixel buffers are
+            EGL-only resources, and do not accept rendering through the
+            platform APIs.
         </p>
         <p>
             To render using a client API into an EGL surface, you must
@@ -123,13 +134,13 @@
             is called with different arguments.
         </p>
         <p>
-            Both native and client API commands may be used to operate
-            on certain surfaces, however, the two command streams are
+            Both platform and client API commands may be used to operate
+            on certain surfaces. However, the two command streams are
             not synchronized. Synchronization can be explicitly
             specified using by calling
-            <a class="citerefentry" href="eglWaitCLient.xhtml"><span class="citerefentry"><span class="refentrytitle">eglWaitCLient</span></span></a>,
+            <a class="citerefentry" href="eglWaitClient.xhtml"><span class="citerefentry"><span class="refentrytitle">eglWaitClient</span></span></a>,
             <a class="citerefentry" href="eglWaitNative.xhtml"><span class="citerefentry"><span class="refentrytitle">eglWaitNative</span></span></a>,
-            and possibly by calling other native window system commands.
+            and possibly by calling other platform APIs.
         </p>
       </div>
       <div class="refsect1" id="examples">
@@ -185,11 +196,20 @@ int main(int argc, char ** argv)
 }
 </pre>
       </div>
+      <div class="refsect1" id="notes">
+        <h2>Notes</h2>
+        <p>
+            Prior to EGL 1.5, platforms were referred to as the
+            <em class="firstterm">native window system</em>, and
+            platform-specific queries and APIs were not available. Only a
+            single native window system was supported.
+        </p>
+      </div>
       <div class="refsect1" id="usingeglextensions">
         <h2>Using EGL Extensions</h2>
         <p>
             All supported EGL extensions will have a corresponding definition in
-            <code class="filename">egl.h</code> and a token in the extensions string returned
+            <code class="filename">egl.h</code> and a token in the extension strings returned
             by
             <a class="citerefentry" href="eglQueryString.xhtml"><span class="citerefentry"><span class="refentrytitle">eglQueryString</span></span></a>.
         </p>
@@ -240,6 +260,7 @@ int main(int argc, char ** argv)
             <a class="citerefentry" href="eglDestroySurface.xhtml"><span class="citerefentry"><span class="refentrytitle">eglDestroySurface</span></span></a>,
             <a class="citerefentry" href="eglGetConfigs.xhtml"><span class="citerefentry"><span class="refentrytitle">eglGetConfigs</span></span></a>,
             <a class="citerefentry" href="eglGetDisplay.xhtml"><span class="citerefentry"><span class="refentrytitle">eglGetDisplay</span></span></a>,
+            <a class="citerefentry" href="eglGetPlatformDisplay.xhtml"><span class="citerefentry"><span class="refentrytitle">eglGetPlatformDisplay</span></span></a>,
             <a class="citerefentry" href="eglInitialize.xhtml"><span class="citerefentry"><span class="refentrytitle">eglInitialize</span></span></a>,
             <a class="citerefentry" href="eglMakeCurrent.xhtml"><span class="citerefentry"><span class="refentrytitle">eglMakeCurrent</span></span></a>,
             <a class="citerefentry" href="eglQueryString.xhtml"><span class="citerefentry"><span class="refentrytitle">eglQueryString</span></span></a>,

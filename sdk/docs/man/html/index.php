@@ -24,11 +24,16 @@
         <li>c
             <ul class="Level3">
                 <li><a href="eglChooseConfig.xhtml" target="pagedisplay">eglChooseConfig</a></li>
+                <li><a href="eglClientWaitSync.xhtml" target="pagedisplay">eglClientWaitSync</a></li>
                 <li><a href="eglCopyBuffers.xhtml" target="pagedisplay">eglCopyBuffers</a></li>
                 <li><a href="eglCreateContext.xhtml" target="pagedisplay">eglCreateContext</a></li>
+                <li><a href="eglCreateImage.xhtml" target="pagedisplay">eglCreateImage</a></li>
                 <li><a href="eglCreatePbufferFromClientBuffer.xhtml" target="pagedisplay">eglCreatePbufferFromClientBuffer</a></li>
                 <li><a href="eglCreatePbufferSurface.xhtml" target="pagedisplay">eglCreatePbufferSurface</a></li>
                 <li><a href="eglCreatePixmapSurface.xhtml" target="pagedisplay">eglCreatePixmapSurface</a></li>
+                <li><a href="eglCreatePlatformPixmapSurface.xhtml" target="pagedisplay">eglCreatePlatformPixmapSurface</a></li>
+                <li><a href="eglCreatePlatformWindowSurface.xhtml" target="pagedisplay">eglCreatePlatformWindowSurface</a></li>
+                <li><a href="eglCreateSync.xhtml" target="pagedisplay">eglCreateSync</a></li>
                 <li><a href="eglCreateWindowSurface.xhtml" target="pagedisplay">eglCreateWindowSurface</a></li>
             </ul> <!-- End Level3 -->
         </li>
@@ -36,7 +41,9 @@
         <li>d
             <ul class="Level3">
                 <li><a href="eglDestroyContext.xhtml" target="pagedisplay">eglDestroyContext</a></li>
+                <li><a href="eglDestroyImage.xhtml" target="pagedisplay">eglDestroyImage</a></li>
                 <li><a href="eglDestroySurface.xhtml" target="pagedisplay">eglDestroySurface</a></li>
+                <li><a href="eglDestroySync.xhtml" target="pagedisplay">eglDestroySync</a></li>
             </ul> <!-- End Level3 -->
         </li>
         <a name="g"></a>
@@ -49,7 +56,9 @@
                 <li><a href="eglGetCurrentSurface.xhtml" target="pagedisplay">eglGetCurrentSurface</a></li>
                 <li><a href="eglGetDisplay.xhtml" target="pagedisplay">eglGetDisplay</a></li>
                 <li><a href="eglGetError.xhtml" target="pagedisplay">eglGetError</a></li>
+                <li><a href="eglGetPlatformDisplay.xhtml" target="pagedisplay">eglGetPlatformDisplay</a></li>
                 <li><a href="eglGetProcAddress.xhtml" target="pagedisplay">eglGetProcAddress</a></li>
+                <li><a href="eglGetSyncAttrib.xhtml" target="pagedisplay">eglGetSyncAttrib</a></li>
             </ul> <!-- End Level3 -->
         </li>
         <a name="i"></a>
@@ -101,6 +110,7 @@
                 <li><a href="eglWaitClient.xhtml" target="pagedisplay">eglWaitClient</a></li>
                 <li><a href="eglWaitGL.xhtml" target="pagedisplay">eglWaitGL</a></li>
                 <li><a href="eglWaitNative.xhtml" target="pagedisplay">eglWaitNative</a></li>
+                <li><a href="eglWaitSync.xhtml" target="pagedisplay">eglWaitSync</a></li>
             </ul> <!-- End Level3 -->
         </li>
         </ul> <!-- End Level2 -->

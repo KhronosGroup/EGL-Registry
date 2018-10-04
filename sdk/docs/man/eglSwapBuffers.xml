@@ -47,21 +47,27 @@
     </refsect1>
     <refsect1 xml:id="description"><title>Description</title>
         <para>
-            If <parameter>surface</parameter> is a window surface,
-            <function>eglSwapBuffers</function> posts its color buffer
-            to the associated native window.
+            If <parameter>surface</parameter> is a back-buffered window
+            surface, <function>eglSwapBuffers</function> then the color
+            buffer is copied (posted) native window associated with that
+            surface. If <parameter>surface</parameter> is a single-buffered
+            window, pixmap, or pixel buffer surface,
+            <function>eglSwapBuffers</function> has no effect.
         </para>
         <para>
             The contents of ancillary buffers are always undefined after
-            calling <function>eglSwapBuffers</function>. The contents of
-            the color buffer are left unchanged if the value of the
+            calling <function>eglSwapBuffers</function>. The contents of the
+            color buffer are undefined if the value of the
             <constant>EGL_SWAP_BEHAVIOR</constant> attribute of
-            <parameter>surface</parameter> is
-            <constant>EGL_BUFFER_PRESERVED</constant>, and are undefined
-            if the value is <constant>EGL_BUFFER_DESTROYED</constant>.
-            The value of <constant>EGL_SWAP_BEHAVIOR</constant> can be
-            set for some surfaces using
+            <parameter>surface</parameter> is not
+            <constant>EGL_BUFFER_PRESERVED</constant>. The value of
+            <constant>EGL_SWAP_BEHAVIOR</constant> can be set for some
+            surfaces using
             <citerefentry><refentrytitle>eglSurfaceAttrib</refentrytitle></citerefentry>.
+            <constant>EGL_SWAP_BEHAVIOR</constant> applies only to the color
+            buffer. EGL has no way to specify or query whether or not
+            ancillary buffers are preserved, and applications should not
+            rely on this behavior.
         </para>
         <para>
             <function>eglSwapBuffers</function> performs an implicit
@@ -74,32 +80,42 @@
             <function>eglSwapBuffers</function>, but are not executed
             until the buffer exchange is completed.
         </para>
+    </refsect1>
+    <refsect1 xml:id="resize"><title>Native Window Resizing</title>
         <para>
-            If <parameter>surface</parameter> is a pixel buffer or a pixmap,
-            <function>eglSwapBuffers</function>
-            has no effect, and no error is generated.
+            If the native window corresponding to
+            <parameter>surface</parameter> has been resized prior to the
+            swap, <parameter>surface</parameter> must be resized to match.
+            <parameter>surface</parameter> will normally be resized by the
+            EGL implementation at the time the native window is resized. If
+            the implementation cannot do this transparently to the client,
+            then <function>eglSwapBuffers</function> must detect the change
+            and resize surface prior to copying its pixels to the native
+            window. If <parameter>surface</parameter> shrinks as a result of
+            resizing, some rendered pixels are lost. If
+            <parameter>surface</parameter> grows, the newly allocated buffer
+            contents are undefined. The resizing behavior described here
+            only maintains consistency of EGL surfaces and native windows;
+            clients are still responsible for detecting window size changes
+            (using platform-specific means) and changing their viewport and
+            scissor regions accordingly.
         </para>
     </refsect1>
     <refsect1 xml:id="notes"><title>Notes</title>
         <para>
-            Attribute <constant>EGL_SWAP_BEHAVIOR</constant> is
-            supported only if the EGL version is 1.2 or greater. In
-            earlier versions, behavior is as though the attribute
-            exists, and always has the value
-            <constant>EGL_BUFFER_DESTROYED</constant>.
+            Attribute <constant>EGL_SWAP_BEHAVIOR</constant> is supported
+            only if the EGL version is 1.2 or greater. In earlier versions,
+            behavior is as though the attribute exists, and always has the
+            value <constant>EGL_BUFFER_DESTROYED</constant>.
         </para>
         <para>
             The EGL 1.4 specification was updated to acknowledge that
-            ancillary buffers are not necessarily preserved after a
-            swap, and that the <constant>EGL_SWAP_BEHAVIOR</constant>
-            attribute applies only to the color buffer. This change in
-            the specification acknowledged the behavior of many shipping
+            ancillary buffers are not necessarily preserved after a swap,
+            and that the <constant>EGL_SWAP_BEHAVIOR</constant> attribute
+            applies only to the color buffer. This change in the
+            specification acknowledged the behavior of many shipping
             implementations, and is not intended to result in behavior
-            changes in any existing implementation. Applications which
-            require preservation of ancillary buffers across a swap
-            should be aware that not all implementations can preserve
-            them, and that EGL 1.4 has no way to query whether or not
-            they are preserved.
+            changes in any existing implementation.
         </para>
     </refsect1>
     <refsect1 xml:id="errors"><title>Errors</title>
@@ -127,8 +143,9 @@
     </refsect1>
     <refsect1 xml:id="seealso"><title>See Also</title>
         <para>
-            <citerefentry><refentrytitle>glFlush</refentrytitle></citerefentry>,
-            <citerefentry><refentrytitle>eglCopyBuffers</refentrytitle></citerefentry>
+            <function>glFlush</function>,
+            <citerefentry><refentrytitle>eglCopyBuffers</refentrytitle></citerefentry>,
+            <function>vgFlush</function>
         </para>
     </refsect1>
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="copyright.xml"/>

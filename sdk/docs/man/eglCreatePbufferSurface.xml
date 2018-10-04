@@ -65,6 +65,34 @@
         </para>
         <variablelist>
             <varlistentry>
+                <term><constant>EGL_GL_COLORSPACE</constant></term>
+                <listitem>
+                <para>
+                    Specifies the color space used by OpenGL and OpenGL ES
+                    when rendering to the surface. If its value is
+                    <constant>EGL_GL_COLORSPACE_SRGB</constant>, then a
+                    non-linear, perceptually uniform color space is assumed,
+                    with a corresponding
+                    <constant>GL_FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING</constant>
+                    value of <constant>GL_SRGB</constant>. If its value is
+                    <constant>EGL_GL_COLORSPACE_LINEAR</constant>, then a
+                    linear color space is assumed, with a corresponding
+                    <constant>GL_FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING</constant>
+                    value of <constant>GL_LINEAR</constant>. The default
+                    value of <constant>EGL_GL_COLORSPACE</constant> is
+                    <constant>EGL_GL_COLORSPACE_SRGB</constant>.
+                </para>
+                <para>
+                    Note that the <constant>EGL_GL_COLORSPACE</constant>
+                    attribute is used only by OpenGL and OpenGL ES contexts
+                    supporting sRGB framebuffers. EGL itself does not
+                    distinguish multiple colorspace models. Refer to the
+                    ``sRGB Conversion'' sections of the OpenGL 4.6 and
+                    OpenGL ES 3.2 Specifications for more information.
+                </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term><constant>EGL_HEIGHT</constant></term>
                 <listitem>
                 <para>
@@ -194,6 +222,12 @@
     </refsect1>
     <refsect1 xml:id="notes"><title>Notes</title>
         <para>
+            Attribute <constant>EGL_GL_COLORSPACE</constant>, and the
+            <constant>EGL_OPENGL_ES3_BIT</constant> bit value for attribute
+            <constant>EGL_RENDERABLE_TYPE</constant>, are supported only if
+            the EGL version is 1.5 or greater.
+        </para>
+        <para>
             Attributes
             <constant>EGL_RENDERABLE_TYPE</constant>,
             <constant>EGL_VG_ALPHA_FORMAT</constant>, and
@@ -261,8 +295,9 @@
             rendering (e.g. the EGL version is 1.2 or later, and the
             <constant>EGL_RENDERABLE_TYPE</constant> attribute of
             <parameter>config</parameter> does not include at least one
-            of <constant>EGL_OPENGL_ES_BIT</constant> or
-            <constant>EGL_OPENGL_ES2_BIT</constant>).
+            of <constant>EGL_OPENGL_ES_BIT</constant>,
+            <constant>EGL_OPENGL_ES2_BIT</constant>), or
+            <constant>EGL_OPENGL_ES3_BIT</constant>),
         </para>
         <para>
             <constant>EGL_BAD_ALLOC</constant> is generated if there are not
