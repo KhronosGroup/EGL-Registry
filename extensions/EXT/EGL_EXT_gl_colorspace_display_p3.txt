@@ -26,7 +26,7 @@ Status
 
 Version
 
-     Version 1 - Mar 22, 2017
+     Version 2 - Oct 4, 2018
 
 Number
 
@@ -66,7 +66,7 @@ New Tokens
 
         EGL_GL_COLORSPACE_DISPLAY_P3_LINEAR_EXT         0x3362
 
-    [[ If EGL_EXT_gl_colorspace_bt2020_pq is supported ]]
+    [[ If EGL_EXT_gl_colorspace_display_p3 is supported ]]
 
         EGL_GL_COLORSPACE_DISPLAY_P3_EXT                0x3363
 
@@ -133,3 +133,5 @@ Revision History
     Version 1, 2017/03/22
       - Internal revisions
 
+    Version 2, 2018/10/04
+      - Fix typo to correct extension reference
