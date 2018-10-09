@@ -25,10 +25,10 @@ include_once("../../assets/static_pages/khr_page_top.php");
      (required by the current EGL and OpenGL ES headers). </li>
 </ul>
 
-<h6> Man Pages, Technical Notes and White Papers </h6>
+<h6> Reference Pages, Technical Notes and White Papers </h6>
 
 <ul>
-<li> <a href="sdk/docs/man/"> EGL 1.5 man pages </a>
+<li> <a href="sdk/docs/man/"> EGL 1.5 reference pages </a>
 <li> <a href="specs/EGLTechNote0001.html">EGL Technical Note #1 - EGL 1.4 and
      ancillary buffer preservation </a>
 </ul>
