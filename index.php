@@ -28,7 +28,7 @@ include_once("../../assets/static_pages/khr_page_top.php");
 <h6> Man Pages, Technical Notes and White Papers </h6>
 
 <ul>
-<li> <a href="sdk/docs/man/"> EGL 1.4 man pages </a>
+<li> <a href="sdk/docs/man/"> EGL 1.5 man pages </a>
 <li> <a href="specs/EGLTechNote0001.html">EGL Technical Note #1 - EGL 1.4 and
      ancillary buffer preservation </a>
 </ul>
