@@ -95,6 +95,13 @@ Modifications to the EGL 1.5 Specification
     scRGB is defined to use the same primaries and white-point as sRGB.
     See IEC 61966-2-2:2003 for details.
 
+    A colorspace of scRGB will be communicated to the Window system. While EGL
+    itself is color space agnostic, the surface will eventually be presented
+    to a display device with specific color reproduction characteristics.
+    If any color space transformations are necessary before an image can be
+    displayed, the color space of the presented image must be known to the
+    window system.
+
     Add two paragraphs after the 4th paragraph above:
 
     When using a floating-point EGL surface with EGL_GL_COLORSPACE_SCRGB_EXT,
@@ -128,3 +135,7 @@ Revision History
 
     Version 2, 2017/08/25
     - Clarify definition of color space
+
+    Version 3, 2018/12/10
+    - Add specification text indicating that the color space is communited to
+      the window system.

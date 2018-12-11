@@ -93,11 +93,20 @@ Modifications to the EGL 1.5 Specification
 
     Modify the 4th paragraph on the same page:
 
-    Note that the EGL_GL_COLORSPACE_SRGB attribute is used only by OpenGL and
-    OpenGL ES contexts supporting sRGB framebuffers. EGL itself does not
+    Note that the EGL_GL_COLORSPACE_DISPLAY_P3 attribute is used only by OpenGL
+    and OpenGL ES contexts supporting sRGB framebuffers. EGL itself does not
     distinguish multiple colorspace models. Refer to the "sRGB Conversion"
     sections of the OpenGL 4.4 and OpenGL ES 3.0 specifications for more
     information.
+
+    Note that the EGL_GL_COLORSPACE_DISPLAY_P3_LINEAR_EXT and 
+    EGL_GL_COLORSPACE_DISPLAY_P3_LINEAR_EXT attributes indicate that a
+    colorspace of Display P3 will be communicated to the Window system.
+    While EGL itself is color space agnostic, the surface
+    will eventually be presented to a display device with specific color
+    reproduction characteristics. If any color space transformations are
+    necessary before an image can be displayed, the color space of the
+    presented image must be known to the window system.
 
 Errors
 
@@ -135,3 +144,9 @@ Revision History
 
     Version 2, 2018/10/04
       - Fix typo to correct extension reference
+
+    Version 3, 2018/12/10
+      - Correct reference to DISPLAY_P3 and indicate that color space
+        information will be transmitted to the window system as indicated in
+        the overview section.
+

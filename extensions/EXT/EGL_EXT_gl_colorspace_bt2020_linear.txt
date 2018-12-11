@@ -97,11 +97,13 @@ Modifications to the EGL 1.5 Specification
 
     Modify the 4th paragraph on the same page:
 
-    Note that the EGL_GL_COLORSPACE_SRGB attribute is used only by OpenGL and
-    OpenGL ES contexts supporting sRGB framebuffers. EGL itself does not
-    distinguish multiple colorspace models. Refer to the "sRGB Conversion"
-    sections of the OpenGL 4.4 and OpenGL ES 3.0 specifications for more
-    information.
+    Note that the EGL_GL_COLORSPACE_BT2020_LINEAR_EXT and
+    EGL_GL_COLORSPACE_BT2020_PQ_EXT attributes indicate that a colorspace of
+    BT2020 will be communicated to the Window system. While EGL itself is
+    color space agnostic, the surface will eventually be presented to a
+    display device with specific color reproduction characteristics. If any
+    color space transformations are necessary before an image can be displayed,
+    the color space of the presented image must be known to the window system.
 
     Add a paragraph after the 4th paragraph above:
 
@@ -173,3 +175,7 @@ Revision History
     Version 7, 2016/11/22
       - Change status to complete
 
+    Version 8, 2018/12/10
+      - Remove reference to sRGB and instead indicate that color space
+        information will be transmitted to the window system as indicated in
+        the overview section.
