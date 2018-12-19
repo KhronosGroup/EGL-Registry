@@ -20,8 +20,8 @@
         <title>C Specification</title>
         <funcsynopsis>
             <funcprototype>
-                <funcdef>void (* <function>eglGetProcAddress</function>)()</funcdef>
-                <paramdef>char const * <parameter>procname</parameter></paramdef>
+                <funcdef>void (* <function>eglGetProcAddress</function></funcdef>
+                <paramdef>char const * <parameter>procname</parameter>))(void</paramdef>
             </funcprototype>
         </funcsynopsis>
     </refsynopsisdiv>
