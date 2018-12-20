@@ -669,4 +669,9 @@ extension EGL_EXT_client_sync {
     flags       public
     filename    extensions/EXT/EGL_EXT_client_sync.txt
 }
-# Next free extension number: 130
+extension EGL_EXT_gl_colorspace_display_p3_passthrough {
+    number      130
+    flags       public
+    filename    extensions/EXT/EGL_EXT_gl_colorspace_display_p3_passthrough.txt
+}
+# Next free extension number: 131
