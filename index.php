@@ -327,6 +327,9 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=130> <a href="extensions/EXT/EGL_EXT_gl_colorspace_display_p3_passthrough.txt">EGL_EXT_gl_colorspace_display_p3_passthrough</a>
 </li>
+</li>
+<li value=131> <a href="extensions/MESA/EGL_MESA_query_driver.txt">EGL_MESA_query_driver</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
