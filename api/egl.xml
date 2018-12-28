@@ -1228,6 +1228,14 @@
             <param><ptype>EGLNativeDisplayType</ptype> <name>display_id</name></param>
         </command>
         <command>
+            <proto>char *<name>eglGetDisplayDriverConfig</name></proto>
+            <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+        </command>
+        <command>
+            <proto>const char *<name>eglGetDisplayDriverName</name></proto>
+            <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+        </command>
+        <command>
             <proto><ptype>EGLint</ptype> <name>eglGetError</name></proto>
         </command>
         <command>
@@ -2850,6 +2858,12 @@
         <extension name="EGL_MESA_platform_surfaceless" supported="egl">
             <require>
                 <enum name="EGL_PLATFORM_SURFACELESS_MESA"/>
+            </require>
+        </extension>
+        <extension name="EGL_MESA_query_driver" supported="egl">
+            <require>
+                <command name="eglGetDisplayDriverConfig"/>
+                <command name="eglGetDisplayDriverName"/>
             </require>
         </extension>
         <extension name="EGL_NOK_swap_region" supported="egl">
