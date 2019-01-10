@@ -33,12 +33,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: f7b95d002a $ on $Git commit date: 2018-12-28 20:22:59 +0530 $
+** Khronos $Git commit SHA1: 726475c203 $ on $Git commit date: 2018-10-03 23:51:49 -0700 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20181230
+#define EGL_EGLEXT_VERSION 20181204
 
 /* Generated C header for:
  * API: egl
@@ -1030,16 +1030,6 @@ EGLAPI EGLBoolean EGLAPIENTRY eglExportDMABUFImageMESA (EGLDisplay dpy, EGLImage
 #define EGL_MESA_platform_surfaceless 1
 #define EGL_PLATFORM_SURFACELESS_MESA     0x31DD
 #endif /* EGL_MESA_platform_surfaceless */
-
-#ifndef EGL_MESA_query_driver
-#define EGL_MESA_query_driver 1
-typedef  const char* (EGLAPIENTRYP PFNEGLGETDISPLAYDRIVERCONFIGPROC) (EGLDisplay dpy,  const char* driverName);
-typedef  const char* (EGLAPIENTRYP PFNEGLGETDISPLAYDRIVERNAMEPROC) (EGLDisplay dpy);
-#ifdef EGL_EGLEXT_PROTOTYPES
-EGLAPI  const char* EGLAPIENTRY eglGetDisplayDriverConfig (EGLDisplay dpy,  const char* driverName);
-EGLAPI  const char* EGLAPIENTRY eglGetDisplayDriverName (EGLDisplay dpy);
-#endif
-#endif /* EGL_MESA_query_driver */
 
 #ifndef EGL_NOK_swap_region
 #define EGL_NOK_swap_region 1
