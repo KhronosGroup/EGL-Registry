@@ -674,4 +674,9 @@ extension EGL_EXT_gl_colorspace_display_p3_passthrough {
     flags       public
     filename    extensions/EXT/EGL_EXT_gl_colorspace_display_p3_passthrough.txt
 }
-# Next free extension number: 131
+extension EGL_MESA_query_driver {
+    number      131
+    flags       public
+    filename    extensions/MESA/EGL_MESA_query_driver.txt
+}
+# Next free extension number: 132
