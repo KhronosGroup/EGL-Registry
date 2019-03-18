@@ -2139,6 +2139,7 @@
                 <enum name="EGL_RECORDABLE_ANDROID"/>
             </require>
         </extension>
+        <extension name="EGL_ANDROID_GLES_layers" supported="egl"/>
         <extension name="EGL_ANGLE_d3d_share_handle_client_buffer" supported="egl">
             <require>
                 <enum name="EGL_D3D_TEXTURE_2D_SHARE_HANDLE_ANGLE"/>

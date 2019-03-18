@@ -306,7 +306,9 @@ include_once("../../assets/static_pages/khr_page_top.php");
 <li value=118> <a href="extensions/EXT/EGL_EXT_gl_colorspace_display_p3.txt">EGL_EXT_gl_colorspace_display_p3_linear</a>
 </li>
 <li value=119> <a href="extensions/EXT/EGL_EXT_gl_colorspace_scrgb.txt">EGL_EXT_gl_colorspace_scrgb (non-linear)</a>
+</li>
 <li value=120> <a href="extensions/EXT/EGL_EXT_image_implicit_sync_control.txt">EGL_EXT_image_implicit_sync_control</a>
+</li>
 <li value=121> <a href="extensions/EXT/EGL_EXT_bind_to_front.txt">EGL_EXT_bind_to_front</a>
 </li>
 <li value=122> <a href="extensions/ANDROID/EGL_ANDROID_get_frame_timestamps.txt">EGL_ANDROID_get_frame_timestamps</a>
@@ -327,8 +329,9 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=130> <a href="extensions/EXT/EGL_EXT_gl_colorspace_display_p3_passthrough.txt">EGL_EXT_gl_colorspace_display_p3_passthrough</a>
 </li>
-</li>
 <li value=131> <a href="extensions/MESA/EGL_MESA_query_driver.txt">EGL_MESA_query_driver</a>
+</li>
+<li value=132> <a href="extensions/ANDROID/EGL_ANDROID_GLES_layers.txt">EGL_ANDROID_GLES_layers</a>
 </li>
 </ol>
 
