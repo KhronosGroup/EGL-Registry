@@ -679,4 +679,9 @@ extension EGL_MESA_query_driver {
     flags       public
     filename    extensions/MESA/EGL_MESA_query_driver.txt
 }
+extension EGL_ANDROID_GLES_layers {
+    number      132
+    flags       public
+    filename    extensions/ANDROID/EGL_ANDROID_GLES_layers.txt
+}
 # Next free extension number: 132
