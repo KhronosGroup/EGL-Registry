@@ -33,12 +33,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: b3f95aa849 $ on $Git commit date: 2019-03-18 01:50:25 -0700 $
+** Khronos $Git commit SHA1: 7829ea3302 $ on $Git commit date: 2019-03-20 17:32:00 +0530 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20190318
+#define EGL_EGLEXT_VERSION 20190321
 
 /* Generated C header for:
  * API: egl
@@ -1133,6 +1133,11 @@ EGLAPI EGLBoolean EGLAPIENTRY eglPostSubBufferNV (EGLDisplay dpy, EGLSurface sur
 #endif
 #endif /* EGL_NV_post_sub_buffer */
 
+#ifndef EGL_NV_quadruple_buffer
+#define EGL_NV_quadruple_buffer 1
+#define EGL_QUADRUPLE_BUFFER_NV           0x3231
+#endif /* EGL_NV_quadruple_buffer */
+
 #ifndef EGL_NV_robustness_video_memory_purge
 #define EGL_NV_robustness_video_memory_purge 1
 #define EGL_GENERATE_RESET_ON_VIDEO_MEMORY_PURGE_NV 0x334C
@@ -1320,6 +1325,11 @@ EGLAPI EGLuint64NV EGLAPIENTRY eglGetSystemTimeNV (void);
 #endif
 #endif /* KHRONOS_SUPPORT_INT64 */
 #endif /* EGL_NV_system_time */
+
+#ifndef EGL_NV_triple_buffer
+#define EGL_NV_triple_buffer 1
+#define EGL_TRIPLE_BUFFER_NV              0x3230
+#endif /* EGL_NV_triple_buffer */
 
 #ifndef EGL_TIZEN_image_native_buffer
 #define EGL_TIZEN_image_native_buffer 1

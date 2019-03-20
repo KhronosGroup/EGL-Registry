@@ -684,4 +684,9 @@ extension EGL_ANDROID_GLES_layers {
     flags       public
     filename    extensions/ANDROID/EGL_ANDROID_GLES_layers.txt
 }
-# Next free extension number: 132
+extension EGL_NV_n_buffer {
+    number      133
+    flags       public
+    filename    extensions/NV/EGL_NV_n_buffer.txt
+}
+# Next free extension number: 134
