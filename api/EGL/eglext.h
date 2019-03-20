@@ -33,12 +33,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: b3f95aa849 $ on $Git commit date: 2019-03-18 01:50:25 -0700 $
+** Khronos $Git commit SHA1: f75e2d7c46 $ on $Git commit date: 2019-03-18 01:54:09 -0700 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20190318
+#define EGL_EGLEXT_VERSION 20190320
 
 /* Generated C header for:
  * API: egl
@@ -1107,6 +1107,12 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffersRegion2NOK (EGLDisplay dpy, EGLSurfa
 #define EGL_NV_device_cuda 1
 #define EGL_CUDA_DEVICE_NV                0x323A
 #endif /* EGL_NV_device_cuda */
+
+#ifndef EGL_NV_n_buffer
+#define EGL_NV_n_buffer 1
+#define EGL_TRIPLE_BUFFER_NV              0x3230
+#define EGL_QUADRUPLE_BUFFER_NV           0x3231
+#endif /* EGL_NV_n_buffer */
 
 #ifndef EGL_NV_native_query
 #define EGL_NV_native_query 1
