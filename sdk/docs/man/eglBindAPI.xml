@@ -1,7 +1,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" version="5.0" xml:base="" xml:id="eglBindAPI">
     <info>
          <copyright>
-             <year>2003-2014</year>
+             <year>2003-2018</year>
              <holder>The Khronos Group Inc.</holder>
          </copyright>
     </info>
@@ -48,6 +48,7 @@
             <function>eglGetCurrentDisplay</function>,
             <function>eglGetCurrentSurface</function>,
             <function>eglMakeCurrent</function>,
+            <function>eglSwapInterval</function>,
             <function>eglWaitClient</function>, and
             <function>eglWaitNative</function>.
         </para>
@@ -113,6 +114,7 @@
             <citerefentry><refentrytitle>eglGetCurrentSurface</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglMakeCurrent</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglQueryAPI</refentrytitle></citerefentry>,
+            <citerefentry><refentrytitle>eglSwapInterval</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglWaitClient</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglWaitNative</refentrytitle></citerefentry>
         </para>

@@ -3,7 +3,7 @@
   <head>
     <title xmlns:xlink="http://www.w3.org/1999/xlink">eglMakeCurrent - EGL Reference Pages</title>
     <link rel="stylesheet" type="text/css" href="khronos-man.css"/>
-    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
   </head>
   <body>
     <header/>
@@ -95,31 +95,113 @@
         <p>
             <code class="function">eglMakeCurrent</code> binds <em class="parameter"><code>context</code></em>
             to the current rendering thread and to the <em class="parameter"><code>draw</code></em>
-            and <em class="parameter"><code>read</code></em> surfaces. <em class="parameter"><code>draw</code></em>
-            is used for all GL operations except for any pixel data read back
+            and <em class="parameter"><code>read</code></em> surfaces.
+        </p>
+        <p>
+            For an OpenGL or OpenGL ES context, <em class="parameter"><code>draw</code></em>
+            is used for all operations except for any pixel data read back or copied
             (<a class="citerefentry" href="glReadPixels.xhtml"><span class="citerefentry"><span class="refentrytitle">glReadPixels</span></span></a>,
             <a class="citerefentry" href="glCopyTexImage2D.xhtml"><span class="citerefentry"><span class="refentrytitle">glCopyTexImage2D</span></span></a>, and
             <a class="citerefentry" href="glCopyTexSubImage2D.xhtml"><span class="citerefentry"><span class="refentrytitle">glCopyTexSubImage2D</span></span></a>),
             which is taken from the frame buffer values of
+            <em class="parameter"><code>read</code></em>. Note that the same
+            <span class="type">EGLSurface</span> may be specified for both draw and read.
+        </p>
+        <p>
+            For an OpenVG context, the same <span class="type">EGLSurface</span> must be
+            specified for both <em class="parameter"><code>draw</code></em> and
             <em class="parameter"><code>read</code></em>.
         </p>
         <p>
-            If the calling thread has already a current rendering context, that
-            context is flushed and marked as no longer current.
+            If the calling thread has already a current rendering context of
+            the same client API type as <em class="parameter"><code>context</code></em>, then
+            that context is flushed and marked as no longer current.
+            <em class="parameter"><code>context</code></em> is then made the current context
+            for the calling thread. For purposes of
+            <code class="function">eglMakeCurrent</code>, the client API type of all
+            OpenGL ES and OpenGL contexts is considered the same. In other
+            words, if any OpenGL ES context is currently bound and
+            <em class="parameter"><code>context</code></em> is an OpenGL context, or if any
+            OpenGL context is currently bound and
+            <em class="parameter"><code>context</code></em> is an OpenGL ES context, the
+            currently bound context will be made no longer current and
+            <em class="parameter"><code>context</code></em> will be made current.
         </p>
         <p>
-            The first time that <em class="parameter"><code>context</code></em> is made current,
-            the viewport and scissor dimensions are set to the size of the
-            <em class="parameter"><code>draw</code></em> surface. The viewport and
-            scissor are not modified when <em class="parameter"><code>context</code></em> is
-            subsequently made current.
+            OpenGL and OpenGL ES buffer mappings created by e.g.
+            <code class="function">glMapBuffer</code> are not affected by
+            <code class="function">eglMakeCurrent</code>; they persist whether the
+            context owning the buffer is current or not.
         </p>
         <p>
-            To release the current context without assigning a new one, call
-            <code class="function">eglMakeCurrent</code> with <em class="parameter"><code>draw</code></em>
-            and <em class="parameter"><code>read</code></em> set to
-            <code class="constant">EGL_NO_SURFACE</code> and <em class="parameter"><code>context</code></em>
-            set to <code class="constant">EGL_NO_CONTEXT</code>.
+            If <em class="parameter"><code>draw</code></em> is destroyed after
+            <code class="function">eglMakeCurrent</code> is called, then subsequent
+            rendering commands will be processed and the context state will
+            be updated, but the surface contents become undefined. If
+            <em class="parameter"><code>read</code></em> is destroyed after
+            <code class="function">eglMakeCurrent</code> then pixel values
+            <em class="parameter"><code>read</code></em> from the framebuffer (e.g., as
+            result of calling glReadPixels) are undefined. If a native
+            window or pixmap underlying the <em class="parameter"><code>draw</code></em> or
+            <em class="parameter"><code>read</code></em> surfaces is destroyed, rendering and
+            <em class="parameter"><code>read</code></em>back are handled as above.
+        </p>
+        <p>
+            To release the current context without assigning a new one, set
+            <em class="parameter"><code>context</code></em> to
+            <code class="constant">EGL_NO_CONTEXT</code> and set
+            <em class="parameter"><code>draw</code></em> and <em class="parameter"><code>read</code></em> to
+            <code class="constant">EGL_NO_SURFACE</code> . The currently bound
+            context for the client API specified by the current rendering
+            API is flushed and marked as no longer current, and there will
+            be no current context for that client API after
+            <code class="function">eglMakeCurrent</code> returns. This is the only
+            case in which <code class="function">eglMakeCurrent</code> respects the
+            current rendering API. In all other cases, the client API
+            affected is determined by <em class="parameter"><code>context</code></em>. This
+            is the only case where an uninitialized display may be passed to
+            <code class="function">eglMakeCurrent</code>.
+        </p>
+        <p>
+            If ctx is not <code class="constant">EGL_NO_CONTEXT</code>, then both
+            <em class="parameter"><code>draw</code></em> and <em class="parameter"><code>read</code></em> must
+            not be <code class="constant">EGL_NO_SURFACE</code> unless
+            <em class="parameter"><code>context</code></em> is a context which supports being
+            bound without read and draw surfaces. In this case the context
+            is made current without a default framebuffer. The meaning of
+            this is defined by the client API of the supporting context (see
+            chapter 4 of the OpenGL 3.0 Specification, and the
+            <code class="constant">GL_OES_surfaceless_context</code> OpenGL ES
+            extension.).
+        </p>
+        <p>
+            The first time a OpenGL or OpenGL ES context is made current the
+            viewport and scissor dimensions are set to the size of the
+            <em class="parameter"><code>draw</code></em> surface (as though
+            <code class="function">glViewport</code>(0,0,w,h) and
+            <code class="function">glScissor</code>(0,0,<em class="parameter"><code>w</code></em>,<em class="parameter"><code>h</code></em>)
+            were called, where <em class="parameter"><code>w</code></em> and
+            <em class="parameter"><code>h</code></em> are the width and height of the
+            surface, respectively). However, the viewport and scissor
+            dimensions are not modified when <em class="parameter"><code>context</code></em>
+            is subsequently made current. The client is responsible for
+            resetting the viewport and scissor in this case.
+        </p>
+        <p>
+            The first time <em class="parameter"><code>context</code></em> is made current,
+            if it is without a default framebuffer (e.g. both
+            <em class="parameter"><code>draw</code></em> and <em class="parameter"><code>read</code></em> are
+            <code class="constant">EGL_NO_SURFACE</code> ), then the viewport and
+            scissor regions are set as though
+            <code class="function">glViewport</code>(0,0,0,0) and
+            <code class="function">glScissor</code>(0,0,0,0) were called.
+        </p>
+        <p>
+            Implementations may delay allocation of auxiliary buffers for a
+            surface until they are required by a context (which may result
+            in the <code class="constant">EGL_BAD_ALLOC</code> error described
+            above). Once allocated, however, auxiliary buffers and their
+            contents persist until a surface is deleted.
         </p>
         <p>
             Use
@@ -132,81 +214,130 @@
       <div class="refsect1" id="errors">
         <h2>Errors</h2>
         <p>
-            <code class="constant">EGL_FALSE</code> is returned on failure,
-            <code class="constant">EGL_TRUE</code> otherwise. If <code class="constant">EGL_FALSE</code>
-            is returned, the previously current rendering context and
-            surfaces (if any) remain unchanged.
+            If <em class="parameter"><code>draw</code></em> or <em class="parameter"><code>read</code></em>
+            are not compatible with <em class="parameter"><code>context</code></em>, then an
+            <code class="constant">EGL_BAD_MATCH</code> error is generated.
         </p>
         <p>
-            <code class="constant">EGL_BAD_DISPLAY</code> is generated if
-            <em class="parameter"><code>display</code></em> is not an EGL display connection.
+            If <em class="parameter"><code>context</code></em> is current to some other
+            thread, or if either <em class="parameter"><code>draw</code></em> or
+            <em class="parameter"><code>read</code></em> are bound to contexts in another
+            thread, an <code class="constant">EGL_BAD_ACCESS</code> error is
+            generated.
         </p>
         <p>
-            <code class="constant">EGL_NOT_INITIALIZED</code> is generated if
-            <em class="parameter"><code>display</code></em> has not been initialized.
+            If binding <em class="parameter"><code>context</code></em> would exceed the
+            number of current contexts of that client API type supported by
+            the implementation, an <code class="constant">EGL_BAD_ACCESS</code> error
+            is generated.
         </p>
         <p>
-            <code class="constant">EGL_BAD_SURFACE</code> is generated if
-            <em class="parameter"><code>draw</code></em> or <em class="parameter"><code>read</code></em> is not an
-            EGL surface.
+            If either <em class="parameter"><code>draw</code></em> or
+            <em class="parameter"><code>read</code></em> are pbuffers created with
+            <code class="function">eglCreatePbufferFromClientBuffer</code>, and the
+            underlying bound client API buffers are in use by the client API
+            that created them, an <code class="constant">EGL_BAD_ACCESS</code> error
+            is generated.
         </p>
         <p>
-            <code class="constant">EGL_BAD_CONTEXT</code> is generated if
-            <em class="parameter"><code>context</code></em> is not an EGL rendering context.
+            If <em class="parameter"><code>context</code></em> is not a valid context and is
+            not <code class="constant">EGL_NO_CONTEXT</code>, an
+            <code class="constant">EGL_BAD_CONTEXT</code> error is generated.
         </p>
         <p>
-            <code class="constant">EGL_BAD_MATCH</code> is generated if
-            <em class="parameter"><code>draw</code></em> or
-            <em class="parameter"><code>read</code></em>
-            are not compatible with
-            <em class="parameter"><code>context</code></em>, or if
-            <em class="parameter"><code>context</code></em> is set to
-            <code class="constant">EGL_NO_CONTEXT</code> and
-            <em class="parameter"><code>draw</code></em> or
-            <em class="parameter"><code>read</code></em>
-            are not set to
-            <code class="constant">EGL_NO_SURFACE</code>, or if
-            <em class="parameter"><code>draw</code></em> or
-            <em class="parameter"><code>read</code></em> are set to
-            <code class="constant">EGL_NO_SURFACE</code> and
-            <em class="parameter"><code>context</code></em> is not set to
-            <code class="constant">EGL_NO_CONTEXT</code>.
+            If either <em class="parameter"><code>draw</code></em> or
+            <em class="parameter"><code>read</code></em> are not valid EGL surfaces and are
+            not <code class="constant">EGL_NO_SURFACE</code>, an
+            <code class="constant">EGL_BAD_SURFACE</code> error is generated.
         </p>
         <p>
-            <code class="constant">EGL_BAD_ACCESS</code> is generated if
-            <em class="parameter"><code>context</code></em>
-            is current to some other thread.
+            If <em class="parameter"><code>context</code></em> is
+            <code class="constant">EGL_NO_CONTEXT</code> and either
+            <em class="parameter"><code>draw</code></em> or <em class="parameter"><code>read</code></em> are
+            not <code class="constant">EGL_NO_SURFACE</code>, an
+            <code class="constant">EGL_BAD_MATCH</code> error is generated.
         </p>
         <p>
-            <code class="constant">EGL_BAD_NATIVE_PIXMAP</code> may be generated if
-            a native pixmap underlying either
-            <em class="parameter"><code>draw</code></em> or
-            <em class="parameter"><code>read</code></em>
-            is no longer valid.
+            If either of <em class="parameter"><code>draw</code></em> or
+            <em class="parameter"><code>read</code></em> is a valid surface and the other is
+            <code class="constant">EGL_NO_SURFACE</code>, an
+            <code class="constant">EGL_BAD_MATCH</code> error is generated.
         </p>
         <p>
-            <code class="constant">EGL_BAD_NATIVE_WINDOW</code> may be generated if
-            a native window underlying either
-            <em class="parameter"><code>draw</code></em> or
-            <em class="parameter"><code>read</code></em>
-            is no longer valid.
+            If <em class="parameter"><code>context</code></em> does not support being bound
+            without <em class="parameter"><code>read</code></em> and
+            <em class="parameter"><code>draw</code></em> surfaces, and both
+            <em class="parameter"><code>draw</code></em> and <em class="parameter"><code>read</code></em> are
+            <code class="constant">EGL_NO_SURFACE</code>, an
+            <code class="constant">EGL_BAD_MATCH</code> error is generated.
         </p>
         <p>
-            <code class="constant">EGL_BAD_CURRENT_SURFACE</code> is generated if
-            the previous context has unflushed commands and the previous surface
-            is no longer valid.
+            If a native window underlying either <em class="parameter"><code>draw</code></em>
+            or <em class="parameter"><code>read</code></em> is no longer valid, an
+            <code class="constant">EGL_BAD_NATIVE_WINDOW</code> error is generated.
         </p>
         <p>
-            <code class="constant">EGL_BAD_ALLOC</code> may be generated if
-            allocation of ancillary buffers for <em class="parameter"><code>draw</code></em> or
-            <em class="parameter"><code>read</code></em> were delayed until
-            <code class="function">eglMakeCurrent</code> is called, and there are not
-            enough resources to allocate them.
+            If <em class="parameter"><code>draw</code></em> and <em class="parameter"><code>read</code></em>
+            cannot fit into graphics memory simultaneously, an
+            <code class="constant">EGL_BAD_MATCH</code> error is generated.
         </p>
         <p>
-            <code class="constant">EGL_CONTEXT_LOST</code> is generated if a power management
-            event has occurred. The application must destroy all contexts and
-            reinitialise OpenGL ES state and objects to continue rendering.
+            If the previous context of the calling thread has unflushed
+            commands, and the previous surface is no longer valid, an
+            <code class="constant">EGL_BAD_CURRENT_SURFACE</code> error is generated.
+        </p>
+        <p>
+            If the ancillary buffers for <em class="parameter"><code>draw</code></em> and
+            <em class="parameter"><code>read</code></em> cannot be allocated, an
+            <code class="constant">EGL_BAD_ALLOC</code> error is generated.
+        </p>
+        <p>
+            If a power management event has occurred, an
+            <code class="constant">EGL_CONTEXT_LOST</code> error is generated.
+        </p>
+        <p>
+            If any of the following are true:
+
+            </p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc; ">
+            <li class="listitem">
+              <p>
+                    <em class="parameter"><code>context</code></em> is not
+                    <code class="constant">EGL_NO_CONTEXT</code>
+                </p>
+            </li>
+            <li class="listitem">
+              <p>
+                    <em class="parameter"><code>read</code></em> is not
+                    <code class="constant">EGL_NO_SURFACE</code>
+                </p>
+            </li>
+            <li class="listitem">
+              <p>
+                    <em class="parameter"><code>draw</code></em> is not
+                    <code class="constant">EGL_NO_SURFACE</code>
+                </p>
+            </li>
+          </ul>
+        </div>
+        <p>
+
+            then an <code class="constant">EGL_NOT_INITIALIZED</code> error is
+            generated if <em class="parameter"><code>display</code></em> is a valid but
+            uninitialized display.
+        </p>
+        <p>
+            As with other commands taking <span class="type">EGLDisplay</span>
+            parameters, if <em class="parameter"><code>display</code></em> is not a valid
+            <span class="type">EGLDisplay</span> handle, an
+            <code class="constant">EGL_BAD_DISPLAY</code> error is generated. (Some
+            implementations have chosen to allow
+            <code class="constant">EGL_NO_DISPLAY</code> as a valid
+            <em class="parameter"><code>display</code></em> parameter for
+            <code class="function">eglMakeCurrent</code>. This behavior is not
+            portable to all EGL implementations, and should be considered as
+            an undocumented vendor extension).
         </p>
       </div>
       <div class="refsect1" id="seealso">

@@ -3,7 +3,7 @@
   <head>
     <title xmlns:xlink="http://www.w3.org/1999/xlink">eglCreatePbufferSurface - EGL Reference Pages</title>
     <link rel="stylesheet" type="text/css" href="khronos-man.css"/>
-    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
   </head>
   <body>
     <header/>
@@ -98,6 +98,36 @@
         </p>
         <div class="variablelist">
           <dl class="variablelist">
+            <dt>
+              <span class="term">
+                <code class="constant">EGL_GL_COLORSPACE</code>
+              </span>
+            </dt>
+            <dd>
+              <p>
+                    Specifies the color space used by OpenGL and OpenGL ES
+                    when rendering to the surface. If its value is
+                    <code class="constant">EGL_GL_COLORSPACE_SRGB</code>, then a
+                    non-linear, perceptually uniform color space is assumed,
+                    with a corresponding
+                    <code class="constant">GL_FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING</code>
+                    value of <code class="constant">GL_SRGB</code>. If its value is
+                    <code class="constant">EGL_GL_COLORSPACE_LINEAR</code>, then a
+                    linear color space is assumed, with a corresponding
+                    <code class="constant">GL_FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING</code>
+                    value of <code class="constant">GL_LINEAR</code>. The default
+                    value of <code class="constant">EGL_GL_COLORSPACE</code> is
+                    <code class="constant">EGL_GL_COLORSPACE_SRGB</code>.
+                </p>
+              <p>
+                    Note that the <code class="constant">EGL_GL_COLORSPACE</code>
+                    attribute is used only by OpenGL and OpenGL ES contexts
+                    supporting sRGB framebuffers. EGL itself does not
+                    distinguish multiple colorspace models. Refer to the
+                    ``sRGB Conversion'' sections of the OpenGL 4.6 and
+                    OpenGL ES 3.2 Specifications for more information.
+                </p>
+            </dd>
             <dt>
               <span class="term">
                 <code class="constant">EGL_HEIGHT</code>
@@ -246,6 +276,12 @@
       <div class="refsect1" id="notes">
         <h2>Notes</h2>
         <p>
+            Attribute <code class="constant">EGL_GL_COLORSPACE</code>, and the
+            <code class="constant">EGL_OPENGL_ES3_BIT</code> bit value for attribute
+            <code class="constant">EGL_RENDERABLE_TYPE</code>, are supported only if
+            the EGL version is 1.5 or greater.
+        </p>
+        <p>
             Attributes
             <code class="constant">EGL_RENDERABLE_TYPE</code>,
             <code class="constant">EGL_VG_ALPHA_FORMAT</code>, and
@@ -314,8 +350,9 @@
             rendering (e.g. the EGL version is 1.2 or later, and the
             <code class="constant">EGL_RENDERABLE_TYPE</code> attribute of
             <em class="parameter"><code>config</code></em> does not include at least one
-            of <code class="constant">EGL_OPENGL_ES_BIT</code> or
-            <code class="constant">EGL_OPENGL_ES2_BIT</code>).
+            of <code class="constant">EGL_OPENGL_ES_BIT</code>,
+            <code class="constant">EGL_OPENGL_ES2_BIT</code>), or
+            <code class="constant">EGL_OPENGL_ES3_BIT</code>),
         </p>
         <p>
             <code class="constant">EGL_BAD_ALLOC</code> is generated if there are not

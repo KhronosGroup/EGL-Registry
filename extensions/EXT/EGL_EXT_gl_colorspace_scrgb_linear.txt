@@ -97,7 +97,7 @@ Modifications to the EGL 1.5 Specification
     The effective color gamut and luminance range of the content that extend
     beyond those of sRGB may be described via EGL_EXT_surface_SMPTE2086_metadata.
     It is highly recommended to supply such metadata, so the display pipeline
-    may use this information to transform the the colors in a manner that
+    may use this information to transform the colors in a manner that
     attempts to preserve the creative intent of the color data.
 
     In the "Errors" section on page 34 in 3.5.1 "Creating On Screen Rendering

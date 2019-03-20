@@ -1,7 +1,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" version="5.0" xml:base="" xml:id="eglIntro">
     <info>
          <copyright>
-             <year>2003-2014</year>
+             <year>2003-2018</year>
              <holder>The Khronos Group Inc.</holder>
          </copyright>
     </info>
@@ -23,28 +23,39 @@
             using a <firstterm>client API</firstterm> such as OpenGL ES
             (a 3D renderer for embedded systems), OpenGL (a functional
             superset of OpenGL ES for desktop systems), and OpenVG (a 2D
-            vector graphics renderer) together with a native window
-            system, such as Microsoft Windows or the X Window System.
+            vector graphics renderer) together with a
+            <firstterm>platform</firstterm>, such as Microsoft Windows or
+            the X Window System.
         </para>
         <para>
             Depending on its implementation EGL might be more or less
-            tightly integrated into the native window system. Most EGL
+            tightly integrated into the platform. Most EGL
             functions require an EGL display connection, which can be
             obtained by calling
-            <citerefentry><refentrytitle>eglGetDisplay</refentrytitle></citerefentry>
-            and passing in a native display handle or
-            <constant>EGL_DEFAULT_DISPLAY</constant>. To initialize and
+            <citerefentry><refentrytitle>eglGetPlatformDisplay</refentrytitle></citerefentry>
+            or
+            <citerefentry><refentrytitle>eglGetDisplay</refentrytitle></citerefentry>.
+            To initialize and
             query what EGL version is supported on the display
             connection, call
             <citerefentry><refentrytitle>eglInitialize</refentrytitle></citerefentry>.
         </para>
         <para>
-            Native window systems supporting EGL make a subset of their
+            The EGL specification does not define the set of platforms that
+            may be supported by an EGL implementation, nor does it specify
+            behavior specific to any platform. The set of supported
+            platforms and their behavior is defined by platform-specific
+            extensions. To detect if a particular platform is supported,
+            clients should query the <constant>EGL_EXTENSIONS</constant>
+            string of <constant>EGL_NO_DISPLAY</constant> using
+            <citerefentry><refentrytitle>eglQueryString</refentrytitle></citerefentry>.
+        </para>
+        <para>
+            Platforms supporting EGL make a subset of their
             visuals (which may also referred to as pixel formats, frame
             buffer configurations, or other similar terms) available for
             client API rendering. Windows and pixmaps created with these
-            visuals may also be rendered into using the native window
-            system API.
+            visuals may also be rendered into using the platform APIs.
         </para>
         <para>
             An EGL <firstterm>surface</firstterm> extends a native
@@ -58,9 +69,9 @@
             EGL supports rendering into three types of surfaces:
             windows, pixmaps and pixel buffers (pbuffers). EGL window
             and pixmap surfaces are associated with corresponding
-            resources of the native window system. EGL pixel buffers are
-            EGL only resources, and do not accept rendering through the
-            native window system.
+            resources of the platform. EGL pixel buffers are
+            EGL-only resources, and do not accept rendering through the
+            platform APIs.
         </para>
         <para>
             To render using a client API into an EGL surface, you must
@@ -122,13 +133,13 @@
             is called with different arguments.
         </para>
         <para>
-            Both native and client API commands may be used to operate
-            on certain surfaces, however, the two command streams are
+            Both platform and client API commands may be used to operate
+            on certain surfaces. However, the two command streams are
             not synchronized. Synchronization can be explicitly
             specified using by calling
-            <citerefentry><refentrytitle>eglWaitCLient</refentrytitle></citerefentry>,
+            <citerefentry><refentrytitle>eglWaitClient</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglWaitNative</refentrytitle></citerefentry>,
-            and possibly by calling other native window system commands.
+            and possibly by calling other platform APIs.
         </para>
     </refsect1>
     <refsect1 xml:id="examples"><title>Examples</title>
@@ -141,7 +152,7 @@
 <programlisting>
 #include &lt;stdlib.h&gt;
 #include &lt;unistd.h&gt;
-#include &lt;GLES/egl.h&gt;
+#include &lt;EGL/egl.h&gt;
 #include &lt;GLES/gl.h&gt;
 typedef ... NativeWindowType;
 extern NativeWindowType createNativeWindow(void);
@@ -159,34 +170,52 @@ int main(int argc, char ** argv)
         EGLSurface surface;
         NativeWindowType native_window;
         EGLint num_config;
+
         /* get an EGL display connection */
         display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+
         /* initialize the EGL display connection */
         eglInitialize(display, NULL, NULL);
+
         /* get an appropriate EGL frame buffer configuration */
         eglChooseConfig(display, attribute_list, &amp;config, 1, &amp;num_config);
+
         /* create an EGL rendering context */
         context = eglCreateContext(display, config, EGL_NO_CONTEXT, NULL);
+
         /* create a native window */
         native_window = createNativeWindow();
+
         /* create an EGL window surface */
         surface = eglCreateWindowSurface(display, config, native_window, NULL);
+
         /* connect the context to the surface */
         eglMakeCurrent(display, surface, surface, context);
+
         /* clear the color buffer */
         glClearColor(1.0, 1.0, 0.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
         glFlush();
+
         eglSwapBuffers(display, surface);
+
         sleep(10);
         return EXIT_SUCCESS;
 }
 </programlisting>
     </refsect1>
+    <refsect1 xml:id="notes"><title>Notes</title>
+        <para>
+            Prior to EGL 1.5, platforms were referred to as the
+            <firstterm>native window system</firstterm>, and
+            platform-specific queries and APIs were not available. Only a
+            single native window system was supported.
+        </para>
+    </refsect1>
     <refsect1 xml:id="usingeglextensions"><title>Using EGL Extensions</title>
         <para>
             All supported EGL extensions will have a corresponding definition in
-            <filename>egl.h</filename> and a token in the extensions string returned
+            <filename>egl.h</filename> and a token in the extension strings returned
             by
             <citerefentry><refentrytitle>eglQueryString</refentrytitle></citerefentry>.
         </para>
@@ -232,6 +261,7 @@ int main(int argc, char ** argv)
             <citerefentry><refentrytitle>eglDestroySurface</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglGetConfigs</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglGetDisplay</refentrytitle></citerefentry>,
+            <citerefentry><refentrytitle>eglGetPlatformDisplay</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglInitialize</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglMakeCurrent</refentrytitle></citerefentry>,
             <citerefentry><refentrytitle>eglQueryString</refentrytitle></citerefentry>,

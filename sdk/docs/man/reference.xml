@@ -11,7 +11,7 @@
     EGL Reference Manual
   </title>
   <subtitle>
-    Version 1.4
+    Version 1.5
   </subtitle>
   <bookinfo>
     <author>
@@ -138,13 +138,18 @@
     <xi:include href="eglBindAPI.xml"/>
     <xi:include href="eglBindTexImage.xml"/>
     <xi:include href="eglChooseConfig.xml"/>
+    <xi:include href="eglClientWaitSync.xml"/>
     <xi:include href="eglCopyBuffers.xml"/>
     <xi:include href="eglCreateContext.xml"/>
+    <xi:include href="eglCreateImage.xml"/>
     <xi:include href="eglCreatePbufferSurface.xml"/>
     <xi:include href="eglCreatePixmapSurface.xml"/>
+    <xi:include href="eglCreateSync.xml"/>
     <xi:include href="eglCreateWindowSurface.xml"/>
     <xi:include href="eglDestroyContext.xml"/>
+    <xi:include href="eglDestroyImage.xml"/>
     <xi:include href="eglDestroySurface.xml"/>
+    <xi:include href="eglDestroySync.xml"/>
     <xi:include href="eglGetConfigAttrib.xml"/>
     <xi:include href="eglGetConfigs.xml"/>
     <xi:include href="eglGetCurrentContext.xml"/>
@@ -152,7 +157,9 @@
     <xi:include href="eglGetCurrentSurface.xml"/>
     <xi:include href="eglGetDisplay.xml"/>
     <xi:include href="eglGetError.xml"/>
+    <xi:include href="eglGetPlatformDisplay.xml"/>
     <xi:include href="eglGetProcAddress.xml"/>
+    <xi:include href="eglGetSyncAttrib.xml"/>
     <xi:include href="eglInitialize.xml"/>
     <xi:include href="eglIntro.xml"/>
     <xi:include href="eglMakeCurrent.xml"/>
@@ -169,6 +176,7 @@
     <xi:include href="eglWaitClient.xml"/>
     <xi:include href="eglWaitGL.xml"/>
     <xi:include href="eglWaitNative.xml"/>
+    <xi:include href="eglWaitSync.xml"/>
   </chapter>
   <xi:include href="license-full.xml"/>
 </book>

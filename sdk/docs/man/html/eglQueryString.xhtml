@@ -3,7 +3,7 @@
   <head>
     <title xmlns:xlink="http://www.w3.org/1999/xlink">eglQueryString - EGL Reference Pages</title>
     <link rel="stylesheet" type="text/css" href="khronos-man.css"/>
-    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
   </head>
   <body>
     <header/>
@@ -12,7 +12,8 @@
       <div class="refnamediv">
         <h2>Name</h2>
         <p>eglQueryString — 
-            return a string describing an <abbr class="acronym">EGL</abbr> display connection
+            return a string describing properties of the EGL client or of an
+            <abbr class="acronym">EGL</abbr> display connection
         </p>
       </div>
       <div class="refsynopsisdiv">
@@ -72,8 +73,9 @@
         <h2>Description</h2>
         <p>
             <code class="function">eglQueryString</code> returns a pointer to a
-            static string describing an EGL display connection.
-            <em class="parameter"><code>name</code></em> can be one of the following:
+            static, zero-terminated string describing properties of the EGL
+            client or of an EGL display connection.
+            <em class="parameter"><code>name</code></em> may be one of the following:
         </p>
         <div class="variablelist">
           <dl class="variablelist">
@@ -86,7 +88,7 @@
               <p>
                     Returns a string describing which client rendering
                     APIs are supported. The string contains a
-                    space-separate list of API names. The list must
+                    space-separated list of API names. The list must
                     include at least one of <code class="code">OpenGL</code>,
                     <code class="code">OpenGL_ES</code>, or <code class="code">OpenVG</code>.
                     These strings correspond respectively to values
@@ -104,8 +106,9 @@
             </dt>
             <dd>
               <p>
-                    Returns the company responsible for this EGL implementation. This
-                    name does not change from release to release.
+                    Returns the name of the vendor responsible for this EGL
+                    implementation. The format and contents of the string
+                    are implementation-dependent.
                 </p>
             </dd>
             <dt>
@@ -115,14 +118,27 @@
             </dt>
             <dd>
               <p>
-                    Returns a version or release number.
-                    The <code class="constant">EGL_VERSION</code> string is laid out as
-                    follows:</p>
+                        Returns a version or release number. The
+                        <code class="constant">EGL_VERSION</code> string is laid out
+                        as follows:
+                    </p>
               <p>
-                    <em class="replaceable"><code>major_version</code></em>.<em class="replaceable"><code>minor_version</code></em>
-                    space
-                    <em class="replaceable"><code>vendor_specific_info</code></em>
-                </p>
+                        <em class="replaceable"><code>major_version</code></em>.<em class="replaceable"><code>minor_version</code></em>
+                        space
+                        <em class="replaceable"><code>vendor_specific_info</code></em>
+                    </p>
+              <p>
+                        Both the major and minor portions of the version
+                        number are numeric. Their values must match the
+                        <em class="parameter"><code>major</code></em> and
+                        <em class="parameter"><code>minor</code></em> values returned by
+                        <a class="citerefentry" href="eglInitialize.xhtml"><span class="citerefentry"><span class="refentrytitle">eglInitialize</span></span></a>.
+                    </p>
+              <p>
+                        The vendor-specific information is optional; if
+                        present, its format and contents are
+                        implementation-specific.
+                    </p>
             </dd>
             <dt>
               <span class="term">
@@ -131,8 +147,24 @@
             </dt>
             <dd>
               <p>
-                    Returns a space separated list of supported extensions to EGL.
-                </p>
+                        Returns a space separated list of supported
+                        extensions to EGL. If there are no extensions, then
+                        the empty string is returned.
+                    </p>
+              <p>
+                        If <em class="parameter"><code>display</code></em> is
+                        <code class="constant">EGL_NO_DISPLAY</code>, then the
+                        <code class="constant">EGL_EXTENSIONS</code> string describes
+                        the set of supported <em class="firstterm">client
+                        extensions</em>. If
+                        <em class="parameter"><code>display</code></em> is a valid,
+                        initialized display, then the
+                        <code class="constant">EGL_EXTENSIONS</code> string describes
+                        the set of <em class="firstterm">display extensions</em>
+                        supported by that display. The set of supported
+                        client extensions is disjoint from the set of
+                        extensions supported by any given display.
+                    </p>
             </dd>
           </dl>
         </div>
@@ -143,6 +175,11 @@
             <code class="constant">EGL_CLIENT_APIS</code> is supported only if
             the EGL version is 1.2 or greater.
         </p>
+        <p>
+            A <em class="parameter"><code>display</code></em> of
+            <code class="constant">EGL_NO_DISPLAY</code> is supported only if the EGL
+            version is 1.5 or greater.
+        </p>
       </div>
       <div class="refsect1" id="errors">
         <h2>Errors</h2>
@@ -151,11 +188,16 @@
         </p>
         <p>
             <code class="constant">EGL_BAD_DISPLAY</code> is generated if
-            <em class="parameter"><code>display</code></em> is not an EGL display connection.
+            <em class="parameter"><code>display</code></em> is not an EGL display connection,
+            unless <em class="parameter"><code>display</code></em> is
+            <code class="constant">EGL_NO_DISPLAY</code> and
+            <em class="parameter"><code>name</code></em> is
+            <code class="constant">EGL_EXTENSIONS</code>.
         </p>
         <p>
             <code class="constant">EGL_NOT_INITIALIZED</code> is generated if
-            <em class="parameter"><code>display</code></em> has not been initialized.
+            <em class="parameter"><code>display</code></em> is a valid but uninitialized
+            EGLDisplay.
         </p>
         <p>
             <code class="constant">EGL_BAD_PARAMETER</code> is generated if

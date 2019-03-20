@@ -25,10 +25,10 @@ include_once("../../assets/static_pages/khr_page_top.php");
      (required by the current EGL and OpenGL ES headers). </li>
 </ul>
 
-<h6> Man Pages, Technical Notes and White Papers </h6>
+<h6> Reference Pages, Technical Notes and White Papers </h6>
 
 <ul>
-<li> <a href="sdk/docs/man/"> EGL 1.4 man pages </a>
+<li> <a href="sdk/docs/man/"> EGL 1.5 reference pages </a>
 <li> <a href="specs/EGLTechNote0001.html">EGL Technical Note #1 - EGL 1.4 and
      ancillary buffer preservation </a>
 </ul>
@@ -306,7 +306,9 @@ include_once("../../assets/static_pages/khr_page_top.php");
 <li value=118> <a href="extensions/EXT/EGL_EXT_gl_colorspace_display_p3.txt">EGL_EXT_gl_colorspace_display_p3_linear</a>
 </li>
 <li value=119> <a href="extensions/EXT/EGL_EXT_gl_colorspace_scrgb.txt">EGL_EXT_gl_colorspace_scrgb (non-linear)</a>
+</li>
 <li value=120> <a href="extensions/EXT/EGL_EXT_image_implicit_sync_control.txt">EGL_EXT_image_implicit_sync_control</a>
+</li>
 <li value=121> <a href="extensions/EXT/EGL_EXT_bind_to_front.txt">EGL_EXT_bind_to_front</a>
 </li>
 <li value=122> <a href="extensions/ANDROID/EGL_ANDROID_get_frame_timestamps.txt">EGL_ANDROID_get_frame_timestamps</a>
@@ -318,6 +320,18 @@ include_once("../../assets/static_pages/khr_page_top.php");
 <li value=125> <a href="extensions/EXT/EGL_EXT_image_gl_colorspace.txt">EGL_EXT_image_gl_colorspace</a>
 </li>
 <li value=126> <a href="extensions/KHR/EGL_KHR_display_reference.txt">EGL_KHR_display_reference</a>
+</li>
+<li value=127> <a href="extensions/NV/EGL_NV_stream_flush.txt">EGL_NV_stream_flush</a>
+</li>
+<li value=128> <a href="extensions/EXT/EGL_EXT_sync_reuse.txt">EGL_EXT_sync_reuse</a>
+</li>
+<li value=129> <a href="extensions/EXT/EGL_EXT_client_sync.txt">EGL_EXT_client_sync</a>
+</li>
+<li value=130> <a href="extensions/EXT/EGL_EXT_gl_colorspace_display_p3_passthrough.txt">EGL_EXT_gl_colorspace_display_p3_passthrough</a>
+</li>
+<li value=131> <a href="extensions/MESA/EGL_MESA_query_driver.txt">EGL_MESA_query_driver</a>
+</li>
+<li value=132> <a href="extensions/ANDROID/EGL_ANDROID_GLES_layers.txt">EGL_ANDROID_GLES_layers</a>
 </li>
 </ol>
 

@@ -3,7 +3,7 @@
   <head>
     <title xmlns:xlink="http://www.w3.org/1999/xlink">eglGetCurrentDisplay - EGL Reference Pages</title>
     <link rel="stylesheet" type="text/css" href="khronos-man.css"/>
-    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
   </head>
   <body>
     <header/>
@@ -38,6 +38,21 @@
             <abbr class="acronym">EGL</abbr> rendering context, as specified by
             <a class="citerefentry" href="eglMakeCurrent.xhtml"><span class="citerefentry"><span class="refentrytitle">eglMakeCurrent</span></span></a>.
             If no context is current, <code class="constant">EGL_NO_DISPLAY</code> is returned.
+        </p>
+      </div>
+      <div class="refsect1" id="errors">
+        <h2>Errors</h2>
+        <p>
+            Passing <code class="constant">EGL_NO_DISPLAY</code> to any command
+            taking an <span class="type">EGLDisplay</span> parameter will generate either
+            an <code class="constant">EGL_BAD_DISPLAY</code> error if the EGL
+            implementation validates <span class="type">EGLDisplay</span> handles, or
+            undefined behavior as described at the end of section 3.1 of the
+            EGL 1.5 Specification. The only exception to this rule is that
+            <code class="function">eglQueryString</code> will accept an
+            <span class="type">EGLDisplay</span> parameter of
+            <code class="constant">EGL_NO_DISPLAY</code> when querying the client
+            extension string (see section 3.3 of the EGL 1.5 Specification).
         </p>
       </div>
       <div class="refsect1" id="seealso">

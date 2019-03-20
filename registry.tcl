@@ -654,4 +654,34 @@ extension EGL_KHR_display_reference {
     flags       public
     filename    extensions/KHR/EGL_KHR_display_reference.txt
 }
-# Next free extension number: 127
+extension EGL_NV_stream_flush {
+    number      127
+    flags       public
+    filename    extensions/NV/EGL_NV_stream_flush.txt
+}
+extension EGL_EXT_sync_reuse {
+    number      128
+    flags       public
+    filename    extensions/EXT/EGL_EXT_sync_reuse.txt
+}
+extension EGL_EXT_client_sync {
+    number      129
+    flags       public
+    filename    extensions/EXT/EGL_EXT_client_sync.txt
+}
+extension EGL_EXT_gl_colorspace_display_p3_passthrough {
+    number      130
+    flags       public
+    filename    extensions/EXT/EGL_EXT_gl_colorspace_display_p3_passthrough.txt
+}
+extension EGL_MESA_query_driver {
+    number      131
+    flags       public
+    filename    extensions/MESA/EGL_MESA_query_driver.txt
+}
+extension EGL_ANDROID_GLES_layers {
+    number      132
+    flags       public
+    filename    extensions/ANDROID/EGL_ANDROID_GLES_layers.txt
+}
+# Next free extension number: 132

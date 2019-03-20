@@ -3,7 +3,7 @@
   <head>
     <title xmlns:xlink="http://www.w3.org/1999/xlink">eglGetProcAddress - EGL Reference Pages</title>
     <link rel="stylesheet" type="text/css" href="khronos-man.css"/>
-    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
   </head>
   <body>
     <header/>
@@ -22,9 +22,9 @@
           <table style="border: 0; cellspacing: 0; cellpadding: 0;" class="funcprototype-table">
             <tr>
               <td>
-                <code class="funcdef">void (* <strong class="fsfunc">eglGetProcAddress</strong>)()(</code>
+                <code class="funcdef">void (* <strong class="fsfunc">eglGetProcAddress</strong>(</code>
               </td>
-              <td>char const * <var class="pdparam">procname</var><code>)</code>;</td>
+              <td>char const * <var class="pdparam">procname</var>))(void<code>)</code>;</td>
             </tr>
           </table>
           <div class="funcprototype-spacer"> </div>
@@ -53,39 +53,61 @@
         <h2>Description</h2>
         <p>
             <code class="function">eglGetProcAddress</code> returns the address of
-            the extension function named by <em class="parameter"><code>procname</code></em>.
-            <em class="parameter"><code>procname</code></em>
-            must be a null-terminated string. The pointer returned
-            should be cast to a function pointer type matching the extension
-            function's definition in that extension specification. A return value
+            the client API or EGL function named by
+            <em class="parameter"><code>procname</code></em>. <em class="parameter"><code>procname</code></em>
+            must be a null-terminated string. The pointer returned should be
+            cast to a function pointer matching the function's definition in
+            the corresponding API or extension specification. A return value
             of <code class="constant">NULL</code> indicates that the specific
-            function does not exist for the <abbr class="acronym">EGL</abbr> implementation.
+            function does not exist for the implementation.
         </p>
         <p>
             A non-<code class="constant">NULL</code> return value does not guarantee
-            that an extension function is actually supported at runtime. The client
-            must also query
-            <a class="citerefentry" href="glGetString.xhtml"><span class="citerefentry"><span class="refentrytitle">glGetString</span></span></a>(<code class="constant">GL_EXTENSIONS</code>) or
-            <a class="citerefentry" href="eglQueryString.xhtml"><span class="citerefentry"><span class="refentrytitle">eglQueryString</span></span></a>(<em class="parameter"><code>display</code></em>,
-            <code class="constant">EGL_EXTENSIONS</code>) to determine if an
-            extension is supported by a particular context or display.
+            that an extension function is actually supported at runtime. The
+            client must also make a corresponding query, such as
+            <code class="function">glGetString</code>(<code class="constant">GL_EXTENSIONS</code>)
+            for OpenGL and OpenGL ES extensions;
+            <code class="function">vgGetString</code>(<code class="constant">VG_EXTENSIONS</code>)
+            for OpenVG extensions;
+            <code class="function">eglQueryString</code>(<em class="parameter"><code>display</code></em>,
+            <code class="constant">EGL_EXTENSIONS</code>); or query the EGL or client
+            API version for non-extension functions, to determine if a
+            function is supported by EGL or a specific client API context.
         </p>
         <p>
-            Function pointers returned by
+            Client API function pointers returned by
             <code class="function">eglGetProcAddress</code> are independent of the
-            display and the currently bound context and may be used by any context
-            which supports the extension.
+            display and the currently bound client API context, and may be
+            used by any client API context which supports the function.
         </p>
         <p>
             <code class="function">eglGetProcAddress</code> may be queried for all
-            <abbr class="acronym">GL</abbr> and <abbr class="acronym">EGL</abbr> extension functions.
+            EGL and client API functions supported by the implementation
+            (whether those functions are extensions or not, and whether they
+            are supported by the current client API context or not).
+        </p>
+        <p>
+            For functions that are queryable with
+            <code class="function">eglGetProcAddress</code>, implementations may
+            choose to also export those functions statically from the object
+            libraries implementing those functions. However, portable
+            clients cannot rely on this behavior.
+        </p>
+      </div>
+      <div class="refsect1" id="notes">
+        <h2>Notes</h2>
+        <p>
+            If the EGL version is not 1.5 or greater, only queries of EGL
+            and client API <span class="emphasis"><em>extension</em></span> functions will
+            succeed.
         </p>
       </div>
       <div class="refsect1" id="seealso">
         <h2>See Also</h2>
         <p>
-            <a class="citerefentry" href="glGetString.xhtml"><span class="citerefentry"><span class="refentrytitle">glGetString</span></span></a>,
+            <code class="function">glGetString</code>
             <a class="citerefentry" href="eglQueryString.xhtml"><span class="citerefentry"><span class="refentrytitle">eglQueryString</span></span></a>    </p>
+        <code class="function">vgGetString</code>
       </div>
       <p>
     </p>

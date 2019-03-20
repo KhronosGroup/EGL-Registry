@@ -1,7 +1,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" version="5.0" xml:base="" xml:id="eglChooseConfig">
     <info>
          <copyright>
-             <year>2003-2014</year>
+             <year>2003-2018</year>
              <holder>The Khronos Group Inc.</holder>
          </copyright>
     </info>
@@ -133,8 +133,7 @@
                     is zero.
                 </para>
                 <para>
-                    The alpha mask buffer is used only by OpenGL and
-                    OpenGL ES client APIs.
+                    The alpha mask buffer is used only by OpenVG.
                 </para>
                 </listitem>
             </varlistentry>
@@ -404,8 +403,9 @@
                     The default value is zero.
                 </para>
                 <para>
-                    Most imlementations do not support overlay or
-                    underlay planes (buffer levels other than zero).
+                    Most platforms do not support buffer levels other than
+                    zero. The behavior of windows placed in overlay and
+                    underlay planes depends on the underlying platform.
                 </para>
                 </listitem>
             </varlistentry>
