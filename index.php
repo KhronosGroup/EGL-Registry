@@ -333,6 +333,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=132> <a href="extensions/ANDROID/EGL_ANDROID_GLES_layers.txt">EGL_ANDROID_GLES_layers</a>
 </li>
+<li value=133> <a href="extensions/NV/EGL_NV_n_buffer.txt">EGL_NV_n_buffer</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
