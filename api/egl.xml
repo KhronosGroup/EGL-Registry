@@ -2926,6 +2926,12 @@
                 <enum name="EGL_CUDA_DEVICE_NV"/>
             </require>
         </extension>
+        <extension name="EGL_NV_n_buffer" supported="egl">
+            <require>
+                <enum name="EGL_TRIPLE_BUFFER_NV"/>
+                <enum name="EGL_QUADRUPLE_BUFFER_NV"/>
+            </require>
+        </extension>
         <extension name="EGL_NV_native_query" supported="egl">
             <require>
                 <command name="eglQueryNativeDisplayNV"/>

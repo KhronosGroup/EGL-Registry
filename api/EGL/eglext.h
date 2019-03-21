@@ -1108,6 +1108,12 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffersRegion2NOK (EGLDisplay dpy, EGLSurfa
 #define EGL_CUDA_DEVICE_NV                0x323A
 #endif /* EGL_NV_device_cuda */
 
+#ifndef EGL_NV_n_buffer
+#define EGL_NV_n_buffer 1
+#define EGL_TRIPLE_BUFFER_NV              0x3230
+#define EGL_QUADRUPLE_BUFFER_NV           0x3231
+#endif /* EGL_NV_n_buffer */
+
 #ifndef EGL_NV_native_query
 #define EGL_NV_native_query 1
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYNATIVEDISPLAYNVPROC) (EGLDisplay dpy, EGLNativeDisplayType *display_id);
