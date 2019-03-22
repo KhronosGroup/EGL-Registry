@@ -617,7 +617,9 @@
         <enum value="0x322D" name="EGL_BAD_OUTPUT_LAYER_EXT"/>
         <enum value="0x322E" name="EGL_BAD_OUTPUT_PORT_EXT"/>
         <enum value="0x322F" name="EGL_SWAP_INTERVAL_EXT"/>
-            <unused start="0x3230" end="0x3232"/>
+        <enum value="0x3230" name="EGL_TRIPLE_BUFFER_NV"/>
+        <enum value="0x3231" name="EGL_QUADRUPLE_BUFFER_NV"/>
+            <unused start="0x3232"/>
         <enum value="0x3233" name="EGL_DRM_DEVICE_FILE_EXT"/>
         <enum value="0x3234" name="EGL_DRM_CRTC_EXT"/>
         <enum value="0x3235" name="EGL_DRM_PLANE_EXT"/>
@@ -2941,6 +2943,11 @@
                 <command name="eglPostSubBufferNV"/>
             </require>
         </extension>
+        <extension name="EGL_NV_quadruple_buffer" supported="egl">
+            <require>
+                <enum name="EGL_QUADRUPLE_BUFFER_NV"/>
+            </require>
+        </extension>
         <extension name="EGL_NV_robustness_video_memory_purge" supported="egl">
             <require>
                 <enum name="EGL_GENERATE_RESET_ON_VIDEO_MEMORY_PURGE_NV"/>
@@ -3096,6 +3103,11 @@
             <require>
                 <command name="eglGetSystemTimeFrequencyNV"/>
                 <command name="eglGetSystemTimeNV"/>
+            </require>
+        </extension>
+        <extension name="EGL_NV_triple_buffer" supported="egl">
+            <require>
+                <enum name="EGL_TRIPLE_BUFFER_NV"/>
             </require>
         </extension>
         <extension name="EGL_TIZEN_image_native_buffer" supported="egl">
