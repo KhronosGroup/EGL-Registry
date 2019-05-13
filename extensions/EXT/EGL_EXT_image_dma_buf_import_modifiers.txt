@@ -24,7 +24,7 @@ Status
 
 Version
 
-    Version 4, October 20, 2016
+    Version 5, March 12, 2019
 
 Number
 
@@ -111,8 +111,10 @@ Additions to Chapter 2 of the EGL 1.2 Specification (EGL Operation)
     attribute values may be given. These attribute values together form an
     unsigned 64-bit value called a format modifier. Format modifiers are
     specified by drm_fourcc.h and used as the modifier parameter of the
-    drm_mode_fb_cmd2 ioctl. If neither of the two attributes are given, the
-    format modifier is assumed to be zero. The two attributes are:
+    drm_mode_fb_cmd2 ioctl. If neither of the two attributes are given, or
+    if the modifier is explicitly declared to be DRM_FORMAT_MOD_INVALID, the
+    effective format modifier is implementation-defined. The two attributes
+    are:
 
         * EGL_DMA_BUF_PLANE0_MODIFIER_LO_EXT: The lowest 32 bits of the
           64-bit format modifier.
@@ -219,6 +221,10 @@ Additions to Chapter 2 of the EGL 1.2 Specification (EGL Operation)
 
 
 Revision History
+
+#5 (Daniel Stone, March 12, 2019)
+   - Correct description of behaviour when a modifier is not explicitly given;
+     zero is not correct as it is an explicit modifier itself (linear).
 
 #4 (Daniel Stone, October 20, 2016)
    - Switch to EGLuint64KHR for modifier types.
