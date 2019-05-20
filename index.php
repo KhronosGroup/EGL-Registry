@@ -335,6 +335,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=133> <a href="extensions/NV/EGL_NV_n_buffer.txt">EGL_NV_n_buffer</a>
 </li>
+<li value=134> <a href="extensions/NV/EGL_NV_stream_origin.txt">EGL_NV_stream_origin</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
