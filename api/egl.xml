@@ -850,7 +850,18 @@
         <enum value="0x3363" name="EGL_GL_COLORSPACE_DISPLAY_P3_EXT"/>
         <enum value="0x3364" name="EGL_SYNC_CLIENT_EXT"/>
         <enum value="0x3365" name="EGL_SYNC_CLIENT_SIGNAL_EXT"/>
-            <unused start="0x3366" end="0x339F"/>
+        <enum value="0x3366" name="EGL_STREAM_FRAME_ORIGIN_X_NV"/>
+        <enum value="0x3367" name="EGL_STREAM_FRAME_ORIGIN_Y_NV"/>
+        <enum value="0x3368" name="EGL_STREAM_FRAME_MAJOR_AXIS_NV"/>
+        <enum value="0x3369" name="EGL_CONSUMER_AUTO_ORIENTATION_NV"/>
+        <enum value="0x336A" name="EGL_PRODUCER_AUTO_ORIENTATION_NV"/>
+        <enum value="0x336B" name="EGL_LEFT_NV"/>
+        <enum value="0x336C" name="EGL_RIGHT_NV"/>
+        <enum value="0x336D" name="EGL_TOP_NV"/>
+        <enum value="0x336E" name="EGL_BOTTOM_NV"/>
+        <enum value="0x336F" name="EGL_X_AXIS_NV"/>
+        <enum value="0x3370" name="EGL_Y_AXIS_NV"/>
+            <unused start="0x3371" end="0x339F"/>
     </enums>
 
     <enums namespace="EGL" start="0x33A0" end="0x33AF" vendor="ANGLE" comment="Reserved for Shannon Woods (Bug 13175)">
@@ -3242,6 +3253,21 @@
         <extension name="EGL_EXT_bind_to_front" supported="egl">
             <require>
                 <enum name="EGL_FRONT_BUFFER_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_NV_stream_origin" supported="egl">
+            <require>
+                <enum name="EGL_STREAM_FRAME_ORIGIN_X_NV"/>
+                <enum name="EGL_STREAM_FRAME_ORIGIN_Y_NV"/>
+                <enum name="EGL_STREAM_FRAME_MAJOR_AXIS_NV"/>
+                <enum name="EGL_CONSUMER_AUTO_ORIENTATION_NV"/>
+                <enum name="EGL_PRODUCER_AUTO_ORIENTATION_NV"/>
+                <enum name="EGL_LEFT_NV"/>
+                <enum name="EGL_RIGHT_NV"/>
+                <enum name="EGL_TOP_NV"/>
+                <enum name="EGL_BOTTOM_NV"/>
+                <enum name="EGL_X_AXIS_NV"/>
+                <enum name="EGL_Y_AXIS_NV"/>
             </require>
         </extension>
     </extensions>

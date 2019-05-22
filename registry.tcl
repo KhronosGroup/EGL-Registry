@@ -689,4 +689,9 @@ extension EGL_NV_n_buffer {
     flags       public
     filename    extensions/NV/EGL_NV_n_buffer.txt
 }
-# Next free extension number: 134
+extension EGL_NV_stream_origin {
+    number      134
+    flags       public
+    filename    extensions/NV/EGL_NV_stream_origin.txt
+}
+# Next free extension number: 135
