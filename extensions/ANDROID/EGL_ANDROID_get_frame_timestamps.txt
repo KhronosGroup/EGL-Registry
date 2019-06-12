@@ -76,7 +76,7 @@ New Procedures and Functions
             EGLuint64KHR frameId, EGLint numTimestamps,
             const EGLint *timestamps, EGLnsecsANDROID *values);
 
-    EGLBoolean eglQueryTimestampSupportedANDROID(EGLDisplay dpy,
+    EGLBoolean eglGetFrameTimestampSupportedANDROID(EGLDisplay dpy,
             EGLSurface surface, EGLint timestamp);
 
 New Tokens
@@ -213,11 +213,11 @@ Changes to Chapter 3 of the EGL 1.5 Specification (EGL Functions and Errors)
 
     and
 
-        EGLBoolean eglGetFrameTimestampsSupportedANDROID(EGLDisplay dpy,
+        EGLBoolean eglGetFrameTimestampSupportedANDROID(EGLDisplay dpy,
             EGLSurface surface, EGLint timestamp);
 
     allows querying which values are supported by the implementations of
-    eglGetCompositoTimingANDROID and eglGetFrameTimestampsSupportedANDROID
+    eglGetCompositorTimingANDROID and eglGetFrameTimestampSupportedANDROID
     respectively."
 
 Issues
@@ -225,6 +225,10 @@ Issues
     None
 
 Revision History
+
+#9 (Chris Forbes, June 11, 2019)
+    - Fix eglGetFrameTimestampSupportedANDROID function name in extension
+      spec to match reality
 
 #8 (Brian Anderson, April 11, 2017)
     - Use reserved enumerant values.
