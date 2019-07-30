@@ -19,7 +19,7 @@ Contacts
 
 Status
 
-    Draft
+    complete.
 
 Version
 
