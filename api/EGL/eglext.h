@@ -1184,7 +1184,7 @@ EGLAPI EGLBoolean EGLAPIENTRY eglStreamConsumerGLTextureExternalAttribsNV (EGLDi
 #define EGL_STREAM_DMA_NV                 0x3371
 #define EGL_STREAM_DMA_SERVER_NV          0x3372
 #endif /* EGL_NV_stream_dma */
-    
+
 #ifndef EGL_NV_stream_fifo_next
 #define EGL_NV_stream_fifo_next 1
 #define EGL_PENDING_FRAME_NV              0x3329
