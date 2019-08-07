@@ -185,6 +185,14 @@ glesProtoPrefixStrings = [
     ''
 ]
 
+# EGL headers use a protection mechanism similar to GLES.
+eglProtoPrefixStrings = [
+    '#ifndef EGL_EGL_PROTOTYPES',
+    '#define EGL_EGL_PROTOTYPES 1',
+    '#endif',
+    ''
+]
+
 # Insert generation date in a comment for headers not having *GLEXT_VERSION macros
 genDateCommentString = [
     format('/* Generated on date %s */' % time.strftime('%Y%m%d')),
@@ -437,12 +445,12 @@ buildList = [
         defaultExtensions = None,                   # No default extensions
         addExtensions     = None,
         removeExtensions  = None,
-        prefixText        = prefixStrings + eglPlatformStrings + genDateCommentString,
-        genFuncPointers   = False,
+        prefixText        = prefixStrings + eglPlatformStrings + eglProtoPrefixStrings + genDateCommentString,
+        genFuncPointers   = True,
         protectFile       = protectFile,
         protectFeature    = protectFeature,
-        protectProto      = False,
-        protectProtoStr   = 'EGL_EGLEXT_PROTOTYPES',
+        protectProto      = 'nonzero',
+        protectProtoStr   = 'EGL_EGL_PROTOTYPES',
         apicall           = 'EGLAPI ',
         apientry          = 'EGLAPIENTRY ',
         apientryp         = 'EGLAPIENTRYP '),
