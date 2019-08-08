@@ -861,7 +861,9 @@
         <enum value="0x336E" name="EGL_BOTTOM_NV"/>
         <enum value="0x336F" name="EGL_X_AXIS_NV"/>
         <enum value="0x3370" name="EGL_Y_AXIS_NV"/>
-            <unused start="0x3371" end="0x339F"/>
+        <enum value="0x3371" name="EGL_STREAM_DMA_NV"/>
+        <enum value="0x3372" name="EGL_STREAM_DMA_SERVER_NV"/>
+            <unused start="0x3373" end="0x339F"/>
     </enums>
 
     <enums namespace="EGL" start="0x33A0" end="0x33AF" vendor="ANGLE" comment="Reserved for Shannon Woods (Bug 13175)">
@@ -3087,6 +3089,12 @@
         <extension name="EGL_NV_stream_cross_system" supported="egl">
             <require>
                 <enum name="EGL_STREAM_CROSS_SYSTEM_NV"/>
+            </require>
+        </extension>
+        <extension name="EGL_NV_stream_dma" supported="egl">
+            <require>
+                <enum name="EGL_STREAM_DMA_NV"/>
+                <enum name="EGL_STREAM_DMA_SERVER_NV"/>
             </require>
         </extension>
         <extension name="EGL_NV_stream_fifo_next" supported="egl">

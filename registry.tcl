@@ -694,4 +694,9 @@ extension EGL_NV_stream_origin {
     flags       public
     filename    extensions/NV/EGL_NV_stream_origin.txt
 }
-# Next free extension number: 135
+extension EGL_NV_stream_dma {
+    number      135
+    flags       public
+    filename    extensions/NV/EGL_NV_stream_dma.txt
+}
+# Next free extension number: 136
