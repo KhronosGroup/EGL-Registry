@@ -56,8 +56,8 @@
     </refsect1>
     <refsect1 xml:id="description"><title>Description</title>
         <para>
-            <function>eglCreatePixmapSurface</function> creates an on-screen
-            EGL window surface and returns a handle to it. The behavior of
+            <function>eglCreatePixmapSurface</function> creates an off-screen
+            EGL pixmap surface and returns a handle to it. The behavior of
             <function>eglCreatePixmapSurface</function> is identical to that
             of
             <citerefentry><refentrytitle>eglCreatePlatformPixmapSurface</refentrytitle></citerefentry>
