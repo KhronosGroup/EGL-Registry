@@ -296,7 +296,7 @@
             <constant>EGL_RENDERABLE_TYPE</constant> attribute of
             <parameter>config</parameter> does not include at least one
             of <constant>EGL_OPENGL_ES_BIT</constant>,
-            <constant>EGL_OPENGL_ES2_BIT</constant>), or
+            <constant>EGL_OPENGL_ES2_BIT</constant>, or
             <constant>EGL_OPENGL_ES3_BIT</constant>),
         </para>
         <para>
