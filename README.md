@@ -30,7 +30,6 @@ Interesting files in this repository include:
   for each API version.
 * specs/ - EGL specification documents.
 
-
 ## Reserving EGL Enumerant Ranges
 
 EGL enumerants are documented in api/egl.xml . New ranges can be allocated
@@ -82,3 +81,20 @@ removed using the iconv Linux command-line tool via
 
 We may transition to an asciidoc-based extension specification format at
 some point.
+
+
+## Build Tools
+
+This section is not complete (see https://github.com/KhronosGroup/EGL-Registry/issues/92).
+
+To validate the XML and build the headers you will need at least GNU make,
+'jing' for the 'make validate' step (https://relaxng.org/jclark/jing.html),
+and Python 3.5 and the lxml.etree Python library
+(https://pypi.org/project/lxml/) for the 'make' step. The 'make tests' step
+requires whatever the C and C++ compilers configured for GNU make are,
+usually gcc and g++.
+
+All of these components are available prepackaged for major Linux
+distributions and for the Windows 10 Debian WSL.
+
+
