@@ -339,6 +339,10 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=135> <a href="extensions/NV/EGL_NV_stream_dma.txt">EGL_NV_stream_dma</a>
 </li>
+<li value=136> <a href="extensions/WL/EGL_WL_bind_wayland_display.txt">EGL_WL_bind_wayland_display</a>
+</li>
+<li value=137> <a href="extensions/WL/EGL_WL_create_wayland_buffer_from_image.txt">EGL_WL_create_wayland_buffer_from_image</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>

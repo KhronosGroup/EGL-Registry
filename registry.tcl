@@ -699,4 +699,14 @@ extension EGL_NV_stream_dma {
     flags       public
     filename    extensions/NV/EGL_NV_stream_dma.txt
 }
-# Next free extension number: 136
+extension EGL_WL_bind_wayland_display {
+    number	136
+    flags	public
+    filename	extensions/WL/EGL_WL_bind_wayland_display.txt
+}
+extension EGL_WL_create_wayland_buffer_from_image {
+    number	137
+    flags	public
+    filename	extensions/WL/EGL_WL_create_wayland_buffer_from_image.txt
+}
+# Next free extension number: 138

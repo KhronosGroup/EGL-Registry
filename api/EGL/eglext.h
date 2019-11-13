@@ -33,12 +33,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: cb927ca98d $ on $Git commit date: 2019-08-08 01:05:38 -0700 $
+** Khronos $Git commit SHA1: 0f3a3945bf $ on $Git commit date: 2019-11-13 13:25:18 +0000 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20190808
+#define EGL_EGLEXT_VERSION 20191212
 
 /* Generated C header for:
  * API: egl
@@ -1361,6 +1361,40 @@ EGLAPI EGLuint64NV EGLAPIENTRY eglGetSystemTimeNV (void);
 #define EGL_TIZEN_image_native_surface 1
 #define EGL_NATIVE_SURFACE_TIZEN          0x32A1
 #endif /* EGL_TIZEN_image_native_surface */
+
+#ifndef EGL_WL_bind_wayland_display
+#define EGL_WL_bind_wayland_display 1
+#define PFNEGLBINDWAYLANDDISPLAYWL PFNEGLBINDWAYLANDDISPLAYWLPROC
+#define PFNEGLUNBINDWAYLANDDISPLAYWL PFNEGLUNBINDWAYLANDDISPLAYWLPROC
+#define PFNEGLQUERYWAYLANDBUFFERWL PFNEGLQUERYWAYLANDBUFFERWLPROC
+struct wl_display;
+struct wl_resource;
+#define EGL_WAYLAND_BUFFER_WL             0x31D5
+#define EGL_WAYLAND_PLANE_WL              0x31D6
+#define EGL_TEXTURE_Y_U_V_WL              0x31D7
+#define EGL_TEXTURE_Y_UV_WL               0x31D8
+#define EGL_TEXTURE_Y_XUXV_WL             0x31D9
+#define EGL_TEXTURE_EXTERNAL_WL           0x31DA
+#define EGL_WAYLAND_Y_INVERTED_WL         0x31DB
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLBINDWAYLANDDISPLAYWLPROC) (EGLDisplay dpy, struct wl_display *display);
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLUNBINDWAYLANDDISPLAYWLPROC) (EGLDisplay dpy, struct wl_display *display);
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYWAYLANDBUFFERWLPROC) (EGLDisplay dpy, struct wl_resource *buffer, EGLint attribute, EGLint *value);
+#ifdef EGL_EGLEXT_PROTOTYPES
+EGLAPI EGLBoolean EGLAPIENTRY eglBindWaylandDisplayWL (EGLDisplay dpy, struct wl_display *display);
+EGLAPI EGLBoolean EGLAPIENTRY eglUnbindWaylandDisplayWL (EGLDisplay dpy, struct wl_display *display);
+EGLAPI EGLBoolean EGLAPIENTRY eglQueryWaylandBufferWL (EGLDisplay dpy, struct wl_resource *buffer, EGLint attribute, EGLint *value);
+#endif
+#endif /* EGL_WL_bind_wayland_display */
+
+#ifndef EGL_WL_create_wayland_buffer_from_image
+#define EGL_WL_create_wayland_buffer_from_image 1
+#define PFNEGLCREATEWAYLANDBUFFERFROMIMAGEWL PFNEGLCREATEWAYLANDBUFFERFROMIMAGEWLPROC
+struct wl_buffer;
+typedef struct wl_buffer *(EGLAPIENTRYP PFNEGLCREATEWAYLANDBUFFERFROMIMAGEWLPROC) (EGLDisplay dpy, EGLImageKHR image);
+#ifdef EGL_EGLEXT_PROTOTYPES
+EGLAPI struct wl_buffer *EGLAPIENTRY eglCreateWaylandBufferFromImageWL (EGLDisplay dpy, EGLImageKHR image);
+#endif
+#endif /* EGL_WL_create_wayland_buffer_from_image */
 
 #ifdef __cplusplus
 }
