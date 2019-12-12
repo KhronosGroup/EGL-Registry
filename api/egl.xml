@@ -90,6 +90,12 @@
     EGLint iStride;
 };</type>
         <type>typedef void (<apientry/> *<name>EGLDEBUGPROCKHR</name>)(EGLenum error,const char *command,EGLint messageType,EGLLabelKHR threadLabel,EGLLabelKHR objectLabel,const char* message);</type>
+            <!-- These are aliases of EGL function pointer types, as an
+                 example for #95. It would probably be better to use
+                 typedefs, but unfortunately the way output elements in an
+                 extension interface are sorted prevents that. -->
+        <type>#define <name>PGNEGLBINDWAYLANDDISPLAYWL</name> PFNEGLCREATEIMAGEKHRPROC</type>
+        <type>#define <name>PFNEGLBINDWAYLANDDISPLAYWLPROC</name> PFNEGLDESTROYIMAGEKHRPROC</type>
     </types>
 
     <!-- SECTION: EGL enumerant (token) definitions. -->
@@ -2724,6 +2730,9 @@
                 <enum name="EGL_NO_IMAGE_KHR"/>
                 <command name="eglCreateImageKHR"/>
                 <command name="eglDestroyImageKHR"/>
+                    <!-- Backwards-compatibility aliases of function pointer types -->
+                <type name="PGNEGLBINDWAYLANDDISPLAYWL"/>
+                <type name="PFNEGLBINDWAYLANDDISPLAYWLPROC"/>
             </require>
         </extension>
         <extension name="EGL_KHR_image_base" supported="egl">
