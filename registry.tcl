@@ -709,4 +709,9 @@ extension EGL_WL_create_wayland_buffer_from_image {
     flags	public
     filename	extensions/WL/EGL_WL_create_wayland_buffer_from_image.txt
 }
-# Next free extension number: 138
+extension EGL_ARM_image_format {
+    number	138
+    flags	public
+    filename	extensions/ARM/EGL_ARM_image_format.txt
+}
+# Next free extension number: 139
