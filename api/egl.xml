@@ -95,10 +95,10 @@
         <!-- Backwards-compatibility hack: Downstream implementations shipped
              incorrect function pointer names for some years. -->
         <type>typedef void (<apientry/> *<name>EGLDEBUGPROCKHR</name>)(EGLenum error,const char *command,EGLint messageType,EGLLabelKHR threadLabel,EGLLabelKHR objectLabel,const char* message);</type>
-	<type>#define <name>PFNEGLBINDWAYLANDDISPLAYWL</name> PFNEGLBINDWAYLANDDISPLAYWLPROC</type>
-	<type>#define <name>PFNEGLUNBINDWAYLANDDISPLAYWL</name> PFNEGLUNBINDWAYLANDDISPLAYWLPROC</type>
-	<type>#define <name>PFNEGLQUERYWAYLANDBUFFERWL</name> PFNEGLQUERYWAYLANDBUFFERWLPROC</type>
-	<type>#define <name>PFNEGLCREATEWAYLANDBUFFERFROMIMAGEWL</name> PFNEGLCREATEWAYLANDBUFFERFROMIMAGEWLPROC</type>
+        <type>#define <name>PFNEGLBINDWAYLANDDISPLAYWL</name> PFNEGLBINDWAYLANDDISPLAYWLPROC</type>
+        <type>#define <name>PFNEGLUNBINDWAYLANDDISPLAYWL</name> PFNEGLUNBINDWAYLANDDISPLAYWLPROC</type>
+        <type>#define <name>PFNEGLQUERYWAYLANDBUFFERWL</name> PFNEGLQUERYWAYLANDBUFFERWLPROC</type>
+        <type>#define <name>PFNEGLCREATEWAYLANDBUFFERFROMIMAGEWL</name> PFNEGLCREATEWAYLANDBUFFERFROMIMAGEWLPROC</type>
     </types>
 
     <!-- SECTION: EGL enumerant (token) definitions. -->
@@ -1826,14 +1826,14 @@
             <proto><ptype>EGLBoolean</ptype> <name>eglSwapBuffersWithDamageEXT</name></proto>
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param><ptype>EGLSurface</ptype> <name>surface</name></param>
-            <param><ptype>EGLint</ptype> *<name>rects</name></param>
+            <param>const <ptype>EGLint</ptype> *<name>rects</name></param>
             <param><ptype>EGLint</ptype> <name>n_rects</name></param>
         </command>
         <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglSwapBuffersWithDamageKHR</name></proto>
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param><ptype>EGLSurface</ptype> <name>surface</name></param>
-            <param><ptype>EGLint</ptype> *<name>rects</name></param>
+            <param>const <ptype>EGLint</ptype> *<name>rects</name></param>
             <param><ptype>EGLint</ptype> <name>n_rects</name></param>
         </command>
         <command>

@@ -37,7 +37,7 @@ Status
 
 Version
 
-    Version 12, November 5, 2014
+    Version 13, February 20, 2020
 
 Number
 
@@ -160,7 +160,7 @@ New Procedures and Functions
     EGLBoolean eglSwapBuffersWithDamageKHR (
         EGLDisplay dpy,
         EGLSurface surface,
-        EGLint *rects,
+        const EGLint *rects,
         EGLint n_rects);
 
 New Tokens
@@ -177,7 +177,7 @@ Changes to Chapter 3 of the EGL 1.4 Specification (EGL Functions and Errors)
         EGLBoolean eglSwapBuffersWithDamageKHR (
             EGLDisplay dpy,
             EGLSurface surface,
-            EGLint *rects,
+            const EGLint *rects,
             EGLint n_rects);
 
         to do the same thing as eglSwapBuffers but additionally report
@@ -204,7 +204,7 @@ Changes to Chapter 3 of the EGL 1.4 Specification (EGL Functions and Errors)
 
     Modify the first paragraph of Section 3.9.1 titled "Native Window
     Resizing"
-    
+
         "If the native window corresponding to <surface> has been
         resized prior to the swap, <surface> must be resized to match.
         <surface> will normally be resized by the EGL implementation
@@ -353,7 +353,7 @@ Issues
     awkward issue to provide guarantees for we can consider X11 based
     platforms where native windows can be resized asynchronously with
     respect to a client side EGL surface:
-    
+
     With X11 there may be multiple "gravity" transformations that can
     affect how surface buffer content is positioned with respect to a
     new native window size; there is the core X "bit gravity" and
@@ -372,7 +372,7 @@ Issues
     result in a temporary artefact until the full window gets redrawn
     and then re-composed. X11 already suffers other similar transient
     artefacts when resizing windows.
-    
+
     The authors of this spec believe that even if a driver can't do
     reliable mappings of EGL damage rectangles then compositors would
     be able mitigate the majority of related artefacts by ignoring
@@ -396,7 +396,7 @@ Issues
       3) Within the X server the driver component should use the same
       gravity transform that was used to present the surface content
       to also transform the EGL damage rectangle coordinates.
-      
+
       Note that because this transform is done in the xserver then
       this is implicitly synchronized with all clients that would
       otherwise be able to enact an asynchronous window resize.
@@ -445,3 +445,5 @@ Revision History
       - Marked as display extension
     Version 12, 11/05/2014
       - Change copyright to Khronos after signoff from Intel.
+    Version 13, 20/02/2020, Jon Leech
+      - Constify rects parameter (EGL-Registry issue 98).
