@@ -744,7 +744,9 @@
         <enum value="0x3284" name="EGL_YUV_CHROMA_SITING_0_EXT"/>
         <enum value="0x3285" name="EGL_YUV_CHROMA_SITING_0_5_EXT"/>
         <enum value="0x3286" name="EGL_DISCARD_SAMPLES_ARM"/>
-            <unused start="0x3287" end="0x3289"/>
+        <enum value="0x3287" name="EGL_COLOR_COMPONENT_TYPE_UNSIGNED_INTEGER_ARM"/>
+        <enum value="0x3288" name="EGL_COLOR_COMPONENT_TYPE_INTEGER_ARM"/>
+            <unused start="0x3289" end="0x3289"/>
         <enum value="0x328A" name="EGL_SYNC_PRIOR_COMMANDS_IMPLICIT_EXTERNAL_ARM"/>
             <unused start="0x328B" end="0x328F"/>
     </enums>
@@ -3350,6 +3352,12 @@
             <require>
                 <command name="eglCreateWaylandBufferFromImageWL"/>
                 <type name="PFNEGLCREATEWAYLANDBUFFERFROMIMAGEWL"/>
+            </require>
+        </extension>
+        <extension name="EGL_ARM_image_format" supported="egl">
+            <require>
+                <enum name="EGL_COLOR_COMPONENT_TYPE_UNSIGNED_INTEGER_ARM"/>
+                <enum name="EGL_COLOR_COMPONENT_TYPE_INTEGER_ARM"/>
             </require>
         </extension>
     </extensions>
