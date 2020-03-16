@@ -66,7 +66,7 @@ New Tokens
     Accepted as an attribute in the <attrib_list> parameter of
     eglCreateImageKHR:
 
-	EGL_IMPORT_SYNC_TYPE_EXT           0x3470
+        EGL_IMPORT_SYNC_TYPE_EXT           0x3470
 
     Accepted as the value for the EGL_IMPORT_SYNC_TYPE_EXT attribute:
 
@@ -118,7 +118,7 @@ Additions to Chapter 2 of the EGL 1.2 Specification (EGL Operation)
 
        * If <attrib_list> contains the EGL_IMPORT_SYNC_TYPE_EXT name, but the
          value is not one of EGL_IMPORT_IMPLICIT_SYNC_EXT or
-	 EGL_IMPORT_EXPLICIT_SYNC_EXT, EGL_BAD_PARAMETER is generated.
+         EGL_IMPORT_EXPLICIT_SYNC_EXT, EGL_BAD_PARAMETER is generated.
 
 
 Revision History
