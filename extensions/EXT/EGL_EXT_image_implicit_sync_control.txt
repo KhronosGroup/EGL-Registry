@@ -20,7 +20,7 @@ Status
 
 Version
 
-    Version 1, May 15, 2017
+    Version 2, March 16, 2020
 
 Number
 
@@ -118,10 +118,14 @@ Additions to Chapter 2 of the EGL 1.2 Specification (EGL Operation)
 
        * If <attrib_list> contains the EGL_IMPORT_SYNC_TYPE_EXT name, but the
          value is not one of EGL_IMPORT_IMPLICIT_SYNC_EXT or
-         EGL_IMPORT_EXPLICIT_SYNC_EXT, EGL_BAD_PARAMETER is generated.
+         EGL_IMPORT_EXPLICIT_SYNC_EXT, EGL_BAD_ATTRIBUTE is generated.
 
 
 Revision History
 
 #1 (Daniel Stone, May 15, 2017)
    - Initial revision.
+
+#2 (Eric Engestrom, March 16, 2020)
+   - Change "bad attribute value" error from EGL_BAD_PARAMETER to
+     EGL_BAD_ATTRIBUTE to follow the EGL convention.
