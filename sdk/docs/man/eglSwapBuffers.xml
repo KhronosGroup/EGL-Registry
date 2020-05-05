@@ -48,8 +48,8 @@
     <refsect1 xml:id="description"><title>Description</title>
         <para>
             If <parameter>surface</parameter> is a back-buffered window
-            surface, <function>eglSwapBuffers</function> then the color
-            buffer is copied (posted) native window associated with that
+            surface, then the color
+            buffer is copied (posted) to the native window associated with that
             surface. If <parameter>surface</parameter> is a single-buffered
             window, pixmap, or pixel buffer surface,
             <function>eglSwapBuffers</function> has no effect.
