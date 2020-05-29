@@ -714,4 +714,9 @@ extension EGL_ARM_image_format {
     flags	public
     filename	extensions/ARM/EGL_ARM_image_format.txt
 }
-# Next free extension number: 139
+extension EGL_NV_stream_consumer_eglimage {
+    number      139
+    flags       public
+    filename    extensions/NV/EGL_NV_stream_consumer_eglimage.txt
+}
+# Next free extension number: 140

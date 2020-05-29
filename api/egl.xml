@@ -890,7 +890,11 @@
         <enum value="0x3370" name="EGL_Y_AXIS_NV"/>
         <enum value="0x3371" name="EGL_STREAM_DMA_NV"/>
         <enum value="0x3372" name="EGL_STREAM_DMA_SERVER_NV"/>
-            <unused start="0x3373" end="0x339F"/>
+        <enum value="0x3373" name="EGL_STREAM_CONSUMER_IMAGE_NV"/>
+        <enum value="0x3374" name="EGL_STREAM_IMAGE_ADD_NV"/>
+        <enum value="0x3375" name="EGL_STREAM_IMAGE_REMOVE_NV"/>
+        <enum value="0x3376" name="EGL_STREAM_IMAGE_AVAILABLE_NV"/>
+            <unused start="0x3377" end="0x339F"/>
     </enums>
 
     <enums namespace="EGL" start="0x33A0" end="0x33AF" vendor="ANGLE" comment="Reserved for Shannon Woods (Bug 13175)">
@@ -1955,6 +1959,36 @@
             <proto>struct <ptype>wl_buffer</ptype> *<name>eglCreateWaylandBufferFromImageWL</name></proto>
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param><ptype>EGLImageKHR</ptype> <name>image</name></param>
+        </command>
+        <command>
+             <proto><ptype>EGLBoolean</ptype> <name>eglStreamImageConsumerConnectNV</name></proto>
+             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+             <param><ptype>EGLStreamKHR</ptype> <name>stream</name></param>
+             <param><ptype>EGLint</ptype> <name>num_modifiers</name></param>
+             <param><ptype>EGLuint64KHR</ptype> *<name>modifiers</name></param>
+             <param><ptype>EGLAttrib</ptype> *<name>attrib_list</name></param>
+        </command>
+        <command>
+             <proto><ptype>EGLint</ptype> <name>eglQueryStreamConsumerEventNV</name></proto>
+             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+             <param><ptype>EGLStreamKHR</ptype> <name>stream</name></param>
+             <param><ptype>EGLTime</ptype> <name>timeout</name></param>
+             <param><ptype>EGLenum</ptype> *<name>event</name></param>
+             <param><ptype>EGLAttrib</ptype> *<name>aux</name></param>
+        </command>
+        <command>
+             <proto><ptype>EGLBoolean</ptype> <name>eglStreamAcquireImageNV</name></proto>
+             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+             <param><ptype>EGLStreamKHR</ptype> <name>stream</name></param>
+             <param><ptype>EGLImage</ptype> *<name>pImage</name></param>
+             <param><ptype>EGLSync</ptype> <name>sync</name></param>
+        </command>
+        <command>
+             <proto><ptype>EGLBoolean</ptype> <name>eglStreamReleaseImageNV</name></proto>
+             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+             <param><ptype>EGLStreamKHR</ptype> <name>stream</name></param>
+             <param><ptype>EGLImage</ptype> <name>image</name></param>
+             <param><ptype>EGLSync</ptype> <name>sync</name></param>
         </command>
     </commands>
 
@@ -3151,6 +3185,18 @@
             <require>
                 <enum name="EGL_STREAM_DMA_NV"/>
                 <enum name="EGL_STREAM_DMA_SERVER_NV"/>
+            </require>
+        </extension>
+         <extension name="EGL_NV_stream_consumer_eglimage" supported="egl">
+            <require>
+                <enum name="EGL_STREAM_CONSUMER_IMAGE_NV"/>
+                <enum name="EGL_STREAM_IMAGE_ADD_NV"/>
+                <enum name="EGL_STREAM_IMAGE_REMOVE_NV"/>
+                <enum name="EGL_STREAM_IMAGE_AVAILABLE_NV"/>
+                <command name="eglStreamImageConsumerConnectNV"/>
+                <command name="eglQueryStreamConsumerEventNV"/>
+                <command name="eglStreamAcquireImageNV"/>
+                <command name="eglStreamReleaseImageNV"/>
             </require>
         </extension>
         <extension name="EGL_NV_stream_fifo_next" supported="egl">
