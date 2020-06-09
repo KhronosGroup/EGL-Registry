@@ -719,4 +719,9 @@ extension EGL_NV_stream_consumer_eglimage {
     flags       public
     filename    extensions/NV/EGL_NV_stream_consumer_eglimage.txt
 }
-# Next free extension number: 140
+extension EGL_EXT_device_query_pci {
+    number      140
+    flags       public
+    filename    extensions/EXT/EGL_EXT_device_query_pci.txt
+}
+# Next free extension number: 141
