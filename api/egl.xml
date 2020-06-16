@@ -870,7 +870,8 @@
         <enum value="0x3352" name="EGL_TRACK_REFERENCES_KHR"/>
             <unused start="0x3353" end="0x3356"/>
         <enum value="0x3357" name="EGL_CONTEXT_PRIORITY_REALTIME_NV"/>
-            <unused start="0x3358" end="0x335F"/>
+            <unused start="0x3358" end="0x335E"/>
+        <enum value="0x335F" name="EGL_RENDERER_EXT"/>
         <enum value="0x3360" name="EGL_CTA861_3_MAX_CONTENT_LIGHT_LEVEL_EXT"/>
         <enum value="0x3361" name="EGL_CTA861_3_MAX_FRAME_AVERAGE_LEVEL_EXT"/>
         <enum value="0x3362" name="EGL_GL_COLORSPACE_DISPLAY_P3_LINEAR_EXT"/>
@@ -3408,6 +3409,11 @@
             <require>
                 <enum name="EGL_COLOR_COMPONENT_TYPE_UNSIGNED_INTEGER_ARM"/>
                 <enum name="EGL_COLOR_COMPONENT_TYPE_INTEGER_ARM"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_device_query_name" supported="egl">
+            <require>
+                <enum name="EGL_RENDERER_EXT"/>
             </require>
         </extension>
     </extensions>
