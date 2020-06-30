@@ -343,7 +343,6 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=137> <a href="extensions/WL/EGL_WL_create_wayland_buffer_from_image.txt">EGL_WL_create_wayland_buffer_from_image</a>
 </li>
-</li>
 <li value=139> <a href="extensions/NV/EGL_NV_stream_consumer_eglimage.txt">EGL_NV_stream_consumer_eglimage</a>
 </li>
 </ol>
