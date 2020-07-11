@@ -1,0 +1,96 @@
+Name
+
+    EXT_device_query_pci
+
+Name Strings
+
+    EGL_EXT_device_query_pci
+
+Contributors
+
+    Eric Engestrom (eric 'at' engestrom.ch)
+
+Contact
+
+    Eric Engestrom (eric 'at' engestrom.ch)
+
+Status
+
+    Complete
+
+Version
+
+    Version 2, Jul 11, 2020
+
+Number
+
+    EGL Extension #140
+
+Extension Type
+
+    EGL device extension
+
+Dependencies
+
+    This extension is written against the language of EGL 1.5 as
+    modified by EGL_EXT_device_query.
+
+    EGL_EXT_device_query is required.
+
+    The EGL device must be a PCI device.
+
+Overview
+
+    This extension adds a simple way to query a few PCI attributes from an EGL Device,
+    namely its vendor and device PCI ID, and its PCI domain/bus/slot/function.
+
+IP Status
+
+    No known claims.
+
+New Types
+
+    None.
+
+New Procedures and Functions
+
+    None.
+
+New Tokens
+
+    Accepted as the <attribute> argument of eglQueryDeviceAttribEXT:
+
+        EGL_QUERY_PCI_VENDOR_ID_EXT             0x3290
+        EGL_QUERY_PCI_DEVICE_ID_EXT             0x3291
+        EGL_QUERY_PCI_DOMAIN_EXT                0x3292
+        EGL_QUERY_PCI_BUS_EXT                   0x3293
+        EGL_QUERY_PCI_SLOT_EXT                  0x3294
+        EGL_QUERY_PCI_FUNCTION_EXT              0x3295
+
+Changes to section 3.2 (Devices)
+
+    Replace the paragraph immediately following the prototype for
+    eglQueryDeviceAttribEXT:
+
+    <attribute> must be one of EGL_QUERY_PCI_VENDOR_ID_EXT,
+    EGL_QUERY_PCI_DEVICE_ID_EXT, EGL_QUERY_PCI_DOMAIN_EXT,
+    EGL_QUERY_PCI_BUS_EXT, EGL_QUERY_PCI_SLOT_EXT or
+    EGL_QUERY_PCI_FUNCTION_EXT, and <value> will be set correspondingly.
+
+Issues
+
+    1. Should the extension be exposed on a device that might not be on
+       a PCI bus, and fail queries?
+
+       RESOLVED: No, if the extension is exposed then the device *is* on
+       a PCI bus, and all associated queries will succeed.
+
+Revision History
+
+    Version 2, Jul 11, 2020 (Eric Engestrom)
+        - Rename extension, only expose it on PCI devices, and extend
+          coverage to add domain/bus/slot/function queries.
+        - Update extension status to Complete
+
+    Version 1, Jun 06, 2020 (Eric Engestrom)
+        - Initial Draft

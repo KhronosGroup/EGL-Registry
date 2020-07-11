@@ -752,7 +752,13 @@
     </enums>
 
     <enums namespace="EGL" start="0x3290" end="0x329F" vendor="MESA" comment="Reserved for John K&#229;re Alsaker (Public bug 757)">
-            <unused start="0x3290" end="0x329F"/>
+        <enum value="0x3290" name="EGL_QUERY_PCI_VENDOR_ID_EXT"/>
+        <enum value="0x3291" name="EGL_QUERY_PCI_DEVICE_ID_EXT"/>
+        <enum value="0x3292" name="EGL_QUERY_PCI_DOMAIN_EXT"/>
+        <enum value="0x3293" name="EGL_QUERY_PCI_BUS_EXT"/>
+        <enum value="0x3294" name="EGL_QUERY_PCI_SLOT_EXT"/>
+        <enum value="0x3295" name="EGL_QUERY_PCI_FUNCTION_EXT"/>
+            <unused start="0x3296" end="0x329F"/>
     </enums>
 
     <enums namespace="EGL" start="0x32A0" end="0x32AF" vendor="Samsung" comment="Reserved for Dongyeon Kim (Public bug 880)">
@@ -2427,6 +2433,16 @@
                 <command name="eglQueryDeviceAttribEXT"/>
                 <command name="eglQueryDeviceStringEXT"/>
                 <command name="eglQueryDisplayAttribEXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_device_query_pci" supported="egl">
+            <require>
+                <enum name="EGL_QUERY_PCI_VENDOR_ID_EXT"/>
+                <enum name="EGL_QUERY_PCI_DEVICE_ID_EXT"/>
+                <enum name="EGL_QUERY_PCI_DOMAIN_EXT"/>
+                <enum name="EGL_QUERY_PCI_BUS_EXT"/>
+                <enum name="EGL_QUERY_PCI_SLOT_EXT"/>
+                <enum name="EGL_QUERY_PCI_FUNCTION_EXT"/>
             </require>
         </extension>
         <extension name="EGL_EXT_gl_colorspace_bt2020_linear" supported="egl">
