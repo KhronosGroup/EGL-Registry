@@ -345,6 +345,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=139> <a href="extensions/NV/EGL_NV_stream_consumer_eglimage.txt">EGL_NV_stream_consumer_eglimage</a>
 </li>
+<li value=140> <a href="extensions/EXT/EGL_EXT_device_query_name.txt">EGL_EXT_device_query_name</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
