@@ -1,3 +1,7 @@
+/* Copyright 2006-2020 The Khronos Group Inc.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 /* Reference egl.h for EGL 1.2
  * Last modified 2006/10/24
  */

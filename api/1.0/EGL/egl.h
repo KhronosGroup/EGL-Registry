@@ -1,3 +1,6 @@
+/* Copyright 2006-2020 The Khronos Group Inc.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 /* Sketchy version of egl.h (really only for reserving
  * enumerant values to EGL tokens and sanity checking
  * prototypes).

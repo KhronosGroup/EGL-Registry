@@ -1,3 +1,6 @@
+# Copyright 2006-2020 The Khronos Group Inc.
+# SPDX-License-Identifier: Apache-2.0
+
 # registry.tcl
 #
 # This is a simple human-readable database defining the EGL extension
@@ -700,19 +703,19 @@ extension EGL_NV_stream_dma {
     filename    extensions/NV/EGL_NV_stream_dma.txt
 }
 extension EGL_WL_bind_wayland_display {
-    number	136
-    flags	public
-    filename	extensions/WL/EGL_WL_bind_wayland_display.txt
+    number      136
+    flags       public
+    filename    extensions/WL/EGL_WL_bind_wayland_display.txt
 }
 extension EGL_WL_create_wayland_buffer_from_image {
-    number	137
-    flags	public
-    filename	extensions/WL/EGL_WL_create_wayland_buffer_from_image.txt
+    number      137
+    flags       public
+    filename    extensions/WL/EGL_WL_create_wayland_buffer_from_image.txt
 }
 extension EGL_ARM_image_format {
-    number	138
-    flags	public
-    filename	extensions/ARM/EGL_ARM_image_format.txt
+    number      138
+    flags       public
+    filename    extensions/ARM/EGL_ARM_image_format.txt
 }
 extension EGL_NV_stream_consumer_eglimage {
     number      139
