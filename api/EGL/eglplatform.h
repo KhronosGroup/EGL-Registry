@@ -89,6 +89,12 @@ typedef int   EGLNativeDisplayType;
 typedef void *EGLNativePixmapType;
 typedef void *EGLNativeWindowType;
 
+#elif defined(__unix__) && defined(EGL_NO_X11)
+
+typedef void             *EGLNativeDisplayType;
+typedef khronos_uintptr_t EGLNativePixmapType;
+typedef khronos_uintptr_t EGLNativeWindowType;
+
 #elif defined(WL_EGL_PLATFORM)
 
 typedef struct wl_display     *EGLNativeDisplayType;
@@ -115,12 +121,6 @@ typedef struct ANativeWindow*           EGLNativeWindowType;
 typedef intptr_t EGLNativeDisplayType;
 typedef intptr_t EGLNativePixmapType;
 typedef intptr_t EGLNativeWindowType;
-
-#elif defined(__unix__) && defined(EGL_NO_X11)
-
-typedef void             *EGLNativeDisplayType;
-typedef khronos_uintptr_t EGLNativePixmapType;
-typedef khronos_uintptr_t EGLNativeWindowType;
 
 #elif defined(__unix__) || defined(USE_X11)
 
