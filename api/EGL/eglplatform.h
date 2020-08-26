@@ -67,7 +67,13 @@
  * implementations.
  */
 
-#if defined(_WIN32) || defined(__VC32__) && !defined(__CYGWIN__) && !defined(__SCITECH_SNAP__) /* Win32 and WinCE */
+#if defined(EGL_REALLY_NO_PLATFORM_SPECIFIC_TYPES)
+
+typedef void *EGLNativeDisplayType;
+typedef void *EGLNativePixmapType;
+typedef void *EGLNativeWindowType;
+
+#elif defined(_WIN32) || defined(__VC32__) && !defined(__CYGWIN__) && !defined(__SCITECH_SNAP__) /* Win32 and WinCE */
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN 1
 #endif
@@ -88,12 +94,6 @@ typedef int EGLNativeWindowType;
 typedef int   EGLNativeDisplayType;
 typedef void *EGLNativePixmapType;
 typedef void *EGLNativeWindowType;
-
-#elif defined(__unix__) && defined(EGL_NO_X11)
-
-typedef void             *EGLNativeDisplayType;
-typedef khronos_uintptr_t EGLNativePixmapType;
-typedef khronos_uintptr_t EGLNativeWindowType;
 
 #elif defined(WL_EGL_PLATFORM)
 
@@ -121,6 +121,12 @@ typedef struct ANativeWindow*           EGLNativeWindowType;
 typedef intptr_t EGLNativeDisplayType;
 typedef intptr_t EGLNativePixmapType;
 typedef intptr_t EGLNativeWindowType;
+
+#elif defined(__unix__) && defined(EGL_NO_X11)
+
+typedef void             *EGLNativeDisplayType;
+typedef khronos_uintptr_t EGLNativePixmapType;
+typedef khronos_uintptr_t EGLNativeWindowType;
 
 #elif defined(__unix__) || defined(USE_X11)
 
