@@ -347,6 +347,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=140> <a href="extensions/EXT/EGL_EXT_device_query_name.txt">EGL_EXT_device_query_name</a>
 </li>
+<li value=141> <a href="extensions/EXT/EGL_EXT_platform_xcb.txt">EGL_EXT_platform_xcb</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>

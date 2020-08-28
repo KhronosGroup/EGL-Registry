@@ -727,4 +727,9 @@ extension EGL_NV_stream_consumer_eglimage {
     flags       public
     filename    extensions/EXT/EGL_EXT_device_query_name.txt
 }
+extension EGL_EXT_platform_xcb {
+    number      141
+    flags       public
+    filename    extensions/EXT/EGL_EXT_platform_xcb.txt
+}
 # Next free extension number: 141
