@@ -727,4 +727,9 @@ extension EGL_NV_stream_consumer_eglimage {
     flags       public
     filename    extensions/EXT/EGL_EXT_device_query_name.txt
 }
-# Next free extension number: 141
+extension EGL_MESA_swap_control_tear {
+    number      141
+    flags       public
+    filename    extensions/MESA/EGL_MESA_swap_control_tear.txt
+}
+# Next free extension number: 142
