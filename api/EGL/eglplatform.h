@@ -67,7 +67,7 @@
  * implementations.
  */
 
-#if defined(EGL_REALLY_NO_PLATFORM_SPECIFIC_TYPES)
+#if defined(EGL_NO_PLATFORM_SPECIFIC_TYPES)
 
 typedef void *EGLNativeDisplayType;
 typedef void *EGLNativePixmapType;
