@@ -16,7 +16,7 @@ Contacts
 
 Status
 
-    Draft
+    Complete
 
 Version
 
