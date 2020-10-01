@@ -8,18 +8,18 @@ extern "C" {
 /*
 ** Copyright 2013-2020 The Khronos Group Inc.
 ** SPDX-License-Identifier: Apache-2.0
-/*
+**
 ** This header is generated from the Khronos EGL XML API Registry.
 ** The current version of the Registry, generator scripts
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: 50f5da047a $ on $Git commit date: 2020-08-13 03:59:02 -0700 $
+** Khronos $Git commit SHA1: 5a9a7e3fcb $ on $Git commit date: 2020-08-24 11:05:32 -0700 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20200813
+#define EGL_EGLEXT_VERSION 20201001
 
 /* Generated C header for:
  * API: egl
