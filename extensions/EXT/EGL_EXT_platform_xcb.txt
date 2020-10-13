@@ -76,21 +76,25 @@ New Behavior
     To determine if the EGL implementation supports this extension, clients
     should query the EGL_EXTENSIONS string of EGL_NO_DISPLAY.
 
-    This extension defines the same set of behaviors as the X11 platform
-    extension, except Xlib types are replaced with xcb types.
+    This extension defines the same set of behaviors as EGL_EXT_platform_x11,
+    except Xlib types are replaced with xcb types.
 
     To obtain an EGLDisplay backed by an X11 screen, call
     eglGetPlatformDisplayEXT with <platform> set to EGL_PLATFORM_XCB_EXT. The
     <native_display> parameter specifies the X11 display connection to use, and
-    must point to a valid xcb `xcb_connection_t` or be NULL.  If <native_display>
-    is EGL_DEFAULT_DISPLAY, then EGL will create [1] a connection to the default
-    X11 display. The environment variable DISPLAY determines the default X11
-    display as described in the documentation of `xcb_connect`.  The value of
-    attribute EGL_PLATFORM_XCB_SCREEN_EXT specifies the X11 screen to use. If
-    the attribute is omitted from <attrib_list>, then the environment varialbe
-    DISPLAY will be used to select a screen.  Otherwise, the attribute's value
-    must be a valid screen on the display connection. If the attribute's value
-    is not a valid screen, then an EGL_BAD_ATTRIBUTE error is generated.
+    must point to a valid xcb `xcb_connection_t` or be EGL_DEFAULT_DISPLAY.  If
+    <native_display> is EGL_DEFAULT_DISPLAY, then EGL will create [1] a
+    connection to the default X11 display. The environment variable DISPLAY
+    determines the default X11 display, and, unless overridden by the
+    EGL_PLATFORM_XCB_SCREEN_EXT attribute, the default X11 screen - as
+    described in the documentation of `xcb_connect`.  If the environment
+    variable DISPLAY is not present in this case, the result is undefined. The
+    value of attribute EGL_PLATFORM_XCB_SCREEN_EXT specifies the X11 screen to
+    use. If the attribute is omitted from <attrib_list>, and <native_display>
+    is not EGL_DEFAULT_DISPLAY, then screen 0 will be used. Otherwise, the
+    attribute's value must be a valid screen on the display connection. If the
+    attribute's value is not a valid screen, then an EGL_BAD_ATTRIBUTE error is
+    generated.
 
     [fn1] The method by which EGL creates a connection to the default X11
     display is an internal implementation detail. The implementation may use
@@ -106,7 +110,24 @@ New Behavior
 
 Issues
 
-    None so far.
+    1. As xcb_connection_t doesn't carry a screen number, how should a screen be
+       selected in eglGetPlatformDisplayEXT()?
+
+       RESOLVED. The screen will be chosen with the following logic:
+
+         * If EGL_PLATFORM_XCB_SCREEN_EXT is specified, it will always take
+           precedence. Whether <native_display> is EGL_DEFAULT_DISPLAY or not.
+
+         * Otherwise, if <native_display> is not EGL_DEFAULT_DISPLAY, then
+           screen 0 will be used.
+
+         * Otherwise, which is to say <native_display> is EGL_DEFAULT_DISPLAY.
+           Then the DISPLAY environment variable will be used to determine the
+           screen number. If DISPLAY contains a screen number, that will be
+           used; if not, then 0 will be used.
+
+         * If the DISPLAY environment variable is not present when
+           <native_display> is EGL_DEFAULT_DISPLAY, the result will be undefined.
 
 Example Code
 
@@ -352,6 +373,10 @@ Example Code
     }
 
 Revision History
+
+    Version 2, 2020.10.13 (Yuxuan Shui)
+        - Some wording changes
+        - Address the question about screen selection
 
     Version 1, 2020.08.28 (Yuxuan Shui)
         - First draft
