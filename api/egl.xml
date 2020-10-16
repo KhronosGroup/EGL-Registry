@@ -572,7 +572,7 @@
         <enum value="0x31D7" name="EGL_PLATFORM_GBM_MESA" alias="EGL_PLATFORM_GBM_KHR"/>
         <enum value="0x31D8" name="EGL_PLATFORM_WAYLAND_KHR"/>
         <enum value="0x31D8" name="EGL_PLATFORM_WAYLAND_EXT" alias="EGL_PLATFORM_WAYLAND_KHR"/>
-            <unused start="0x31DC" end="0x31DC"/>
+        <enum value="0x31DC" name="EGL_LATE_SWAPS_TEAR_MESA"/>
         <enum value="0x31DD" name="EGL_PLATFORM_SURFACELESS_MESA"/>
             <unused start="0x31DE" end="0x31DF"/>
     </enums>
@@ -3043,6 +3043,11 @@
             <require>
                 <command name="eglGetDisplayDriverConfig"/>
                 <command name="eglGetDisplayDriverName"/>
+            </require>
+        </extension>
+        <extension name="EGL_MESA_swap_control_tear" supported="egl">
+            <require>
+                <enum name="EGL_LATE_SWAPS_TEAR_MESA"/>
             </require>
         </extension>
         <extension name="EGL_NOK_swap_region" supported="egl">

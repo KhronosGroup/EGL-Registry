@@ -8,18 +8,18 @@ extern "C" {
 /*
 ** Copyright 2013-2020 The Khronos Group Inc.
 ** SPDX-License-Identifier: Apache-2.0
-/*
+**
 ** This header is generated from the Khronos EGL XML API Registry.
 ** The current version of the Registry, generator scripts
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: 50f5da047a $ on $Git commit date: 2020-08-13 03:59:02 -0700 $
+** Khronos $Git commit SHA1: 38aaafbe2b $ on $Git commit date: 2020-09-09 15:44:19 -0400 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20200813
+#define EGL_EGLEXT_VERSION 20201001
 
 /* Generated C header for:
  * API: egl
@@ -1036,6 +1036,11 @@ EGLAPI char *EGLAPIENTRY eglGetDisplayDriverConfig (EGLDisplay dpy);
 EGLAPI const char *EGLAPIENTRY eglGetDisplayDriverName (EGLDisplay dpy);
 #endif
 #endif /* EGL_MESA_query_driver */
+
+#ifndef EGL_MESA_swap_control_tear
+#define EGL_MESA_swap_control_tear 1
+#define EGL_LATE_SWAPS_TEAR_MESA          0x31DC
+#endif /* EGL_MESA_swap_control_tear */
 
 #ifndef EGL_NOK_swap_region
 #define EGL_NOK_swap_region 1

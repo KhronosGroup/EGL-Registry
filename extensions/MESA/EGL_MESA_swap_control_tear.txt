@@ -1,0 +1,167 @@
+Name
+
+    MESA_swap_control_tear
+
+Name Strings
+
+    EGL_MESA_swap_control_tear
+
+Contributors
+
+    Adam Jackson <ajax@redhat.com>
+    Daniel Kartch
+    Ethan Lee
+    Shahbaz Youssefi
+
+    The contributors to GLX_EXT_swap_control_tear:
+    Brian Nguyen, NVIDIA, brnguyen at nvidia.com
+
+Contact
+
+    Adam Jackson <ajax@redhat.com>
+
+Status
+
+    DRAFT
+
+Version
+
+    Version 3 (1 October 2020)
+
+Number
+
+    EGL extension #141
+
+Extension type
+
+    EGL display extension
+
+Dependencies
+
+    EGL 1.1 or greater is required for eglSwapInterval.
+
+    This specification is written against the EGL 1.5 specification.
+
+    This extension interacts with:
+
+        EGL_{EXT,KHR}_swap_buffers_with_damage
+        EGL_KHR_partial_update
+        EGL_EXT_output_base
+
+Overview
+
+    This extension extends EGL by allowing late swaps to occur without
+    synchronization to the video frame. This per-surface attribute reduces the
+    visual stutter on late frames and reduces the stall on subsequent frames.
+
+IP Status
+
+    There are no known IP issues.
+
+New Procedures and Functions
+
+    None
+
+New Tokens
+
+    Accepted as the <attribute> parameter to eglQuerySurface and
+    eglSurfaceAttrib:
+
+    // provisional allocation
+    EGL_LATE_SWAPS_TEAR_MESA            0x31DC
+
+Additions to the EGL 1.5 Specification
+
+    In Section 3.5.6 "Surface Attributes", before the Errors for
+    eglSurfaceAttrib, insert the paragraph:
+
+    "If <attribute> is EGL_LATE_SWAPS_TEAR_MESA, then <value> specifies the
+    effect on the presentation of posting a surface with eglSwapBuffers. A
+    <value> of EGL_TRUE requests that, if the number of frames specified by
+    eglSwapInterval have already passed from the previous swap when the swap
+    is ready to be performed, the swap will occur without synchronization to
+    a video frame. When an unsynchronized swap happens, the missed frame will
+    count towards the minumum number of video frames for the next swap. If the
+    surface does not support late swap posting, EGL_BAD_ATTRIBUTE is
+    generated."
+
+    In Section 3.5.6 "Surface Attributes", before the Errors for
+    eglQuerySurface, insert the paragraph:
+
+    "Querying EGL_LATE_SWAPS_TEAR_MESA returns EGL_TRUE if swaps requested
+    after the swap interval configured for the surface may present without
+    synchronization to a video frame. The default value is EGL_FALSE for
+    window surfaces. If the surface does not support late swap posting,
+    EGL_BAD_ATTRIBUTE is generated."
+
+    To Table 3.5 "Queryable surface attributes and types", append the row:
+
+    EGL_LATE_SWAPS_TEAR_MESA | boolean | If true, late swaps may present
+                                         without frame synchronization
+
+Interaction with EGL_KHR_partial_update and EGL_KHR_swap_buffers_with_damage
+
+    PROPOSED: An implementation may take the specified surface damage into
+    account when considering how to respond to a "late" frame. For a
+    conventional scan-line display, if all of the pending surface damage is
+    "behind" the current scanline, there may be no benefit to copying the
+    new frame's pixel contents into place rather than page-flipping (or to
+    flipping without frame synchronization), since none of the new content
+    would be visible until the next frame anyway.
+
+Interaction with EGL_EXT_output_base
+
+    PROPOSED: EGL_LATE_SWAPS_TEAR_MESA may be passed as the <attribute>
+    parameter to eglOutputLayerAttribEXT and eglQueryOutputLayerAttribEXT.
+    The implementation is not required to support late swaps on any
+    particular kind of output layer, so the same semantics apply as for
+    eglSurfaceAttrib and eglQuerySurface: if late swaps are not supported
+    then EGL_BAD_ATTRIBUTE is generated.
+
+Errors
+
+    EGL_BAD_ATTRIBUTE may be generated from eglSurfaceAttrib or eglQuerySurface
+    if the surface does not support EGL_LATE_SWAPS_TEAR_MESA.
+
+Issues
+
+    1: Should there be queries?
+
+    RESOLVED: Yes, for the EGLSurface.
+
+    2: Should this be an EGLConfig attribute?
+
+    RESOLVED: No, leaving this as just a surface attribute simplifies the spec,
+    implementation, and consumers.
+
+    3: Should this attribute be passable to eglCreateWindow (etc.)?
+
+    UNRESOLVED. If it makes life easier for the consumer, sure.
+
+    4: Are there interactions with any other extensions?
+
+    UNRESOLVED. But probably. EGL_ANDROID_get_frame_timestamps and
+    EGL_ANDROID_presentation_time may show different timestamps when late
+    swaps are enabled. EGL_NOK_swap_region2 and EGL_NV_post_sub_buffer would
+    probably be allowed to make the same kinds of optimizations as the
+    similar KHR extensions, as documented here.
+
+    5: Is presentation required to tear?
+
+    PROPOSED: Despite the extension name, no. Only the timing of the buffer
+    swap is necessarily affected. For instance, unextended Wayland does not
+    have a way to ask for asynchronous swaps. A late swap in this environment
+    would simply post to the display server immediately without waiting for
+    the next frame event.
+
+Version History
+
+    3. 1 October 2020 -
+    Move issues section to end. Allocate extension number.
+
+    2. 29 September 2020 - ajax
+    Add queries, extension interactions, and a few more open issues.
+    Provisionally assign an enum out of the MESA allocation space.
+
+    1. 09 September 2020 - ajax
+    Clone from GLX_EXT_swap_control_tear.
