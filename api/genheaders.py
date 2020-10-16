@@ -72,7 +72,7 @@ prefixStrings = [
     '/*',
     '** Copyright 2013-2020 The Khronos Group Inc.',
     '** SPDX-' + 'License-Identifier: Apache-2.0',
-    '/*',
+    '**',
     '** This header is generated from the Khronos EGL XML API Registry.',
     '** The current version of the Registry, generator scripts',
     '** used to make the header, and the header can be found at',
