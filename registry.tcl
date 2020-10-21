@@ -732,4 +732,4 @@ extension EGL_EXT_platform_xcb {
     flags       public
     filename    extensions/EXT/EGL_EXT_platform_xcb.txt
 }
-# Next free extension number: 141
+# Next free extension number: 142
