@@ -77,6 +77,10 @@ New Behavior
     manual page wl_display_connect(3) defines the location of the default
     Wayland socket.
 
+    For each EGLConfig that belongs to the Wayland platform, the
+    EGL_NATIVE_VISUAL_ID attribute is either zero, either a DRM format FourCC
+    code defined in drm_fourcc.h in the Linux kernel source.
+
     To obtain an on-screen rendering surface from a Wayland window, call
     eglCreatePlatformWindowSurfaceEXT with a <dpy> that belongs to Wayland and
     a <native_window> that points to a `struct wl_egl_surface`.
@@ -109,6 +113,9 @@ Issues
        interest in Wayland.
 
 Revision History
+
+    Version 5, 2020-11-25 (Simon Ser)
+        - Add optional native visual ID support.
 
     Version 4, 2014-03-10(Chad Versace)
         - Change resolution of issue #1 from "no" to "yes". Now
