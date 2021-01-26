@@ -1025,6 +1025,16 @@
         <unused start="0x34B0" end="0x34BF"/>
     </enums>
 
+    <enums namespace="EGL" start="0x34C0" end="0x34CF" vendor="MESA" comment="Reserved for Simon Ser (via github pull request)">
+        <enum value="0x34C0" name="EGL_DEVICE_TYPE_MESA"/>
+        <enum value="0x34C1" name="EGL_DEVICE_TYPE_OTHER_MESA"/>
+        <enum value="0x34C2" name="EGL_DEVICE_TYPE_INTEGRATED_GPU_MESA"/>
+        <enum value="0x34C3" name="EGL_DEVICE_TYPE_DISCRETE_GPU_MESA"/>
+        <enum value="0x34C4" name="EGL_DEVICE_TYPE_VIRTUAL_GPU_MESA"/>
+        <enum value="0x34C4" name="EGL_DEVICE_TYPE_CPU_MESA"/>
+        <unused start="0x34C5" end="0x34CF"/>
+    </enums>
+
 <!-- Please remember that new enumerant allocations must be obtained by
      request to the Khronos API registrar (see comments at the top of this
      file) File requests in the Khronos Bugzilla, EGL project, Registry
@@ -1034,8 +1044,8 @@
 
 <!-- Reservable for future use. To generate a new range, allocate multiples
      of 16 starting at the lowest available point in this block. -->
-    <enums namespace="EGL" start="0x34C0" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
-            <unused start="0x34C0" end="0x3FFF"/>
+    <enums namespace="EGL" start="0x34D0" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
+            <unused start="0x34D0" end="0x3FFF"/>
     </enums>
 
     <enums namespace="EGL" start="0x8F70" end="0x8F7F" vendor="HI" comment="For Mark Callow, Khronos bug 4055. Shared with GL.">
@@ -3403,6 +3413,16 @@
         <extension name="EGL_EXT_device_query_name" supported="egl">
             <require>
                 <enum name="EGL_RENDERER_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_MESA_device_query_type" supported="egl">
+            <require>
+                <enum name="EGL_DEVICE_TYPE_MESA"/>
+                <enum name="EGL_DEVICE_TYPE_OTHER_MESA"/>
+                <enum name="EGL_DEVICE_TYPE_INTEGRATED_GPU_MESA"/>
+                <enum name="EGL_DEVICE_TYPE_DISCRETE_GPU_MESA"/>
+                <enum name="EGL_DEVICE_TYPE_VIRTUAL_GPU_MESA"/>
+                <enum name="EGL_DEVICE_TYPE_CPU_MESA"/>
             </require>
         </extension>
     </extensions>
