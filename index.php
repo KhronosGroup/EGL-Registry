@@ -349,6 +349,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=141> <a href="extensions/EXT/EGL_EXT_platform_xcb.txt">EGL_EXT_platform_xcb</a>
 </li>
+<li value=142> <a href="extensions/ANGLE/EGL_ANGLE_sync_control_rate.txt">EGL_ANGLE_sync_control_rate</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>

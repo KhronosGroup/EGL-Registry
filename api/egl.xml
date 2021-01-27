@@ -1366,6 +1366,13 @@
             <proto><ptype>EGLint</ptype> <name>eglGetError</name></proto>
         </command>
         <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglGetMscRateANGLE</name></proto>
+            <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+            <param><ptype>EGLSurface</ptype> <name>surface</name></param>
+            <param><ptype>EGLint</ptype> *<name>numerator</name></param>
+            <param><ptype>EGLint</ptype> *<name>denominator</name></param>
+        </command>
+        <command>
             <proto><ptype>EGLClientBuffer</ptype> <name>eglGetNativeClientBufferANDROID</name></proto>
             <param>const struct <ptype>AHardwareBuffer</ptype> *<name>buffer</name></param>
         </command>
@@ -2338,6 +2345,11 @@
         <extension name="EGL_ANGLE_surface_d3d_texture_2d_share_handle" supported="egl">
             <require>
                 <enum name="EGL_D3D_TEXTURE_2D_SHARE_HANDLE_ANGLE"/>
+            </require>
+        </extension>
+        <extension name="EGL_ANGLE_sync_control_rate" supported="egl">
+            <require>
+                <command name="eglGetMscRateANGLE"/>
             </require>
         </extension>
         <extension name="EGL_ANGLE_window_fixed_size" supported="egl">

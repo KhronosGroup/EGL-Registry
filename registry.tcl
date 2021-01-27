@@ -732,4 +732,9 @@ extension EGL_EXT_platform_xcb {
     flags       public
     filename    extensions/EXT/EGL_EXT_platform_xcb.txt
 }
-# Next free extension number: 142
+extension EGL_ANGLE_sync_control_rate {
+    number      142
+    flags       public
+    filename    extensions/ANGLE/EGL_ANGLE_sync_control_rate.txt
+}
+# Next free extension number: 143
