@@ -747,4 +747,9 @@ extension EGL_EXT_device_drm_render_node {
     flags       public
     filename    extensions/EXT/EGL_EXT_device_drm_render_node.txt
 }
-# Next free extension number: 145
+extension EGL_EXT_config_select_group {
+    number      145
+    flags       public
+    filename    extensions/EXT/EGL_EXT_config_select_group.txt
+}
+# Next free extension number: 146

@@ -1030,7 +1030,8 @@
     </enums>
 
     <enums namespace="EGL" start="0x34C0" end="0x34CF" vendor="EXT" comment="Reserved for Robert Mader (PR 124)">
-        <unused start="0x34C0" end="0x34CF"/>
+        <enum value="0x34C0" name="EGL_CONFIG_SELECT_GROUP_EXT"/>
+            <unused start="0x34C1" end="0x34CF"/>
     </enums>
 
 <!-- Please remember that new enumerant allocations must be obtained by
@@ -2395,6 +2396,11 @@
                 <enum name="EGL_SYNC_CLIENT_SIGNAL_EXT"/>
                 <command name="eglClientSignalSyncEXT"/>
             </require>
+        </extension>
+        <extension name="EGL_EXT_config_select_group" supported="egl">
+          <require>
+                <enum name="EGL_CONFIG_SELECT_GROUP_EXT"/>
+          </require>
         </extension>
         <extension name="EGL_EXT_create_context_robustness" supported="egl">
             <require>
