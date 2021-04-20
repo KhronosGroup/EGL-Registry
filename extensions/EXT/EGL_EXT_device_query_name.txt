@@ -59,7 +59,7 @@ New Tokens
 
     Accepted by the <name> parameter of eglQueryDeviceStringEXT:
 
-        EGL_RENDERER_EXT                0x335E
+        EGL_RENDERER_EXT                0x335F
 
 New Device Queries
 
