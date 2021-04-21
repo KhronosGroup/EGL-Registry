@@ -89,6 +89,10 @@ Changes to section 3.2 (Devices)
     <max_size> is ignored, and the size of the attribute in bytes is
     returned in <size>.
 
+    On failure, EGL_FALSE is returned. An EGL_BAD_ATTRIBUTE error is
+    generated if <name> is not a valid attribute. An EGL_BAD_DEVICE_EXT
+    error is generated if <device> is not a valid EGLDeviceEXT.
+
     If <value> is not NULL, then the attribute value is returned in
     <value>. At most <max_size> bytes are written. <size> returns the
     number of bytes that were actually written.
