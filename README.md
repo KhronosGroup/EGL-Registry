@@ -1,5 +1,9 @@
 # EGL-Registry
 
+This is just a change so we can propose a PR against the old 'master'
+branch. After renaming the branch, this PR should be automatically retargeted
+to 'main'.
+
 The EGL-Registry repository contains the EGL API and Extension Registry,
 including specifications, reference pages and reference cards, and the
 enumerant registry. It is also used as a backing store for the web view of
