@@ -131,7 +131,7 @@ Issues
 
     1.  Should we use UUID's or strings to identify devices?
 
-        PROPOSED: Use UUID's for devices, plus a vendor name string to
+        RESOLVED: Use UUID's for devices, plus a vendor name string to
         disambiguate devices that are supported by multiple drivers.
 
         A device UUID and driver UUID allow an application to correlate
@@ -153,7 +153,7 @@ Issues
 
     3.  Do we need the EGL_DRIVER_NAME_EXT string?
 
-        PROPOSED: Yes, because the EGL_DEVICE_UUID_EXT alone is not
+        RESOLVED: Yes, because the EGL_DEVICE_UUID_EXT alone is not
         unique, and EGL_DRIVER_UUID_EXT is not persistent.
 
         A (EGL_DRIVER_NAME_EXT, EGL_DEVICE_UUID_EXT) pair provides a
