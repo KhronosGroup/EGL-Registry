@@ -853,7 +853,10 @@
         <enum value="0x3352" name="EGL_TRACK_REFERENCES_KHR"/>
             <unused start="0x3353" end="0x3356"/>
         <enum value="0x3357" name="EGL_CONTEXT_PRIORITY_REALTIME_NV"/>
-            <unused start="0x3358" end="0x335E"/>
+            <unused start="0x3358" end="0x335B"/>
+        <enum value="0x335C" name="EGL_DEVICE_UUID_EXT"/>
+        <enum value="0x335D" name="EGL_DRIVER_UUID_EXT"/>
+        <enum value="0x335E" name="EGL_DRIVER_NAME_EXT"/>
         <enum value="0x335F" name="EGL_RENDERER_EXT"/>
         <enum value="0x3360" name="EGL_CTA861_3_MAX_CONTENT_LIGHT_LEVEL_EXT"/>
         <enum value="0x3361" name="EGL_CTA861_3_MAX_FRAME_AVERAGE_LEVEL_EXT"/>
@@ -3415,6 +3418,13 @@
         <extension name="EGL_EXT_device_query_name" supported="egl">
             <require>
                 <enum name="EGL_RENDERER_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_device_persistent_id" supported="egl">
+            <require>
+                <enum name="EGL_DEVICE_UUID_EXT"/>
+                <enum name="EGL_DRIVER_UUID_EXT"/>
+                <enum name="EGL_DRIVER_NAME_EXT"/>
             </require>
         </extension>
     </extensions>

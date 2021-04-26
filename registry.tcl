@@ -737,4 +737,9 @@ extension EGL_ANGLE_sync_control_rate {
     flags       public
     filename    extensions/ANGLE/EGL_ANGLE_sync_control_rate.txt
 }
-# Next free extension number: 143
+extension EGL_EXT_device_persistent_id {
+    number      143
+    flags       public
+    filename    extensions/EXT/EGL_EXT_device_persistent_id.txt
+}
+# Next free extension number: 144

@@ -351,6 +351,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=142> <a href="extensions/ANGLE/EGL_ANGLE_sync_control_rate.txt">EGL_ANGLE_sync_control_rate</a>
 </li>
+<li value=143> <a href="extensions/EXT/EGL_EXT_device_persistent_id.txt">EGL_EXT_device_persistent_id</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
