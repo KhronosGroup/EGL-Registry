@@ -881,7 +881,8 @@
         <enum value="0x3374" name="EGL_STREAM_IMAGE_ADD_NV"/>
         <enum value="0x3375" name="EGL_STREAM_IMAGE_REMOVE_NV"/>
         <enum value="0x3376" name="EGL_STREAM_IMAGE_AVAILABLE_NV"/>
-            <unused start="0x3377" end="0x339F"/>
+        <enum value="0x3377" name="EGL_DRM_RENDER_NODE_FILE_EXT"/>
+            <unused start="0x3378" end="0x339F"/>
     </enums>
 
     <enums namespace="EGL" start="0x33A0" end="0x33AF" vendor="ANGLE" comment="Reserved for Shannon Woods (Bug 13175)">
@@ -3425,6 +3426,11 @@
                 <enum name="EGL_DEVICE_UUID_EXT"/>
                 <enum name="EGL_DRIVER_UUID_EXT"/>
                 <enum name="EGL_DRIVER_NAME_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_device_drm_render_node" supported="egl">
+            <require>
+                <enum name="EGL_DRM_RENDER_NODE_FILE_EXT"/>
             </require>
         </extension>
     </extensions>

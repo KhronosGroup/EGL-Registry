@@ -742,4 +742,9 @@ extension EGL_EXT_device_persistent_id {
     flags       public
     filename    extensions/EXT/EGL_EXT_device_persistent_id.txt
 }
-# Next free extension number: 144
+extension EGL_EXT_device_drm_render_node {
+    number      144
+    flags       public
+    filename    extensions/EXT/EGL_EXT_device_drm_render_node.txt
+}
+# Next free extension number: 145
