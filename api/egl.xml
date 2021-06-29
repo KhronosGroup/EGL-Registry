@@ -1989,6 +1989,14 @@
              <param><ptype>EGLImage</ptype> <name>image</name></param>
              <param><ptype>EGLSync</ptype> <name>sync</name></param>
         </command>
+        <command>
+             <proto><ptype>EGLBoolean</ptype> <name>eglQueryDeviceBinaryEXT</name></proto>
+             <param><ptype>EGLDeviceEXT</ptype> <name>device</name></param>
+             <param><ptype>EGLint</ptype> <name>name</name></param>
+             <param><ptype>EGLint</ptype> <name>max_size</name></param>
+             <param>void *<name>value</name></param>
+             <param>EGLint *<name>size</name></param>
+        </command>
     </commands>
 
     <!-- SECTION: EGL API interface definitions. -->
@@ -3430,6 +3438,7 @@
                 <enum name="EGL_DEVICE_UUID_EXT"/>
                 <enum name="EGL_DRIVER_UUID_EXT"/>
                 <enum name="EGL_DRIVER_NAME_EXT"/>
+                <command name="eglQueryDeviceBinaryEXT"/>
             </require>
         </extension>
         <extension name="EGL_EXT_device_drm_render_node" supported="egl">
