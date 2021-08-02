@@ -357,6 +357,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=145> <a href="extensions/EXT/EGL_EXT_config_select_group.txt">EGL_EXT_config_select_group</a>
 </li>
+<li value=146> <a href="extensions/EXT/EGL_EXT_present_opaque.txt">EGL_EXT_present_opaque</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>

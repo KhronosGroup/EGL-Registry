@@ -752,4 +752,9 @@ extension EGL_EXT_config_select_group {
     flags       public
     filename    extensions/EXT/EGL_EXT_config_select_group.txt
 }
-# Next free extension number: 146
+extension EGL_EXT_present_opaque {
+    number      146
+    flags       public
+    filename    extensions/EXT/EGL_EXT_present_opaque.txt
+}
+# Next free extension number: 147

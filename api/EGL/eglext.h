@@ -904,6 +904,11 @@ EGLAPI EGLSurface EGLAPIENTRY eglCreatePlatformPixmapSurfaceEXT (EGLDisplay dpy,
 #define EGL_PLATFORM_XCB_SCREEN_EXT       0x31DE
 #endif /* EGL_EXT_platform_xcb */
 
+#ifndef EGL_EXT_present_opaque
+#define EGL_EXT_present_opaque 1
+#define EGL_PRESENT_OPAQUE_EXT            0x31DF
+#endif /* EGL_EXT_present_opaque */
+
 #ifndef EGL_EXT_protected_content
 #define EGL_EXT_protected_content 1
 #define EGL_PROTECTED_CONTENT_EXT         0x32C0

@@ -575,7 +575,7 @@
         <enum value="0x31DC" name="EGL_PLATFORM_XCB_EXT"/>
         <enum value="0x31DD" name="EGL_PLATFORM_SURFACELESS_MESA"/>
         <enum value="0x31DE" name="EGL_PLATFORM_XCB_SCREEN_EXT"/>
-            <unused start="0x31DF" end="0x31DF"/>
+        <enum value="0x31DF" name="EGL_PRESENT_OPAQUE_EXT"/>
     </enums>
 
     <!-- Due to an oversight in development, these enums alias the above MESA
@@ -2602,6 +2602,11 @@
             <require>
                 <enum name="EGL_PLATFORM_XCB_EXT"/>
                 <enum name="EGL_PLATFORM_XCB_SCREEN_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_present_opaque" supported="egl">
+            <require>
+                <enum name="EGL_PRESENT_OPAQUE_EXT"/>
             </require>
         </extension>
         <extension name="EGL_EXT_protected_content" supported="egl">
