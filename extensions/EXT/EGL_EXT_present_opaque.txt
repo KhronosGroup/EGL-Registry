@@ -20,7 +20,7 @@ IP Status
 
 Status
 
-    Draft
+    Complete
 
 Version
 
@@ -79,9 +79,10 @@ Additions to Chapter 3 of the EGL 1.4 Specification (Rendering Surfaces)
         "EGL_PRESENT_OPAQUE_EXT specifies the presentation opacity mode
         of the window surface. If its value is EGL_TRUE, then the
         surface's alpha channel (if any) will be ignored and considered
-        fully opaque. If its value is EGL_FALSE, then the surface's
-        alpha channel is respected by the compositor. The default value
-        of EGL_PRESENT_OPAQUE_EXT is EGL_FALSE."
+        fully opaque. If its value is EGL_FALSE, then the compositor
+        doesn't change its behaviour, and considers the surface's alpha
+        channel the same way as if the extension wasn't implemented. The
+        default value of EGL_PRESENT_OPAQUE_EXT is EGL_FALSE."
 
     Add to Table 3.5: Queryable surface attributes and types on p. 37
 
@@ -107,6 +108,10 @@ Issues
     None
 
 Revision History
+
+    Version 2, 2021-08-17 (Eric Engestrom)
+      - Re-worded the compositor's behaviour for EGL_FALSE.
+      - Marked extension as Complete.
 
     Version 1, 2021-08-08 (Eric Engestrom)
       - Initial draft
