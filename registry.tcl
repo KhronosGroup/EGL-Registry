@@ -1,4 +1,4 @@
-# Copyright 2006-2020 The Khronos Group Inc.
+# Copyright 2006-2021 The Khronos Group Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 # registry.tcl

@@ -355,6 +355,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=144> <a href="extensions/EXT/EGL_EXT_device_drm_render_node.txt">EGL_EXT_device_drm_render_node</a>
 </li>
+<li value=145> <a href="extensions/EXT/EGL_EXT_config_select_group.txt">EGL_EXT_config_select_group</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
