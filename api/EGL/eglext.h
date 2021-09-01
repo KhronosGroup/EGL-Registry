@@ -14,12 +14,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: dc0b58dca5 $ on $Git commit date: 2021-06-25 01:58:50 +0200 $
+** Khronos $Git commit SHA1: b35e89ca9a $ on $Git commit date: 2021-09-01 09:34:00 +0530 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20210629
+#define EGL_EGLEXT_VERSION 20210901
 
 /* Generated C header for:
  * API: egl
@@ -700,6 +700,7 @@ EGLAPI EGLBoolean EGLAPIENTRY eglQueryDisplayAttribEXT (EGLDisplay dpy, EGLint a
 #ifndef EGL_EXT_device_openwf
 #define EGL_EXT_device_openwf 1
 #define EGL_OPENWF_DEVICE_ID_EXT          0x3237
+#define EGL_OPENWF_DEVICE_EXT             0x333D
 #endif /* EGL_EXT_device_openwf */
 
 #ifndef EGL_EXT_device_persistent_id
