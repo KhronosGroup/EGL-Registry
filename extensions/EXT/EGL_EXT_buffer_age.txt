@@ -186,7 +186,7 @@ Additions to Section 3.5 of the EGL 1.4 Specification (Rendering Surfaces)
         always have an age of 0.
 
         Frame boundaries are the only events that can set a buffer's
-        age to a positive value. Once EGL_BACK_BUFFER_AGE_EXT has been
+        age to a positive value. Once EGL_BUFFER_AGE_EXT has been
         queried then it can be assumed that the age will remain valid
         until the next frame boundary. EGL implementations are
         permitted, but not required, to reset the buffer age in
@@ -325,3 +325,5 @@ Revision History
         of the spec.
       - Add "IP Status" section to explicitly state that this extension has no
         knonw IP claims.
+    Version 13, 14/10/2021, Guanzhong Chen
+      - Fix an incorrect token name
