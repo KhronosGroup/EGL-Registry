@@ -1025,9 +1025,6 @@
     <enums namespace="EGL" start="0x34A0" end="0x34AF" vendor="ANGLE" comment="Reserved for Ken Russell - ANGLE (via github pull request)">
             <unused start="0x34A0" end="0x34AF"/>
     </enums>
-    <enums namespace="EGL" start="0x34D0" end="0x34DF" vendor="ANGLE" comment="Reserved for Peng Huang - ANGLE (via github pull request)">
-            <unused start="0x34D0" end="0x34DF"/>
-    </enums>
 
     <enums namespace="EGL" start="0x34B0" end="0x34BF" vendor="ARM" comment="Reserved for Jan-Harald Fredriksen (via github pull request)">
         <unused start="0x34B0" end="0x34BF"/>
@@ -1038,6 +1035,9 @@
             <unused start="0x34C1" end="0x34CF"/>
     </enums>
 
+    <enums namespace="EGL" start="0x34D0" end="0x34DF" vendor="ANGLE" comment="Reserved for Peng Huang - ANGLE (via github pull request)">
+            <unused start="0x34D0" end="0x34DF"/>
+    </enums>
 <!-- Please remember that new enumerant allocations must be obtained by
      request to the Khronos API registrar (see comments at the top of this
      file) File requests in the Khronos Bugzilla, EGL project, Registry
