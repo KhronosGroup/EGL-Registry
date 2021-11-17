@@ -359,6 +359,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=146> <a href="extensions/EXT/EGL_EXT_present_opaque.txt">EGL_EXT_present_opaque</a>
 </li>
+<li value=147> <a href="extensions/EXT/EGL_EXT_surface_compression.txt">EGL_EXT_surface_compression</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
