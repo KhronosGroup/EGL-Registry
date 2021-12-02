@@ -732,4 +732,9 @@ extension EGL_EXT_platform_xcb {
     flags       public
     filename    extensions/EXT/EGL_EXT_platform_xcb.txt
 }
+extension EGL_MESA_QUERY_RENDERER {
+    number      142
+    flags       public
+    filename    extensions/MESA/EGL_MESA_query_renderer.txt
+}
 # Next free extension number: 142

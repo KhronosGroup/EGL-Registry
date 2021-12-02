@@ -349,6 +349,11 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=141> <a href="extensions/EXT/EGL_EXT_platform_xcb.txt">EGL_EXT_platform_xcb</a>
 </li>
+</li>
+<li value=141> <a href="extensions/EXT/EGL_EXT_platform_xcb.txt">EGL_EXT_platform_xcb</a>
+</li>
+<li value=142> <a href="extensions/MESA/EGL_MESA_query_renderer.txt">EGL_MESA_query_renderer</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>

@@ -1046,6 +1046,20 @@
         <enum value="0x8F74" name="EGL_CLIENT_PIXMAP_POINTER_HI"/>
     </enums>
 
+    <enums namespace="EGL" start="0x8F80" end="0x8F8F" vendor="KHR">
+        <enum value="0x8F80" name="EGL_RENDERER_VENDOR_ID_MESA"/>
+        <enum value="0x8F81" name="EGL_RENDERER_DEVICE_ID_MESA"/>
+        <enum value="0x8F82" name="EGL_RENDERER_VERSION_MESA"/>
+        <enum value="0x8F83" name="EGL_RENDERER_ACCELERATED_MESA"/>
+        <enum value="0x8F84" name="EGL_RENDERER_VIDEO_MEMORY_MESA"/>
+        <enum value="0x8F85" name="EGL_RENDERER_UNIFIED_MEMORY_ARCHITECTURE_MESA"/>
+        <enum value="0x8F86" name="EGL_RENDERER_PREFERRED_PROFILE_MESA"/>
+        <enum value="0x8F87" name="EGL_RENDERER_OPENGL_CORE_PROFILE_VERSION_MESA"/>
+        <enum value="0x8F88" name="EGL_RENDERER_OPENGL_COMPATIBILITY_PROFILE_VERSION_MESA"/>
+        <enum value="0x8F89" name="EGL_RENDERER_OPENGL_ES_PROFILE_VERSION_MESA"/>
+        <enum value="0x8F8A" name="EGL_RENDERER_OPENGL_ES2_PROFILE_VERSION_MESA"/>
+    </enums>
+
     <!-- SECTION: EGL command definitions. -->
     <commands namespace="EGL">
         <command>
@@ -1973,6 +1987,36 @@
              <param><ptype>EGLStreamKHR</ptype> <name>stream</name></param>
              <param><ptype>EGLImage</ptype> <name>image</name></param>
              <param><ptype>EGLSync</ptype> <name>sync</name></param>
+        </command>
+        <command>
+             <proto><ptype>EGLBoolean</ptype> <name>eglQueryDeviceBinaryEXT</name></proto>
+             <param><ptype>EGLDeviceEXT</ptype> <name>device</name></param>
+             <param><ptype>EGLint</ptype> <name>name</name></param>
+             <param><ptype>EGLint</ptype> <name>max_size</name></param>
+             <param>void *<name>value</name></param>
+             <param>EGLint *<name>size</name></param>
+        </command>
+        <command>
+             <proto><ptype>EGLBoolean</ptype> <name>eglQueryRendererIntegerMESA</name></proto>
+             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+             <param><ptype>EGLint</ptype> <name>renderer</name></param>
+             <param><ptype>EGLint</ptype> <name>attribute</name></param>
+             <param><ptype>EGLint</ptype> *<name>value</name></param>
+        </command>
+        <command>
+             <proto><ptype>EGLBoolean</ptype> <name>eglQueryCurrentRendererIntegerMESA</name></proto>
+             <param><ptype>EGLint</ptype> <name>attribute</name></param>
+             <param><ptype>EGLint</ptype> *<name>value</name></param>
+        </command>
+        <command>
+             <proto>const <ptype>char</ptype> *<name>eglQueryRendererStringMESA</name></proto>
+             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+             <param><ptype>EGLint</ptype> <name>renderer</name></param>
+             <param><ptype>EGLint</ptype> <name>attribute</name></param>
+        </command>
+        <command>
+             <proto>const <ptype>char</ptype> *<name>eglQueryCurrentRendererStringMESA</name></proto>
+             <param><ptype>EGLint</ptype> <name>attribute</name></param>
         </command>
     </commands>
 
@@ -3403,6 +3447,29 @@
         <extension name="EGL_EXT_device_query_name" supported="egl">
             <require>
                 <enum name="EGL_RENDERER_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_MESA_QUERY_RENDERER" supported="egl">
+            <require>
+                <enum name="EGL_RENDERER_VENDOR_ID_MESA"/>
+                <enum name="EGL_RENDERER_DEVICE_ID_MESA"/>
+                <enum name="EGL_RENDERER_VERSION_MESA"/>
+                <enum name="EGL_RENDERER_ACCELERATED_MESA"/>
+                <enum name="EGL_RENDERER_VIDEO_MEMORY_MESA"/>
+                <enum name="EGL_RENDERER_UNIFIED_MEMORY_ARCHITECTURE_MESA"/>
+                <enum name="EGL_RENDERER_PREFERRED_PROFILE_MESA"/>
+                <enum name="EGL_RENDERER_OPENGL_CORE_PROFILE_VERSION_MESA"/>
+                <enum name="EGL_RENDERER_OPENGL_COMPATIBILITY_PROFILE_VERSION_MESA"/>
+                <enum name="EGL_RENDERER_OPENGL_ES_PROFILE_VERSION_MESA"/>
+                <enum name="EGL_RENDERER_OPENGL_ES2_PROFILE_VERSION_MESA"/>
+                <command name="eglQueryCurrentRendererIntegerMESA"/>
+                <command name="eglQueryCurrentRendererStringMESA"/>
+                <command name="eglQueryRendererIntegerMESA"/>
+                <command name="eglQueryRendererStringMESA"/>
+                <type name="PFNEGLQUERYCURRENTRENDERERINTEGERMESAPROC"/>
+                <type name="PFNEGLQUERYCURRENTRENDERERSTRINGMESAPROC"/>
+                <type name="PFNEGLQUERYRENDERERINTEGERMESAPROC"/>
+                <type name="PFNEGLQUERYRENDERERSTRINGMESAPROC"/>
             </require>
         </extension>
     </extensions>

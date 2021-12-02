@@ -14,12 +14,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: 5a9a7e3fcb $ on $Git commit date: 2020-08-24 11:05:32 -0700 $
+** Khronos $Git commit SHA1: dc0b58dca5 $ on $Git commit date: 2021-06-25 01:58:50 +0200 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20201001
+#define EGL_EGLEXT_VERSION 20210629
 
 /* Generated C header for:
  * API: egl
@@ -994,6 +994,31 @@ EGLAPI EGLSurface EGLAPIENTRY eglCreatePixmapSurfaceHI (EGLDisplay dpy, EGLConfi
 #define EGL_NATIVE_BUFFER_MULTIPLANE_SEPARATE_IMG 0x3105
 #define EGL_NATIVE_BUFFER_PLANE_OFFSET_IMG 0x3106
 #endif /* EGL_IMG_image_plane_attribs */
+
+#ifndef EGL_MESA_QUERY_RENDERER
+#define EGL_MESA_QUERY_RENDERER 1
+#define EGL_RENDERER_VENDOR_ID_MESA       0x8F80
+#define EGL_RENDERER_DEVICE_ID_MESA       0x8F81
+#define EGL_RENDERER_VERSION_MESA         0x8F82
+#define EGL_RENDERER_ACCELERATED_MESA     0x8F83
+#define EGL_RENDERER_VIDEO_MEMORY_MESA    0x8F84
+#define EGL_RENDERER_UNIFIED_MEMORY_ARCHITECTURE_MESA 0x8F85
+#define EGL_RENDERER_PREFERRED_PROFILE_MESA 0x8F86
+#define EGL_RENDERER_OPENGL_CORE_PROFILE_VERSION_MESA 0x8F87
+#define EGL_RENDERER_OPENGL_COMPATIBILITY_PROFILE_VERSION_MESA 0x8F88
+#define EGL_RENDERER_OPENGL_ES_PROFILE_VERSION_MESA 0x8F89
+#define EGL_RENDERER_OPENGL_ES2_PROFILE_VERSION_MESA 0x8F8A
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYCURRENTRENDERERINTEGERMESAPROC) (EGLint attribute, EGLint *value);
+typedef const char *(EGLAPIENTRYP PFNEGLQUERYCURRENTRENDERERSTRINGMESAPROC) (EGLint attribute);
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYRENDERERINTEGERMESAPROC) (EGLDisplay *dpy, EGLint renderer, EGLint attribute, EGLint *value);
+typedef const char *(EGLAPIENTRYP PFNEGLQUERYRENDERERSTRINGMESAPROC) (EGLDisplay *dpy, EGLint renderer, EGLint attribute);
+#ifdef EGL_EGLEXT_PROTOTYPES
+EGLAPI EGLBoolean EGLAPIENTRY eglQueryCurrentRendererIntegerMESA (EGLint attribute, EGLint *value);
+EGLAPI const char *EGLAPIENTRY eglQueryCurrentRendererStringMESA (EGLint attribute);
+EGLAPI EGLBoolean EGLAPIENTRY eglQueryRendererIntegerMESA (EGLDisplay *dpy, EGLint renderer, EGLint attribute, EGLint *value);
+EGLAPI const char *EGLAPIENTRY eglQueryRendererStringMESA (EGLDisplay *dpy, EGLint renderer, EGLint attribute);
+#endif
+#endif /* EGL_MESA_QUERY_RENDERER */
 
 #ifndef EGL_MESA_drm_image
 #define EGL_MESA_drm_image 1

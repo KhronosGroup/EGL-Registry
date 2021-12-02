@@ -1,0 +1,186 @@
+Name
+
+    MESA_query_renderer
+
+Name Strings
+
+    EGL_MESA_query_renderer
+
+Contact
+
+    Rob Clark      <robdclark 'at' gmail.com>
+    Nicolai Hähnle <Nicolai.Haehnle 'at' amd.com>
+
+Contributors
+
+    Veluri Mithun <velurimithun38 'at' gmail.com>
+
+Status
+
+    XXX - Not complete yet!!! (draft)
+
+Version
+
+    Version 1, 2018-08-24
+
+Number
+
+    EGL Extension ###
+
+Dependencies
+
+    EGL 1.0 is required.
+
+New Procedures and Functions
+
+    Bool eglQueryRendererIntegerMESA(EGLDisplay *dpy, int renderer,
+                                     int attribute, unsigned int *value);
+
+    Bool eglQueryCurrentRendererIntegerMESA(int attribute, unsigned int *value);
+
+    const char *eglQueryRendererStringMESA(EGLDisplay *dpy,int renderer,
+                                           int attribute);
+
+    const char *eglQueryCurrentRendererStringMESA(int attribute);
+
+Overview
+
+    In many situations, applications want to detect characteristics of a
+    rendering device before creating a context for that device.  Information
+    gathered at this stage may guide choices the application makes about
+    color depth, number of samples per-pixel, texture quality, and so on.
+    In addition, versions of supported APIs and implementation API
+    preference may also guide start-up decisions made by the application.
+    For example, one implementation may prefer vertex data be supplied using
+    methods only available in a compatibility profile, but another
+    implementation may only support the desired version in a core profile.
+
+    There are also cases where more than one renderer may be available per
+    display.  For example, there is typically a hardware implementation and
+    a software based implementation.  There are cases where an application
+    may want to pick one over the other.  One such situation is when the
+    software implementation supports more features than the hardware
+    implementation.  Another situation is when a particular version of the
+    hardware implementation is blacklisted due to known bugs.
+
+    This extension provides a mechanism for the application to query all of
+    the available renderers for a particular display. In addition, this 
+    extension provides a mechanism for applications to create contexts with 
+    respect to a specific renderer.
+
+IP Status
+
+    No IP claims
+
+New Tokens
+
+    Accepted as an <attribute> in eglQueryRendererIntegerMESA and
+    eglQueryCurrentRendererIntegerMESA:
+
+        EGL_RENDERER_VENDOR_ID_MESA                      0xXXXX
+        EGL_RENDERER_DEVICE_ID_MESA                      0xXXXX
+        EGL_RENDERER_VERSION_MESA                        0xXXXX
+        EGL_RENDERER_ACCELERATED_MESA                    0xXXXX
+        EGL_RENDERER_VIDEO_MEMORY_MESA                   0xXXXX
+        EGL_RENDERER_UNIFIED_MEMORY_ARCHITECTURE_MESA    0xXXXX
+        EGL_RENDERER_OPENGL_CORE_PROFILE_VERSION_MESA    0xXXXX
+        EGL_RENDERER_OPENGL_COMPATIBILITY_PROFILE_VERSION_MESA    0xXXXX
+
+    Accepted as an <attribute> in EGLQueryRendererStringMESA and
+    EGLQueryCurrentRendererStringMESA:
+
+        EGL_RENDERER_VENDOR_ID_MESA
+        EGL_RENDERER_DEVICE_ID_MESA
+
+Additions to the EGL 1.0 Specification
+
+    [Add the following to Section 3.3 of the EGL Versioning]
+
+    To obtain information about the available renderers for a particular
+    display,
+
+    Bool eglQueryRendererIntegerMESA(EGLDisplay *dpy, int renderer,
+                                     int attribute, unsigned int *value);
+
+    can be used.  The value for <attribute> will be returned in one or more
+    integers specified by <value>.  The values, data sizes, and descriptions
+    of each renderer attribute are listed in the table below.
+
+    EGL renderer attribute         number     description
+                                  of values
+    ----------------------        ---------   -----------
+    EGL_RENDERER_VENDOR_ID_MESA   1           PCI ID of the device vendor
+    EGL_RENDERER_DEVICE_ID_MESA   1           PCI ID of the device
+    EGL_RENDERER_VERSION_MESA     3           Major, minor, and patch level of
+                                              the renderer implementation
+    EGL_RENDERER_ACCELERATED_MESA 1           Boolean indicating whether or
+                                              not the renderer is hardware
+                                              accelerated
+    EGL_RENDERER_VIDEO_MEMORY_MESA 1          Number of megabytes of video
+                                              memory available to the renderer
+    EGL_RENDERER_UNIFIED_MEMORY_ARCHITECTURE_MESA
+                                  1           Boolean indicating whether or
+                                              not the renderer uses a unified
+                                              memory architecture or has
+                                              separate "on-card" and GART
+                                              memory.
+    EGL_RENDERER_OPENGL_CORE_PROFILE_VERSION_MESA
+                                  2           Maximum core profile major and
+                                              minor version supported by the
+                                              renderer
+    EGL_RENDERER_OPENGL_COMPATIBILITY_PROFILE_VERSION_MESA
+                                  2           Maximum compatibility profile
+                                              major and minor version
+                                              supported by the renderer
+
+    In the table, boolean attributes will have either the value 0 or 1.
+
+    EGL_RENDERER_OPENGL_CORE_PROFILE_VERSION_MESA,
+    EGL_RENDERER_OPENGL_COMPATIBILITY_PROFILE_VERSION_MESA,
+    each return <0, 0> in *value if no version of that profile is supported.
+
+    EGL_RENDERER_VENDOR_ID_MESA and EGL_RENDERER_DEVICE_ID_MESA may return
+    0xFFFFFFFF if the device does not have a PCI ID (because it is not a PCI
+    device) or if the PCI ID is not available.  In this case the application
+    should rely on the string query instead.
+
+    If <attribute> is not a recognized value, False is returned, but no EGL
+    error is generated.  Otherwise, True is returned.
+
+    String versions of some attributes may also be queried using
+
+    const char *eglQueryRendererStringMESA(EGLDisplay *dpy,int renderer,
+                                           int attribute);
+
+    The value for <attribute> will be returned in one or more
+    integers specified by <value>.  The values, data sizes, and descriptions
+    of each renderer attribute are listed in the table below.
+
+    EGL renderer attribute        description
+    ----------------------        -----------
+    EGL_RENDERER_VENDOR_ID_MESA   Name of the renderer provider.  This may
+                                  differ from the vendor name of the
+                                  underlying hardware.
+    EGL_RENDERER_DEVICE_ID_MESA   Name of the renderer.  This may differ from
+                                  the name of the underlying hardware (e.g.,
+                                  for a software renderer).
+
+    If <attribute> is not a recognized value, NULL is returned, but no EGL
+    error is generated.
+
+    The string returned for EGL_RENDERER_VENDOR_ID_MESA will have the same
+    format as the string that would be returned by glGetString of GL_VENDOR.
+    It may, however, have a different value.
+
+    The string returned for EGL_RENDERER_DEVICE_ID_MESA will have the same
+    format as the string that would be returned by glGetString of GL_RENDERER.
+    It may, however, have a different value.
+
+Issues
+
+    See also issues in GLX_MESA_query_renderer extension.
+
+Revision History
+
+    Version 1, 2018-08-24
+
