@@ -82,15 +82,12 @@ New Procedures and Functions
 
 New Tokens
 
-    New EGLSurface attribute name:
+    Accepted as an attribute name in the <attrib_list> parameter of
+    eglCreateContext, eglCreateWindowSurface, and eglCreateImageKHR;
+    and as an parameter of eglQuerySurface and eglQueryContext:
 
         EGL_PROTECTED_CONTENT_EXT               0x32C0
         
-    Accepted as an <attribute> parameter of eglQuerySurface and 
-    eglQueryContext:
-
-        EGL_PROTECTED_CONTENT_EXT               0x32C0
-
 
 Add a new section 2.7 entitled "Protected Content" at the end of Chapter 2 (EGL
 Operation)
