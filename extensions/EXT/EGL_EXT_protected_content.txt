@@ -171,8 +171,8 @@ Additions to Chapter 3 of the EGL 1.4 Specification (Rendering Contexts)
 
         The default value of EGL_PROTECTED_CONTENT_EXT is EGL_FALSE."
 
-    Add the following paragraph in section 3.5.6 Surface Attributes. Add after
-    the last paragraph after eglQuerySurface attribute queries.
+    Add the following paragraph in section 3.7.4 Context Queries. Add after
+    the last paragraph after eglQueryContext queries.
     
         "Querying EGL_PROTECTED_CONTENT_EXT returns the current value"
 
@@ -208,8 +208,8 @@ Additions to Chapter 3 of the EGL 1.4 Specification (Rendering Surfaces)
 
         The default value of EGL_PROTECTED_CONTENT_EXT is EGL_FALSE."
 
-    Add the following paragraph in section 3.7.4 Context Queries. Add after
-    the last paragraph after eglQueryContext queries.
+    Add the following paragraph in section 3.5.6 Surface Attributes. Add after
+    the last paragraph after eglQuerySurface attribute queries.
     
         "Querying EGL_PROTECTED_CONTENT_EXT returns the current value"
 
