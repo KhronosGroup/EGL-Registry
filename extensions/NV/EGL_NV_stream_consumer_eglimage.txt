@@ -56,8 +56,8 @@ New Procedures and Functions
                     EGLDisplay dpy,
                     EGLStreamKHR stream,
                     EGLint num_modifiers,
-                    EGLuint64KHR *modifiers,
-                    EGLAttrib* attrib_list);
+                    const EGLuint64KHR *modifiers,
+                    const EGLAttrib* attrib_list);
 
     EGLint eglQueryStreamConsumerEventNV(
                     EGLDisplay dpy,
@@ -149,8 +149,8 @@ EGL_KHR_stream extension with this:
                     EGLDisplay dpy,
                     EGLStreamKHR stream,
                     EGLint num_modifiers,
-                    EGLuint64KHR *modifiers,
-                    EGLAttrib* attrib_list);
+                    const EGLuint64KHR *modifiers,
+                    const EGLAttrib* attrib_list);
 
     to connect the EGLImage consumer to the <stream>. An EGLImage
     consumer allows image frames inserted in the stream to be received
@@ -337,6 +337,9 @@ Issues
 
 
 Revision History
+
+    #4  (December 10, 2021) Kyle Brenneman
+    	- Added the missing const modifier for input parameters
 
     #3  (November 27, 2019) Mukund Keshava
         - Refined some subsections with more details
