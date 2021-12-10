@@ -39,7 +39,7 @@ Dependencies
 
     Requires the EGL_KHR_stream extension.
 
-    Requires the EGL_KHR_reusable_sync extension.
+    Requires the EGL_EXT_sync_reuse extension.
 
     This extension is written against the wording of the EGL 1.5
     Specification
@@ -242,17 +242,14 @@ EGL_KHR_stream extension with this:
     to "latch" the next image frame in the image stream from <stream>
     into an EGLImage.
 
-    The consumer application needs to create a reusable EGLSync object
-    using eglCreateSync with EGL_SYNC_STATUS set to EGL_SIGNALED prior
-    to to this command.
+    If <sync> is not EGL_NO_SYNC, then it must be an EGLSync with a type
+    of EGL_SYNC_FENCE, and it must be signaled (e.g., created with
+    EGL_SYNC_STATUS set to EGL_SIGNALED). eglStreamAcquireImageNV will
+    reset the state of <sync> to unsignaled, and <sync> will be signaled
+    when the producer is done writing to the frame.
 
-    eglStreamAcquireImageNV accepts a handle to a previously created
-    <sync> object. eglStreamAcquireImageNV will write into the
-    <sync> object and this indicates when the producer will be done
-    writing to the frame. It also resets the state of the <sync> object
-    to unsignaled.
-
-    If <sync> is EGL_NO_SYNC, the consumer ignores the sync object.
+    If <sync> is EGL_NO_SYNC, then eglStreamAcquireImageNV ignores the
+    sync object.
 
     On success, EGL_TRUE is returned.
 
@@ -270,6 +267,15 @@ EGL_KHR_stream extension with this:
         - EGL_BAD_ACCESS is generated if there are no frames in the
           <stream> that are available to acquire.
 
+        - EGL_BAD_PARAMETER  is generated if <sync> is not a valid
+          EGLSync object or EGL_NO_SYNC.
+
+	- EGL_BAD_ACCESS is generated if <sync> is not EGL_NO_SYNC and is
+	  not a fence sync.
+
+	- EGL_BAD_ACCESS is generated if <sync> is not EGL_NO_SYNC and is
+	  not in the signaled state.
+
     Call
 
         EGLBoolean eglStreamReleaseImageNV(
@@ -284,9 +290,12 @@ EGL_KHR_stream extension with this:
     needs to have previously been acquired with
     eglStreamAcquireImageNV.
 
+    If <sync> is not EGL_NO_SYNC, then it must be an EGLSync with a
+    typeof EGL_SYNC_FENCE. eglStreamReleaseImageNV makes a copy of the
+    sync object, so the caller is free to delete or reuse <sync> as it
+    chooses.
+
     If <sync> is EGL_NO_SYNC, then the sync object is ignored.
-    The eglStreamReleaseImageNV call makes a copy of the <sync>, so the
-    caller is free to delete or reuse the <sync> as it chooses.
 
     On success, EGL_TRUE is returned, and the frame is successfully
     returned back to the stream.
@@ -309,6 +318,9 @@ EGL_KHR_stream extension with this:
 
         - EGL_BAD_PARAMETER  is generated if <sync> is not a valid
           EGLSync object or EGL_NO_SYNC.
+
+	- EGL_BAD_ACCESS is generated if <sync> is not EGL_NO_SYNC and is
+	  not a fence sync.
 
     If an acquired EGLImage has not yet released when eglDestroyImage
     is called, then, then an implicit eglStreamReleaseImageNV will be
@@ -337,6 +349,9 @@ Issues
 
 
 Revision History
+
+    #5  (December 15, 2021) Kyle Brenneman
+        - Corrected and clarified the <sync> parameters
 
     #4  (December 10, 2021) Kyle Brenneman
     	- Added the missing const modifier for input parameters
