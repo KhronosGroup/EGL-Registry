@@ -80,7 +80,7 @@
                     <constant>GL_FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING</constant>
                     value of <constant>GL_LINEAR</constant>. The default
                     value of <constant>EGL_GL_COLORSPACE</constant> is
-                    <constant>EGL_GL_COLORSPACE_SRGB</constant>.
+                    <constant>EGL_GL_COLORSPACE_LINEAR</constant>.
                 </para>
                 <para>
                     Note that the <constant>EGL_GL_COLORSPACE</constant>
