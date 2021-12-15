@@ -757,4 +757,9 @@ extension EGL_EXT_present_opaque {
     flags       public
     filename    extensions/EXT/EGL_EXT_present_opaque.txt
 }
-# Next free extension number: 147
+extension EGL_EXT_surface_compression {
+    number      147
+    flags       public
+    filename    extensions/EXT/EGL_EXT_surface_compression.txt
+}
+# Next free extension number: 148
