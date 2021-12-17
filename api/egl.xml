@@ -1056,8 +1056,8 @@
             <unused start="0x34D0" end="0x34DF"/>
     </enums>
 
-    <enums namespace="EGL" start="0x34E0" end="0x34EF" vendor="ANGLE" comment="Reserved for Ken Russell - ANGLE (via github pull request)">
-            <unused start="0x34E0" end="0x34EF"/>
+    <enums namespace="EGL" start="0x34F0" end="0x34FF" vendor="ANGLE" comment="Reserved for Ken Russell - ANGLE (via github pull request)">
+            <unused start="0x34F0" end="0x34FF"/>
     </enums>
 <!-- Please remember that new enumerant allocations must be obtained by
      request to the Khronos API registrar (see comments at the top of this
