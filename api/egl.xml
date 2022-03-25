@@ -1729,7 +1729,7 @@
         <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglQuerySupportedCompressionRatesEXT</name></proto>
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
-            <param><ptype>EGLConfig</ptype> *<name>configs</name></param>
+            <param><ptype>EGLConfig</ptype> <name>config</name></param>
             <param>const <ptype>EGLAttrib</ptype> *<name>attrib_list</name></param>
             <param><ptype>EGLint</ptype> *<name>rates</name></param>
             <param><ptype>EGLint</ptype> <name>rate_size</name></param>
