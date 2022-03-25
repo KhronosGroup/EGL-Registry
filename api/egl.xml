@@ -886,7 +886,8 @@
         <enum value="0x3376" name="EGL_STREAM_IMAGE_AVAILABLE_NV"/>
         <enum value="0x3377" name="EGL_DRM_RENDER_NODE_FILE_EXT"/>
         <enum value="0x3378" name="EGL_STREAM_CONSUMER_IMAGE_USE_SCANOUT_NV" />
-            <unused start="0x3379" end="0x339F"/>
+        <enum value="0x3379" name="EGL_ALLOC_NEW_DISPLAY_EXT"/>
+            <unused start="0x337A" end="0x339F"/>
     </enums>
 
     <enums namespace="EGL" start="0x33A0" end="0x33AF" vendor="ANGLE" comment="Reserved for Shannon Woods (Bug 13175)">
@@ -2066,6 +2067,10 @@
              <param><ptype>EGLint</ptype> <name>max_size</name></param>
              <param>void *<name>value</name></param>
              <param>EGLint *<name>size</name></param>
+        </command>
+        <command>
+             <proto><ptype>EGLBoolean</ptype> <name>eglDestroyDisplayEXT</name></proto>
+             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
         </command>
     </commands>
 
@@ -3578,6 +3583,12 @@
         <extension name="EGL_QNX_image_native_buffer" supported="egl">
             <require>
                 <enum name="EGL_NATIVE_BUFFER_QNX"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_display_alloc" supported="egl">
+            <require>
+                <enum name="EGL_ALLOC_NEW_DISPLAY_EXT"/>
+                <command name="eglDestroyDisplayEXT"/>
             </require>
         </extension>
     </extensions>
