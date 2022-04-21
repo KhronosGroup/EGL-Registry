@@ -11,6 +11,7 @@ Contributors
     Adam Jackson
     Nicolai Haehnle
     Daniel Stone
+    Kyle Brenneman
 
 Contacts
 
@@ -22,7 +23,7 @@ Status
 
 Version
 
-    Version 2, 2017-08-08
+    Version 3, 2022-04-21
 
 Number
 
@@ -34,7 +35,7 @@ Extension Type
 
 Dependencies
 
-    Requires EGL_EXT_platform_base and EGL_EXT_device_base.
+    Requires EGL_EXT_platform_base and EGL_EXT_device_enumeration.
 
     EGL_EXT_platform_device trivially interacts with this extension.
 
@@ -42,20 +43,21 @@ Dependencies
 
 Overview
 
-    A system may support multiple devices and multiple window systems. For
-    example, a Wayland environment may drive multiple GPUs and support both
-    X11 and EGL clients. In order to realize this, the implementation must
-    allow the client to specify both device and platform explicitly.
+    A system may support rendering with multiple devices for the same
+    windowing system. In that case, an EGL implementation must select a
+    default device based on the native display.
 
-    The EGL_EXT_platform_device extension enables the client to create a
-    display from a device, but does so by overloading the native_display
-    argument to eglGetPlatformDisplay; the user passes the device as the
-    native display, and presumably the EGL picks a sensible default for the
-    window system.
+    This extension allows an application to explicitly request a device
+    to use for rendering instead of the implementation's default.
 
-    EGL_EXT_explicit_device differs by passing the device as an attribute
-    to eglGetPlatformDisplay. This allows the client to name both the device
-    and the platform.
+    This differs from EGL_EXT_platform_device in that
+    EGL_EXT_platform_device uses an EGLDeviceEXT instead of a native
+    display. Thus, EGL_EXT_platform_device allows offscreen rendering
+    to a pbuffer or FBO, but it does not require or use a windowing
+    system, and thus does not allow pixmap or window surfaces.
+
+    Using EGL_EXT_explicit_device with EGL_MESA_platform_surfaceless is
+    functionally identical to EGL_EXT_platform_device.
 
 New Types
 
@@ -75,12 +77,22 @@ Additions to the EGL Specification
 
 New Behavior
 
-    If EGL_DEVICE_EXT is specified as an attribute for eglGetPlatformDisplay,
-    the value of the attribute is interpreted as an EGLDeviceEXT as returned
-    by eglQueryDevicesEXT. The platform will attempt to initialize using
-    exactly the specified device. If the attribute does not name a known
-    EGLDeviceEXT, EGL_BAD_DEVICE_EXT is generated. If the device and platform
-    are not compatible for any reason, EGL_BAD_MATCH is generated.
+    If EGL_DEVICE_EXT is specified as an attribute for
+    eglGetPlatformDisplay, the value of the attribute is interpreted as
+    an EGLDeviceEXT as returned by eglQueryDevicesEXT.
+
+    If the EGL_DEVICE_EXT attribute is EGL_NO_DEVICE_EXT, then the
+    implementation will select a device automatically, as it would
+    normally.
+
+    If the EGL_DEVICE_EXT attribute is not EGL_NO_DEVICE_EXT, then the
+    implementation will use the specified device for rendering. If the
+    EGL_DEVICE_EXT attribute does not name a valid EGLDeviceEXT, then
+    EGL_BAD_DEVICE_EXT is generated.
+
+    An implementation might not support all devices for all native
+    displays. If the device and native display are not compatible for
+    any reason, then EGL_BAD_MATCH is generated.
 
     If EGL_EXT_platform_device is supported, passing EGL_DEVICE_EXT as an
     attribute to eglGetPlatformDisplay(EGL_PLATFORM_DEVICE_EXT) generates
@@ -88,9 +100,32 @@ New Behavior
 
 Issues
 
-    None
+    1. Should we have a separate function to query whether a device is
+       compatible with a native display?
+
+       RESOLVED: No. A separate query might require duplicating a lot of
+       the work that eglGetPlatformDisplay and eglInitialize would do,
+       which could be very slow.
+
+    2. If an implementation can't support a device with a particular
+       native display, then should it fail in eglGetPlatformDisplay, or
+       can it defer any compatibility checks until eglInitialize?
+
+       RESOLVED: eglGetPlatformDisplay must check for compatibility and
+       should fail if the device and native display are not supported.
+
+       Without a separate function to check for compatibility, the only
+       way for an application to know which devices can work with a
+       native display is to try to use each device and see if it gets an
+       error. If the error is in eglInitialize, then an application
+       would have to create (and leak) a bunch of EGLDisplay handles
+       that it never intends to use.
 
 Revision History
+
+    Version 3, 2022-04-21 (Kyle Brenneman)
+        - Require eglGetPlatformDisplay (instead of eglInitialize) check
+          whether the device is supported with the native display.
 
     Version 2, 2017-08-08 (Adam Jackson)
         - Renamed from MESA_platform_device to EXT_explicit_device
