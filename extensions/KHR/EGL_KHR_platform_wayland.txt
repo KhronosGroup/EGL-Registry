@@ -40,6 +40,9 @@ Dependencies
     This extension is written against the EGL 1.5 Specification (draft
     20140122).
 
+    The behavior of part of this extension is different depending on whether
+    the EGL_EXT_buffer_age extension is also present.
+
 Overview
 
     This extension defines how to create EGL resources from native Wayland
@@ -85,6 +88,11 @@ New Behavior
     belongs to Wayland. Any such call fails and generates an
     EGL_BAD_PARAMETER error.
 
+    Rendering to the obtained EGLSurface or querying it with EGL_BUFFER_AGE_KHR
+    will lock its back buffer preventing it from being dropped or resized,
+    until the next buffer swap. The rationale behind this behavior is to keep
+    operations result accurate until the next swap.
+
 Issues
 
     1. Should this extension permit EGL_DEFAULT_DISPLAY as input to
@@ -99,6 +107,10 @@ Issues
        RESOLVED. No. Wayland has no pixmap type.
 
 Revision History
+    Version 3, 2022/07/14 (Kirill Chibisov)
+        - Clarify EGLSurface back buffer locking behavior with regards to
+          rendering and surface querying operations.
+        - Add dependency on EGL_EXT_buffer_age.
 
     Version 2, 2014/02/18 (Chad Versace)
         - Change resolution of issue #1 from "no" to "yes". Now
