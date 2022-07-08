@@ -767,4 +767,9 @@ extension EGL_EXT_explicit_device {
     flags       public
     filename    extensions/EXT/EGL_EXT_explicit_device.txt
 }
-# Next free extension number: 149
+extension EGL_EXT_config_drm_format_query {
+    number      149
+    flags       public
+    filename    extensions/EXT/EGL_EXT_config_drm_format_query
+}
+# Next free extension number: 150

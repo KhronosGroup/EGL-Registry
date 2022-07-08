@@ -3528,5 +3528,10 @@
                 <enum name="EGL_DEVICE_EXT"/>
             </require>
         </extension>
+        <extension name="EGL_EXT_config_drm_format_query" supported="egl">
+            <require>
+                <enum name="EGL_LINUX_DRM_FOURCC_EXT"/>
+            </require>
+        </extension>
     </extensions>
 </registry>

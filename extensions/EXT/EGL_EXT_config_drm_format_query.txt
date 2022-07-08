@@ -1,0 +1,107 @@
+Name
+
+    EXT_config_drm_format_query
+
+Name Strings
+
+    EGL_EXT_config_drm_format_query
+
+Contributors
+
+Contacts
+
+    Austin Shafer,  NVIDIA  (ashafer 'at' nvidia.com)
+
+Status
+
+    Complete.
+
+Version
+
+    Version 1 - July 5th, 2022
+
+Number
+
+    EGL Extension #149
+
+Extension Type
+
+    EGL client extension
+
+Dependencies
+
+    Written based on the wording of the EGL 1.5 specification.
+
+    This extension inlcudes the enum EGL_LINUX_DRM_FOURCC_EXT as defined in
+    EGL_EXT_image_dma_buf_import and requires the EGL_KHR_stream extension.
+
+Overview
+
+    This extension adds an EGLConfig attribute for stream surface
+    configurations that specifies a DRM format, as defined in drm_fourcc.h. If
+    an application needs to share buffers with other libraries or processes
+    that require specific formats, then this allows an application to select a
+    matching EGLConfig accordingly.  EGLStream applications may need to know
+    what DRM format a surface is using so that they can pass the format and any
+    modifiers to other APIs or other stream consumers.
+
+    This extension allows passing EGL_LINUX_DRM_FOURCC_EXT to
+    eglGetConfigAttrib, allowing the application to forward the format code
+    as needed. This is only valid on EGLConfigs which have the EGL_STREAM_BIT_KHR
+    appear in the EGL_SURFACE_TYPE attribute.
+
+New Types
+
+    None
+
+New Functions
+
+    None
+
+New Tokens
+
+    Accepted as an attribute in the <attribute> parameter of
+    eglGetConfigAttrib:
+
+    EGL_LINUX_DRM_FOURCC_EXT                        0x3271
+
+Changes in section 3.4.3 "Querying Configuration Attributes"
+
+    Add EGL_LINUX_DRM_FOURCC_EXT to the attributes accepted by
+    eglGetConfigAttrib. EGL_LINUX_DRM_FOURCC_EXT specifices a DRM format code
+    as declared in the Linux drm_fourcc.h header. This is only valid on
+    EGLConfigs which have the EGL_STREAM_BIT_KHR appear in the EGL_SURFACE_TYPE
+    attribute.
+
+    If EGL_LINUX_DRM_FOURCC_EXT is the attribute being requested and the
+    EGLConfig does not have a corresponding DRM format, then DRM_FORMAT_INVALID
+    is returned.
+
+Changes in section 3.4.1 "Querying Configurations"
+
+    If EGL_LINUX_DRM_FOURCC_EXT is specified as an attribute in the attrib_list
+    argument of eglChooseConfig, then it will be ignored when choosing a
+    config.
+
+Issues
+
+    1. Should EGL_LINUX_DRM_FOURCC_EXT be usable as an attribute in eglChooseConfig?
+
+    RESOLVED: No, eglChooseConfig should ignore EGL_LINUX_DRM_FOURCC_EXT. We can't
+    appropriately handle EGL_DONT_CARE due to possible collisions with DRM format
+    values. Currently there is no DRM format that aliases with EGL_DONT_CARE, but
+    there is no guarantee that it cannot happen in the future.
+
+    2. Should this be limited to stream surface configs?
+
+    RESOLVED: Yes, considering the only use case for this right now is interactions
+    with EGLStream applications it doesn't make sense to support it in all cases
+    and open the door to unintended consequences. If more use cases for this
+    query operation appear then this restriction can be lifted.
+
+
+Revision History
+
+    #1 (July 5th, 2022) Austin Shafer
+
+        - Initial draft
