@@ -29,7 +29,7 @@ Number
 
 Extension Type
 
-    EGL device extension
+    EGL client extension
 
 Dependencies
 
