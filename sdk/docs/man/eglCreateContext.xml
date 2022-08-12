@@ -62,9 +62,7 @@
                 <term><parameter>attrib_list</parameter></term>
                 <listitem><para>
                     Specifies attributes and attribute values for the
-                    context being created. Only the attribute
-                    <constant>EGL_CONTEXT_CLIENT_VERSION</constant> may
-                    be specified.
+                    context being created.
                 </para></listitem>
             </varlistentry>
         </variablelist>
