@@ -164,7 +164,7 @@
     </refsect1>
     <refsect1 xml:id="notes"><title>Notes</title>
         <para>
-            <code class="function">eglCreatnePlatformPixmapSurface</code> is supported only if
+            <code class="function">eglCreatePlatformPixmapSurface</code> is supported only if
             the EGL version is 1.5 or greater.
         </para>
         <para>
