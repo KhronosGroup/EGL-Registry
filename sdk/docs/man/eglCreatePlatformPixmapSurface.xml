@@ -164,22 +164,15 @@
     </refsect1>
     <refsect1 xml:id="notes"><title>Notes</title>
         <para>
+            <code class="function">eglCreatnePlatformPixmapSurface</code> is supported only if
+            the EGL version is 1.5 or greater.
+        </para>
+        <para>
             The <constant>EGL_MATCH_NATIVE_PIXMAP</constant> attribute
             of
             <citerefentry><refentrytitle>eglChooseConfig</refentrytitle></citerefentry>
             can be used to select a frame buffer configuration matching
             a specified native pixmap.
-        </para>
-        <para>
-            Attribute <constant>EGL_GL_COLORSPACE</constant> is supported
-            only if the EGL version is 1.5 or greater.
-        </para>
-        <para>
-            Attributes
-            <constant>EGL_VG_ALPHA_FORMAT</constant> and
-            <constant>EGL_VG_COLORSPACE</constant>, and the
-            corresponding attribute values, are supported only if the
-            EGL version is 1.2 or greater.
         </para>
         <!-- Might want to mention aliasing of EGL_VG_* -> EGL_* that occurred in EGL 1.3 -->
         <para>

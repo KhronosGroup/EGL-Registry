@@ -188,15 +188,8 @@
     </refsect1>
     <refsect1 xml:id="notes"><title>Notes</title>
         <para>
-            Attribute <constant>EGL_GL_COLORSPACE</constant> is supported
-            only if the EGL version is 1.5 or greater.
-        </para>
-        <para>
-            Attributes <constant>EGL_RENDER_BUFFER</constant>,
-            <constant>EGL_VG_ALPHA_FORMAT</constant>, and
-            <constant>EGL_VG_COLORSPACE</constant>, and the
-            corresponding attribute values, are supported only if the
-            EGL version is 1.2 or greater.
+            <code class="function">eglCreatePlatformWindowSurface</code> is supported only if
+            the EGL version is 1.5 or greater.
         </para>
         <!-- Might want to mention aliasing of EGL_VG_* -> EGL_* that occurred in EGL 1.3 -->
         <para>
