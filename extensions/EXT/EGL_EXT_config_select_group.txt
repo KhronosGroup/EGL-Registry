@@ -79,7 +79,7 @@ Additions to the EGL 1.5 Specification
     override the default sorting rules, by collecting configurations into
     groups. It is not accepted by the <attrib_list> parameter of
     eglChooseConfig, but it is accepted as the <attribute> in
-    eglGetConfigAtrrib."
+    eglGetConfigAttrib."
 
     In section 3.4 "Configuration Management", under the "Sorting of EGLConfigs"
     heading, append to table 3.4 the following:
