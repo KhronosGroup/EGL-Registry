@@ -3,7 +3,7 @@
   <head>
     <title xmlns:xlink="http://www.w3.org/1999/xlink">eglCreatePlatformPixmapSurface - EGL Reference Pages</title>
     <link rel="stylesheet" type="text/css" href="khronos-man.css"/>
-    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.2"/>
   </head>
   <body>
     <header/>
@@ -214,22 +214,15 @@
       <div class="refsect1" id="notes">
         <h2>Notes</h2>
         <p>
+            <code class="code">eglCreatePlatformPixmapSurface</code> is supported only if
+            the EGL version is 1.5 or greater.
+        </p>
+        <p>
             The <code class="constant">EGL_MATCH_NATIVE_PIXMAP</code> attribute
             of
             <a class="citerefentry" href="eglChooseConfig.xhtml"><span class="citerefentry"><span class="refentrytitle">eglChooseConfig</span></span></a>
             can be used to select a frame buffer configuration matching
             a specified native pixmap.
-        </p>
-        <p>
-            Attribute <code class="constant">EGL_GL_COLORSPACE</code> is supported
-            only if the EGL version is 1.5 or greater.
-        </p>
-        <p>
-            Attributes
-            <code class="constant">EGL_VG_ALPHA_FORMAT</code> and
-            <code class="constant">EGL_VG_COLORSPACE</code>, and the
-            corresponding attribute values, are supported only if the
-            EGL version is 1.2 or greater.
         </p>
         <p>
             The <code class="constant">EGL_VG_ALPHA_FORMAT</code> and
