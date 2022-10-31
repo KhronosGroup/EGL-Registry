@@ -1069,8 +1069,8 @@
     </enums>
 
     <enums namespace="EGL" start="0x3530" end="0x353F" vendor="MESA" comment="Reserved for Simon Zeni (PR 165)">
-            <enum value="0x3530" name="EGL_GL_TEXTURE_CUBE_MAP_MESA"/>
-                <unused start="0x3531" end="0x353F"/>
+        <enum value="0x3530" name="EGL_GL_TEXTURE_CUBE_MAP_MESA"/>
+            <unused start="0x3531" end="0x353F"/>
     </enums>
 
 <!-- Please remember that new enumerant allocations must be obtained by
@@ -3531,6 +3531,11 @@
         <extension name="EGL_EXT_explicit_device" supported="egl">
             <require>
                 <enum name="EGL_DEVICE_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_MESA_gl_texture_cubemap_image" supported="egl">
+            <require>
+                <enum name="EGL_GL_TEXTURE_CUBE_MAP_MESA"/>
             </require>
         </extension>
     </extensions>

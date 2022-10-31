@@ -14,12 +14,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: 6fb1daea15 $ on $Git commit date: 2022-05-25 09:41:13 -0600 $
+** Khronos $Git commit SHA1: af97e2c27b $ on $Git commit date: 2022-09-20 03:01:16 -0700 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20220525
+#define EGL_EGLEXT_VERSION 20221027
 
 /* Generated C header for:
  * API: egl
@@ -1076,6 +1076,11 @@ EGLAPI EGLImageKHR EGLAPIENTRY eglCreateDRMImageMESA (EGLDisplay dpy, const EGLi
 EGLAPI EGLBoolean EGLAPIENTRY eglExportDRMImageMESA (EGLDisplay dpy, EGLImageKHR image, EGLint *name, EGLint *handle, EGLint *stride);
 #endif
 #endif /* EGL_MESA_drm_image */
+
+#ifndef EGL_MESA_gl_texture_cubemap_image
+#define EGL_MESA_gl_texture_cubemap_image 1
+#define EGL_GL_TEXTURE_CUBE_MAP_MESA      0x3530
+#endif /* EGL_MESA_gl_texture_cubemap_image */
 
 #ifndef EGL_MESA_image_dma_buf_export
 #define EGL_MESA_image_dma_buf_export 1
