@@ -1,0 +1,106 @@
+Name
+
+    MESA_gl_texture_cubemap_image
+
+Name Strings
+
+    EGL_MESA_gl_texture_cubemap_image
+
+Contributors
+
+    Simon Zeni
+
+Contacts
+
+    Simon Zeni, Status Holdings Ltd. <simon@zeni.ca>
+
+Status
+
+    Draft
+
+Version
+
+    Version 0.1, 2022/08/04
+
+Number
+
+    EGL Extension 149
+
+Extension type
+
+    EGL client extension
+
+Dependencies
+
+    EGL 1.2 is required.
+
+    EGL_KHR_image_base and EGL_KHR_gl_image are required.
+
+    This extension is written against the wording of the EGL 1.2 Specification.
+
+    This extension requires an OpenGL or OpenGL ES client API supporting
+    texture cube maps, either in the core API or via extensions.
+
+Overview
+
+    This extension adds functionality to that provided by KHR_gl_image in
+    order to support EGLImage cubemaps. It extends the existing
+    eglCreateImageKHR entry point from EGL_KHR_image_base.
+
+    For an overview of EGLImage operation, please see the EGL_KHR_image
+    specification.
+
+New types
+
+    None
+
+New functions
+
+    None
+
+New tokens
+
+    Accepted in the <target> parameter of eglCreateImageKHR:
+
+        EGL_GL_TEXTURE_CUBE_MAP_MESA                  0x3530
+
+Additions to the EGL Image (EGL_KHR_image_base) specification:
+
+    Add the following to Table aaa (Legal values for eglCreateImageKHR
+    <target> parameter), Section 2.5.1 (EGLImage Specification) following the 
+    specification added by KHR_gl_image.
+
+      +---------------------------------+-------------------------------------+
+      |  <target>                       |  Notes                              |
+      +---------------------------------+-------------------------------------+
+      |  EGL_GL_TEXTURE_CUBE_MAP_MESA   |  Used for GL cubemap texture images |
+      +---------------------------------+-------------------------------------+
+
+    In Section 2.5.1 (EGLImage specification), within the specification added
+    by KHR_gl_image.
+
+    "If <target> is EGL_GL_TEXTURE_2D_KHR, EGL_GL_TEXTURE_3D_KHR,
+    EGL_GL_RENDERBUFFER_KHR,
+    EGL_GL_TEXTURE_CUBE_MAP_POSITIVE_X_KHR,
+    EGL_GL_TEXTURE_CUBE_MAP_NEGATIVE_X_KHR,
+    EGL_GL_TEXTURE_CUBE_MAP_POSITIVE_Y_KHR,
+    EGL_GL_TEXTURE_CUBE_MAP_NEGATIVE_Y_KHR,
+    EGL_GL_TEXTURE_CUBE_MAP_POSITIVE_Z_KHR,
+    EGL_GL_TEXTURE_CUBE_MAP_NEGATIVE_Z_KHR, or
+    EGL_GL_TEXTURE_CUBE_MAP_MESA,
+    <dpy> must be a valid EGLDisplay,
+    and <ctx> must be a valid GL API context on that display."
+
+    "If <target> is one of the EGL_GL_TEXTURE_CUBE_MAP_* enumerants or
+    EGL_GL_TEXTURE_CUBE_MAP_MESA, <buffer>  must be the name of a
+    cube-complete, nonzero, GL_TEXTURE_CUBE_MAP (or equivalent in GL
+    extensions) target texture object, cast into the type EGLClientBuffer."
+
+    In Section 2.5.1 (EGLImage specification), within the specification added
+    by KHR_gl_image at the end of the error list, every occurence of the 
+    token "EGL_GL_TEXTURE_CUBE_MAP_*_KHR" must be replaces by
+    "EGL_GL_TEXTURE_CUBE_MAP_*_KHR, EGL_GL_TEXTURE_CUBE_MAP_MESA".
+
+Revision History
+    Version 0.1, 2022-08-04 (Simon Zeni)
+        - Initial draft

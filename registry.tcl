@@ -767,4 +767,9 @@ extension EGL_EXT_explicit_device {
     flags       public
     filename    extensions/EXT/EGL_EXT_explicit_device.txt
 }
-# Next free extension number: 149
+extension EGL_MESA_gl_texture_cubemap_image {
+    number      149
+    flags       public
+    filename    extensions/MESA/EGL_MESA_gl_texture_cubemap_image.txt
+}
+# Next free extension number: 150

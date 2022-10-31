@@ -361,6 +361,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=147> <a href="extensions/EXT/EGL_EXT_surface_compression.txt">EGL_EXT_surface_compression</a>
 </li>
+<li value=149> <a href="extensions/MESA/EGL_MESA_gl_texture_cubemap_image.txt">EGL_MESA_gl_texture_cubemap_image</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>

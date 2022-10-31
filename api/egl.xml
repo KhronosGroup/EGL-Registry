@@ -3533,5 +3533,10 @@
                 <enum name="EGL_DEVICE_EXT"/>
             </require>
         </extension>
+        <extension name="EGL_MESA_gl_texture_cubemap_image" supported="egl">
+            <require>
+                <enum name="EGL_GL_TEXTURE_CUBE_MAP_MESA"/>
+            </require>
+        </extension>
     </extensions>
 </registry>
