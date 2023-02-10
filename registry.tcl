@@ -767,4 +767,9 @@ extension EGL_EXT_explicit_device {
     flags       public
     filename    extensions/EXT/EGL_EXT_explicit_device.txt
 }
-# Next free extension number: 149
+extension EGL_NV_stream_consumer_eglimage_use_scanout_attrib {
+    number      149
+    flags       public
+    filename    extensions/NV/EGL_NV_stream_consumer_eglimage_use_scanout_attrib.txt
+}
+# Next free extension number: 150

@@ -14,12 +14,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: 6fb1daea15 $ on $Git commit date: 2022-05-25 09:41:13 -0600 $
+** Khronos $Git commit SHA1: af97e2c27b $ on $Git commit date: 2022-09-20 03:01:16 -0700 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20220525
+#define EGL_EGLEXT_VERSION 20230210
 
 /* Generated C header for:
  * API: egl
@@ -1222,6 +1222,11 @@ EGLAPI EGLBoolean EGLAPIENTRY eglStreamAcquireImageNV (EGLDisplay dpy, EGLStream
 EGLAPI EGLBoolean EGLAPIENTRY eglStreamReleaseImageNV (EGLDisplay dpy, EGLStreamKHR stream, EGLImage image, EGLSync sync);
 #endif
 #endif /* EGL_NV_stream_consumer_eglimage */
+
+#ifndef EGL_NV_stream_consumer_eglimage_use_scanout_attrib
+#define EGL_NV_stream_consumer_eglimage_use_scanout_attrib 1
+#define EGL_STREAM_CONSUMER_IMAGE_USE_SCANOUT_NV 0x3378
+#endif /* EGL_NV_stream_consumer_eglimage_use_scanout_attrib */
 
 #ifndef EGL_NV_stream_consumer_gltexture_yuv
 #define EGL_NV_stream_consumer_gltexture_yuv 1
