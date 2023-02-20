@@ -361,6 +361,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=147> <a href="extensions/EXT/EGL_EXT_surface_compression.txt">EGL_EXT_surface_compression</a>
 </li>
+<li value=149> <a href="extensions/NV/EGL_NV_stream_consumer_eglimage_use_scanout_attrib.txt">EGL_NV_stream_consumer_eglimage_use_scanout_attrib</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>

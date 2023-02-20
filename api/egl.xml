@@ -885,7 +885,8 @@
         <enum value="0x3375" name="EGL_STREAM_IMAGE_REMOVE_NV"/>
         <enum value="0x3376" name="EGL_STREAM_IMAGE_AVAILABLE_NV"/>
         <enum value="0x3377" name="EGL_DRM_RENDER_NODE_FILE_EXT"/>
-            <unused start="0x3378" end="0x339F"/>
+        <enum value="0x3378" name="EGL_STREAM_CONSUMER_IMAGE_USE_SCANOUT_NV" />
+            <unused start="0x3379" end="0x339F"/>
     </enums>
 
     <enums namespace="EGL" start="0x33A0" end="0x33AF" vendor="ANGLE" comment="Reserved for Shannon Woods (Bug 13175)">
@@ -3531,6 +3532,11 @@
         <extension name="EGL_EXT_explicit_device" supported="egl">
             <require>
                 <enum name="EGL_DEVICE_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_NV_stream_consumer_eglimage_use_scanout_attrib" supported="egl">
+            <require>
+                <enum name="EGL_STREAM_CONSUMER_IMAGE_USE_SCANOUT_NV"/>
             </require>
         </extension>
     </extensions>
