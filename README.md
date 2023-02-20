@@ -4,7 +4,7 @@ The EGL-Registry repository contains the EGL API and Extension Registry,
 including specifications, reference pages and reference cards, and the
 enumerant registry. It is also used as a backing store for the web view of
 the registry at https://www.khronos.org/registry/egl/ ; commits to the
-master branch of this repository will be reflected there.
+main branch of this repository will be reflected there.
 
 In the past, the EGL registry was maintained in a public Subversion
 repository. The history in that repository has not been imported to github,
@@ -33,17 +33,17 @@ Interesting files in this repository include:
 ## Reserving EGL Enumerant Ranges
 
 EGL enumerants are documented in api/egl.xml . New ranges can be allocated
-by proposing a pull request to master modifying this file, following the
+by proposing a pull request to main modifying this file, following the
 existing examples. Allocate ranges starting at the lowest free values
 available (search for "Reservable for future use"). Ranges are not
-officially allocated until your pull request is *accepted* into master. At
+officially allocated until your pull request is *accepted* into main. At
 that point you can use values from your assigned range for API extensions.
 
 
 ## Adding Extension Specifications
 
 Extension specification documents can be added by proposing a pull request
-to master, adding the specification .txt file and related changes under
+to main, adding the specification .txt file and related changes under
 extensions/\<vendor\>/filename.txt. Your pull request must also:
 
 * Allocate an extension number in registry.tcl (follow the existing
