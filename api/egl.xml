@@ -817,7 +817,7 @@
         <enum value="0x3328" name="EGL_PENDING_METADATA_NV"/>
         <enum value="0x3329" name="EGL_PENDING_FRAME_NV"/>
         <enum value="0x332A" name="EGL_STREAM_TIME_PENDING_NV"/>
-            <unused start="0x332B"/>
+        <enum value="0x332B" name="EGL_PRIVATE_DISPLAY_EXT"/>
         <enum value="0x332C" name="EGL_YUV_PLANE0_TEXTURE_UNIT_NV"/>
         <enum value="0x332D" name="EGL_YUV_PLANE1_TEXTURE_UNIT_NV"/>
         <enum value="0x332E" name="EGL_YUV_PLANE2_TEXTURE_UNIT_NV"/>
@@ -2046,6 +2046,10 @@
              <param><ptype>EGLint</ptype> <name>max_size</name></param>
              <param>void *<name>value</name></param>
              <param>EGLint *<name>size</name></param>
+        </command>
+        <command>
+             <proto><ptype>EGLBoolean</ptype> <name>eglDestroyDisplayEXT</name></proto>
+             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
         </command>
     </commands>
 
@@ -3537,6 +3541,12 @@
         <extension name="EGL_NV_stream_consumer_eglimage_use_scanout_attrib" supported="egl">
             <require>
                 <enum name="EGL_STREAM_CONSUMER_IMAGE_USE_SCANOUT_NV"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_display_alloc" supported="egl">
+            <require>
+                <enum name="EGL_PRIVATE_DISPLAY_EXT"/>
+                <command name="eglDestroyDisplayEXT"/>
             </require>
         </extension>
     </extensions>

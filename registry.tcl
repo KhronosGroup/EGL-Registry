@@ -772,4 +772,9 @@ extension EGL_NV_stream_consumer_eglimage_use_scanout_attrib {
     flags       public
     filename    extensions/NV/EGL_NV_stream_consumer_eglimage_use_scanout_attrib.txt
 }
+extension EGL_EXT_display_alloc {
+    number      150
+    flags       public
+    filename    extensions/EXT/EGL_EXT_display_alloc.txt
+}
 # Next free extension number: 150
