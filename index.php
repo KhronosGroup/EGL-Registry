@@ -271,7 +271,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=106> <a href="extensions/EXT/EGL_EXT_pixel_format_float.txt">EGL_EXT_pixel_format_float</a>
 </li>
-<li value=107> <a href="extensions/EXT/EGL_EXT_gl_colorspace_bt2020_linear.txt">EGL_EXT_gl_colorspace_bt2020_linear</a>
+<li value=107> <a href="extensions/EXT/EGL_EXT_gl_colorspace_bt2020_linear.txt">EGL_EXT_gl_colorspace_bt2020_hlg</a>
+     <br> <a href="extensions/EXT/EGL_EXT_gl_colorspace_bt2020_linear.txt">EGL_EXT_gl_colorspace_bt2020_linear</a>
      <br> <a href="extensions/EXT/EGL_EXT_gl_colorspace_bt2020_linear.txt">EGL_EXT_gl_colorspace_bt2020_pq</a>
 </li>
 <li value=108> <a href="extensions/EXT/EGL_EXT_gl_colorspace_scrgb_linear.txt">EGL_EXT_gl_colorspace_scrgb_linear</a>
