@@ -8,12 +8,12 @@ Name Strings
 
 Contributors
 
-    ???
+    Mike Gorchak
     Jeff Vigil
 
 Contact
 
-    ???, QNX. (??? 'at' qnx.com)
+    Mike Gotchak, QNX. (mgorchak 'at' qnx.com)
     Jeff Vigil, Samsung. (j.vigil 'at' samsung.com)
 
 Status
@@ -26,7 +26,7 @@ Version
 
 Number
 
-    EGL Extension #TBD
+    EGL Extension #151
 
 Dependencies
 
@@ -40,7 +40,7 @@ Dependencies
 Overview
 
     This extension enables using an QNX buffer (struct
-    ???) as an EGLImage source.
+    ??? _screen_buffer) as an EGLImage source.
 
 New Types
 
@@ -73,8 +73,8 @@ Changes to Chapter 3 of the EGL 1.2 Specification (EGL Functions and Errors)
 
     ...
 
-    If <target> is EGL_NATIVE_BUFFER_QNXANDROID, <dpy> must be a valid display,
-    <ctx> must be EGL_NO_CONTEXT, <buffer> must be a valid ???
+    If <target> is EGL_NATIVE_BUFFER_QNX, <dpy> must be a valid display,
+    <ctx> must be EGL_NO_CONTEXT, <buffer> must be a valid ??? _screen_buffer
      object (cast into the type EGLClientBuffer), and
     attributes other than EGL_IMAGE_PRESERVED_KHR are ignored."
 
