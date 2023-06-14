@@ -72,13 +72,13 @@ New Behavior
     To obtain an EGLDisplay backed by a qnx display, call
     eglGetPlatformDisplayEXT with <platform> set to EGL_PLATFORM_QNX.  The
     <native_display> parameter specifies the qnx display. The <native_display> must
-    either point to a ???`screen_display` or be EGL_DEFAULT_DISPLAY. If
+    be a screen_display_t or be EGL_DEFAULT_DISPLAY. If
     <native_display> is EGL_DEFAULT_DISPLAY, then EGL will create a new
-    ???screen_display structure by connecting to the default qnx display.
+    screen_display_t structure by connecting to the default qnx display.
 
     To obtain an on-screen rendering surface from a qnx window, call
     eglCreatePlatformWindowSurfaceEXT with a <dpy> that belongs to qnx and
-    a <native_window> that points to a QNX `??? _screen_surface`.
+    a <native_window> that points to a QNX screen_surface_t.
 
 Issues
 
