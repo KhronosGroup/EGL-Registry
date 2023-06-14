@@ -38,8 +38,7 @@ Dependencies
 
 Overview
 
-    This extension enables using an QNX buffer (struct
-    ??? _screen_buffer) as an EGLImage source.
+    This extension enables using an QNX buffer screen_buffer_t as an EGLImage source.
 
 New Types
 
@@ -73,14 +72,14 @@ Changes to Chapter 3 of the EGL 1.2 Specification (EGL Functions and Errors)
     ...
 
     If <target> is EGL_NATIVE_BUFFER_QNX, <dpy> must be a valid display,
-    <ctx> must be EGL_NO_CONTEXT, <buffer> must be a valid ??? _screen_buffer
+    <ctx> must be EGL_NO_CONTEXT, <buffer> must be a valid screen_buffer_t
      object (cast into the type EGLClientBuffer), and
     attributes other than EGL_IMAGE_PRESERVED_KHR are ignored."
 
     Add to the list of error conditions for eglCreateImageKHR:
 
       "* If <target> is EGL_NATIVE_BUFFER_QNX and <buffer> is not a
-         valid ???, the error EGL_BAD_PARAMETER
+         valid screen_buffer_t, the error EGL_BAD_PARAMETER
          is generated.
 
        * If <target> is EGL_NATIVE_BUFFER_QNX and <ctx> is not
