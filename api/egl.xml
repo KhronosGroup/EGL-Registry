@@ -1078,7 +1078,7 @@
             <unused start="0x3540" end="0x354F"/>
     </enums>
 
-    <enums namespace="EGL" start="0x3550" end="0x355F" vendor="QNX" comment="Reserved for Mike Gorchak of QNX (QNX platfrom and native buffer)">
+    <enums namespace="EGL" start="0x3550" end="0x355F" vendor="QNX" comment="Reserved for Mike Gorchak of QNX (QNX platform and native buffer)">
             <unused start="0x3550" end="0x355F"/>
     </enums>
 
