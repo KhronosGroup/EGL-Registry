@@ -13,7 +13,7 @@ Contributors
 
 Contact
 
-    Mike Gotchak, QNX. (mgorchak 'at' qnx.com)
+    Mike Gorchak, QNX. (mgorchak 'at' qnx.com)
 
 Status
 
