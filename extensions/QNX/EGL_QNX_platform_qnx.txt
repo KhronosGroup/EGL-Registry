@@ -8,17 +8,16 @@ Name Strings
 
 Contributors
 
-    ??? <???@qnx.com>
+    Mike Gorchak <mgorchak@qnx.com>
     Jeff Vigil <j.vigil@samsung.com>
 
 Contacts
 
-    ??? <???@qnx.com>
-    Jeff Vigil <j.vigil@samsung.com>
+    Mike Gorchak <mgorchak@qnx.com>
 
 Status
 
-    Complete
+    Draft
 
 Version
 
@@ -26,7 +25,7 @@ Version
 
 Number
 
-    EGL Extension #TBD
+    EGL Extension #150
 
 Extension Type
 
@@ -72,14 +71,14 @@ New Behavior
 
     To obtain an EGLDisplay backed by a qnx display, call
     eglGetPlatformDisplayEXT with <platform> set to EGL_PLATFORM_QNX.  The
-    <native_display> parameter specifies the qnx display  to use and must
-    either point to a `??? qnx_display` or be EGL_DEFAULT_DISPLAY. If
+    <native_display> parameter specifies the qnx display. The <native_display> must
+    either point to a ???`screen_display` or be EGL_DEFAULT_DISPLAY. If
     <native_display> is EGL_DEFAULT_DISPLAY, then EGL will create a new
-    ???qnx_display structure by connecting to the default qnx display.
+    ???screen_display structure by connecting to the default qnx display.
 
     To obtain an on-screen rendering surface from a qnx window, call
     eglCreatePlatformWindowSurfaceEXT with a <dpy> that belongs to qnx and
-    a <native_window> that points to a `??? qnx_surface`.
+    a <native_window> that points to a QNX `??? _screen_surface`.
 
 Issues
 
