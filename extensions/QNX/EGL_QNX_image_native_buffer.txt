@@ -8,16 +8,16 @@ Name Strings
 
 Contributors
 
-    Mike Gorchak mgorchak@qnx.com
+    Mike Gorchak mgorchak@blackberry.com
     Jeff Vigil j.vigil@samsung.com
 
 Contact
 
-    Mike Gorchak, QNX. (mgorchak 'at' qnx.com)
+    Mike Gorchak, QNX. (mgorchak 'at' blackberry.com)
 
 Status
 
-    Draft
+    Complete
 
 Version
 
@@ -38,7 +38,8 @@ Dependencies
 
 Overview
 
-    This extension enables using an QNX buffer screen_buffer_t as an EGLImage source.
+    This extension enables using an QNX screen buffer screen_buffer_t as
+    an EGLImage source.
 
 New Types
 

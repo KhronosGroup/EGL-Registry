@@ -3558,5 +3558,10 @@
                 <enum name="EGL_PLATFORM_SCREEN_QNX"/>
             </require>
         </extension>
+        <extension name="EGL_QNX_image_native_buffer" supported="egl">
+            <require>
+                <enum name="EGL_NATIVE_BUFFER_QNX"/>
+            </require>
+        </extension>
     </extensions>
 </registry>

@@ -778,4 +778,9 @@ extension EGL_QNX_platform_screen {
     flags       public
     filename    extensions/QNX/EGL_QNX_platform_screen.txt
 }
-# Next free extension number: 151
+extension EGL_QNX_image_native_buffer {
+    number      151
+    flags       public
+    filename    extensions/QNX/EGL_QNX_image_native_buffer.txt
+}
+# Next free extension number: 152
