@@ -139,11 +139,11 @@ typedef void              *EGLNativeDisplayType;
 typedef khronos_uintptr_t  EGLNativePixmapType;
 typedef khronos_uintptr_t  EGLNativeWindowType;
 
-#elif defined(__QNX__)
-#include <screen/screen.h>
-typedef screen_display_t   EGLNativeDisplayType;
-typedef void              *EGLNativePixmapType;
-typedef screen_window_t    EGLNativeWindowType;
+#elif defined(__QNXNTO__)
+
+typedef khronos_uintptr_t      EGLNativeDisplayType;
+typedef struct _screen_pixmap* EGLNativePixmapType;  /* screen_pixmap_t */
+typedef struct _screen_window* EGLNativeWindowType;  /* screen_window_t */
 
 #else
 #error "Platform not recognized"
