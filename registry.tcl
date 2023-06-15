@@ -772,4 +772,9 @@ extension EGL_NV_stream_consumer_eglimage_use_scanout_attrib {
     flags       public
     filename    extensions/NV/EGL_NV_stream_consumer_eglimage_use_scanout_attrib.txt
 }
+extension EGL_QNX_image_native_buffer {
+    number      151
+    flags       public
+    filename    extensions/QNX/EGL_QNX_image_native_buffer.txt
+}
 # Next free extension number: 150
