@@ -69,15 +69,15 @@ New Behavior
     To determine if the EGL implementation supports this extension, clients
     should query the EGL_EXTENSIONS string of EGL_NO_DISPLAY.
 
-    To obtain an EGLDisplay backed by a qnx display, call
+    To obtain an EGLDisplay backed by a QNX display, call
     eglGetPlatformDisplayEXT with <platform> set to EGL_PLATFORM_SCREEN_QNX.  The
-    <native_display> parameter specifies the qnx display. The <native_display> must
+    <native_display> parameter specifies the QNX display. The <native_display> must
     be a display ID or be EGL_DEFAULT_DISPLAY. If
-    <native_display> is EGL_DEFAULT_DISPLAY, then EGL will connect to a
+    <native_display> is EGL_DEFAULT_DISPLAY, then EGL will connect to
     the default display ID.
 
-    To obtain an on-screen rendering surface from a qnx screen window, call
-    eglCreatePlatformWindowSurfaceEXT with a <dpy> that belongs to qnx display and
+    To obtain an on-screen rendering surface from a QNX screen window, call
+    eglCreatePlatformWindowSurfaceEXT with a <dpy> that belongs to QNX display and
     a <native_window> that points to a QNX screen_window_t.
 
 Issues
