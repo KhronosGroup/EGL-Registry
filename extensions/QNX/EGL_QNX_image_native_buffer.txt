@@ -38,7 +38,7 @@ Dependencies
 
 Overview
 
-    This extension enables using an QNX screen buffer screen_buffer_t as an EGLImage source.
+    This extension enables using a QNX screen buffer screen_buffer_t as an EGLImage source.
 
 New Types
 
