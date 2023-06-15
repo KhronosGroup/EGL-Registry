@@ -1,6 +1,6 @@
 Name
 
-    EXT_platform_screen
+    QNX_platform_screen
 
 Name Strings
 
@@ -8,16 +8,16 @@ Name Strings
 
 Contributors
 
-    Mike Gorchak <mgorchak@qnx.com>
+    Mike Gorchak <mgorchak@blackberry.com>
     Jeff Vigil <j.vigil@samsung.com>
 
 Contacts
 
-    Mike Gorchak <mgorchak@qnx.com>
+    Mike Gorchak <mgorchak@blackberry.com>
 
 Status
 
-    Draft
+    Complete
 
 Version
 
@@ -72,12 +72,12 @@ New Behavior
     To obtain an EGLDisplay backed by a qnx display, call
     eglGetPlatformDisplayEXT with <platform> set to EGL_PLATFORM_SCREEN_QNX.  The
     <native_display> parameter specifies the qnx display. The <native_display> must
-    be a screen_display_t or be EGL_DEFAULT_DISPLAY. If
-    <native_display> is EGL_DEFAULT_DISPLAY, then EGL will create a new
-    screen_display_t structure by connecting to the default qnx display.
+    be a display ID or be EGL_DEFAULT_DISPLAY. If
+    <native_display> is EGL_DEFAULT_DISPLAY, then EGL will connect to a
+    the default display ID.
 
-    To obtain an on-screen rendering surface from a qnx window, call
-    eglCreatePlatformWindowSurfaceEXT with a <dpy> that belongs to qnx and
+    To obtain an on-screen rendering surface from a qnx screen window, call
+    eglCreatePlatformWindowSurfaceEXT with a <dpy> that belongs to qnx display and
     a <native_window> that points to a QNX screen_window_t.
 
 Issues

@@ -139,7 +139,7 @@ typedef void              *EGLNativeDisplayType;
 typedef khronos_uintptr_t  EGLNativePixmapType;
 typedef khronos_uintptr_t  EGLNativeWindowType;
 
-#elif defined(__QNXNTO__)
+#elif defined(__QNX__)
 
 typedef khronos_uintptr_t      EGLNativeDisplayType;
 typedef struct _screen_pixmap* EGLNativePixmapType;  /* screen_pixmap_t */
