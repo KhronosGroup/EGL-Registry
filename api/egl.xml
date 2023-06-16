@@ -1075,7 +1075,8 @@
     </enums>
 
     <enums namespace="EGL" start="0x3540" end="0x354F" vendor="EXT" comment="Reserved for Chris Glover (EGL_EXT_gl_colorspace_bt2020)">
-            <unused start="0x3540" end="0x354F"/>
+            <enum value="0x3540" name="EGL_GL_COLORSPACE_BT2020_HLG_EXT"/>
+                <unused start="0x3541" end="0x354F"/>
     </enums>
 
     <enums namespace="EGL" start="0x3550" end="0x355F" vendor="QNX" comment="Reserved for Mike Gorchak of QNX (QNX platform and native buffer)">
@@ -2503,6 +2504,11 @@
                 <command name="eglQueryDeviceAttribEXT"/>
                 <command name="eglQueryDeviceStringEXT"/>
                 <command name="eglQueryDisplayAttribEXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_gl_colorspace_bt2020_hlg" supported="egl">
+            <require>
+                <enum name="EGL_GL_COLORSPACE_BT2020_HLG_EXT"/>
             </require>
         </extension>
         <extension name="EGL_EXT_gl_colorspace_bt2020_linear" supported="egl">
