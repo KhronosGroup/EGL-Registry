@@ -14,12 +14,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: af97e2c27b $ on $Git commit date: 2022-09-20 03:01:16 -0700 $
+** Khronos $Git commit SHA1: 4e49ab3694 $ on $Git commit date: 2023-06-16 07:32:52 -0600 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20230210
+#define EGL_EGLEXT_VERSION 20230616
 
 /* Generated C header for:
  * API: egl
@@ -726,6 +726,11 @@ EGLAPI EGLBoolean EGLAPIENTRY eglQueryDeviceBinaryEXT (EGLDeviceEXT device, EGLi
 #ifndef EGL_EXT_explicit_device
 #define EGL_EXT_explicit_device 1
 #endif /* EGL_EXT_explicit_device */
+
+#ifndef EGL_EXT_gl_colorspace_bt2020_hlg
+#define EGL_EXT_gl_colorspace_bt2020_hlg 1
+#define EGL_GL_COLORSPACE_BT2020_HLG_EXT  0x3540
+#endif /* EGL_EXT_gl_colorspace_bt2020_hlg */
 
 #ifndef EGL_EXT_gl_colorspace_bt2020_linear
 #define EGL_EXT_gl_colorspace_bt2020_linear 1
@@ -1436,6 +1441,11 @@ EGLAPI EGLuint64NV EGLAPIENTRY eglGetSystemTimeNV (void);
 #define EGL_NV_triple_buffer 1
 #define EGL_TRIPLE_BUFFER_NV              0x3230
 #endif /* EGL_NV_triple_buffer */
+
+#ifndef EGL_QNX_platform_screen
+#define EGL_QNX_platform_screen 1
+#define EGL_PLATFORM_SCREEN_QNX           0x3550
+#endif /* EGL_QNX_platform_screen */
 
 #ifndef EGL_TIZEN_image_native_buffer
 #define EGL_TIZEN_image_native_buffer 1
