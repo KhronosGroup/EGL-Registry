@@ -366,6 +366,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=149> <a href="extensions/NV/EGL_NV_stream_consumer_eglimage_use_scanout_attrib.txt">EGL_NV_stream_consumer_eglimage_use_scanout_attrib</a>
 </li>
+<li value=150> <a href="extensions/QNX/EGL_QNX_platform_screen.txt">EGL_QNX_platform_screen</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>

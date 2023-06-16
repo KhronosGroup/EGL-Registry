@@ -1080,7 +1080,8 @@
     </enums>
 
     <enums namespace="EGL" start="0x3550" end="0x355F" vendor="QNX" comment="Reserved for Mike Gorchak of QNX (QNX platform and native buffer)">
-            <unused start="0x3550" end="0x355F"/>
+        <enum value="0x3550" name="EGL_PLATFORM_SCREEN_QNX"/>
+            <unused start="0x3551" end="0x355F"/>
     </enums>
 
 <!-- Please remember that new enumerant allocations must be obtained by
