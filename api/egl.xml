@@ -3553,5 +3553,10 @@
                 <enum name="EGL_STREAM_CONSUMER_IMAGE_USE_SCANOUT_NV"/>
             </require>
         </extension>
+        <extension name="EGL_QNX_platform_screen" supported="egl">
+            <require>
+                <enum name="EGL_PLATFORM_SCREEN_QNX"/>
+            </require>
+        </extension>
     </extensions>
 </registry>
