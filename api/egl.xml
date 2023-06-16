@@ -1075,7 +1075,12 @@
     </enums>
 
     <enums namespace="EGL" start="0x3540" end="0x354F" vendor="EXT" comment="Reserved for Chris Glover (EGL_EXT_gl_colorspace_bt2020)">
-            <unused start="0x3540" end="0x354F"/>
+            <enum value="0x3540" name="EGL_GL_COLORSPACE_BT2020_HLG_EXT"/>
+                <unused start="0x3541" end="0x354F"/>
+    </enums>
+
+    <enums namespace="EGL" start="0x3550" end="0x355F" vendor="QNX" comment="Reserved for Mike Gorchak of QNX (QNX platform and native buffer)">
+            <unused start="0x3550" end="0x355F"/>
     </enums>
 
 <!-- Please remember that new enumerant allocations must be obtained by
@@ -1087,8 +1092,8 @@
 
 <!-- Reservable for future use. To generate a new range, allocate multiples
      of 16 starting at the lowest available point in this block. -->
-    <enums namespace="EGL" start="0x3550" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
-            <unused start="0x3550" end="0x3FFF"/>
+    <enums namespace="EGL" start="0x3560" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
+            <unused start="0x3560" end="0x3FFF"/>
     </enums>
 
     <enums namespace="EGL" start="0x8F70" end="0x8F7F" vendor="HI" comment="For Mark Callow, Khronos bug 4055. Shared with GL.">
@@ -2499,6 +2504,11 @@
                 <command name="eglQueryDeviceAttribEXT"/>
                 <command name="eglQueryDeviceStringEXT"/>
                 <command name="eglQueryDisplayAttribEXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_gl_colorspace_bt2020_hlg" supported="egl">
+            <require>
+                <enum name="EGL_GL_COLORSPACE_BT2020_HLG_EXT"/>
             </require>
         </extension>
         <extension name="EGL_EXT_gl_colorspace_bt2020_linear" supported="egl">

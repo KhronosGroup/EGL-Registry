@@ -6,11 +6,13 @@ Name Strings
 
     EGL_EXT_gl_colorspace_bt2020_linear
     EGL_EXT_gl_colorspace_bt2020_pq
+    EGL_EXT_gl_colorspace_bt2020_hlg
 
 Contributors
 
     Tom Cooksey
     Andrew Garrard
+    Chris Glover
     Jesse Hall
     Mathias Heyer
     Lauri Hyvarinen
@@ -35,7 +37,7 @@ Status
 
 Version
 
-     Version 7 - Nov 22, 2016
+     Version 8 - April 19, 2023
 
 Number
 
@@ -75,6 +77,10 @@ New Tokens
 
         EGL_GL_COLORSPACE_BT2020_PQ_EXT                0x3340
 
+    [[ If EGL_EXT_gl_colorspace_bt2020_hlg is supported ]]
+
+        EGL_GL_COLORSPACE_BT2020_HLG_EXT               0x3540
+
 Modifications to the EGL 1.5 Specification
 
     Insert below text in the 3rd paragraph on page 33 in 3.5.1 "Creating On-
@@ -94,6 +100,15 @@ Modifications to the EGL 1.5 Specification
     _ATTACHMENT_COLOR_ENCODING value of GL_LINEAR, as neither OpenGL nor OpenGL
     ES supports PQ framebuffers. Applications utilizing this option need to
     ensure that PQ encoding is performed on the application side.
+
+    [[ If EGL_EXT_gl_colorspace_bt2020_hlg is supported ]]
+
+    If its value is EGL_GL_COLORSPACE_BT2020_HLG_EXT, then a non-linear, HLG 
+    (Hybrid Log Gamma) encoded BT.2020 color space is assumed, with a 
+    corresponding GL_FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING value of GL_LINEAR,
+    as neither OpenGL nor OpenGL ES supports HLG framebuffers. Applications 
+    utilizing this option need to ensure that HLG encoding is performed on the
+    application side.
 
     Modify the 4th paragraph on the same page:
 
@@ -122,6 +137,14 @@ Modifications to the EGL 1.5 Specification
     meter) as defined by the SMPTE 2084 standard, applications can output values
     in a display-referred range of [0.0, 1.0], where 0.0 corresponds to 0 nit
     and 1.0 corresponds to 10000 nits.
+
+    [[ If EGL_EXT_gl_colorspace_bt2020_hlg is supported ]]
+
+    When using a floating-point EGL surface with EGL_GL_COLORSPACE_BT2020_HLG_-
+    EXT, to achieve the luminance range of 0 to 1000 nits (candela per square
+    meter) as defined by ITU-R Recommendation BT.2100, applications can output
+    values in a display-referred range of [0.0, 1.0], where 0.0 corresponds to
+    0 nit and 1.0 corresponds to 1000 nits.
 
 Errors
 
@@ -172,4 +195,7 @@ Revision History
 
     Version 7, 2016/11/22
       - Change status to complete
+
+    Version 8, 2023/04/19
+      - Add EGL_EXT_gl_colorspace_bt2020_hlg
 
