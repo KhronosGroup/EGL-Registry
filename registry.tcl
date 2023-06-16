@@ -553,6 +553,7 @@ extension EGL_EXT_gl_colorspace_bt2020_linear {
     number      107
     flags       public
     filename    extensions/EXT/EGL_EXT_gl_colorspace_bt2020_linear.txt
+    alias       EGL_EXT_gl_colorspace_bt2020_hlg
     alias       EGL_EXT_gl_colorspace_bt2020_pq
 }
 extension EGL_EXT_gl_colorspace_scrgb_linear {
