@@ -1447,11 +1447,6 @@ EGLAPI EGLuint64NV EGLAPIENTRY eglGetSystemTimeNV (void);
 #define EGL_PLATFORM_SCREEN_QNX           0x3550
 #endif /* EGL_QNX_platform_screen */
 
-#ifndef EGL_QNX_image_native_buffer
-#define EGL_QNX_image_native_buffer 1
-#define EGL_NATIVE_BUFFER_QNX             0x3551
-#endif /* EGL_QNX_image_native_buffer */
-
 #ifndef EGL_TIZEN_image_native_buffer
 #define EGL_TIZEN_image_native_buffer 1
 #define EGL_NATIVE_BUFFER_TIZEN           0x32A0
