@@ -368,6 +368,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=150> <a href="extensions/QNX/EGL_QNX_platform_screen.txt">EGL_QNX_platform_screen</a>
 </li>
+<li value=151> <a href="extensions/QNX/EGL_QNX_image_native_buffer.txt">EGL_QNX_image_native_buffer</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>

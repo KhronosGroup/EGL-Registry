@@ -14,12 +14,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: 4e49ab3694 $ on $Git commit date: 2023-06-16 07:32:52 -0600 $
+** Khronos $Git commit SHA1: 5b1165a76f $ on $Git commit date: 2023-06-22 06:48:34 -0700 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20230616
+#define EGL_EGLEXT_VERSION 20230622
 
 /* Generated C header for:
  * API: egl
@@ -1441,6 +1441,11 @@ EGLAPI EGLuint64NV EGLAPIENTRY eglGetSystemTimeNV (void);
 #define EGL_NV_triple_buffer 1
 #define EGL_TRIPLE_BUFFER_NV              0x3230
 #endif /* EGL_NV_triple_buffer */
+
+#ifndef EGL_QNX_image_native_buffer
+#define EGL_QNX_image_native_buffer 1
+#define EGL_NATIVE_BUFFER_QNX             0x3551
+#endif /* EGL_QNX_image_native_buffer */
 
 #ifndef EGL_QNX_platform_screen
 #define EGL_QNX_platform_screen 1
