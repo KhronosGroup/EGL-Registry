@@ -1081,7 +1081,8 @@
 
     <enums namespace="EGL" start="0x3550" end="0x355F" vendor="QNX" comment="Reserved for Mike Gorchak of QNX (QNX platform and native buffer)">
         <enum value="0x3550" name="EGL_PLATFORM_SCREEN_QNX"/>
-            <unused start="0x3551" end="0x355F"/>
+        <enum value="0x3551" name="EGL_NATIVE_BUFFER_QNX"/>
+            <unused start="0x3552" end="0x355F"/>
     </enums>
 
 <!-- Please remember that new enumerant allocations must be obtained by
@@ -3557,6 +3558,11 @@
         <extension name="EGL_QNX_platform_screen" supported="egl">
             <require>
                 <enum name="EGL_PLATFORM_SCREEN_QNX"/>
+            </require>
+        </extension>
+        <extension name="EGL_QNX_image_native_buffer" supported="egl">
+            <require>
+                <enum name="EGL_NATIVE_BUFFER_QNX"/>
             </require>
         </extension>
     </extensions>
