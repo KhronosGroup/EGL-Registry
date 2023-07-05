@@ -281,7 +281,7 @@ The following options should be added between options 9 and 10 in section
 Change option 10 in section 3.4.1.2 (EGL_NATIVE_VISUAL_TYPE) to:
 
     11. Special: by EGL_NATIVE_VISUAL_TYPE (the actual sort order is
-    implementation-deﬁned, depending on the meaning of native visual types).
+    implementation-defined, depending on the meaning of native visual types).
 
 New State
 
