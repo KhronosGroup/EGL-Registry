@@ -21,7 +21,7 @@ Status
 
 Version
 
-    Version 3, 2011/10/31
+    Version 4, 2023/10/30
 
 Number
 
@@ -114,7 +114,7 @@ Additions to the EGL 1.4 Specification
     upon reset notification as described by the GL_EXT_robustness. The
     default value for EGL_CONTEXT_OPENGL_RESET_NOTIFICATION_STRATEGY_EXT
     is EGL_NO_RESET_NOTIFICATION_EXT.
-    
+
     Add to the eglCreateContext context creation errors:
 
     * If <config> does not support a client API context compatible
@@ -126,6 +126,12 @@ Additions to the EGL 1.4 Specification
       newly created context are different then an EGL_BAD_MATCH error is
       generated.
 
+    Append in section 3.7.4 (Context Queries) to the list of attributes
+    supported by eglQueryContext.
+
+       "Querying EGL_CONTEXT_OPENGL_RESET_NOTIFICATION_STRATEGY_EXT returns the
+        notification strategy that was set for this context. If no strategy was
+        set for the context, EGL_NO_RESET_NOTIFICATION_EXT must be returned."
 
 Errors
 
@@ -163,6 +169,7 @@ Revision History
 
     Rev.    Date       Author     Changes
     ----  ------------ ---------  ----------------------------------------
+      4   30 Oct  2023 simonz     Query notification strategy with eglQueryContext
       3   31 Oct  2011 groth      Reverted to attribute for robust access. Now it's a
                                   companion to rather than subset of KHR_create_context
       2   11 Oct  2011 groth      Merged ANGLE and NV extensions.
