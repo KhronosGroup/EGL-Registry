@@ -48,7 +48,7 @@
             initial value is <constant>EGL_NONE</constant> (however,
             <constant>EGL_NONE</constant> is not a valid
             <parameter>api</parameter> parameter to
-            <function>eglQueryAPI</function>).
+            <function>eglBindAPI</function>).
         </para>
         <para>
             The current rendering API can be changed by calling
