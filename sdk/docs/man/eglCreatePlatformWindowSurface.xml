@@ -251,7 +251,6 @@
             format of <parameter>native_window</parameter> does not
             correspond to the format, type, and size of the color buffers
             required by <parameter>config</parameter>.
-            <constant>EGL_BAD_MATCH</constant> is generated if the pixel
         </para>
         <para>
             <constant>EGL_BAD_MATCH</constant> is generated if
