@@ -460,7 +460,7 @@ Usage Examples
     EGLint result;
 
     // DEBUG_MSG_ERROR and CRITICAL are enabled by default
-    EGLAttrib debugAttribs = {EGL_DEBUG_MSG_WARN_KHR, EGL_TRUE, EGL_NONE};
+    EGLAttrib debugAttribs[] = {EGL_DEBUG_MSG_WARN_KHR, EGL_TRUE, EGL_NONE};
     // Start up debug messaging:
     result = eglDebugMessageControl(MyCallBack, debugAttribs);
 
