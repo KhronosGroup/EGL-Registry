@@ -14,12 +14,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: 5b1165a76f $ on $Git commit date: 2023-06-22 06:48:34 -0700 $
+** Khronos $Git commit SHA1: f4cc936b88 $ on $Git commit date: 2023-12-16 01:21:49 -0500 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20230622
+#define EGL_EGLEXT_VERSION 20231215
 
 /* Generated C header for:
  * API: egl
@@ -927,6 +927,10 @@ EGLAPI EGLSurface EGLAPIENTRY eglCreatePlatformPixmapSurfaceEXT (EGLDisplay dpy,
 #ifndef EGL_EXT_protected_surface
 #define EGL_EXT_protected_surface 1
 #endif /* EGL_EXT_protected_surface */
+
+#ifndef EGL_EXT_query_reset_notification_strategy
+#define EGL_EXT_query_reset_notification_strategy 1
+#endif /* EGL_EXT_query_reset_notification_strategy */
 
 #ifndef EGL_EXT_stream_consumer_egloutput
 #define EGL_EXT_stream_consumer_egloutput 1
