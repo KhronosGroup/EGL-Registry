@@ -2689,6 +2689,7 @@
                 <enum name="EGL_PROTECTED_CONTENT_EXT"/>
             </require>
         </extension>
+        <extension name="EGL_EXT_query_reset_notification_strategy" supported="egl"/>
         <extension name="EGL_EXT_stream_consumer_egloutput" supported="egl">
             <require>
                 <command name="eglStreamConsumerOutputEXT"/>

@@ -783,4 +783,9 @@ extension EGL_QNX_image_native_buffer {
     flags       public
     filename    extensions/QNX/EGL_QNX_image_native_buffer.txt
 }
-# Next free extension number: 152
+extension EXT_query_reset_notification_strategy {
+    number      152
+    flags       public
+    filename    extensions/EXT/EGL_EXT_query_reset_notification_strategy.txt
+}
+# Next free extension number: 153
