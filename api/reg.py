@@ -4,7 +4,18 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import io,os,re,string,sys
-from lxml import etree
+try:
+    # According to https://lxml.de/tutorial.html
+    #   if we are not using any lxml etree specific functions,
+    #   then xml.etree.ElementTree should behave the same way.
+    # Due to differences using MSYS on Windows, using xml.etree
+    #   instead was tested and seems fine.
+    from lxml import etree
+    print("running with lxml.etree")
+except ImportError:
+    import xml.etree.ElementTree as etree
+    print("running with Python's xml.etree.ElementTree")
+
 import subprocess
 
 def write(*args, **kwargs):
