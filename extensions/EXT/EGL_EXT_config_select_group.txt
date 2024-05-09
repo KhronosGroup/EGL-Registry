@@ -30,7 +30,7 @@ Number
 
 Extension Type
 
-    EGL client extension
+    EGL display extension
 
 Dependencies
 
@@ -97,6 +97,9 @@ Issues
     None
 
 Revision History
+
+    Version 5, 2024-05-09 (Kyle Brenneman)
+        - Corrected extension type to display extension.
 
     Version 4, 2021-06-24 (Robert Mader)
         - Moved to EXT, changed enum value to 0x34C0.
