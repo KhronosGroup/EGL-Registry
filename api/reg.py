@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import io,os,re,string,sys
-from lxml import etree
+import xml.etree.ElementTree as etree
 import subprocess
 
 def write(*args, **kwargs):
