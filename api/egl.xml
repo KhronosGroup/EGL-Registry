@@ -1110,6 +1110,11 @@
         <enum value="0x8F74" name="EGL_CLIENT_PIXMAP_POINTER_HI"/>
     </enums>
 
+    <enums namespace="EGL" start="0x9001" end="0x9010" vendor="Google" comment="Reserved for Tom Murphy (Khronos bug ...)">
+        <enum value="0x9001" name="EGL_ANDROID_TELEMETRY_HINT"/>
+            <unused start="0x9001" end="0x9010"/>
+    </enums>
+
     <!-- SECTION: EGL command definitions. -->
     <commands namespace="EGL">
         <command>
@@ -2407,6 +2412,11 @@
             </require>
         </extension>
         <extension name="EGL_ANDROID_GLES_layers" supported="egl"/>
+        <extension name="EGL_ANDROID_telemetry_hint" supported="egl">
+            <require>
+                <enum name="EGL_ANDROID_TELEMETRY_HINT"/>
+            </require>
+        </extension>
         <extension name="EGL_ANGLE_d3d_share_handle_client_buffer" supported="egl">
             <require>
                 <enum name="EGL_D3D_TEXTURE_2D_SHARE_HANDLE_ANGLE"/>

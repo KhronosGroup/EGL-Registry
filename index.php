@@ -370,6 +370,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=151> <a href="extensions/QNX/EGL_QNX_image_native_buffer.txt">EGL_QNX_image_native_buffer</a>
 </li>
+<li value=153> <a href="extensions/QNX/EGL_ANDROID_telemetry_hint.txt">EGL_ANDROID_telemetry_hint</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
