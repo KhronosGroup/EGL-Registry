@@ -788,4 +788,9 @@ extension EXT_query_reset_notification_strategy {
     flags       public
     filename    extensions/EXT/EGL_EXT_query_reset_notification_strategy.txt
 }
-# Next free extension number: 153
+extension EGL_ANDROID_telemetry_hint {
+    number      153
+    flags       public
+    filename    extensions/EXT/EGL_ANDROID_telemetry_hint.txt
+}
+# Next free extension number: 154
