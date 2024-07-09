@@ -1089,6 +1089,11 @@
         <unused start="0x3560" end="0x356F"/>
     </enums>
 
+    <enums namespace="EGL" start="0x3570" end="0x357F" vendor="Google" comment="Reserved for Tom Murphy (Khronos bug ...)">
+        <enum value="0x3570" name="EGL_ANDROID_TELEMETRY_HINT"/>
+            <unused start="0x3571" end="0x357F"/>
+    </enums>
+
 <!-- Please remember that new enumerant allocations must be obtained by
      request to the Khronos API registrar (see comments at the top of this
      file) File requests in the Khronos Bugzilla, EGL project, Registry
@@ -1108,11 +1113,6 @@
         <enum value="0x8F72" name="EGL_COLOR_RGBA_HI"/>
         <enum value="0x8F73" name="EGL_COLOR_ARGB_HI"/>
         <enum value="0x8F74" name="EGL_CLIENT_PIXMAP_POINTER_HI"/>
-    </enums>
-
-    <enums namespace="EGL" start="0x3570" end="0x3580" vendor="Google" comment="Reserved for Tom Murphy (Khronos bug ...)">
-        <enum value="0x3570" name="EGL_ANDROID_TELEMETRY_HINT"/>
-            <unused start="0x3571" end="0x3580"/>
     </enums>
 
     <!-- SECTION: EGL command definitions. -->
