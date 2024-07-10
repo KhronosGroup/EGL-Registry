@@ -1089,7 +1089,7 @@
         <unused start="0x3560" end="0x356F"/>
     </enums>
 
-    <enums namespace="EGL" start="0x3570" end="0x357F" vendor="Google" comment="Reserved for Tom Murphy (Khronos bug ...)">
+    <enums namespace="EGL" start="0x3570" end="0x357F" vendor="Google" comment="Reserved for Tom Murphy (EGL-Registry pull #204)">
         <enum value="0x3570" name="EGL_TELEMETRY_HINT_ANDROID"/>
             <unused start="0x3571" end="0x357F"/>
     </enums>
