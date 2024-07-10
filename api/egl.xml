@@ -1090,7 +1090,7 @@
     </enums>
 
     <enums namespace="EGL" start="0x3570" end="0x357F" vendor="Google" comment="Reserved for Tom Murphy (Khronos bug ...)">
-        <enum value="0x3570" name="EGL_ANDROID_TELEMETRY_HINT"/>
+        <enum value="0x3570" name="EGL_TELEMETRY_HINT_ANDROID"/>
             <unused start="0x3571" end="0x357F"/>
     </enums>
 
@@ -2414,7 +2414,7 @@
         <extension name="EGL_ANDROID_GLES_layers" supported="egl"/>
         <extension name="EGL_ANDROID_telemetry_hint" supported="egl">
             <require>
-                <enum name="EGL_ANDROID_TELEMETRY_HINT"/>
+                <enum name="EGL_TELEMETRY_HINT_ANDROID"/>
             </require>
         </extension>
         <extension name="EGL_ANGLE_d3d_share_handle_client_buffer" supported="egl">
