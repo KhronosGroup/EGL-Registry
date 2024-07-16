@@ -14,12 +14,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: d4f0a976e4 $ on $Git commit date: 2024-05-10 08:42:40 -0600 $
+** Khronos $Git commit SHA1: 800219cd6e $ on $Git commit date: 2024-05-13 00:13:13 -0700 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20240513
+#define EGL_EGLEXT_VERSION 20240715
 
 /* Generated C header for:
  * API: egl
@@ -550,6 +550,11 @@ EGLAPI EGLBoolean EGLAPIENTRY eglPresentationTimeANDROID (EGLDisplay dpy, EGLSur
 #define EGL_ANDROID_recordable 1
 #define EGL_RECORDABLE_ANDROID            0x3142
 #endif /* EGL_ANDROID_recordable */
+
+#ifndef EGL_ANDROID_telemetry_hint
+#define EGL_ANDROID_telemetry_hint 1
+#define EGL_TELEMETRY_HINT_ANDROID        0x3570
+#endif /* EGL_ANDROID_telemetry_hint */
 
 #ifndef EGL_ANGLE_d3d_share_handle_client_buffer
 #define EGL_ANGLE_d3d_share_handle_client_buffer 1
