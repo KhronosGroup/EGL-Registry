@@ -89,10 +89,9 @@ This section is not complete (see https://github.com/KhronosGroup/EGL-Registry/i
 
 To validate the XML and build the headers you will need at least GNU make,
 'jing' for the 'make validate' step (https://relaxng.org/jclark/jing.html),
-and Python 3.5 and the lxml.etree Python library
-(https://pypi.org/project/lxml/) for the 'make' step. The 'make tests' step
-requires whatever the C and C++ compilers configured for GNU make are,
-usually gcc and g++.
+and Python 3.5 for the 'make' step.
+The 'make tests' step requires whatever the C and C++ compilers configured
+for GNU make are, usually gcc and g++.
 
 All of these components are available prepackaged for major Linux
 distributions and for the Windows 10 Debian WSL.

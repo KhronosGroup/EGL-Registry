@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import io,os,re,string,sys
-from lxml import etree
+import xml.etree.ElementTree as etree
 import subprocess
 
 def write(*args, **kwargs):
@@ -14,7 +14,7 @@ def write(*args, **kwargs):
     file.write(end)
 
 # noneStr - returns string argument, or "" if argument is None.
-# Used in converting lxml Elements into text.
+# Used in converting ElementTree Elements into text.
 #   str - string to convert
 def noneStr(str):
     if (str):
@@ -75,7 +75,7 @@ def matchAPIProfile(api, profile, elem):
 #   required - should this feature be defined during header generation
 #     (has it been removed by a profile or version)?
 #   declared - has this feature been defined already?
-#   elem - lxml.etree Element for this feature
+#   elem - ElementTree Element for this feature
 #   resetState() - reset required/declared to initial values. Used
 #     prior to generating a new API interface.
 class BaseInfo:
@@ -462,7 +462,7 @@ class COutputGenerator(OutputGenerator):
         # For typedefs, add (APIENTRYP <name>) around the name and
         #   use the PFNGLCMDNAMEPROC nameng convention.
         # Done by walking the tree for <proto> element by element.
-        # lxml.etree has elem.text followed by (elem[i], elem[i].tail)
+        # ElementTree has elem.text followed by (elem[i], elem[i].tail)
         #   for each child element and any following text
         # Leading text
         pdecl += noneStr(proto.text)
