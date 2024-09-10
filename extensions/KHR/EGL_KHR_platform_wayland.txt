@@ -23,7 +23,7 @@ Status
 
 Version
 
-    Version 2, 2014/02/18
+    Version 4, 2024/09/09
 
 Number
 
@@ -41,7 +41,8 @@ Dependencies
     20140122).
 
     The behavior of part of this extension is different depending on whether
-    the EGL_EXT_buffer_age extension is also present.
+    the EGL_EXT_buffer_age and KHR_swap_buffers_with_damage extensions are also
+    present.
 
 Overview
 
@@ -93,6 +94,21 @@ New Behavior
     until the next buffer swap. The rationale behind this behavior is to keep
     operations result accurate until the next swap.
 
+    Synchronously within the call to eglSwapBuffers the EGL implementation will
+    invoke a series of requests on the associated wl_surface, including
+    attaching the new front buffer, a full surface damage via wl_surface.damage
+    or wl_surface.damage_buffer, and finally a wl_surface.commit.
+
+    If the EGL implementation associated a wp_linux_drm_syncobj_surface_v1
+    object with the surface, an acquire and a release point will be associated
+    with the surface prior to the commit as well.
+
+    If KHR_swap_buffers_with_damage is available, the equivalent to calling
+    eglSwapBuffers will take place, with the exception that the damage
+    according to <rects> and <n_rects> may be requested by the EGL
+    implementation via wl_surface.damage_buffer, instead of requesting a full
+    damage.
+
 Issues
 
     1. Should this extension permit EGL_DEFAULT_DISPLAY as input to
@@ -107,6 +123,11 @@ Issues
        RESOLVED. No. Wayland has no pixmap type.
 
 Revision History
+    Version 4, 2024/09/09 (Jonas Ådahl)
+        - Clarify wl_surface commit requirements.
+        - Clarify wl_surface damage responsibilities.
+        - Add dependency on KHR_swap_buffers_with_damage
+
     Version 3, 2022/07/14 (Kirill Chibisov)
         - Clarify EGLSurface back buffer locking behavior with regards to
           rendering and surface querying operations.
