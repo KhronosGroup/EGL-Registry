@@ -793,4 +793,9 @@ extension EGL_ANDROID_telemetry_hint {
     flags       public
     filename    extensions/EXT/EGL_ANDROID_telemetry_hint.txt
 }
-# Next free extension number: 154
+extension EGL_EXT_display_alloc {
+    number      154
+    flags       public
+    filename    extensions/EXT/EGL_EXT_display_alloc.txt
+}
+# Next free extension number: 155
