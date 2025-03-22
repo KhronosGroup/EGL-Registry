@@ -97,7 +97,10 @@ Additions to the EGL 1.4 Specification:
     is used to retrieve the pixel format of the buffer, as specified by
     drm_fourcc.h, the number of planes in the image and the Linux
     drm modifiers. <fourcc>, <num_planes> and <modifiers> may be NULL,
-    in which case no value is retrieved.
+    in which case no value is retrieved. <num_planes> must be at most 4.
+    <modifiers> must be an array of at least <num_planes> elements. All
+    elements of the <modifiers> array must have the same value.
+    See Linux kernel commit bae781b259269590109e8a4a8227331362b88212
 
     The second entrypoint retrieves the dma_buf file descriptors,
     strides and offsets for the image. The caller should pass
@@ -138,6 +141,8 @@ to dup the fd extra times to make the interface sane.
 
 Revision History
 
+    Version 4, March, 2025
+        Clarify <num_planes> and <modifiers> (Eric Engestrom)
     Version 3, May, 2015
         Just use the KHR 64-bit type.
     Version 2, March, 2015
