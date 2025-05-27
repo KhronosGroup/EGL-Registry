@@ -35,7 +35,7 @@ Status
 
 Version
 
-    Version 12, September 12, 2014
+    Version 14, April 24, 2025
 
 Number
 
@@ -439,6 +439,10 @@ Issues
 
     RESOLVED: The damage region is set to empty.
 
+11) What is the behavior if n_rects is < 0 ?
+
+    RESOLVED: This case is undefined.
+
 
 Revision History
 
@@ -499,3 +503,6 @@ Revision History
      - Marked as a Display extension
      - Changed remaining references to EGL_EXT_swap_buffers_with_damage to
        EGL_KHR_swap_buffers_with_damage
+    Version 14, 24/04/2025
+     - Add Issue number 11 and resolution
+
