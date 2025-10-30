@@ -107,6 +107,9 @@ New Behavior
     object with the surface, an acquire and a release point will be associated
     with the surface prior to the commit as well.
 
+    An EGL implementation must not create a wp_color_management_surface_v1
+    object for the associated wl_surface.
+
 Issues
 
     1. Should this extension permit EGL_DEFAULT_DISPLAY as input to
@@ -121,6 +124,9 @@ Issues
        RESOLVED. No. Wayland has no pixmap type.
 
 Revision History
+    Version 5, 2025/10/30 (Jonas Ådahl)
+        - Enforce no color management surface object creation.
+
     Version 4, 2024/09/09 (Jonas Ådahl)
         - Clarify wl_surface commit requirements.
         - Clarify wl_surface damage responsibilities.
