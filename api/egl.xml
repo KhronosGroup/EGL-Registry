@@ -1099,6 +1099,15 @@
         <unused start="0x3580" end="0x358F"/>
     </enums>
 
+    <enums namespace="EGL" start="0x3590" end="0x359F" vendor="EXT" comment="Reserved for Simon Ser (EGL-Registry issue #206)">
+        <enum value="0x3590" name="EGL_DEVICE_TYPE_EXT"/>
+        <enum value="0x3591" name="EGL_DEVICE_TYPE_OTHER_EXT"/>
+        <enum value="0x3592" name="EGL_DEVICE_TYPE_INTEGRATED_GPU_EXT"/>
+        <enum value="0x3593" name="EGL_DEVICE_TYPE_DISCRETE_GPU_EXT"/>
+        <enum value="0x3594" name="EGL_DEVICE_TYPE_CPU_EXT"/>
+            <unused start="0x3595" end="0x359F"/>
+    </enums>
+
 <!-- Please remember that new enumerant allocations must be obtained by
      request to the Khronos API registrar (see comments at the top of this
      file) File requests in the Khronos Bugzilla, EGL project, Registry
@@ -1108,8 +1117,8 @@
 
 <!-- Reservable for future use. To generate a new range, allocate multiples
      of 16 starting at the lowest available point in this block. -->
-    <enums namespace="EGL" start="0x3590" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
-            <unused start="0x3590" end="0x3FFF"/>
+    <enums namespace="EGL" start="0x35A0" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
+            <unused start="0x35A0" end="0x3FFF"/>
     </enums>
 
     <enums namespace="EGL" start="0x8F70" end="0x8F7F" vendor="HI" comment="For Mark Callow, Khronos bug 4055. Shared with GL.">
@@ -3593,6 +3602,15 @@
             <require>
                 <enum name="EGL_ALLOC_NEW_DISPLAY_EXT"/>
                 <command name="eglDestroyDisplayEXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_device_type" supported="egl">
+            <require>
+                <enum name="EGL_DEVICE_TYPE_EXT"/>
+                <enum name="EGL_DEVICE_TYPE_OTHER_EXT"/>
+                <enum name="EGL_DEVICE_TYPE_INTEGRATED_GPU_EXT"/>
+                <enum name="EGL_DEVICE_TYPE_DISCRETE_GPU_EXT"/>
+                <enum name="EGL_DEVICE_TYPE_CPU_EXT"/>
             </require>
         </extension>
     </extensions>
