@@ -798,4 +798,9 @@ extension EGL_EXT_display_alloc {
     flags       public
     filename    extensions/EXT/EGL_EXT_display_alloc.txt
 }
-# Next free extension number: 155
+extension EGL_EXT_device_type {
+    number      155
+    flags       public
+    filename    extensions/EXT/EGL_EXT_device_type.txt
+}
+# Next free extension number: 156
