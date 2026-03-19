@@ -4,7 +4,7 @@ Name
 
 Name Strings
 
-    EXT_device_drm_render_node
+    EGL_EXT_device_drm_render_node
 
 Contributors
 
