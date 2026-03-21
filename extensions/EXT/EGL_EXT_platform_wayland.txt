@@ -20,7 +20,7 @@ Status
 
 Version
 
-    Version 4, 2014-03-10
+    Version 5, 2026-04-03
 
 Number
 
@@ -79,7 +79,7 @@ New Behavior
 
     To obtain an on-screen rendering surface from a Wayland window, call
     eglCreatePlatformWindowSurfaceEXT with a <dpy> that belongs to Wayland and
-    a <native_window> that points to a `struct wl_egl_surface`.
+    a <native_window> that points to a `struct wl_egl_window`.
 
     It is not valid to call eglCreatePlatformPixmapSurfaceEXT with a <dpy>
     that belongs to Wayland. Any such call fails and generates
@@ -109,6 +109,10 @@ Issues
        interest in Wayland.
 
 Revision History
+
+    Version 5, 2026-04-03 (Lennart Jablonka)
+        - Replace `struct wl_egl_surface` by `struct wl_egl_window`,
+          as is implemented.
 
     Version 4, 2014-03-10(Chad Versace)
         - Change resolution of issue #1 from "no" to "yes". Now
