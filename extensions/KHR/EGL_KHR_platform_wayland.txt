@@ -23,7 +23,7 @@ Status
 
 Version
 
-    Version 2, 2014/02/18
+    Version 4, 2026/04/03
 
 Number
 
@@ -82,7 +82,7 @@ New Behavior
 
     To obtain an on-screen rendering surface from a Wayland window, call
     eglCreatePlatformWindowSurface with a <dpy> that belongs to Wayland and
-    a <native_window> that points to a `struct wl_egl_surface`.
+    a <native_window> that points to a `struct wl_egl_window`.
 
     It is not valid to call eglCreatePlatformPixmapSurface with a <dpy> that
     belongs to Wayland. Any such call fails and generates an
@@ -107,6 +107,10 @@ Issues
        RESOLVED. No. Wayland has no pixmap type.
 
 Revision History
+    Version 4, 2026/04/03 (Lennart Jablonka)
+        - Replace `struct wl_egl_surface` by `struct wl_egl_window`,
+          as is implemented.
+
     Version 3, 2022/07/14 (Kirill Chibisov)
         - Clarify EGLSurface back buffer locking behavior with regards to
           rendering and surface querying operations.
