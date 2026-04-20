@@ -210,20 +210,6 @@ to:
          - 1 Plane : Y + U + Y + V  EGL_YUV_ORDER_EXT              = EGL_YUV_ORDER_YUYV_EXT
          - 8 bit depth              EGL_YUV_PLANE_BPP_EXT          = EGL_YUV_PLANE_BPP_10_EXT
 
-        EGL_YUV_PLANE_BPP_EXT describes the bit depth for the different
-    planes of a YUV surface. The available options are EGL_YUV_PLANE_BPP_0_-
-    EXT, EGL_YUV_PLANE_BPP_8_EXT and EGL_YUV_PLANE_BPP_10_EXT. If EGL_YUV_-
-    PLANE_BPP_0_EXT is specified, no color buffer will be created for the
-    surface.
-        EGL_YUV_DEPTH_RANGE_EXT describes the range of the pixel value and is
-    dependent on the EGL_YUV_PLANE_BPP_EXT setting:
-
-        EGL_YUV_PLANE_BPP_EXT        EGL_YUV_DEPTH_RANGE_LIMITED_EXT   EGL_YUV_DEPTH_RANGE_FULL_EXT
-                                     (Inclusive)                       (Inclusive)
-        -------------------------    --------------------------------  -----------------------------
-        EGL_YUV_PLANE_BPP_8_EXT or   Y: 16 to 235, UV: 16 to 240       Y: 0 to 255,  UV: 0 to 255
-        EGL_YUV_PLANE_BPP_10_EXT     Y: 64 to 940, UV: 64 to 960       Y: 0 to 1023, UV: 0 to 1023
-
         If OpenGL or OpenGL ES rendering is supported for a luminance color
     buffer (as described by the value of the EGL_RENDERABLE_TYPE attribute,
     described below), it is treated as RGB rendering with the value of
@@ -246,12 +232,11 @@ to:
    Other EGLConfig Attribute Descriptions
 
         EGL_YUV_CSC_STANDARD_EXT can be set to either EGL_YUV_CSC_STANDARD_-
-    601_EXT, EGL_YUV_CSC_STANDARD_709_EXT, or EGL_YUV_CSC_2020_EXT. If the
-    standard chosen is EGL_YUV_CSC_STANDARD_709_EXT, then the color conversion
-    follows the ITU-R BT.709 standard. If EGL_YUV_CSC_STANDARD_EXT is set to
-    EGL_YUV_CSC_2020_EXT, then the color conversion will be processed based on
-    ITU-R BT.2020.
-
+    601_EXT, EGL_YUV_CSC_STANDARD_709_EXT, or EGL_YUV_CSC_2020_EXT. Setting
+    the attribute has no effect, but also does not raise any errors.
+        EGL_YUV_DEPTH_RANGE_EXT can be set to either
+    EGL_YUV_DEPTH_RANGE_LIMITED_EXT or EGL_YUV_DEPTH_RANGE_FULL_EXT. Setting
+    the attribute has no effect, but also does not raise any errors.
 
 Change option 2 in the section marked as 3.4.1.2 Sorting of EGLConfigs to:
 
@@ -293,9 +278,8 @@ New State
                                               inside the surface
     EGL_YUV_NUMBER_OF_PLANES_EXT    integer   Number of planes for the surface, in the range of [1,3]
     EGL_YUV_SUBSAMPLE_EXT           enum      Describes the sampling rate of the different planes.
-    EGL_YUV_DEPTH_RANGE_EXT         enum      Luma plane range. limited is [16,240] and
-                                              full range is [0,255]
-    EGL_YUV_CSC_STANDARD_EXT        enum      The standard used for color conversion.
+    EGL_YUV_DEPTH_RANGE_EXT         enum      No effect.
+    EGL_YUV_CSC_STANDARD_EXT        enum      No effect.
     EGL_YUV_PLANE_BPP_EXT           enum      How many bits are used for each plane of
                                               the YUV surface
 
@@ -308,8 +292,6 @@ New State
     EGL_YUV_ORDER_EXT               EGL_DONT_CARE                     Exact      Special  10
     EGL_YUV_NUMBER_OF_PLANES_EXT    0                                 At least   None
     EGL_YUV_SUBSAMPLE_EXT           EGL_DONT_CARE                     Exact      None
-    EGL_YUV_DEPTH_RANGE_EXT         EGL_DONT_CARE                     Exact      None
-    EGL_YUV_CSC_STANDARD_EXT        EGL_DONT_CARE                     Exact      None
     EGL_YUV_PLANE_BPP_EXT           EGL_DONT_CARE                     Exact      None
 
 Issues
@@ -359,8 +341,6 @@ Example Configuration for NV12:
         EGL_YUV_ORDER_EXT,             EGL_ORDER_YUV_EXT,
         EGL_YUV_NUMBER_OF_PLANES_EXT,  2,
         EGL_YUV_SUBSAMPLE_EXT,         EGL_YUV_SUBSAMPLE_4_2_0_EXT,
-        EGL_YUV_DEPTH_RANGE_EXT,       EGL_YUV_DEPTH_RANGE_LIMITED_EXT,
-        EGL_YUV_CSC_STANDARD_EXT,      EGL_YUV_CSC_STANDARD_601_EXT,
         EGL_YUV_PLANE_BPP_EXT,         EGL_YUV_PLANE_BPP_8_EXT,
         EGL_NONE
     };
