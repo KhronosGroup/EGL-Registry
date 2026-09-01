@@ -122,10 +122,10 @@ Changes to Chapter 3 of the EGL 1.2 Specification (EGL Functions and Errors)
     After associating the fence command with an EGL native fence sync object,
     the next Flush() operation performed by the current client API causes a
     new native fence object to be created, and the
-    EGL_SYNC_NATIVE_FENCE_ANDROID attribute of the EGL native fence object is
-    set to a file descriptor that refers to the new native fence object. This
-    new native fence object is signaled when the EGL native fence sync object
-    is signaled.
+    EGL_SYNC_NATIVE_FENCE_FD_ANDROID attribute of the EGL native fence object
+    is set to a file descriptor that refers to the new native fence object.
+    This new native fence object is signaled when the EGL native fence sync
+    object is signaled.
 
     When the condition of the sync object is satisfied by the fence command,
     the sync is signaled by the associated client API context, causing any
