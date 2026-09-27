@@ -1108,6 +1108,14 @@
             <unused start="0x3595" end="0x359F"/>
     </enums>
 
+    <enums namespace="EGL" start="0x36A0" end="0x35AF" vendor="EXT" comment="Reserved for Yves Auxier (EGL-Registry pull #228)">
+        <enum value="0x35A0" name="EGL_SWAP_TEARING_HINT_EXT"/>
+        <enum value="0x35A1" name="EGL_SWAP_TEARING_HINT_VSYNC_EXT"/>
+        <enum value="0x35A2" name="EGL_SWAP_TEARING_HINT_ASYNC_EXT"/>
+        <enum value="0x35A3" name="EGL_SWAP_TEARING_HINT_DEFAULT_EXT"/>
+            <unused start="0x35A4" end="0x35AF"/>
+    </enums>
+
 <!-- Please remember that new enumerant allocations must be obtained by
      request to the Khronos API registrar (see comments at the top of this
      file) File requests in the Khronos Bugzilla, EGL project, Registry
@@ -1117,8 +1125,8 @@
 
 <!-- Reservable for future use. To generate a new range, allocate multiples
      of 16 starting at the lowest available point in this block. -->
-    <enums namespace="EGL" start="0x35A0" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
-            <unused start="0x35A0" end="0x3FFF"/>
+    <enums namespace="EGL" start="0x35B0" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
+            <unused start="0x35B0" end="0x3FFF"/>
     </enums>
 
     <enums namespace="EGL" start="0x8F70" end="0x8F7F" vendor="HI" comment="For Mark Callow, Khronos bug 4055. Shared with GL.">
@@ -3611,6 +3619,14 @@
                 <enum name="EGL_DEVICE_TYPE_INTEGRATED_GPU_EXT"/>
                 <enum name="EGL_DEVICE_TYPE_DISCRETE_GPU_EXT"/>
                 <enum name="EGL_DEVICE_TYPE_CPU_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_swap_tearing_hint" supported="egl">
+            <require>
+                <enum name="EGL_SWAP_TEARING_HINT_EXT"/>
+                <enum name="EGL_SWAP_TEARING_HINT_VSYNC_EXT"/>
+                <enum name="EGL_SWAP_TEARING_HINT_VSYNC_EXT"/>
+                <enum name="EGL_SWAP_TEARING_HINT_DEFAULT_EXT"/>
             </require>
         </extension>
     </extensions>
