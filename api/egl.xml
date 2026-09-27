@@ -1108,6 +1108,13 @@
             <unused start="0x3595" end="0x359F"/>
     </enums>
 
+    <enums namespace="EGL" start="0x3600" end="0x360F" vendor="EXT" comment="Reserved for Yves Auxier (EGL-Registry pull #228)">
+        <enum value="0x3600" name="EGL_SWAP_TEARING_HINT_EXT"/>
+        <enum value="0x3601" name="EGL_SWAP_TEARING_HINT_VSYNC_EXT"/>
+        <enum value="0x3602" name="EGL_SWAP_TEARING_HINT_ASYNC_EXT"/>
+            <unused start="0x3603" end="0x360F"/>
+    </enums>
+
 <!-- Please remember that new enumerant allocations must be obtained by
      request to the Khronos API registrar (see comments at the top of this
      file) File requests in the Khronos Bugzilla, EGL project, Registry
@@ -3611,6 +3618,13 @@
                 <enum name="EGL_DEVICE_TYPE_INTEGRATED_GPU_EXT"/>
                 <enum name="EGL_DEVICE_TYPE_DISCRETE_GPU_EXT"/>
                 <enum name="EGL_DEVICE_TYPE_CPU_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_swap_tearing_hint" supported="egl">
+            <require>
+                <enum name="EGL_SWAP_TEARING_HINT_EXT"/>
+                <enum name="EGL_SWAP_TEARING_HINT_VSYNC_EXT"/>
+                <enum name="EGL_SWAP_TEARING_HINT_VSYNC_EXT"/>
             </require>
         </extension>
     </extensions>
