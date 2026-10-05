@@ -85,6 +85,11 @@ New Behavior
     that belongs to Wayland. Any such call fails and generates
     EGL_BAD_PARAMETER.
 
+    Specifying an eglSwapInterval of 0 shall request unpaced buffer swaps which
+    may be processed as if in mailbox mode without tearing or other
+    mid-frame-update artifacts. Tearing will not happen without additional
+    hinting; it may be requested with further extensions via EGL.
+
 Issues
 
     1. Should this extension permit EGL_DEFAULT_DISPLAY as input to
