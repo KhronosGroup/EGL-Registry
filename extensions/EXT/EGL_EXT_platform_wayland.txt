@@ -9,6 +9,7 @@ Name Strings
 Contributors
 
     Chad Versace <chad.versace@intel.com>
+    Yves Auxier <yvesauxier@gmail.com>
 
 Contacts
 
@@ -20,7 +21,7 @@ Status
 
 Version
 
-    Version 5, 2026-04-03
+    Version 6, 2026/10/13
 
 Number
 
@@ -85,6 +86,11 @@ New Behavior
     that belongs to Wayland. Any such call fails and generates
     EGL_BAD_PARAMETER.
 
+    Specifying an eglSwapInterval of 0 shall result in unpaced buffer swaps
+    which will be presented to the display without tearing or other
+    mid-frame-update artifacts. Tearing will not happen without additional
+    hinting; it may be requested with further extensions via EGL.
+
 Issues
 
     1. Should this extension permit EGL_DEFAULT_DISPLAY as input to
@@ -108,7 +114,18 @@ Issues
        RESOLVED. Use the EXT namespace because other vendors have expressed
        interest in Wayland.
 
+    4. Does eglSwapInterval of 0 allow tearing?
+
+       RESOLVED. No. Historical precedent is for swap intervals of 0 to never
+       tear, and Wayland hasn't had screen tearing for over 10 years until
+       the addition of wp_tearing_control. Additionally, applications rely on
+       swap intervals of 0 to not tear. Swap intervals of 0 do not tear under
+       Wayland, and clients should request tearing through other EGL extensions.
+
 Revision History
+   Version 6, 2026/10/13 (Yves Auxier)
+        - Clarify eglSwapInterval of 0 behavior, and why
+          implementations don't tear.
 
     Version 5, 2026-04-03 (Lennart Jablonka)
         - Replace `struct wl_egl_surface` by `struct wl_egl_window`,
