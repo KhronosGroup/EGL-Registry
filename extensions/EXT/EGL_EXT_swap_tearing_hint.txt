@@ -1,0 +1,92 @@
+Name
+
+    EXT_swap_tearing_hint
+
+Name Strings
+
+    EGL_EXT_swap_tearing_hint
+
+Contact
+
+    Yves Auxier <yvesauxier@gmail.com>
+
+Status
+
+    Complete
+
+Version
+
+    Version 1, September 26, 2026
+
+Number
+
+    EGL Extension #156
+
+Dependencies
+    Requires EGL 1.1.
+
+    This extension is written against the wording of the EGL 1.5
+    specification, but may be implemented against 1.1.
+
+Overview
+
+    This extension allows a client to hint that tearing is, or is not, an
+    acceptable outcome on its EGLSurface, typically in order to obtain the
+    lowest latency possible. This does not depend on eglSwapInterval state;
+    an eglSwapInterval of 1 can still tear if a frame arrives late and isn't
+    able to be synced to the vertical refresh rate in time to prevent tearing.
+
+    Setting this hint does not mean that a client will always tear; this is
+    platform policy, and can depend on factors outside of if the client has
+    requested it be allowed (such as hardware support, fullscreen state,
+    protocol limitations or existence of certain extensions, etc.)
+
+    Additionally, an implementation may still tear even if the client hints that
+    tearing is not an acceptable outcome.
+
+New Types
+
+  None
+
+New Procedures and Functions
+
+  None
+
+New Tokens
+
+    Accepted by the <attribute> parameter of eglSurfaceAttrib and
+    eglQuerySurface:
+
+        EGL_SWAP_TEARING_HINT_EXT                 0x3600
+
+    Accepted by the <value> parameter of eglSurfaceAttrib and returned
+    in the <value> parameter of eglQuerySurface when <attribute> is
+    EGL_SWAP_TEARING_HINT_EXT:
+
+        EGL_SWAP_TEARING_HINT_VSYNC_EXT           0x3601
+        EGL_SWAP_TEARING_HINT_ASYNC_EXT           0x3602
+
+Additions to Chapter 3 of the EGL 1.5 Specification (EGL Functions and
+Errors)
+
+    Additions to section 3.5.6 (Surface Attributes)
+
+    Add to the list of supported tokens for eglSurfaceAttrib:
+
+    If attribute is EGL_SWAP_TEARING_HINT_EXT, then value hints to the EGL
+    implementation (either EGL_SWAP_TEARING_HINT_VSYNC_EXT or
+    EGL_SWAP_TEARING_HINT_ASYNC_EXT) whether the client thinks that tearing is
+    an acceptable outcome on its surface.
+
+    Add the following paragraph to the description of eglQuerySurface:
+
+    To obtain the current tearing hint of an EGLSurface, call
+    eglQuerySurface with <name> set to EGL_SWAP_TEARING_HINT_EXT. The
+    function will return one of the following values:
+
+        EGL_SWAP_TEARING_HINT_VSYNC_EXT
+            The client has hinted that tearing is preferred not to happen,
+            if platform policy allows.
+        EGL_SWAP_TEARING_HINT_ASYNC_EXT
+            The client has hinted that tearing is preferred to happen, if
+            platform policy allows.
