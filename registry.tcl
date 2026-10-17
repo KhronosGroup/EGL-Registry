@@ -613,10 +613,11 @@ extension EGL_EXT_surface_CTA861_3_metadata {
     flags       public
     filename    extensions/EXT/EGL_EXT_surface_CTA861_3_metadata.txt
 }
+# This includes EGL_EXT_gl_colorspace_display_p3_linear
 extension EGL_EXT_gl_colorspace_display_p3 {
     number      118
     flags       public
-    filename    extensions/EXT/EGL_EXT_colorspace_display_p3.txt
+    filename    extensions/EXT/EGL_EXT_gl_colorspace_display_p3.txt
 }
 extension EGL_EXT_gl_colorspace_scrgb {
     number      119
