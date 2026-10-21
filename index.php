@@ -372,6 +372,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=153> <a href="extensions/ANDROID/EGL_ANDROID_telemetry_hint.txt">EGL_ANDROID_telemetry_hint</a>
 </li>
+<li value=156> <a href="extensions/EXT/EGL_EXT_swap_tearing_hint.txt">EGL_EXT_swap_tearing_hint</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>

@@ -1,0 +1,127 @@
+Name
+
+    EXT_swap_tearing_hint
+
+Name Strings
+
+    EGL_EXT_swap_tearing_hint
+
+Contact
+
+    Yves Auxier <yvesauxier@gmail.com>
+
+Status
+
+    Complete
+
+Version
+
+    Version 1, October 17, 2026
+
+Number
+
+    EGL Extension #156
+
+Dependencies
+    Requires EGL 1.1.
+
+    This extension is written against the wording of the EGL 1.5
+    specification, but may be implemented against 1.1.
+
+Overview
+
+    This extension allows a client to hint that tearing is, or is not, an
+    acceptable outcome on its EGLSurface, typically in order to obtain the
+    lowest latency possible. This does not change how eglSwapInterval handles
+    buffer swaps, but rather how they should be presented to the display.
+
+    Setting this hint does not mean that a client will always tear; this is
+    platform policy, and may depend on factors outside of if the client has
+    requested it be allowed (such as hardware support, fullscreen state,
+    protocol limitations or existence of certain extensions, and more).
+
+    Conversely, an implementation may still tear even if the client hints that
+    tearing is not an acceptable outcome, for the same reasons listed above as
+    for why a client may not tear, even if requested.
+
+    For additional clarification, here is a breakdown of how
+    EXT_swap_tearing_hint and eglSwapInterval should interact:
+
+    - EXT_swap_tearing_hint of VSync and eglSwapInterval is 0 will result in
+      unpaced buffer swaps, and frames may be presented without tearing or
+      other mid-frame-update artifacts.
+    - EXT_swap_tearing_hint of ASync and eglSwapInterval is 0 will result in
+      unpaced buffer swaps, and frames may be presented with tearing or other
+      mid-frame-update artifacts.
+
+    - EXT_swap_tearing_hint of VSync and eglSwapInterval >= 1 will result in
+      paced buffer swaps, and frames may be presented without tearing or
+      other mid-frame-update artifacts.
+    - EXT_swap_tearing_hint of ASync and eglSwapInterval >= 1 will result in
+      paced buffer swaps, and frames may be presented with tearing or other
+      mid-frame-update artifacts.
+
+      It is again stated that this extension does not require the described
+      behavior; any hints set by this extension, and eglSwapInterval behavior,
+      may vary in behavior between drivers.
+
+New Types
+
+  None
+
+New Procedures and Functions
+
+  None
+
+New Tokens
+
+    Accepted by the <attribute> parameter of eglSurfaceAttrib and
+    eglQuerySurface:
+
+        EGL_SWAP_TEARING_HINT_EXT                 0x35A0
+
+    Accepted by the <value> parameter of eglSurfaceAttrib and returned
+    in the <value> parameter of eglQuerySurface when <attribute> is
+    EGL_SWAP_TEARING_HINT_EXT:
+
+        EGL_SWAP_TEARING_HINT_VSYNC_EXT           0x35A1
+        EGL_SWAP_TEARING_HINT_ASYNC_EXT           0x35A2
+        EGL_SWAP_TEARING_HINT_DEFAULT_EXT         0x35A3
+
+Additions to Chapter 3 of the EGL 1.5 Specification (EGL Functions and
+Errors)
+
+    Additions to section 3.5.6 (Surface Attributes)
+
+    Add to the list of supported tokens for eglSurfaceAttrib:
+
+    If <attribute> is EGL_SWAP_TEARING_HINT_EXT, then <value> hints to the EGL
+    implementation (EGL_SWAP_TEARING_HINT_VSYNC_EXT,
+    EGL_SWAP_TEARING_HINT_ASYNC_EXT, or EGL_SWAP_TEARING_HINT_DEFAULT_EXT)
+    whether the client thinks that tearing is an acceptable outcome on its
+    surface. If <surface> is not bound as the draw surface to the calling
+    thread's current context, an EGL_BAD_SURFACE error is generated.
+
+    Add the following paragraph to the description of eglQuerySurface:
+
+    To obtain the current tearing hint of an EGLSurface, call
+    eglQuerySurface with <name> set to EGL_SWAP_TEARING_HINT_EXT. This may
+    differ from what was requested due to platform restrictions. The function
+    will return one of the following values:
+
+        EGL_SWAP_TEARING_HINT_VSYNC_EXT
+            The client has hinted that tearing is preferred not to happen,
+            if platform policy allows.
+        EGL_SWAP_TEARING_HINT_ASYNC_EXT
+            The client has hinted that tearing is preferred to happen, if
+            platform policy allows.
+        EGL_SWAP_TEARING_HINT_DEFAULT_EXT
+            The client has hinted that it does not have a tearing preference,
+            and tearing behavior follows platform policy.
+
+    Add the following text to the last paragraph of the subsection titled
+    "Surface Attributes" in the description for eglQuerySurface errors.
+
+        If querying EGL_SWAP_TEARING_HINT_EXT and <surface> is not
+        bound as the draw surface to the calling thread's current
+        context, an EGL_BAD_SURFACE error is generated.
