@@ -1,0 +1,204 @@
+Name
+
+    LYNX_device_init
+
+Name Strings
+
+    EGL_LYNX_device_init
+
+Contact
+
+    Ethan Malin, Lynx Software Technologies, Inc. (emalin 'at' lynx 'dot' com)
+
+Contributors
+
+    Anirban Basu
+    Daniel Herring
+    Ken Wenger
+    Tom Malnar
+    Ethan Malin
+    Yacine Thabet
+
+Status
+
+    Draft
+
+Version
+
+    Version 0.8, September 2, 2026
+
+Number
+
+    EGL Extension #156
+
+Dependencies
+    Requires EGL 1.0
+	
+	This extension is written against the wording of the EGL 1.4
+	Specification - December 4, 2013, but may be implemented against earlier
+	versions.
+
+    The specification of EGL_EXT_device_query is required to
+    determine the specification of this extension, although
+    EGL_EXT_device_query need not be supported.
+
+Overview
+
+    Existing EGL device extensions allow applications to enumerate
+    graphics devices and obtain EGLDisplay objects without relying on
+    a native window system. They do not provide a mechanism for an
+    application to initialize device-wide implementation state using
+    system configuration attributes and predetermined resource
+    limits before creating an EGLDisplay.
+
+    This extension allows an application to select and initialize a
+    graphics device before creating any EGLDisplay associated with
+    that device. Initialization attributes may identify the physical
+    device, configure implementation-specific system behavior, and
+    provide resource limits required by implementations that avoid
+    dynamic allocation.
+
+    The extension also provides explicit destruction of the
+    device-wide state after all associated EGL resources have been
+    released.
+
+IP Status
+
+    No known IP claims.
+
+New Procedures and Functions
+
+    EGLDeviceEXT eglInitializeDeviceLYNX(EGLAttrib *attrib_list);
+
+    EGLBoolean eglDestroyDeviceLYNX(EGLDeviceEXT device);
+
+New Types
+
+    EGLDeviceEXT is defined by EGL_EXT_device_query.
+
+    EGLAttrib is defined by EGL_EXT_device_query.
+
+New Tokens
+
+    None.
+	
+Additions to Chapter 3 of the EGL 1.4 Specification
+(EGL Functions and Errors)
+
+Add the function to section 3.2 Pg 12:
+
+	Applications can choose and initialize an EGL device at the
+	start by calling the function:					
+
+	EGLDeviceEXT eglInitializeDeviceLYNX(EGLAttrib *attrib_list);
+		
+	This function initalizes the EGL device chosen through the device
+	ID attribute in <attrib_list> and generates an internal list of all the
+	supported displays. This list will be used later by eglGetDisplay to
+	provide an appropriate display to the application. Any additional
+	device / display management tasks required to support the EGL API's
+	should be handled here. The function returns an object of type
+	EGLDeviceEXT, which is an abstract representation of a graphics device.
+	All EGL operations for the given device happen on this device object.
+	All attribute names in <attrib list> are immediately followed by the
+	corresponding desired value. The list is terminated with EGL_NONE.
+	Each attribute can either be the device ID attribute, a system
+	attribute or an object creation maximum. The device ID attribute
+	specifies which GPU to initialize, the system attributes pass initialization 
+	parameters affecting the system behavior, and the object creation maximums
+	pass in the maximum number of a certain object type to create. Passing 
+	an unrecognized attribute or value will cause the function to fail and it 
+	will return EGL_NO_DEVICE_EXT and set an EGL_BAD_ATTRIBUTE error. 
+	Passing recognized but unsupported attributes by a particular device
+	are ignored by the device implementation. 
+	Passing either an empty attribute list or a NULL pointer 
+	will return a device object representing the first device in the system 
+	initialized with all the default parameters. 
+	However, note that default parameters don't include the shaders attributes.
+	
+	On Failure, eglInitializeDeviceLYNX will return EGL_NO_DEVICE_EXT.
+	
+	Calling this function with the same <attrib_list> multiple times will
+	return the same device object and will have no additional impact.
+	
+Add the function to the end of section 3.2 on pg. 14:
+
+	At the end of all the rendering operations, after terminating all
+	displays relative to a device, and destroying all the associated
+	contexts and surfaces, said device object can be destroyed by
+	calling:
+
+		EGLBoolean eglDestroyDeviceLYNX(EGLDeviceEXT device);
+	
+	This function will destroy the device object 'device' and release
+	all resources held by it. Referring to destroyed device objects 
+	will result in an error.
+	
+	eglDestroyDeviceLYNX will return EGL_FALSE on a failure. Failure to
+	destroy a device might be an indication that resources held by the 
+	device were not successfully relinquished and any subsequent Device 
+	re-initialization might fail too. Restarting the entire graphic 
+	sub-system might be the only option in such cases. 
+
+Errors
+
+	eglInitializeDeviceLYNX returns EGL_NO_DEVICE_EXT on failure.
+	
+	eglInitializeDeviceLYNX sets EGL_BAD_ATTRIBUTE on invalid attributes.
+	
+	eglDestroyDeviceLYNX returns EGL_FALSE on failure.
+
+Sample Code
+
+   None
+
+Conformance Tests
+
+    None
+
+Issues
+
+    1. Why is the attribute list of type EGLAttrib ?
+   
+       To allow attributes to pass in 64-bit values like pointers. 
+	 
+    2. Will eglDestroyDeviceLYNX() synchronize with the client API's
+       to wait for all commands to complete before destroying the 
+       device?
+	
+       No, it is the responsibility of the application to make sure all
+       drawing commands on all contexts have finished and all displays 
+       have been terminated before destroying the device. The 
+       application can use all the synchronization API's at its 
+       disposal to easily ensure that all the tasks on all threads have 
+       completed before calling eglDestroyDeviceLYNX.
+
+Revision History
+	Revision 0.8 2026/08/02
+		- Change attribute list to be of type EGLAttrib.
+		- Update formatting to more closely match current extension spec conventions.
+		- Update overview to make distinction between this extension and other device extensions.
+
+	Revision 0.7 2026/07/01
+		- Rename the extension and procedures from EXT to LYNX.
+
+	Revision 0.6 2025/01/04
+		- Add unsupported atributes handling and EGL_BAD_ATTRIBUTE.
+		
+	Revision 0.5 2024/05/05
+	    - Add attributes for object creation maximums.
+		
+	Revision 0.4 2021/10/12
+	    - Fixed typos.
+	    - Add device ID attribute.
+
+	Revision 0.3 2020/06/22
+	    - Changed the name of he initialization function. 
+	    - Add more description on attribute types. 
+	    - Change Attribute list to be of type EGLAttribKHR
+		
+	Revision 0.2 2020/06/16
+	    - Improved description based on review comments. 
+		
+	Revision 0.1 2020/06/08
+	    - Initial Draft

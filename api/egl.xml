@@ -1011,7 +1011,14 @@
         <enum value="0x3462" name="EGL_COMPOSITOR_DROP_NEWEST_FRAME_EXT"/>
         <enum value="0x3463" name="EGL_COMPOSITOR_KEEP_NEWEST_FRAME_EXT"/>
         <enum value="0x3464" name="EGL_FRONT_BUFFER_EXT"/>
-        <unused start="0x3465" end="0x346F"/>
+        <enum value="0x3465" name="EGL_DEVICE_INIT_GPU_DEVICE_ID_LYNX"/>
+        <enum value="0x3466" name="EGL_DEVICE_APP_NAME_LYNX"/>
+        <enum value="0x3467" name="EGL_DEVICE_INIT_SHARED_MEMORY_LYNX"/>
+        <enum value="0x3468" name="EGL_DEVICE_DIRECT_CALL_LYNX"/>
+        <enum value="0x3469" name="EGL_SHADER_PROGRAM_COUNT_LYNX"/>
+        <enum value="0x346A" name="EGL_SHADER_PROGRAM_BINARY_LYNX"/>
+        <enum value="0x346B" name="EGL_SHADER_PROGRAM_SIZE_LYNX"/>
+        <unused start="0x346C" end="0x346F"/>
     </enums>
 
     <enums namespace="EGL" start="0x3470" end="0x347F" vendor="EXT" comment="Reserved for Daniel Stone (PR 14)">
@@ -1067,7 +1074,30 @@
     </enums>
 
     <enums namespace="EGL" start="0x3500" end="0x352F" vendor="LYNX" comment="Reserved for Lynx Software Technologies, Inc. (formerly CoreAVI; original allocation to Daniel Herring (via github pull request)">
-        <unused start="0x3500" end="0x352F"/>
+        <enum value="0x3500" name="EGL_DEVICE_MAX_IMAGES_LYNX"/>
+        <enum value="0x3501" name="EGL_DEVICE_MAX_IMAGE_VIEWS_LYNX"/>
+        <enum value="0x3502" name="EGL_DEVICE_MAX_SEMAPHORES_LYNX"/>
+        <enum value="0x3503" name="EGL_DEVICE_MAX_EVENTS_LYNX"/>
+        <enum value="0x3504" name="EGL_DEVICE_MAX_RENDER_PASSES_LYNX"/>
+        <enum value="0x3505" name="EGL_DEVICE_MAX_PIPELINE_LAYOUTS_LYNX"/>
+        <enum value="0x3506" name="EGL_DEVICE_MAX_GRAPHICS_PIPELINES_LYNX"/>
+        <enum value="0x3507" name="EGL_DEVICE_MAX_FRAMEBUFFERS_LYNX"/>
+        <enum value="0x3508" name="EGL_DEVICE_MAX_COMMAND_POOLS_LYNX"/>
+        <enum value="0x3509" name="EGL_DEVICE_MAX_COMMAND_BUFFERS_LYNX"/>
+        <enum value="0x350A" name="EGL_DEVICE_MAX_SWAPCHAINS_KHR_LYNX"/>
+        <enum value="0x350B" name="EGL_DEVICE_MAX_RENDER_PASS_SUBPASSES_LYNX"/>
+        <enum value="0x350C" name="EGL_DEVICE_MAX_RENDER_PASS_ATTACHMENTS_LYNX"/>
+        <enum value="0x350D" name="EGL_DEVICE_MAX_DESCRIPTOR_SETS_LYNX"/>
+        <enum value="0x350E" name="EGL_DEVICE_MAX_DESCRIPTOR_SET_LAYOUTS_LYNX"/>
+        <enum value="0x350F" name="EGL_DEVICE_MAX_DESCRIPTOR_POOLS_LYNX"/>
+        <enum value="0x3510" name="EGL_DEVICE_MAX_DESCRIPTOR_SET_LAYOUT_BINDINGS_LYNX"/>
+        <enum value="0x3511" name="EGL_DEVICE_MAX_BUFFERS_LYNX"/>
+        <enum value="0x3512" name="EGL_DEVICE_MAX_SAMPLERS_LYNX"/>
+        <enum value="0x3513" name="EGL_DEVICE_LOST_MIN_CHECK_INTERVAL_LYNX"/>
+        <enum value="0x3514" name="EGL_DEVICE_LOST_MIN_STALL_CHECK_INTERVAL_LYNX"/>
+        <enum value="0x3515" name="EGL_DEVICE_LOST_MAX_STALL_TIME_LYNX"/>
+        <enum value="0x3516" name="EGL_DEVICE_LOST_MAX_QUERY_WAIT_TIME_LYNX"/>
+        <unused start="0x3517" end="0x352F"/>
     </enums>
 
     <enums namespace="EGL" start="0x3530" end="0x353F" vendor="MESA" comment="Reserved for Simon Zeni (PR 165)">
@@ -1616,6 +1646,10 @@
             <proto><ptype>EGLenum</ptype> <name>eglQueryAPI</name></proto>
         </command>
         <command>
+            <proto><ptype>EGLDeviceEXT</ptype> <name>eglInitializeDeviceLYNX</name></proto>
+            <param><ptype>EGLAttrib</ptype> *<name>attrib_list</name></param>
+        </command>
+        <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglQueryContext</name></proto>
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param><ptype>EGLContext</ptype> <name>ctx</name></param>
@@ -1643,6 +1677,10 @@
             <param><ptype>EGLint</ptype> <name>max_devices</name></param>
             <param><ptype>EGLDeviceEXT</ptype> *<name>devices</name></param>
             <param><ptype>EGLint</ptype> *<name>num_devices</name></param>
+        </command>
+        <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglDestroyDeviceLYNX</name></proto>
+            <param><ptype>EGLDeviceEXT</ptype> <name>device</name></param>
         </command>
         <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglQueryDisplayAttribEXT</name></proto>
@@ -3611,6 +3649,46 @@
                 <enum name="EGL_DEVICE_TYPE_INTEGRATED_GPU_EXT"/>
                 <enum name="EGL_DEVICE_TYPE_DISCRETE_GPU_EXT"/>
                 <enum name="EGL_DEVICE_TYPE_CPU_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_LYNX_device_init" supported="egl">
+            <require>
+                <command name="eglInitializeDeviceLYNX"/>
+                <command name="eglDestroyDeviceLYNX"/>
+            </require>
+        </extension>
+        <extension name="EGL_LYNX_device_init_attribute" supported="egl">
+            <require>
+                <enum name="EGL_DEVICE_INIT_GPU_DEVICE_ID_LYNX"/>
+                <enum name="EGL_DEVICE_APP_NAME_LYNX"/>
+                <enum name="EGL_DEVICE_INIT_SHARED_MEMORY_LYNX"/>
+                <enum name="EGL_DEVICE_DIRECT_CALL_LYNX"/>
+                <enum name="EGL_SHADER_PROGRAM_COUNT_LYNX"/>
+                <enum name="EGL_SHADER_PROGRAM_BINARY_LYNX"/>
+                <enum name="EGL_SHADER_PROGRAM_SIZE_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_IMAGES_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_IMAGE_VIEWS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_SEMAPHORES_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_EVENTS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_RENDER_PASSES_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_PIPELINE_LAYOUTS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_GRAPHICS_PIPELINES_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_FRAMEBUFFERS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_COMMAND_POOLS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_COMMAND_BUFFERS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_SWAPCHAINS_KHR_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_RENDER_PASS_SUBPASSES_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_RENDER_PASS_ATTACHMENTS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_DESCRIPTOR_SETS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_DESCRIPTOR_SET_LAYOUTS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_DESCRIPTOR_POOLS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_DESCRIPTOR_SET_LAYOUT_BINDINGS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_BUFFERS_LYNX"/>
+                <enum name="EGL_DEVICE_MAX_SAMPLERS_LYNX"/>
+                <enum name="EGL_DEVICE_LOST_MIN_CHECK_INTERVAL_LYNX"/>
+                <enum name="EGL_DEVICE_LOST_MIN_STALL_CHECK_INTERVAL_LYNX"/>
+                <enum name="EGL_DEVICE_LOST_MAX_STALL_TIME_LYNX"/>
+                <enum name="EGL_DEVICE_LOST_MAX_QUERY_WAIT_TIME_LYNX"/>
             </require>
         </extension>
     </extensions>

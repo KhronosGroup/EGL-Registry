@@ -1,0 +1,368 @@
+Name
+
+    LYNX_device_init_attribute
+
+Name Strings
+
+    EGL_LYNX_device_init_attribute
+
+Contact
+
+	Ethan Malin, Lynx Software Technologies, Inc. (emalin 'at' lynx 'dot' com)
+
+Contributors
+
+    Anirban Basu
+	Ethan Malin
+	Yacine Thabet
+
+Status
+
+    Draft
+
+Version
+
+    Version 0.6, September 2, 2026
+
+Number
+
+    EGL Extension #157
+
+Dependencies
+
+    Requires EGL 1.0
+    
+    Requires EGL_LYNX_device_init extension
+    
+    This extension is written against the wording of the EGL 1.4
+    Specification - December 4, 2013 as modified by the extension 
+    EGL_LYNX_device_init but may be implemented against earlier
+    versions.
+    
+Overview
+
+    This extension proposes the attributes that can be used to 
+    appropriately initialize EGL devices in a system, when passed in the
+    attribute list to the function eglInitializeDeviceLYNX() as defined in
+    the EGL_LYNX_device_init extension.
+    
+    Proposed here are thirty attributes: the device ID attribute, six
+    system attributes, nineteen object creation maximums and four device 
+    lost timeout attributes.
+    The device ID attribute is used to select a specific GPU device in the
+    system. The system attributes can be used to indicate use of shared
+    memory locations, pass the application name to the driver, pass a
+    potential direct-call interface, as well as informations about the
+    shader programs the application will use in its lifetime. The object
+    creation maximums can be used to set the maximum number of an
+    object type the application can create. The device lost timeout 
+    attributes can be used to configure the timing used by the underlying 
+    implementation for device stall and device lost detection.
+    
+IP Status
+
+    No known IP claims.
+
+New Procedures and Functions
+
+    None
+    
+New Types
+
+    None
+
+New Tokens
+
+    Accepted as an attribute in the attribute list by the function 
+    eglInitializeDeviceLYNX
+
+    #define EGL_DEVICE_INIT_GPU_DEVICE_ID_LYNX                      0x3465
+    #define EGL_DEVICE_APP_NAME_LYNX                                0x3466
+    #define EGL_DEVICE_INIT_SHARED_MEMORY_LYNX                      0x3467
+    #define EGL_DEVICE_DIRECT_CALL_LYNX                             0x3468
+    #define EGL_SHADER_PROGRAM_COUNT_LYNX                           0x3469
+    #define EGL_SHADER_PROGRAM_BINARY_LYNX                          0x346A
+    #define EGL_SHADER_PROGRAM_SIZE_LYNX                            0x346B
+    #define EGL_DEVICE_MAX_IMAGES_LYNX                              0x3500
+    #define EGL_DEVICE_MAX_IMAGE_VIEWS_LYNX                         0x3501
+    #define EGL_DEVICE_MAX_SEMAPHORES_LYNX                          0x3502
+    #define EGL_DEVICE_MAX_EVENTS_LYNX                              0x3503
+    #define EGL_DEVICE_MAX_RENDER_PASSES_LYNX                       0x3504
+    #define EGL_DEVICE_MAX_PIPELINE_LAYOUTS_LYNX                    0x3505
+    #define EGL_DEVICE_MAX_GRAPHICS_PIPELINES_LYNX                  0x3506
+    #define EGL_DEVICE_MAX_FRAMEBUFFERS_LYNX                        0x3507
+    #define EGL_DEVICE_MAX_COMMAND_POOLS_LYNX                       0x3508
+    #define EGL_DEVICE_MAX_COMMAND_BUFFERS_LYNX                     0x3509
+    #define EGL_DEVICE_MAX_SWAPCHAINS_KHR_LYNX                      0x350A
+    #define EGL_DEVICE_MAX_RENDER_PASS_SUBPASSES_LYNX               0x350B
+    #define EGL_DEVICE_MAX_RENDER_PASS_ATTACHMENTS_LYNX             0x350C
+    #define EGL_DEVICE_MAX_DESCRIPTOR_SETS_LYNX                     0x350D
+    #define EGL_DEVICE_MAX_DESCRIPTOR_SET_LAYOUTS_LYNX              0x350E
+    #define EGL_DEVICE_MAX_DESCRIPTOR_POOLS_LYNX                    0x350F
+    #define EGL_DEVICE_MAX_DESCRIPTOR_SET_LAYOUT_BINDINGS_LYNX      0x3510
+    #define EGL_DEVICE_MAX_BUFFERS_LYNX                             0x3511
+    #define EGL_DEVICE_MAX_SAMPLERS_LYNX                            0x3512
+    #define EGL_DEVICE_LOST_MIN_CHECK_INTERVAL_LYNX                 0x3513
+    #define EGL_DEVICE_LOST_MIN_STALL_CHECK_INTERVAL_LYNX           0x3514
+    #define EGL_DEVICE_LOST_MAX_STALL_TIME_LYNX                     0x3515
+    #define EGL_DEVICE_LOST_MAX_QUERY_WAIT_TIME_LYNX                0x3516
+    
+Additions to Chapter 3 of the EGL 1.4 Specification
+(EGL Functions and Errors)
+
+Add to section 3.2 Pg 12 in the section describing the function 
+eglInitializeDeviceLYNX as specified in the EGL_LYNX_device_init extension:
+
+Add the following text & table after the description of the 
+eglInitializeDeviceLYNX function.
+
+    The following table describes the attributes and valid values that 
+    can be passed in through the attrib_list to this function. 
+    
+    +-----------------------------------------------------------+-------------------------------+------------------------------------+-----------------+
+    | Attribute                                                 | Description                   | Value                              | Default Value   |
+    +-----------------------------------------------------------+-------------------------------+------------------------------------+-----------------+
+    | EGL_DEVICE_INIT_GPU_DEVICE_ID_LYNX                        | This attribute specifies      | Device number using 0 based        | 0               |
+    |                                                           | the device in the graphics    | numbering scheme where '0'         |                 |
+    |                                                           | system to be chosen and initi-| refers to the first device         |                 |
+    |                                                           | alized.                       | and 'n' refers to n+1 th           |                 |
+    |                                                           |                               | device.                            |                 |
+    |                                                           |                               | Value should be between 0          |                 |
+    |                                                           |                               | and n-1 for a system with n        |                 |
+    |                                                           |                               | graphics devices.                  |                 |
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_INIT_SHARED_MEMORY_LYNX                        | This system attribute can be  | EGL_FALSE: No use of shared        | 0               |
+    |                                                           | used to indicate use of share |            memory regions.         |                 |
+    |                                                           | memory regions                | EGL_TRUE: Use shared memory        |                 |
+    |                                                           |                               |           regions.                 |                 |
+    |                                                           |                               |                                    |                 |
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_APP_NAME_LYNX                                  | This system attribute provides| Pointer to a Null terminated       | NULL            |
+    |                                                           | a means to pass an application| string holding the name of         |                 |
+    |                                                           | name to a driver. This inform-| application.                       |                 |
+    |                                                           | ation can be used by drivers  |                                    |                 |
+    |                                                           | to initialize devices in ways |                                    |                 |
+    |                                                           | specific classes of applicati-|                                    |                 |
+    |                                                           | ons.                          |                                    |                 |
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_DIRECT_CALL_LYNX                               | This system attribute provides| Pointer to a Vulkan                | NULL            |
+    |                                                           | a pointer to a structure      | VkDirectCallInterfaceCOREAVI       |                 |
+    |                                                           | defining the direct-call      | structure.                         |                 |
+    |                                                           | interface for the underlying  |                                    |                 |
+    |                                                           | VKCore SC implementation,     |                                    |                 |
+    |                                                           | allowing the application to   |                                    |                 |
+    |                                                           | send commands directly to     |                                    |                 |
+    |                                                           | the GPU without the use of a  |                                    |                 |
+    |                                                           | separate GPU Manager          |                                    |                 |
+    |                                                           | application.                  |                                    |                 |
+    |                                                           |                               |                                    |                 |
+    | EGL_SHADER_PROGRAM_COUNT_LYNX                             | This system attribute         | Number of shader programs.         | 0 (might not be |
+    |                                                           | specifies the total number of | Specifies the number of            | considered as   |
+    |                                                           | shader programs the           | entries in                         | valid by some   |
+    |                                                           | application will use in its   | EGL_SHADER_PROGRAM_SIZE_LYNX and   | implementations)|
+    |                                                           | lifetime.                     | EGL_SHADER_PROGRAM_BINARY_LYNX     |
+    |                                                           |                               |                                    |                 |
+    | EGL_SHADER_PROGRAM_BINARY_LYNX                            | This system attribute is used | Array of pointers to each          | NULL (might not |
+    |                                                           | to pass to the driver the     | shader program binary.             | be considered as|
+    |                                                           | binary for each shader program|                                    | valid by some   |
+    |                                                           | the application will use in   |                                    | implementations)|
+    |                                                           | its lifetime.                 |                                    |                 |
+    |                                                           |                               |                                    |                 |
+    | EGL_SHADER_PROGRAM_SIZE_LYNX                              | This system attribute         | Array that stores the size,        | NULL (might not |
+    |                                                           | specifies the size for each   | in bytes, for each shader          | be considered as|
+    |                                                           | shader program binary.        | program binary. Corresponds        | valid by some   |
+    |                                                           |                               | directly to                        | implementations)|
+    |                                                           |                               | EGL_SHADER_PROGRAM_BINARY_LYNX.    |                 |
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_IMAGES_LYNX                                | This attribute specifies      | Maximum number of image objects    | 4096 (might not |
+    |                                                           | the maximum number            | expressed as an unsigned integer.  | be considered as|
+    |                                                           | of images the application     |                                    | valid by some   |
+    |                                                           | can create.                   |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_IMAGE_VIEWS_LYNX                           | This attribute specifies      | Maximum number of image view       | 4096 (might not |
+    |                                                           | the maximum number            | objects expressed as an unsigned   | be considered as|
+    |                                                           | of image views the application| integer.                           | valid by some   |
+    |                                                           | can create.                   |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_SEMAPHORES_LYNX                            | This attribute specifies      | Maximum number of semaphore objects| 1024 (might not |
+    |                                                           | the maximum number            | expressed as an unsigned integer.  | be considered as|
+    |                                                           | of semaphores the application |                                    | valid by some   |
+    |                                                           | can create.                   |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_EVENTS_LYNX                                | This attribute specifies      | Maximum number of event objects    | 4096 (might not |
+    |                                                           | the maximum number            | expressed as an unsigned integer.  | be considered as|
+    |                                                           | of events the application     |                                    | valid by some   |
+    |                                                           | can create.                   |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_RENDER_PASSES_LYNX                         | This attribute specifies      | Maximum number of render pass      | 128 (might not  |
+    |                                                           | the maximum number            | objects expressed as an unsigned   | be considered as|
+    |                                                           | of render passes the          | integer.                           | valid by some   |
+    |                                                           | application can create.       |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_PIPELINE_LAYOUTS_LYNX                      | This attribute specifies      | Maximum number of pipeline layout  | 256 (might not  |
+    |                                                           | the maximum number            | objects expressed as an unsigned   | be considered as|
+    |                                                           | of pipeline layouts the       | integer.                           | valid by some   |
+    |                                                           | application can create.       |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_GRAPHICS_PIPELINES_LYNX                    | This attribute specifies      | Maximum number of graphics pipeline| 4096 (might not |
+    |                                                           | the maximum number            | objects expressed as an unsigned   | be considered as|
+    |                                                           | of graphics pipelines the     | integer.                           | valid by some   |
+    |                                                           | application can create.       |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_FRAMEBUFFERS_LYNX                          | This attribute specifies      | Maximum number of framebuffer      | 64 (might not   |
+    |                                                           | the maximum number            | objects expressed as an unsigned   | be considered as|
+    |                                                           | of framebuffers the           | integer.                           | valid by some   |
+    |                                                           | application can create.       |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_COMMAND_POOLS_LYNX                         | This attribute specifies      | Maximum number of command pool     | 32 (might not   |
+    |                                                           | the maximum number            | objects expressed as an unsigned   | be considered as|
+    |                                                           | of command pools the          | integer.                           | valid by some   |
+    |                                                           | application can create.       |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_COMMAND_BUFFERS_LYNX                       | This attribute specifies      | Maximum number of command buffer   | 128 (might not  |
+    |                                                           | the maximum number            | objects expressed as an unsigned   | be considered as|
+    |                                                           | of command buffers the        | integer.                           | valid by some   |
+    |                                                           | application can create.       |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_SWAPCHAINS_KHR_LYNX                        | This attribute specifies      | Maximum number of swapchain        | 16 (might not   |
+    |                                                           | the maximum number            | objects expressed as an unsigned   | be considered as|
+    |                                                           | of swapchains the application | integer.                           | valid by some   |
+    |                                                           | can create.                   |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_RENDER_PASS_SUBPASSES_LYNX                 | This attribute specifies      | Maximum number of render pass      | 1024 (might not |
+    |                                                           | the maximum number            | subpass objects expressed as       | be considered as|
+    |                                                           | of render pass subpasses the  | an unsigned integer.               | valid by some   |
+    |                                                           | application can create.       |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_RENDER_PASS_ATTACHMENTS_LYNX               | This attribute specifies      | Maximum number of render pass      | 4096 (might not |
+    |                                                           | the maximum number            | attachemnt objects expressed as    | be considered as|
+    |                                                           | of render pass attachments    | an unsigned integer.               | valid by some   |
+    |                                                           | the application can create.   |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_DESCRIPTOR_SETS_LYNX                       | This attribute specifies      | Maximum number of descriptor set   | 128 (might not  |
+    |                                                           | the maximum number            | objects expressed as an unsigned   | be considered as|
+    |                                                           | of descriptor sets the        | integer.                           | valid by some   |
+    |                                                           | application can create.       |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_DESCRIPTOR_SET_LAYOUTS_LYNX                | This attribute specifies      | Maximum number of descriptor set   | 128 (might not  |
+    |                                                           | the maximum number            | layout objects expressed as an     | be considered as|
+    |                                                           | of descriptor set layouts     | unsigned integer.                  | valid by some   |
+    |                                                           | the application can create.   |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_DESCRIPTOR_POOLS_LYNX                      | This attribute specifies      | Maximum number of descriptor pool  | 32 (might not   |
+    |                                                           | the maximum number            | objects expressed as an unsigned   | be considered as|
+    |                                                           | of descriptor pools the       | integer.                           | valid by some   |
+    |                                                           | application can create.       |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_DESCRIPTOR_SET_LAYOUT_BINDINGS_LYNX        | This attribute specifies      | Maximum number of descriptor set   | 4096 (might not |
+    |                                                           | the maximum number            | layout binding objects expressed   | be considered as|
+    |                                                           | of descriptor set layout      | as a unsigned integer.             | valid by some   |
+    |                                                           | bindings the application      |                                    | implementations)|
+    |                                                           | can create.                   |                                    |                 |
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_BUFFERS_LYNX                               | This attribute specifies      | Maximum number of buffer objects   | 4096 (might not |
+    |                                                           | the maximum number            | expressed as an unsigned integer.  | be considered as|
+    |                                                           | of buffers the application    |                                    | valid by some   |
+    |                                                           | can create.                   |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_MAX_SAMPLERS_LYNX                              | This attribute specifies      | Maximum number of sampler objects  | 4096 (might not |
+    |                                                           | the maximum number            | expressed as an unsigned integer.  | be considered as|
+    |                                                           | of samplers the application   |                                    | valid by some   |
+    |                                                           | can create.                   |                                    | implementations)|
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_LOST_MIN_CHECK_INTERVAL_LYNX                   | This attribute specifies      | Minimum time interval in           | 0               |
+    |                                                           | the minimum interval          | nanoseconds expressed as an        |                 |
+    |                                                           | between device lost           | unsigned integer.                  |                 |
+    |                                                           | checks.                       |                                    |                 |
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_LOST_MIN_STALL_CHECK_INTERVAL_LYNX             | This attribute specifies      | Minimum time interval in           | 0               |
+    |                                                           | the minimum interval          | nanoseconds expressed as an        |                 |
+    |                                                           | between device lost checks    | unsigned integer.                  |                 |
+    |                                                           | after a device stall.         |                                    |                 |
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_LOST_MAX_STALL_TIME_LYNX                       | This attribute specifies      | Maximum time interval in           | 0               |
+    |                                                           | the maximum time that         | nanoseconds expressed as an        |                 |
+    |                                                           | a device can remain           | unsigned integer.                  |                 |
+    |                                                           | stalled before being          |                                    |                 |
+    |                                                           | marked lost.                  |                                    |                 |
+    |                                                           |                               |                                    |                 |
+    | EGL_DEVICE_LOST_MAX_QUERY_WAIT_TIME_LYNX                  | This attribute specifies      | Maximum time interval in           | 0               |
+    |                                                           | the maximum wait time         | nanoseconds expressed as an        |                 |
+    |                                                           | for query results before      | unsigned integer.                  |                 |
+    |                                                           | device lost is reported.      |                                    |                 |
+    +-----------------------------------------------------------+-------------------------------+------------------------------------+-----------------+
+    Table 3.1. Legal attributes for eglInitializeDeviceLYNX <attrib_list> parameter
+    
+    Applications can choose a specific GPU in a multi-GPU system by 
+    using the device ID attribute EGL_DEVICE_INIT_GPU_DEVICE_ID_LYNX. The
+    value for this attribute is 0 based device id and should lie between 0 and
+    n-1 for a systems with n GPUs. Values outside this range will cause
+    the function eglInitializeDeviceLYNX() to fail and return EGL_NO_DEVICE_EXT.
+    By default the first GPU is chosen. 
+    
+    Applications that require sharing memory between them can request 
+    use of shared memory regions by using the system attribute 
+    EGL_DEVICE_INIT_SHARED_MEMORY_LYNX with a non-zero value. Use of these
+    shared memory regions is implementation specific. By default shared 
+    memory regions are not enabled. 
+    
+    Implementations that can uniquely initialize the device and system to
+    handle different application classes can do so using the pointer the 
+    application name passed as in as value to the system attribute
+    EGL_DEVICE_APP_NAME_LYNX. The value should point to a NULL
+    terminated string.
+
+    Applications can pass the underlying VkCore SC library a Direct Call
+    Interface so it can call the GPUManager APIs directly without the use
+    of a separate GPUManager application.
+
+    Implementations that use programmable shader pipelines require
+    that applications pass to the driver the following informations about
+    all the shader programs they will use during their lifetime:
+    the total number of shader programs, their binaries, and their size.
+    Given this information the driver will be able to assess the
+    resources that will be needed and prepare accordingly.
+    
+    Implementations that use the fixed-function graphics pipeline allow 
+    applications to set the maximum number of objects created for certain 
+    object types. Given this information the driver will be able to assess 
+    the total memory resources that will be needed and prepare accordingly. 
+    These maximums are originally set by defaults.
+    
+Errors
+
+    None 
+
+Sample Code
+
+   None
+
+Conformance Tests
+
+    None
+
+Issues
+
+    None
+
+Revision History
+    Revision 0.6 2026/08/02
+        - Update formatting to more closely match current extension spec conventions
+
+    Revision 0.5 2026/07/01
+        - Rename the extension and attribute tokens from EXT/COREAVI to LYNX.
+
+    Revision 0.4 2026/04/28
+        - Added device lost timeout attributes.
+
+    Revision 0.3 2022/05/05
+        - Added _COREAVI suffix to system attributes.
+        - Added system attributes for object maximums.
+        - Fixed minor typos.
+    
+    Revision 0.2 2021/10/12
+        - Add new system attributes.
+        - Add device ID attribute.
+
+    Revision 0.1 2020/06/21
+        - Initial Draft

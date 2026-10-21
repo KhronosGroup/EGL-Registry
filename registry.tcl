@@ -803,4 +803,14 @@ extension EGL_EXT_device_type {
     flags       public
     filename    extensions/EXT/EGL_EXT_device_type.txt
 }
-# Next free extension number: 156
+extension EGL_LYNX_device_init {
+    number      156
+    flags       public
+    filename    extensions/LYNX/EGL_LYNX_device_init.txt
+}
+extension EGL_LYNX_device_init_attribute {
+    number      157
+    flags       public
+    filename    extensions/LYNX/EGL_LYNX_device_init_attribute.txt
+}
+# Next free extension number: 158

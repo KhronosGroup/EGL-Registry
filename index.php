@@ -372,6 +372,10 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=153> <a href="extensions/ANDROID/EGL_ANDROID_telemetry_hint.txt">EGL_ANDROID_telemetry_hint</a>
 </li>
+<li value=156> <a href="extensions/LYNX/EGL_LYNX_device_init.txt">EGL_LYNX_device_init</a>
+</li>
+<li value=157> <a href="extensions/LYNX/EGL_LYNX_device_init_attribute.txt">EGL_LYNX_device_init_attribute</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
