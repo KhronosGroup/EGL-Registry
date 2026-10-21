@@ -101,6 +101,7 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=20> <a href="extensions/KHR/EGL_KHR_fence_sync.txt">EGL_KHR_fence_sync</a>
 </li>
+<!-- EGL_NOK_surface_scaling (#21) and EGL_NOK_image_shared (#22) weren't published. -->
 <li value=23> <a href="extensions/NOK/EGL_NOK_swap_region2.txt">EGL_NOK_swap_region2</a>
 </li>
 <li value=24> <a href="extensions/HI/EGL_HI_clientpixmap.txt">EGL_HI_clientpixmap</a>
@@ -223,6 +224,7 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=81> <a href="extensions/EXT/EGL_EXT_stream_consumer_egloutput.txt">EGL_EXT_stream_consumer_egloutput</a>
 </li>
+<!-- Extension #82 (EGL_QCOM_gpu_perf) is a proprietary Qualcomm extension, and not documented here -->
 <li value=83> <a href="extensions/KHR/EGL_KHR_partial_update.txt">EGL_KHR_partial_update</a>
 </li>
 <li value=84> <a href="extensions/KHR/EGL_KHR_swap_buffers_with_damage.txt">EGL_KHR_swap_buffers_with_damage</a>
@@ -370,7 +372,13 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=151> <a href="extensions/QNX/EGL_QNX_image_native_buffer.txt">EGL_QNX_image_native_buffer</a>
 </li>
+<li value="152"> <a href="extensions/EXT/EGL_EXT_query_reset_notification_strategy">EGL_EXT_query_reset_notification_strategy</a>
+</li>
 <li value=153> <a href="extensions/ANDROID/EGL_ANDROID_telemetry_hint.txt">EGL_ANDROID_telemetry_hint</a>
+</li>
+<li value=154> <a href="extensions/EXT/EGL_EXT_display_alloc.txt">EGL_EXT_display_alloc</a>
+</li>
+<li value=155> <a href="extensions/EXT/EGL_EXT_device_type.txt">EGL_EXT_device_type</a>
 </li>
 </ol>
 
