@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <registry>
     <!--
-    Copyright 2013-2020 The Khronos Group Inc.
+    Copyright 2013-2026 The Khronos Group Inc.
     SPDX-License-Identifier: Apache-2.0
      -->
     <!--
-    This file, egl.xml, is the EGL API Registry. The older ".spec" file
-    format has been retired and will no longer be updated with new
-    extensions and API versions. The canonical version of the registry,
-    together with documentation, schema, and Python generator scripts used
-    to generate C header files for EGL, can be found in the Khronos Registry
-    at
+    This file, egl.xml, is the EGL API Registry.
+    The canonical version of the registry, together with documentation,
+    schema, and Python generator scripts used to generate C header files for
+    EGL, can be found in the Khronos Registry at
         https://www.github.com/KhronosGroup/EGL-Registry
     -->
 
@@ -1110,10 +1108,12 @@
 
 <!-- Please remember that new enumerant allocations must be obtained by
      request to the Khronos API registrar (see comments at the top of this
-     file) File requests in the Khronos Bugzilla, EGL project, Registry
-     component. Also note that some EGL enum values are shared with other
-     Khronos APIs, and new ranges should be allocated with such overlaps in
-     mind. -->
+     file).
+     File PRs to reserve new enum ranges in the
+     https://github.com/KhronosGroup/EGL-Registry github project before
+     using values from those ranges in new extensions.
+     Some EGL enum values are shared with other Khronos APIs, and new ranges
+     must be allocated to avoid overlaps with those values. -->
 
 <!-- Reservable for future use. To generate a new range, allocate multiples
      of 16 starting at the lowest available point in this block. -->
