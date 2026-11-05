@@ -74,7 +74,7 @@ New Types
 New Tokens
 
     Accepted as an attribute in the attribute list by the function 
-    eglInitializeDeviceLYNX
+    eglInitializeDeviceLYNX:
 
     #define EGL_DEVICE_INIT_GPU_DEVICE_ID_LYNX                      0x3465
     #define EGL_DEVICE_APP_NAME_LYNX                                0x3466
@@ -117,7 +117,7 @@ Add the following text & table after the description of the
 eglInitializeDeviceLYNX function.
 
     The following table describes the attributes and valid values that 
-    can be passed in through the attrib_list to this function. 
+    can be passed in through the attrib_list to this function:
     
     +-----------------------------------------------------------+-------------------------------+------------------------------------+-----------------+
     | Attribute                                                 | Description                   | Value                              | Default Value   |

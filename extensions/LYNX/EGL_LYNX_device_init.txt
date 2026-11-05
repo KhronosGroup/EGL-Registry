@@ -96,7 +96,7 @@ Add the function to section 3.2 Pg 12:
 	ID attribute in <attrib_list> and generates an internal list of all the
 	supported displays. This list will be used later by eglGetDisplay to
 	provide an appropriate display to the application. Any additional
-	device / display management tasks required to support the EGL API's
+	device / display management tasks required to support the EGL API
 	should be handled here. The function returns an object of type
 	EGLDeviceEXT, which is an abstract representation of a graphics device.
 	All EGL operations for the given device happen on this device object.
@@ -169,7 +169,7 @@ Issues
        No, it is the responsibility of the application to make sure all
        drawing commands on all contexts have finished and all displays 
        have been terminated before destroying the device. The 
-       application can use all the synchronization API's at its 
+       application can use all the synchronization APIs at its 
        disposal to easily ensure that all the tasks on all threads have 
        completed before calling eglDestroyDeviceLYNX.
 
