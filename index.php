@@ -380,6 +380,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=155> <a href="extensions/EXT/EGL_EXT_device_type.txt">EGL_EXT_device_type</a>
 </li>
+<li value=158> <a href="extensions/EXT/EGL_EXT_swap_tearing_hint.txt">EGL_EXT_swap_tearing_hint</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
