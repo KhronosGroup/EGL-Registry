@@ -804,4 +804,14 @@ extension EGL_EXT_device_type {
     flags       public
     filename    extensions/EXT/EGL_EXT_device_type.txt
 }
-# Next free extension number: 156
+extension EGL_ANDROID_surface_attrib_blob {
+    number      159
+    flags       public
+    filename    extensions/ANDROID/EGL_ANDROID_surface_attrib_blob.txt
+}
+extension EGL_ANDROID_surface_smpte_st_209450_metadata {
+    number      160
+    flags       public
+    filename    extensions/ANDROID/EGL_ANDROID_surface_smpte_st_209450_metadata.txt
+}
+# Next free extension number: 161

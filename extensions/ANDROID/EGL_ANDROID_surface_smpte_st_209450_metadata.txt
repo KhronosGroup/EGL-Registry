@@ -1,0 +1,212 @@
+Name
+
+    ANDROID_surface_smpte_st_209450_metadata
+
+Name Strings
+
+    EGL_ANDROID_surface_smpte_st_209450_metadata
+
+Contributors
+
+    Alec Mouri
+    Christopher Cameron
+    John Reck
+
+Contact
+
+    Christopher Cameron, Google Inc. (ccameron 'at' chromium.org)
+
+IP Status
+
+    No known IP claims.
+
+Status
+
+    Complete
+
+Version
+
+    Version 1, October 23, 2026
+
+Number
+
+    EGL Extension #160
+
+Extension Type
+
+    EGL display extension
+
+Dependencies
+
+    This extension is written against the wording of the EGL 1.5
+    specification (August 27, 2014).
+
+    Requires EGL_ANDROID_surface_attrib_blob.
+
+Overview
+
+    The SMPTE ST 2094-50 standard defines dynamic metadata for use in high
+    dynamic range (HDR) image sequences. This metadata provides information
+    for tone mapping of image content to displays characterized by their
+    HDR headroom.
+
+    This extension provides a mechanism for an application to pass SMPTE
+    ST 2094-50 metadata to the EGL implementation. This is done by setting
+    the EGL_SMPTE_ST_209450_METADATA_ANDROID attribute of an EGLSurface.
+
+    In addition, the EGL_SMPTE_ST_209450_POWER_PREFERENCE_ANDROID attribute
+    allows an application to suggest a trade-off between color accuracy and
+    power consumption. When set to EGL_SMPTE_ST_209450_PREFER_LOW_POWER_ANDROID,
+    the implementation may use simplified tone mapping algorithms to reduce
+    power consumption, while still maintaining accuracy for greyscale content
+    and providing reasonable behavior for color content.
+
+New Types
+
+    None.
+
+New Procedures and Functions
+
+    None.
+
+New Tokens
+
+    Accepted as an attribute name in the <attribute> parameter of
+    eglSurfaceAttribBlobANDROID and eglQuerySurfaceAttribBlobANDROID:
+
+        EGL_SMPTE_ST_209450_METADATA_ANDROID               0x35B0
+
+    Accepted as an attribute name in the <attribute> parameter of
+    eglSurfaceAttrib and eglQuerySurface:
+
+        EGL_SMPTE_ST_209450_POWER_PREFERENCE_ANDROID       0x35B1
+
+    Accepted as an attribute value in the <value> parameter of
+    eglSurfaceAttrib:
+
+        EGL_SMPTE_ST_209450_PREFER_COLOR_ACCURACY_ANDROID  0x35B2
+        EGL_SMPTE_ST_209450_PREFER_LOW_POWER_ANDROID       0x35B3
+
+    Accepted as an attribute name in the <attribute> parameter of
+    eglQuerySurface:
+
+        EGL_SMPTE_ST_209450_SUPPORTED_ANDROID              0x35B4
+
+Modifications to the EGL 1.5 Specification
+
+    Add to Table 3.5 (Queryable surface attributes and types):
+
+    Attribute                                      Type     Description
+    ---------------------------------------------  -------  ----------------------------------
+    EGL_SMPTE_ST_209450_METADATA_ANDROID           pointer  SMPTE ST 2094-50 metadata
+    EGL_SMPTE_ST_209450_POWER_PREFERENCE_ANDROID   enum     Accuracy vs power consumption
+    EGL_SMPTE_ST_209450_SUPPORTED_ANDROID          boolean  Surface supports SMPTE ST 2094-50
+                                                            metadata
+
+    Modify section 3.5.6 (Surface Attributes):
+
+    "If <attribute> is EGL_SMPTE_ST_209450_METADATA_ANDROID, then <ptr> points to
+    a buffer of <size> bytes containing the SMPTE ST 2094-50 metadata to be
+    associated with the surface. The buffer must contain the
+    smpte_st_2094_50_application_info() bitstream as defined in section
+    C.2.1 (Application syntax) of SMPTE ST 2094-50. Setting <ptr> to NULL with
+    <size> 0 removes any SMPTE ST 2094-50 metadata associated with the surface.
+    The initial value of EGL_SMPTE_ST_209450_METADATA_ANDROID is NULL.
+
+    The metadata specifies how the implementation should perform tone
+    mapping, as described in Annex A of the SMPTE ST 2094-50 specification.
+    The color space of the input signal to this tone mapping process is
+    specified by the EGL_GL_COLORSPACE attribute of the surface.
+
+    For all color spaces that do not use the PQ or HLG transfer functions
+    (including EGL_GL_COLORSPACE_SCRGB_LINEAR_EXT,
+    EGL_GL_COLORSPACE_DISPLAY_P3_LINEAR_EXT, and
+    EGL_GL_COLORSPACE_BT2020_LINEAR_EXT), an input pixel value of 1.0
+    corresponds to input linear display-light luminance equal to the HDR
+    reference white, and a value of 1.0 in the gain application color space.
+    The displayed color for a pixel value of [1,1,1,1] will match the HDR
+    reference white of the output display (which also matches UI white and
+    nominal peak SDR white).
+
+    If the metadata in the buffer fails to parse according to the specified
+    syntax, or if the encoded metadata violates any normative constraints
+    of the SMPTE ST 2094-50 specification, the tone mapping behavior at
+    display time is undefined.
+
+    If <attribute> is EGL_SMPTE_ST_209450_POWER_PREFERENCE_ANDROID, then the
+    value specifies a trade-off between color accuracy and power consumption
+    when rendering using SMPTE ST 2094-50 metadata. The initial value of
+    EGL_SMPTE_ST_209450_POWER_PREFERENCE_ANDROID is
+    EGL_SMPTE_ST_209450_PREFER_COLOR_ACCURACY_ANDROID.
+
+    If the value is EGL_SMPTE_ST_209450_PREFER_COLOR_ACCURACY_ANDROID, then
+    rendering is guaranteed to be accurate to the SMPTE ST 2094-50
+    specification.
+
+    If the value is EGL_SMPTE_ST_209450_PREFER_LOW_POWER_ANDROID, then the
+    rendering of greyscale color is guaranteed to be accurate to the SMPTE
+    ST 2094-50 specification, but the behavior of the component mixing
+    function might not match what is specified in the metadata. For example,
+    an implementation could use maxRGB or ICtCp based tone mapping (as
+    described in ITU-R BT.2408) if there is a significant power savings.
+
+    The values of the EGL_SMPTE_ST_209450_METADATA_ANDROID and
+    EGL_SMPTE_ST_209450_POWER_PREFERENCE_ANDROID attributes that are used for
+    displaying the surface are latched and become effective when eglSwapBuffers
+    is called for the surface.
+
+    Querying EGL_SMPTE_ST_209450_SUPPORTED_ANDROID via eglQuerySurface returns
+    EGL_TRUE if <surface> supports SMPTE ST 2094-50 metadata, and EGL_FALSE
+    otherwise."
+
+Errors
+
+    eglSurfaceAttrib, eglQuerySurface, eglSurfaceAttribBlobANDROID, and
+    eglQuerySurfaceAttribBlobANDROID generate EGL_BAD_ATTRIBUTE if <attribute>
+    is not supported by the implementation.
+
+    eglSurfaceAttrib, eglQuerySurface, eglSurfaceAttribBlobANDROID, and
+    eglQuerySurfaceAttribBlobANDROID generate EGL_BAD_MATCH if <attribute> is
+    EGL_SMPTE_ST_209450_METADATA_ANDROID or
+    EGL_SMPTE_ST_209450_POWER_PREFERENCE_ANDROID and <surface> does not
+    support SMPTE ST 2094-50 metadata.
+
+    eglSurfaceAttrib generates EGL_BAD_PARAMETER if <attribute> is
+    EGL_SMPTE_ST_209450_POWER_PREFERENCE_ANDROID and <value> is not
+    EGL_SMPTE_ST_209450_PREFER_COLOR_ACCURACY_ANDROID or
+    EGL_SMPTE_ST_209450_PREFER_LOW_POWER_ANDROID.
+
+Issues
+
+    1. How does this interact with other HDR metadata? E.g, if one were to
+       specify metadata from another spec in the ST 2094 series, which is
+       considered authoritative?
+
+       RESOLVED: Not specified by this extension. This issue also comes up in
+       the context of video (which can carry multiple metadata). There is a
+       need for a meta-metadata specification that characterizes the
+       applications and indicates the relative priority of the algorithms to
+       apply for those applications. There is ongoing work in this direction
+       already, and addressing this in the EGL extension would create more
+       complicated interactions.
+
+    2. Should the implementation be required to validate the SMPTE ST 2094-50
+       bitstream?
+
+       RESOLVED: No. Many implementations will simply forward the metadata to
+       another lower-level API, which will be responsible for validation.
+
+    3. For color spaces that do not use the PQ or HLG transfer functions, why
+       is a pixel value of 1.0 defined to be the HDR reference white?
+
+       RESOLVED: This differs from some conventions (e.g. scRGB, where 1.0 is
+       defined as 80 nits). In practice, absolute luminance is unusable outside
+       of reference environments. Normalizing so that 1.0 matches HDR reference
+       white (which matches nominal peak SDR, which matches UI white, which
+       matches CSS #FFFFFF) provides much more predictable behavior across
+       devices and viewing environments.
+
+Revision History
+
+    #1 (Alec Mouri, October 23, 2026)
+        - Initial draft.

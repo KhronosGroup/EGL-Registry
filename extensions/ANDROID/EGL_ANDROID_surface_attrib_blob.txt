@@ -1,0 +1,162 @@
+Name
+
+    ANDROID_surface_attrib_blob
+
+Name Strings
+
+    EGL_ANDROID_surface_attrib_blob
+
+Contributors
+
+    Alec Mouri
+    Christopher Cameron
+    John Reck
+    Chris Forbes
+
+Contact
+
+    Christopher Cameron, Google Inc. (ccameron 'at' chromium.org)
+
+IP Status
+
+    No known IP claims.
+
+Status
+
+    Complete
+
+Version
+
+    Version 1, October 23, 2026
+
+Number
+
+    EGL Extension #159
+
+Extension Type
+
+    EGL display extension
+
+Dependencies
+
+    This extension is written against the wording of the EGL 1.5
+    specification (August 27, 2014).
+
+Overview
+
+    This extension defines functions to set and query surface attributes
+    using pointers, enabling the communication of complex metadata to the
+    platform.
+
+New Types
+
+    /*
+     * EGLsizeiANDROID is a signed integer type for representing the size of a
+     * memory buffer.
+     */
+    #include <khrplatform.h>
+    typedef khronos_ssize_t EGLsizeiANDROID;
+
+New Procedures and Functions
+
+    EGLBoolean eglSurfaceAttribBlobANDROID(EGLDisplay dpy,
+                                           EGLSurface surface,
+                                           EGLint attribute,
+                                           EGLsizeiANDROID size,
+                                           const void* ptr);
+
+    EGLBoolean eglQuerySurfaceAttribBlobANDROID(EGLDisplay dpy,
+                                                EGLSurface surface,
+                                                EGLint attribute,
+                                                EGLsizeiANDROID* size,
+                                                void* ptr);
+
+New Tokens
+
+    None.
+
+Modifications to the EGL 1.5 Specification
+
+    Modify section 3.5.6 (Surface Attributes), adding the following after the
+    description of eglSurfaceAttrib:
+
+    "To set an attribute which is specified by a pointer, use:
+
+        EGLBoolean eglSurfaceAttribBlobANDROID(EGLDisplay dpy,
+                                               EGLSurface surface,
+                                               EGLint attribute,
+                                               EGLsizeiANDROID size,
+                                               const void* ptr);
+
+    <dpy> and <surface> are as described for eglSurfaceAttrib. <attribute> is
+    the attribute to be set. <size> is the size of the data in bytes pointed
+    to by <ptr>. <ptr> is a pointer to the data to be set.
+
+    If <ptr> is NULL and <size> is 0, the attribute's value is reset to NULL.
+    If <ptr> is not NULL, the implementation copies <size> bytes of data from
+    <ptr>. Subsequent changes to the data pointed to by <ptr> do not affect
+    the attribute.
+
+    eglSurfaceAttribBlobANDROID returns EGL_TRUE on success, and EGL_FALSE
+    otherwise."
+
+    Modify section 3.5.6 (Surface Attributes), adding the following after the
+    description of eglQuerySurface:
+
+    "To query an attribute which is returned via a pointer, use:
+
+        EGLBoolean eglQuerySurfaceAttribBlobANDROID(EGLDisplay dpy,
+                                                    EGLSurface surface,
+                                                    EGLint attribute,
+                                                    EGLsizeiANDROID* size,
+                                                    void* ptr);
+
+    <dpy> and <surface> are as described for eglQuerySurface. <attribute> is
+    the attribute to be queried.
+
+    If the attribute's current value is NULL, 0 is returned in <*size> and no
+    data is written to <ptr>.
+
+    Otherwise, if <ptr> is NULL, then the size in bytes of the buffer required
+    to store the attribute's value is returned in <*size>.
+
+    If <ptr> is not NULL and the attribute's current value is not NULL, then on
+    input <*size> must contain the size in bytes of the buffer pointed to by
+    <ptr>. If the value of <*size> is less than the size of the attribute's
+    value, no data is written to <ptr>, EGL_FALSE is returned, and the error
+    EGL_BAD_PARAMETER is generated. Otherwise, the attribute's value is written
+    to <ptr>, and on output <*size> will contain the number of bytes actually
+    written.
+
+    eglQuerySurfaceAttribBlobANDROID returns EGL_TRUE on success, and EGL_FALSE
+    otherwise."
+
+Errors
+
+    eglSurfaceAttribBlobANDROID and eglQuerySurfaceAttribBlobANDROID generate
+    EGL_BAD_DISPLAY if <dpy> is not a valid EGLDisplay.
+
+    eglSurfaceAttribBlobANDROID and eglQuerySurfaceAttribBlobANDROID generate
+    EGL_BAD_SURFACE if <surface> is not a valid EGLSurface.
+
+    eglSurfaceAttribBlobANDROID and eglQuerySurfaceAttribBlobANDROID generate
+    EGL_BAD_ATTRIBUTE if <attribute> is not a valid pointer-typed surface
+    attribute supported for the function.
+
+    eglSurfaceAttribBlobANDROID generates EGL_BAD_PARAMETER if <size> is
+    negative, if <ptr> is NULL and <size> is non-zero, if <ptr> is not NULL
+    and <size> is 0, or if <size> is otherwise not a valid size for
+    <attribute>.
+
+    eglQuerySurfaceAttribBlobANDROID generates EGL_BAD_PARAMETER if <size> is
+    NULL, or if <ptr> is not NULL and <*size> is less than the size of the
+    attribute's value.
+
+Issues
+
+    None.
+
+Revision History
+
+    #1 (Alec Mouri, October 23, 2026)
+        - Initial draft.

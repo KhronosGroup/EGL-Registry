@@ -1110,6 +1110,15 @@
             <unused start="0x35A0" end="0x35AF"/>
     </enums>
 
+    <enums namespace="EGL" start="0x35B0" end="0x35BF" vendor="Google" comment="Reserved for Alec Mouri (EGL-Registry pull #232)">
+        <enum value="0x35B0" name="EGL_SMPTE_ST_209450_METADATA_ANDROID"/>
+        <enum value="0x35B1" name="EGL_SMPTE_ST_209450_POWER_PREFERENCE_ANDROID"/>
+        <enum value="0x35B2" name="EGL_SMPTE_ST_209450_PREFER_COLOR_ACCURACY_ANDROID"/>
+        <enum value="0x35B3" name="EGL_SMPTE_ST_209450_PREFER_LOW_POWER_ANDROID"/>
+        <enum value="0x35B4" name="EGL_SMPTE_ST_209450_SUPPORTED_ANDROID"/>
+            <unused start="0x35B5" end="0x35BF"/>
+    </enums>
+
 <!-- Please remember that new enumerant allocations must be obtained by
      request to the Khronos API registrar (see comments at the top of this
      file).
@@ -1121,8 +1130,8 @@
 
 <!-- Reservable for future use. To generate a new range, allocate multiples
      of 16 starting at the lowest available point in this block. -->
-    <enums namespace="EGL" start="0x35B0" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
-            <unused start="0x35B0" end="0x3FFF"/>
+    <enums namespace="EGL" start="0x35C0" end="0x3FFF" vendor="KHR" comment="Reserved for future use">
+            <unused start="0x35C0" end="0x3FFF"/>
     </enums>
 
     <enums namespace="EGL" start="0x8F70" end="0x8F7F" vendor="HI" comment="For Mark Callow, Khronos bug 4055. Shared with GL.">
@@ -1794,6 +1803,14 @@
             <param><ptype>EGLAttribKHR</ptype> *<name>value</name></param>
         </command>
         <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglQuerySurfaceAttribBlobANDROID</name></proto>
+            <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+            <param><ptype>EGLSurface</ptype> <name>surface</name></param>
+            <param><ptype>EGLint</ptype> <name>attribute</name></param>
+            <param><ptype>EGLsizeiANDROID</ptype> *<name>size</name></param>
+            <param>void *<name>ptr</name></param>
+        </command>
+        <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglQuerySurfacePointerANGLE</name></proto>
             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
             <param><ptype>EGLSurface</ptype> <name>surface</name></param>
@@ -1911,6 +1928,14 @@
             <param><ptype>EGLSurface</ptype> <name>surface</name></param>
             <param><ptype>EGLint</ptype> <name>attribute</name></param>
             <param><ptype>EGLint</ptype> <name>value</name></param>
+        </command>
+        <command>
+            <proto><ptype>EGLBoolean</ptype> <name>eglSurfaceAttribBlobANDROID</name></proto>
+            <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+            <param><ptype>EGLSurface</ptype> <name>surface</name></param>
+            <param><ptype>EGLint</ptype> <name>attribute</name></param>
+            <param><ptype>EGLsizeiANDROID</ptype> <name>size</name></param>
+            <param>const void *<name>ptr</name></param>
         </command>
         <command>
             <proto><ptype>EGLBoolean</ptype> <name>eglSwapBuffers</name></proto>
@@ -2434,6 +2459,21 @@
             </require>
         </extension>
         <extension name="EGL_ANDROID_GLES_layers" supported="egl"/>
+        <extension name="EGL_ANDROID_surface_attrib_blob" supported="egl">
+            <require>
+                <command name="eglSurfaceAttribBlobANDROID"/>
+                <command name="eglQuerySurfaceAttribBlobANDROID"/>
+            </require>
+        </extension>
+        <extension name="EGL_ANDROID_surface_smpte_st_209450_metadata" supported="egl">
+            <require>
+                <enum name="EGL_SMPTE_ST_209450_METADATA_ANDROID"/>
+                <enum name="EGL_SMPTE_ST_209450_POWER_PREFERENCE_ANDROID"/>
+                <enum name="EGL_SMPTE_ST_209450_PREFER_COLOR_ACCURACY_ANDROID"/>
+                <enum name="EGL_SMPTE_ST_209450_PREFER_LOW_POWER_ANDROID"/>
+                <enum name="EGL_SMPTE_ST_209450_SUPPORTED_ANDROID"/>
+            </require>
+        </extension>
         <extension name="EGL_ANDROID_telemetry_hint" supported="egl">
             <require>
                 <enum name="EGL_TELEMETRY_HINT_ANDROID"/>
