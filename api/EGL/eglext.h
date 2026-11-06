@@ -14,12 +14,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: e80a2e0050 $ on $Git commit date: 2026-03-19 06:21:49 +0100 $
+** Khronos $Git commit SHA1: 8e56e86e65 $ on $Git commit date: 2026-11-05 18:48:10 -0600 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20260319
+#define EGL_EGLEXT_VERSION 20261106
 
 /* Generated C header for:
  * API: egl
@@ -550,6 +550,25 @@ EGLAPI EGLBoolean EGLAPIENTRY eglPresentationTimeANDROID (EGLDisplay dpy, EGLSur
 #define EGL_ANDROID_recordable 1
 #define EGL_RECORDABLE_ANDROID            0x3142
 #endif /* EGL_ANDROID_recordable */
+
+#ifndef EGL_ANDROID_surface_attrib_blob
+#define EGL_ANDROID_surface_attrib_blob 1
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLSURFACEATTRIBBLOBANDROIDPROC) (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLsizeiANDROID size, const void *ptr);
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYSURFACEATTRIBBLOBANDROIDPROC) (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLsizeiANDROID *size, void *ptr);
+#ifdef EGL_EGLEXT_PROTOTYPES
+EGLAPI EGLBoolean EGLAPIENTRY eglSurfaceAttribBlobANDROID (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLsizeiANDROID size, const void *ptr);
+EGLAPI EGLBoolean EGLAPIENTRY eglQuerySurfaceAttribBlobANDROID (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLsizeiANDROID *size, void *ptr);
+#endif
+#endif /* EGL_ANDROID_surface_attrib_blob */
+
+#ifndef EGL_ANDROID_surface_smpte_st_209450_metadata
+#define EGL_ANDROID_surface_smpte_st_209450_metadata 1
+#define EGL_SMPTE_ST_209450_METADATA_ANDROID 0x35B0
+#define EGL_SMPTE_ST_209450_POWER_PREFERENCE_ANDROID 0x35B1
+#define EGL_SMPTE_ST_209450_PREFER_COLOR_ACCURACY_ANDROID 0x35B2
+#define EGL_SMPTE_ST_209450_PREFER_LOW_POWER_ANDROID 0x35B3
+#define EGL_SMPTE_ST_209450_SUPPORTED_ANDROID 0x35B4
+#endif /* EGL_ANDROID_surface_smpte_st_209450_metadata */
 
 #ifndef EGL_ANDROID_telemetry_hint
 #define EGL_ANDROID_telemetry_hint 1

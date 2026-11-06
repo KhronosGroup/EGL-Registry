@@ -380,6 +380,10 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=155> <a href="extensions/EXT/EGL_EXT_device_type.txt">EGL_EXT_device_type</a>
 </li>
+<li value=159> <a href="extensions/ANDROID/EGL_ANDROID_surface_attrib_blob.txt">EGL_ANDROID_surface_attrib_blob</a>
+</li>
+<li value=160> <a href="extensions/ANDROID/EGL_ANDROID_surface_smpte_st_209450_metadata.txt">EGL_ANDROID_surface_smpte_st_209450_metadata</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>
