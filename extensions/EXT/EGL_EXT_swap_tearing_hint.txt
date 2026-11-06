@@ -1,0 +1,181 @@
+Name
+
+    EXT_swap_tearing_hint
+
+Name Strings
+
+    EGL_EXT_swap_tearing_hint
+
+Contributors
+
+    Yves Auxier <yvesauxier@gmail.com>
+    Kyle Brenneman,  NVIDIA  (kbrenneman 'at' nvidia.com)
+
+Contacts
+
+    Yves Auxier <yvesauxier@gmail.com>
+
+Status
+
+    Complete
+
+Version
+
+    Version 1, October 29, 2026
+
+Number
+
+    EGL Extension #158
+
+Dependencies
+    Requires EGL 1.1.
+
+    This extension is written against the wording of the EGL 1.5
+    specification, but may be implemented against 1.1.
+
+Overview
+
+    This extension allows a client to hint that tearing is, or is not, an
+    acceptable outcome on its EGLSurface, typically in order to obtain the
+    lowest latency possible. This does not change how eglSwapInterval handles
+    buffer swaps, but rather how they should be presented to the display.
+
+    Put in other words, an application should be able to rely on eglSwapInterval
+    to determine buffer swap pacing (or lack thereof), and this extension to
+    communicate specific tearing preferences, without tying eglSwapInterval
+    behavior to both.
+
+    Setting this hint does not mean that a client will always tear; this is
+    platform policy, and may depend on factors outside of if the client has
+    requested it be allowed (such as hardware support, fullscreen state,
+    protocol limitations or existence of certain extensions, and more).
+
+    Conversely, an implementation may still tear even if the client hints that
+    tearing is not an acceptable outcome, for the same reasons listed above as
+    for why a client may not tear, even if requested.
+
+    For additional clarification, here is a breakdown of how
+    EXT_swap_tearing_hint and eglSwapInterval should interact:
+
+    - EXT_swap_tearing_hint of VSync and eglSwapInterval is 0 will result in
+      unpaced buffer swaps, and frames may be presented without tearing or
+      other mid-frame-update artifacts.
+    - EXT_swap_tearing_hint of ASync and eglSwapInterval is 0 will result in
+      unpaced buffer swaps, and frames may be presented with tearing or other
+      mid-frame-update artifacts.
+
+    - EXT_swap_tearing_hint of VSync and eglSwapInterval >= 1 will result in
+      paced buffer swaps, and frames may be presented without tearing or
+      other mid-frame-update artifacts.
+    - EXT_swap_tearing_hint of ASync and eglSwapInterval >= 1 will result in
+      paced buffer swaps, and frames may be presented with tearing or other
+      mid-frame-update artifacts.
+
+      It is again stated that this extension does not require the described
+      behavior; any hints set by this extension, and eglSwapInterval behavior,
+      may vary in behavior between drivers.
+
+New Types
+
+  None
+
+New Procedures and Functions
+
+  None
+
+New Tokens
+
+    Accepted by the <attribute> parameter of eglSurfaceAttrib:
+
+        EGL_SWAP_TEARING_HINT_EXT                 0x35A0
+
+    Accepted by the <value> parameter of eglSurfaceAttrib when <attribute> is
+    EGL_SWAP_TEARING_HINT_EXT:
+
+        EGL_SWAP_TEARING_HINT_VSYNC_EXT           0x35A1
+        EGL_SWAP_TEARING_HINT_ASYNC_EXT           0x35A2
+        EGL_SWAP_TEARING_HINT_DEFAULT_EXT         0x35A3
+
+Additions to Chapter 3 of the EGL 1.5 Specification (EGL Functions and
+Errors)
+
+    Additions to section 3.5.6 (Surface Attributes)
+
+    Add to the list of supported tokens for eglSurfaceAttrib:
+
+    If <attribute> is EGL_SWAP_TEARING_HINT_EXT, then <value> hints to the EGL
+    implementation (EGL_SWAP_TEARING_HINT_VSYNC_EXT,
+    EGL_SWAP_TEARING_HINT_ASYNC_EXT, or EGL_SWAP_TEARING_HINT_DEFAULT_EXT)
+    whether the client thinks that tearing is an acceptable outcome on its
+    surface. If <surface> is not bound as the draw surface to the calling
+    thread's current context, an EGL_BAD_SURFACE error is generated.
+
+Issues:
+
+ 1) Should setting the EGL_SWAP_TEARING_HINT_EXT hint be limited
+    to the current surface?
+
+    RESOLVED: Yes. Limiting EGL_SWAP_TEARING_HINT_EXT to the current surface is
+    consistent with the rest of a surface's swapchain state, including the swap
+    interval, the buffer age, and eglSwapBuffers itself. There's no reason for
+    EGL_SWAP_TEARING_HINT_EXT to be an exception, and doing so could
+    unnecessarily complicate thread safety.
+
+ 2) Should EGL_SWAP_TEARING_HINT_EXT be queryable?
+
+    RESOLVED: No. It is, in effect, useless to an app whether the tearing hint
+    is actually set or not on the surface, as whether the surface was displayed
+    with tearing can change as the program lives, and depends on factors outside
+    of simply what the app requests. It is more realistic to, at least on
+    Wayland, check a surface's presentation feedback to know if the surface was
+    displayed in sync with the vertical blanking timing, and clients shouldn't
+    rely on EGL_SWAP_TEARING_HINT_EXT being guaranteed to influence platform
+    behavior.
+
+ 3) Do we need a separate EGL_SWAP_TEARING_HINT_DEFAULT_EXT value?
+
+    RESOLVED: Yes, because the default behavior as defined in core EGL is ASYNC
+    if the current swap interval is zero, and VSYNC if the current swap
+    interval is nonzero. Since the effective value of the hint changes with the
+    swap interval, neither one would be appropriate to set all the time if a
+    client doesn't care which value is set. Additionally, a client may desire
+    to forgo all previously set hints so as to not affect future eglSwapInterval
+    calls and their side effects.
+
+ 4) How does this correspond to presentation modes in other APIs?
+
+    RESOLVED: The equivalent in Vulkan and GLX may be:
+
+    - EGL_SWAP_TEARING_HINT_VSYNC_EXT, swap_interval > 0: This is the normal
+      behavior in GLX and core EGL for a non-zero swap interval. The Vulkan
+      equivalent is VK_PRESENT_MODE_FIFO_KHR.
+
+    - EGL_SWAP_TEARING_HINT_VSYNC_EXT, swap_interval = 0: This mode doesn't
+      have a direct equivalent in GLX, but the Vulkan equivalent is
+      VK_PRESENT_MODE_MAILBOX_KHR.
+
+    - EGL_SWAP_TEARING_HINT_ASYNC_EXT, swap_interval > 0: This is equivalent to
+      a negative swap interval with GLX_EXT_swap_control_tear, and to Vulkan's
+      VK_PRESENT_MODE_FIFO_RELAXED_KHR.
+
+    - EGL_SWAP_TEARING_HINT_ASYNC_EXT, swap_interval = 0: This is the normal
+      behavior in GLX and core EGL for a swap interval of zero. The Vulkan
+      equivalent is VK_PRESENT_MODE_IMMEDIATE_KHR.
+
+    Whether an EGL implementation actually behaves similarly to Vulkan and GLX
+    in this regard is not guaranteed by this extension. The basic idea is that
+    the swap interval and tearing preference are communicated and considered
+    separately, and this comparison is provided to help guide implementations
+    and applications in knowing what combination of hints makes sense for them
+    and how this extension SHOULD be implemented.
+
+ 5) Should this extension apply to non-window surfaces?
+
+    RESOLVED: This depends on the implementation. If a tearing hint would be
+    relevant for such a surface, an implementation can define whether this hint
+    should and will have an effect on it. If it does not, the implementation
+    should simply ignore the attribute, and should not return an error if this
+    attribute is set on a surface. What behavior this hint follows after being
+    set is platform-dependent and may be ignored by the platform, as what this
+    hint can influence may depend on factors outside of the implementation's
+    control.
