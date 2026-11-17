@@ -1,0 +1,72 @@
+Name
+
+    EXT_gl_colorspace_passthrough
+
+Name Strings
+
+    EGL_EXT_gl_colorspace_passthrough
+
+Contributors
+
+    Yves Auxier <yvesauxier@gmail.com>
+
+Contact
+
+    Yves Auxier <yvesauxier@gmail.com>
+
+Extension Type
+
+    Display
+
+IP Status
+
+    No known IP claims.
+
+Status
+
+    Complete
+
+Version
+
+     Version 1 - November 5, 2026
+
+Number
+
+    EGL Extension #161
+
+Dependencies
+
+    This extension is written against the wording of the EGL 1.5 specification.
+
+    This extension requires EGL_KHR_gl_colorspace.
+
+Overview
+
+    This extension provides a passthrough color space option for applications
+    to choose from when creating an EGLSurface. This extension requires that the
+    EGL implementation does not handle color management for the EGLSurface at
+    all, and instead, the application is fully responsible for color management.
+
+New Procedures and Functions
+
+    None.
+
+New Tokens
+
+    Accepted as attribute values for EGL_GL_COLORSPACE by
+    eglCreateWindowSurface, eglCreatePbufferSurface and eglCreatePixmapSurface:
+
+        EGL_GL_COLORSPACE_PASSTHROUGH_EXT            0x35A4
+
+Modifications to the EGL 1.5 Specification
+
+    Insert below text in the 3rd paragraph on page 33 in 3.5.1 "Creating On-
+    Screen Rendering Surfaces", before "The default value of EGL_GL_COLORSPACE
+    is EGL_GL_COLORSPACE_LINEAR.":
+
+    [[ If EGL_EXT_gl_colorspace_passthrough is supported ]]
+
+    If its value is EGL_GL_COLORSPACE_PASSTHROUGH_EXT, then no color space
+    will be assumed, and the application will be responsible for handling
+    color management of the EGLSurface and its underlying windowing system
+    details.

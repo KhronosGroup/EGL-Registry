@@ -809,4 +809,9 @@ extension EGL_EXT_swap_tearing_hint {
     flags       public
     filename extensions/EXT/EGL_EXT_swap_tearing_hint.txt
 }
-# Next free extension number: 159
+extension EGL_EXT_gl_colorspace_passthrough {
+    number      161
+    flags       public
+    filename    extensions/EXT/EGL_EXT_gl_colorspace_passthrough.txt
+}
+# Next free extension number: 162
