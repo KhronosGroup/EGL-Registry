@@ -3705,6 +3705,7 @@
                 <enum name="EGL_DEVICE_LOST_MIN_STALL_CHECK_INTERVAL_LYNX"/>
                 <enum name="EGL_DEVICE_LOST_MAX_STALL_TIME_LYNX"/>
                 <enum name="EGL_DEVICE_LOST_MAX_QUERY_WAIT_TIME_LYNX"/>
+            </require>
         </extension>
     </extensions>
 </registry>

@@ -14,12 +14,12 @@ extern "C" {
 ** used to make the header, and the header can be found at
 **   http://www.khronos.org/registry/egl
 **
-** Khronos $Git commit SHA1: e09d19412a $ on $Git commit date: 2026-11-17 01:45:15 -0600 $
+** Khronos $Git commit SHA1: c07a6fdaed $ on $Git commit date: 2026-11-19 10:13:29 -0500 $
 */
 
 #include <EGL/eglplatform.h>
 
-#define EGL_EGLEXT_VERSION 20261117
+#define EGL_EGLEXT_VERSION 20261119
 
 /* Generated C header for:
  * API: egl

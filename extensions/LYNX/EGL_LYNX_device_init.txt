@@ -21,11 +21,11 @@ Contributors
 
 Status
 
-    Draft
+    Complete
 
 Version
 
-    Version 0.8, September 2, 2026
+    Version 1.0, November 19, 2026
 
 Number
 
