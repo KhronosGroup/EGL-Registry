@@ -814,4 +814,9 @@ extension EGL_LYNX_device_init_attribute {
     flags       public
     filename    extensions/LYNX/EGL_LYNX_device_init_attribute.txt
 }
-# Next free extension number: 158
+extension EGL_EXT_swap_tearing_hint {
+    number      158
+    flags       public
+    filename extensions/EXT/EGL_EXT_swap_tearing_hint.txt
+}
+# Next free extension number: 159
