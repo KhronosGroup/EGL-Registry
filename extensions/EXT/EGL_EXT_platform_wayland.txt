@@ -9,7 +9,7 @@ Name Strings
 Contributors
 
     Chad Versace <chad.versace@intel.com>
-    Yves Auxier <yvesauxier@gmail.com>
+    Yves Auxier <contact@yvesauxier.com>
 
 Contacts
 

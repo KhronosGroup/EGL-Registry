@@ -8,12 +8,12 @@ Name Strings
 
 Contributors
 
-    Yves Auxier <yvesauxier@gmail.com>
+    Yves Auxier <contact@yvesauxier.com>
     Kyle Brenneman,  NVIDIA  (kbrenneman 'at' nvidia.com)
 
 Contact
 
-    Yves Auxier <yvesauxier@gmail.com>
+    Yves Auxier <contact@yvesauxier.com>
 
 Status
 
