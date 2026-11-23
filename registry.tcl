@@ -804,6 +804,16 @@ extension EGL_EXT_device_type {
     flags       public
     filename    extensions/EXT/EGL_EXT_device_type.txt
 }
+extension EGL_LYNX_device_init {
+    number      156
+    flags       public
+    filename    extensions/LYNX/EGL_LYNX_device_init.txt
+}
+extension EGL_LYNX_device_init_attribute {
+    number      157
+    flags       public
+    filename    extensions/LYNX/EGL_LYNX_device_init_attribute.txt
+}
 extension EGL_EXT_swap_tearing_hint {
     number      158
     flags       public
