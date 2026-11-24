@@ -21,7 +21,7 @@ Status
 
 Version
 
-    Version 1, October 29, 2026
+    Version 2, November 23, 2026
 
 Number
 
@@ -80,6 +80,12 @@ Overview
       behavior; any hints set by this extension, and eglSwapInterval behavior,
       may vary in behavior between drivers.
 
+      In order to properly apply this hint, the client should call
+      eglSwapInterval after setting it to ensure the driver is aware of the
+      hint and can apply it correctly; the driver may still apply it without
+      an eglSwapInterval call, but this is not guaranteed, and the client may
+      end up in an undesired presentation mode without calling eglSwapInterval.
+
 New Types
 
   None
@@ -114,6 +120,9 @@ Errors)
     whether the client thinks that tearing is an acceptable outcome on its
     surface. If <surface> is not bound as the draw surface to the calling
     thread's current context, an EGL_BAD_SURFACE error is generated.
+
+    The client should call eglSwapInterval after setting this hint to ensure
+    it is applied.
 
 Issues
 
@@ -184,3 +193,12 @@ Issues
     set is platform-dependent and may be ignored by the platform, as what this
     hint can influence may depend on factors outside of the implementation's
     control.
+
+ 6) Does the client need to call eglSwapInterval after setting this hint?
+
+    RESOLVED: Yes, in order to ensure the driver applies the hint properly.
+    Otherwise, the client may still be stuck on the previous presentation mode.
+    It also helps to ensure compatibility with implementations that may be
+    unable to apply this hint without a call to eglSwapInterval. It will not
+    result in an error to not call eglSwapInterval, but it can lead to
+    undesired behavior.
